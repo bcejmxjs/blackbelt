@@ -1,5 +1,5 @@
 # Blackbelt
-Blackbelt is a web app made(WIP) with love for Melbourne Martial Arts.
+Blackbelt is a web app made (read WIP) with love for Melbourne Martial Arts.
 
 ## Tell me more
 The application is targeted at karate dojos and will be available liberally via
