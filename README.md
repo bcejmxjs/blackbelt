@@ -8,7 +8,7 @@ We're intially using the [MEAN Stack](http://meanjs.org/) to build the applicati
 
 ## Contributors
 
-![](https://avatars1.githubusercontent.com/u/10470227?v=3&s=200)
+[![](https://avatars1.githubusercontent.com/u/10470227?v=3&s=200)]()
 
 - Brent Lewis [@blewis954](https://github.com/blewis954)
 - Cory Anderson [@corya14](https://github.com/corya14)
