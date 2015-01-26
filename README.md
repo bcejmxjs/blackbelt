@@ -9,12 +9,12 @@ the Apache 2.0 liscense.
 
 ![](https://avatars1.githubusercontent.com/u/10470227?v=3&s=200)
 
-- Brent Lewis [@blewis954]()
-- Cory Anderson [@corya14]()
-- Jacob Jenkins [@jacobj]()
-- Max Fresonke [@mfresonke]()
-- Xixi Ruan [@sissisnothere]()
-- Emre Ozgener [@eozgener]()
+- Brent Lewis [@blewis954](https://github.com/blewis954)
+- Cory Anderson [@corya14](https://github.com/corya14)
+- Jacob Jenkins [@jacobj](https://github.com/jacobj)
+- Max Fresonke [@mfresonke](https://github.com/mfresonke)
+- Xixi Ruan [@sissisnothere](https://github.com/sissisnothere)
+- Emre Ozgener [@eozgener](https://github.com/eozgener)
 
 ## User Stories
 Not yet available.
