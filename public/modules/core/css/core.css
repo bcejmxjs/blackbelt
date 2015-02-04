@@ -8,6 +8,11 @@
 	display: none !important;
 }
 
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
 .container { width: 100% }
 
 .ng-invalid.ng-dirty {
