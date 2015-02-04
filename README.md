@@ -18,4 +18,4 @@ We're intially using the [MEAN](http://meanjs.org/) stack to build the applicati
 - Emre Ozgener [@eozgener](https://github.com/eozgener)
 
 ## User Stories
-Not yet available!
+Via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
