@@ -1,5 +1,6 @@
-# Blackbelt
 [![Build Status](https://travis-ci.org/bcejmxjs/blackbelt.svg?branch=master)](https://travis-ci.org/bcejmxjs/blackbelt)
+# Blackbelt
+
 Blackbelt is a web app made (read WIP) with love for Melbourne Martial Arts.
 
 ## Tell me more
