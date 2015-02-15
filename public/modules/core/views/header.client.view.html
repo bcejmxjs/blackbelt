@@ -9,6 +9,28 @@
 		<a href="/#!/" class="navbar-brand"> Melbourne Martial Arts </a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Home <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="/#!/#location">Location</a>
+					</li>
+					<li>
+						<a href="/#!/#philosophy">Philosophy</a>
+					</li>
+					<li>
+						<a href="/#!/#about">About Us</a>
+					</li>
+					<!--<li class="divider"></li>-->
+					<li>
+						<a href="/#!/#contact">Contact Us</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
 			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
 				<a ng-switch-when="dropdown" class="dropdown-toggle">
