@@ -23,3 +23,12 @@
     display: flex;
     align-items: center;
 }
+
+.front-jumbotron {
+    background-image: -webkit-linear-gradient(top, #372544 0%, #22172A 100%);
+    background-image: -o-linear-gradient(top, #372544 0%, #22172A 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#372544), to(#22172A));
+    background-image: linear-gradient(to bottom, #372544 0%, #22172A 100%);
+    color: #f2f2f2;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}
