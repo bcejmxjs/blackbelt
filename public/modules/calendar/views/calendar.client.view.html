@@ -1,4 +1,4 @@
-<section data-ng-controller="CalendarController">
+<section data-ng-controller="CalendarController" data-ng-init="list()">
     <div class="container">
         <div class="col-md-4" background-color="#000000">
             <div class="page-header">
@@ -44,20 +44,19 @@
                     </table>
                 </div>
             </div>
-
         </div>
         <div class="col-md-8">
             <div class="page-header">
                 <h1>Events</h1>
             </div>
-            <div class="panel panel-primary">
+            <div data-ng-repeat="event in events" class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Moving Day</h1>
+                    <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
                 <div class="panel-body">
-                    <h4><b>Febuary 15th, 3:00 pm</b></h4>
+                    <h4><b>{{ event.date }}</b></h4>
                     <p>
-                        Come join us for moving day! Where we will be moving around all the furniture in the studio 360 degrees so that it all ends up back in the same location!
+                        {{ event.body }}
                     </p>
                 </div>
             </div>
