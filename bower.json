@@ -14,8 +14,6 @@
     "angular-bootstrap": "~0.11.2",
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.11",
-    "d3": "~3.5.3",
-    "nvd3": "~1.1.15-beta",
-    "angularjs-nvd3-directives": "~0.0.7"
+    "angular-moment": "~0.9.0"
   }
 }
