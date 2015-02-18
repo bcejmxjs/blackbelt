@@ -15,8 +15,7 @@ var EventSchema = new Schema({
         trim: true
     },
     date : {
-        type: String,
-        trim: true
+        type: Date
     },
     body : {
         type: String,

@@ -70,5 +70,13 @@ exports.delete = function(req, res) {
  * List of Events
  */
 exports.list = function(req, res) {
-
+    Event.find().sort('date').populate('title', 'date', 'body').exec(function(err, events) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(events);
+		}
+	});
 };
