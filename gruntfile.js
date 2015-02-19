@@ -139,7 +139,30 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
+		},
+		// SAVE & LOAD MONGODB INSTANCES!
+		easy_mongo_fixture: {
+		  load: {
+		    options: {
+		      database: 'blackbelt-dev',
+		      dir: './mongo-fixtures',
+		      override: true
+		    },
+		    collections: ['users', 'events'],
+		    action: 'load'
+		  },
+
+		  save: {
+		    options: {
+		      database: 'blackbelt-dev',
+		      dir: './mongo-fixtures',
+		      override: true
+		    },
+		    collections: ['users', 'events'],
+		    action: 'save'
+		  }
 		}
+		
 	});
 
 	// Load NPM tasks
@@ -174,4 +197,8 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+	//SAVE AND LOAD MONGODB INSTANCES TASK
+	grunt.registerTask('mongo:load', ['easy_mongo_fixture:load']);
+grunt.registerTask('mongo:save', ['easy_mongo_fixture:save']);
 };
