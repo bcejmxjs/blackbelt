@@ -4,10 +4,13 @@
             <div class="page-header">
                 <h1>Hours</h1>
             </div>
-
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h1 class="panel-title">Currently Open</h1>
+            <div 
+            class="panel" 
+            data-ng-class="getOpenPanelClass()">
+                <div class="panel-heading" >
+                    <h1 class="panel-title">
+                        {{ getOpenPanelText() }}
+                    </h1>
                 </div>
                 <div class="col-panel-body">
                     <table class="table">
@@ -16,30 +19,13 @@
                             <th>Open Time</th>
                             <th>Close Time</th>
                         </tr>
-                        <tr>
-                            <td>Monday</td>
-                            <td>7:00 AM</td>
-                            <td>6:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Tuesday</td>
-                            <td>7:00 AM</td>
-                            <td>6:00 PM</td>
-                        </tr>
-                        <tr style="background:whitesmoke">
-                            <td>Wednesday</td>
-                            <td>7:00 AM</td>
-                            <td>6:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Thursday</td>
-                            <td>7:00 AM</td>
-                            <td>6:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Friday</td>
-                            <td>7:00 AM</td>
-                            <td>6:00 PM</td>
+                        <tr 
+                        data-ng-repeat="day in days" 
+                        data-ng-if="day.isOpen"
+                        data-ng-style="getDayStyle($index)">
+                            <td>{{ day.name }}</td>
+                            <td>{{ hourFormat(day.openHour) }}</td>
+                            <td>{{ hourFormat(day.closeHour) }}</td>
                         </tr>
                     </table>
                 </div>
@@ -49,7 +35,9 @@
             <div class="page-header">
                 <h1>Events</h1>
             </div>
-            <div data-ng-repeat="event in events" class="panel panel-primary">
+            <div 
+            data-ng-repeat="event in events" 
+            class="panel panel-primary">
                 <div class="panel-heading">
                     <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
