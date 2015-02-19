@@ -31,7 +31,8 @@ module.exports = {
 				'public/lib/jquery/dist/jquery.js',
 				'public/lib/bootstrap/dist/js/bootstrap.js',
                 'public/lib/moment/moment.js',
-                'public/lib/angular-moment/angular-moment.js'
+                'public/lib/angular-moment/angular-moment.js',
+                'public/lib/livereload-js/dist/livereload.js'
 			]
 		},
 		css: [
