@@ -70,7 +70,7 @@ exports.delete = function(req, res) {
  * List of Events
  */
 exports.list = function(req, res) {
-    Event.find().sort('-date').populate('user', 'displayName').exec(function(err, events) {
+    Event.find().sort({ date: 1 }).populate('user', 'displayName').exec(function(err, events) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -79,15 +79,6 @@ exports.list = function(req, res) {
 			res.jsonp(events);
 		}
 	});
-    // Event.find().sort('-date').exec(function(err, events) {
-	// 	if (err) {
-	// 		return res.status(400).send({
-	// 			message: errorHandler.getErrorMessage(err)
-	// 		});
-	// 	} else {
-	// 		res.jsonp(events);
-	// 	}
-	// });
 };
 
 exports.eventByID = function(req, res, next, id) { 
