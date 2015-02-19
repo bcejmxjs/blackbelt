@@ -4,6 +4,9 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
     function($scope, Events) {
 		// Calendar controller logic
 
+        // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
+        window.MY_SCOPE = $scope;
+        
 		/* Common Variables */
         $scope.moment = moment;
 
@@ -67,8 +70,10 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
         {
         	if( hour < 12 )
         		return hour + ':00 AM';
-        	else
+        	else if ( hour > 12 )
         		return (hour - 12) + ':00 PM';
+            else
+                return '12:00 PM';
         };        
 
         /* Begin Events Code */
