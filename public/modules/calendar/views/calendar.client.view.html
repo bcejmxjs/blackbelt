@@ -54,7 +54,7 @@
                     <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
                 <div class="panel-body">
-                    <h4><b>{{ event.date }}</b></h4>
+                    <h4><b>{{ moment(event.date).format('MMMM DD, YYYY') }}</b></h4>
                     <p>
                         {{ event.body }}
                     </p>

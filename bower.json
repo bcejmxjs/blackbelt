@@ -16,5 +16,8 @@
     "angular-ui-router": "~0.2.11",
     "angular-moment": "~0.9.0",
     "bootstrap-social": "~4.8.0"
+  },
+  "devDependencies": {
+    "livereload-js": "~2.2.1"
   }
 }
