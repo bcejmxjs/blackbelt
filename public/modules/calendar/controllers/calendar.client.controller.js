@@ -1,19 +1,22 @@
 'use strict';
 
-angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
-    function($scope, Events) {
-		// Calendar controller logic
+angular.module('calendar').controller('CalendarController', ['$scope', 'Events', 'Authentication',
+    function($scope, Events, Authentication) {
+		/* Common Variables */
 
+        // Provides Authentication context.
+        $scope.authentication = Authentication;
+        
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
         window.MY_SCOPE = $scope;
-        
-		/* Common Variables */
+
+        // Binds moment function to scope.
         $scope.moment = moment;
 
         /* Begin Open/Closed Code */
 
-        //TODO Gets Hours for Different days from DB.
-        //Define Open Days
+        // TODO: Gets Hours for Different days from DB.
+        // Define Open Days
     	$scope.days = [
         	{name:'Sunday', isOpen:false},
         	{name:'Monday', isOpen:true, openHour:7, closeHour:18},
@@ -40,7 +43,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
     		if( day.isOpen && 
     			moment().hour() >= day.openHour && 
     			moment().hour() < day.closeHour 
-    			)
+    		  )
     			return true;
     		else 
     			return false;
@@ -78,8 +81,60 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
 
         /* Begin Events Code */
 
+        // Uses Events service to retrieve list of events.
         $scope.list = function() {
             $scope.events = Events.query();
         };
+        /* End Events Code */
+
+        /*  Begin Date Picker Functions */
+        $scope.format = 'MMMM dd, yyyy';
+        
+        $scope.today = function() {
+            $scope.dt = new Date();
+        };
+        $scope.today();
+
+        $scope.clear = function () {
+            $scope.dt = null;
+        };
+
+        $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+        };
+        $scope.toggleMin();
+
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+        };
+
+        /* End Date Picker Functions */
+
+        /* Begin Time Picker Functions */
+
+        // Set default time to 12:00 PM
+        var d = new Date();
+        d.setHours( 12 );
+        d.setMinutes( 0 );
+        $scope.mytime = d;
+
+        // Set the step for hours and minutes.
+        $scope.hstep = 1;
+        $scope.mstep = 30;
+
+        // Allows for 12 hour time format.
+        $scope.ismeridian = true;
+
+        $scope.changed = function () {
+            $log.log('Time changed to: ' + $scope.mytime);
+        };
+
+        $scope.clear = function() {
+            $scope.mytime = null;
+        };
+        /* End Time Picker Functions */
 	}
 ]);

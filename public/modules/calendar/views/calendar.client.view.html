@@ -35,9 +35,27 @@
             <div class="page-header">
                 <h1>Events</h1>
             </div>
-            <div 
-            data-ng-repeat="event in events" 
-            class="panel panel-primary">
+            <div class="row" ng-show="authentication.user.roles.indexOf('instructor') || 
+                                      authentication.user.roles.indexOf('admin')">
+                <div class="col-md-6" align="right">
+                    <p class="input-group" style="vertical-align: middle">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                    <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" placeholder="Event Title" rows="1"></input>
+                    <br />
+                    <textarea class="form-control" placeholder="Event Description" rows="3"></textarea>
+                    <br />
+                </div>
+            </div>
+            <div></div>
+            <div data-ng-repeat="event in events" 
+                 class="panel panel-primary">
                 <div class="panel-heading">
                     <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
