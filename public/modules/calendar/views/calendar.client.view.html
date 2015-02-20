@@ -13,11 +13,13 @@
                 <div class="col-panel-body">
                     <table class="table">
                         <tr>
+                            <th></th>
                             <th>Day</th>
                             <th>Open Time</th>
                             <th>Close Time</th>
                         </tr>
                         <tr data-ng-repeat="day in days" data-ng-if="day.isOpen" data-ng-style="getDayStyle($index)">
+                            <td></td>
                             <td>{{ day.name }}</td>
                             <td>{{ hourFormat(day.openHour) }}</td>
                             <td>{{ hourFormat(day.closeHour) }}</td>
