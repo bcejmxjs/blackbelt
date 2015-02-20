@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('calendar').controller('CalendarController', ['$scope', 'Events', 'Authentication',
-    function($scope, Events, Authentication) {
-		/* Common Variables */
+angular.module('calendar').controller('CalendarController', ['$scope', '$state', '$location', 'Events', 'Authentication',
+    function($scope, $state, $location, Events, Authentication) {
+        /* Common Variables */
 
         // Provides Authentication context.
         $scope.authentication = Authentication;
-        
+
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
         window.MY_SCOPE = $scope;
 
@@ -17,67 +17,89 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
 
         // TODO: Gets Hours for Different days from DB.
         // Define Open Days
-    	$scope.days = [
-        	{name:'Sunday', isOpen:false},
-        	{name:'Monday', isOpen:true, openHour:7, closeHour:18},
-        	{name:'Tuesday', isOpen:true, openHour:7, closeHour:18},
-        	{name:'Wednesday', isOpen:true, openHour:7, closeHour:18},
-        	{name:'Thursday', isOpen:true, openHour:7, closeHour:18},
-        	{name:'Friday', isOpen:true, openHour:7, closeHour:18},
-        	{name:'Saturday', isOpen:false}
-    	];
+        $scope.days = [{
+            name: 'Sunday',
+            isOpen: false
+        }, {
+            name: 'Monday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Tuesday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Wednesday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Thursday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Friday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Saturday',
+            isOpen: false
+        }];
 
-    	//Takes in a day number and returns the correct style for the given day.
-    	$scope.getDayStyle = function( dayIndex )
-    	{
-    		if( moment().day() === dayIndex )
-    			return {'background':'whitesmoke'};
-    		else 
-    			return {};
-    	};
+        //Takes in a day number and returns the correct style for the given day.
+        $scope.getDayStyle = function(dayIndex) {
+            if (moment().day() === dayIndex)
+                return {
+                    'background': 'whitesmoke'
+                };
+            else
+                return {};
+        };
 
-    	//Determines currently open/closed status
-    	$scope.isCurrentlyOpen = function()
-    	{
-    		var day = $scope.days[moment().day()];
-    		if( day.isOpen && 
-    			moment().hour() >= day.openHour && 
-    			moment().hour() < day.closeHour 
-    		  )
-    			return true;
-    		else 
-    			return false;
-    	};
+        //Determines currently open/closed status
+        $scope.isCurrentlyOpen = function() {
+            var day = $scope.days[moment().day()];
+            if (day.isOpen &&
+                moment().hour() >= day.openHour &&
+                moment().hour() < day.closeHour
+            )
+                return true;
+            else
+                return false;
+        };
 
-    	//Gets correct panel style to associate with being opened/closed.
-    	$scope.getOpenPanelClass = function()
-    	{
-    		if( $scope.isCurrentlyOpen() )
-    			return 'panel-success';
-    		else
-    			return 'panel-danger';
+        //Gets correct panel style to associate with being opened/closed.
+        $scope.getOpenPanelClass = function() {
+            if ($scope.isCurrentlyOpen())
+                return 'panel-success';
+            else
+                return 'panel-danger';
 
-    	};
+        };
 
-    	//Gets correct panel TEXT to associate with being opened/closed.
-    	$scope.getOpenPanelText = function()
-    	{
-    		if( $scope.isCurrentlyOpen() )
-    			return 'Currently Open';
-    		else
-    			return 'Currently Closed';
-    	};
+        //Gets correct panel TEXT to associate with being opened/closed.
+        $scope.getOpenPanelText = function() {
+            if ($scope.isCurrentlyOpen())
+                return 'Currently Open';
+            else
+                return 'Currently Closed';
+        };
 
         //converts the hour from 24 hour time, to a human readable form.
-        $scope.hourFormat = function( hour )
-        {
-        	if( hour < 12 )
-        		return hour + ':00 AM';
-        	else if ( hour > 12 )
-        		return (hour - 12) + ':00 PM';
+        $scope.hourFormat = function(hour) {
+            if (hour < 12)
+                return hour + ':00 AM';
+            else if (hour == 24)
+                return '12:00 AM';
+            else if (hour > 12)
+                return (hour - 12) + ':00 PM';
             else
                 return '12:00 PM';
-        };        
+        };
 
         /* Begin Events Code */
 
@@ -87,15 +109,29 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
         };
         /* End Events Code */
 
+        $scope.create = function() {
+            var event = new Events({
+                title: this.event.title,
+                body: this.event.body,
+                date: this.dt
+                    // Do something with the time and date to combine.
+            });
+            event.$save(function(response) {
+                $state.reload();
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
         /*  Begin Date Picker Functions */
         $scope.format = 'MMMM dd, yyyy';
-        
+
         $scope.today = function() {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function () {
+        $scope.clear = function() {
             $scope.dt = null;
         };
 
@@ -117,8 +153,8 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
 
         // Set default time to 12:00 PM
         var d = new Date();
-        d.setHours( 12 );
-        d.setMinutes( 0 );
+        d.setHours(12);
+        d.setMinutes(0);
         $scope.mytime = d;
 
         // Set the step for hours and minutes.
@@ -128,7 +164,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
         // Allows for 12 hour time format.
         $scope.ismeridian = true;
 
-        $scope.changed = function () {
+        $scope.changed = function() {
             $log.log('Time changed to: ' + $scope.mytime);
         };
 
@@ -136,5 +172,5 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Events',
             $scope.mytime = null;
         };
         /* End Time Picker Functions */
-	}
+    }
 ]);
