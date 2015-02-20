@@ -4,10 +4,8 @@
             <div class="page-header">
                 <h1>Hours</h1>
             </div>
-            <div 
-            class="panel" 
-            data-ng-class="getOpenPanelClass()">
-                <div class="panel-heading" >
+            <div class="panel" data-ng-class="getOpenPanelClass()">
+                <div class="panel-heading">
                     <h1 class="panel-title">
                         {{ getOpenPanelText() }}
                     </h1>
@@ -19,10 +17,7 @@
                             <th>Open Time</th>
                             <th>Close Time</th>
                         </tr>
-                        <tr 
-                        data-ng-repeat="day in days" 
-                        data-ng-if="day.isOpen"
-                        data-ng-style="getDayStyle($index)">
+                        <tr data-ng-repeat="day in days" data-ng-if="day.isOpen" data-ng-style="getDayStyle($index)">
                             <td>{{ day.name }}</td>
                             <td>{{ hourFormat(day.openHour) }}</td>
                             <td>{{ hourFormat(day.closeHour) }}</td>
@@ -54,8 +49,7 @@
                 </div>
             </div>
             <div></div>
-            <div data-ng-repeat="event in events" 
-                 class="panel panel-primary">
+            <div data-ng-repeat="event in events" class="panel panel-primary">
                 <div class="panel-heading">
                     <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
