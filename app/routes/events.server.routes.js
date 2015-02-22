@@ -8,5 +8,5 @@ module.exports = function(app) {
     // ...
     app.route('/events')
         .get(events.list)
-        .post(users.requiresLogin, events.create);
+        .post(users.requiresLogin, users.hasAuthorization(['admin', 'instructor']), events.create);
 };

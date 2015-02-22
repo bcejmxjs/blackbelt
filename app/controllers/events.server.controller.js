@@ -91,14 +91,3 @@ exports.eventByID = function(req, res, next, id) {
         next();
     });
 };
-
-// Checks if user is admin or instructor
-exports.hasAuthorizationInstructor = function(req, res, next) {
-    if (req.user.role.indexOf('admin') > -1 ||
-        req.user.role.indexOf('instructor') > -1) {
-        return res.status(403).send({
-            message: 'User is not authorized'
-        });
-    }
-    next();
-};
