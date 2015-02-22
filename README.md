@@ -24,13 +24,13 @@ Via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
 
 ## Default Accounts
 ### Admin
-username: admin
-password: adminuser
+- username: admin
+- password: adminuser
 
 ### Instructor
-username: instructor
-password: instructoruser
+- username: instructor
+- password: instructoruser
 
 ### Test User
-username: test
-password: testuser
+- username: test
+- password: testuser
