@@ -161,8 +161,26 @@ module.exports = function(grunt) {
 		    collections: ['users', 'events'],
 		    action: 'save'
 		  }
-		}
-		
+		},
+		protractor: {
+		      options: {
+		        configFile: 'node_modules/protractor/example/conf.js', // Default config file
+		        keepAlive: false, // If false, the grunt process stops when the test fails.
+		        noColor: false, // If true, protractor will not use colors in its output.
+		        verbose: true,
+		        args: {
+		          // Arguments passed to the command
+		        }
+		      },
+		      example: {
+		        options: {
+		          verbose: true,
+		          keepAlive:false,
+		          configFile: 'protractor-tests/example/conf.js',
+		          args: {}
+		        }
+		      }
+		    }
 	});
 
 	// Load NPM tasks
@@ -200,5 +218,7 @@ module.exports = function(grunt) {
 
 	//SAVE AND LOAD MONGODB INSTANCES TASK
 	grunt.registerTask('mongo:load', ['easy_mongo_fixture:load']);
-grunt.registerTask('mongo:save', ['easy_mongo_fixture:save']);
+	grunt.registerTask('mongo:save', ['easy_mongo_fixture:save']);
+
+	grunt.loadNpmTasks('grunt-protractor-runner');
 };
