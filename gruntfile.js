@@ -179,6 +179,14 @@ module.exports = function(grunt) {
 		          configFile: 'protractor-tests/example/conf.js',
 		          args: {}
 		        }
+		      },
+		      login: {
+		      	verbose: true,
+		      	keepAlive: false,
+		      	configFile: 'protractor-tests/login/conf.js',
+		      	// An example arg would be specifying a test suite
+		      	// Unsure of arg syntax
+		      	args: {}
 		      }
 		    }
 	});

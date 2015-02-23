@@ -21,3 +21,16 @@ We're intially using the [MEAN](http://meanjs.org/) stack to build the applicati
 
 ## User Stories
 Via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
+
+## Default Accounts
+### Admin
+- username: admin
+- password: adminuser
+
+### Instructor
+- username: instructor
+- password: instructoruser
+
+### Test User
+- username: test
+- password: testuser
