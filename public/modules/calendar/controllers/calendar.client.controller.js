@@ -17,38 +17,40 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
 
         // TODO: Gets Hours for Different days from DB.
         // Define Open Days
-        $scope.days = [{
-            name: 'Sunday',
-            isOpen: false
-        }, {
-            name: 'Monday',
-            isOpen: true,
-            openHour: 7,
-            closeHour: 18
-        }, {
-            name: 'Tuesday',
-            isOpen: true,
-            openHour: 7,
-            closeHour: 18
-        }, {
-            name: 'Wednesday',
-            isOpen: true,
-            openHour: 7,
-            closeHour: 18
-        }, {
-            name: 'Thursday',
-            isOpen: true,
-            openHour: 7,
-            closeHour: 18
-        }, {
-            name: 'Friday',
-            isOpen: true,
-            openHour: 7,
-            closeHour: 18
-        }, {
-            name: 'Saturday',
-            isOpen: false
-        }];
+        $scope.days = [
+            {
+                name: 'Sunday',
+                isOpen: false
+            }, {
+                name: 'Monday',
+                isOpen: true,
+                openHour: 7,
+                closeHour: 18
+            }, {
+                name: 'Tuesday',
+                isOpen: true,
+                openHour: 7,
+                closeHour: 18
+            }, {
+                name: 'Wednesday',
+                isOpen: true,
+                openHour: 7,
+                closeHour: 18
+            }, {
+                name: 'Thursday',
+                isOpen: true,
+                openHour: 7,
+                closeHour: 18
+            }, {
+                name: 'Friday',
+                isOpen: true,
+                openHour: 7,
+                closeHour: 18
+            }, {
+                name: 'Saturday',
+                isOpen: false
+            }
+        ];
 
         //Takes in a day number and returns the correct style for the given day.
         $scope.getDayStyle = function(dayIndex) {
@@ -107,7 +109,6 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
         $scope.list = function() {
             $scope.events = Events.query();
         };
-        /* End Events Code */
 
         $scope.create = function() {
             var event = new Events({
@@ -122,6 +123,8 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
                 $scope.error = errorResponse.data.message;
             });
         };
+
+        /* End Events Code */
 
         /*  Begin Date Picker Functions */
         $scope.format = 'MMMM dd, yyyy';

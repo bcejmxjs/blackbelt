@@ -7,10 +7,20 @@
                 </div>
                 <div class="col-sm-6 hidden-xs">
 					<p style="font-size: 22px">
-						Savate, Silat, Panantukan, Aikido, JKD, Aikijujutsu, Karate,
-						Jujitsu, Chin-na, Wing chung, Wrestling, Judo, Iaido, Kempo,
-						Ninjutsu, TKD, Kickboxing, Kendo, Boxing East, Boxing West,
-						Kali, Escrima, Kung Fu, Weaponry, Swordsmanship, Krav Maga
+						<!-- Begin Filling Word Cloud -->
+						<span 
+						data-ng-repeat="style in martialArtStyles" 
+						data-ng-switch="style.url">
+							<!-- If a link does not exist (is empty string), make it regular text. -->
+							<span data-ng-switch-when="">{{style.name}}</span>
+							<!-- If a link exists in the obj, make it a link. -->
+							<span data-ng-switch-default>
+								<a data-ng-href="{{style.url}}" style="color: white">{{style.name}}</a>
+							</span>
+							<!-- Adds a comma if not the last element -->
+							<!-- NOT YET FULLY WORKING! Adds an extra space :'(  -->
+							<span data-ng-if="$last == false">,</span>
+						</span>
 					</p>
 				</div>
 				<div class="col-sm-3 ">
