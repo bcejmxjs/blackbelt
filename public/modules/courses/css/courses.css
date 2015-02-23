@@ -1,0 +1,11 @@
+.badge-important{
+  background-color:#b94a48;
+}
+
+h1,h2,h3 {
+  vertical-align:middle;
+}
+
+h1>.badge, h2>.badge, h3>.badge {
+  vertical-align:middle;
+}
