@@ -8,23 +8,59 @@ var SignInPage = function() {
 	this.password_field = element(by.id('password'));
 	this.signin_btn = element(by.buttonText('Sign In'));
 
+	this.user_un = 'test';
+	this.user_pw = 'testuser';
+	this.instructor_un = 'instructor';
+	this.instructor_pw = 'instructoruser';
+	this.admin_un = 'admin';
+	this.admin_pw = 'adminuser';
+
 	// SignInPage.get will get the page
 	this.get = function() {
 		browser.get('http://localhost:3000/#!/signin')
-	}
+	};
 
-	// SignInPage.setUsername('bob') will input 'bob' in the field
+	// Input custom text into the username field
 	this.setUsername = function(username) {
 		this.username_field.sendKeys(username);
-	}
+	};
 
-	// SignInPage.setPassword('thebuilder') will input 'thebuilder' in the password field
+	// Input custom text into password field
 	this.setPassword = function(password) {
 		this.password_field.sendKeys(password);
-	}
+	};
 
-	this.sign_in = function() {
+	// Login as user
+	this.user_signin = function() {
+		this.setUsername(user_un);
+		this.setPassword(user_pw);
 		this.signin_btn.click();
-	}
+	};
 
-}
+	// Login as instructor
+	this.instructor_signin = function() {
+		this.setUsername(instructor_un);
+		this.setPassword(instructor_pw);
+		this.signin_btn.click();
+	};
+
+	// Login as admin
+	this.admin_signin = function() {
+		this.setUsername(admin_un);
+		this.setPassword(instructor_pw);
+		this.signin_btn.click();
+	};
+
+};
+
+describe('login as user', function() {
+
+});
+
+describe('login as instructor', function() {
+
+});
+
+describe('login as admin', function() {
+
+});
