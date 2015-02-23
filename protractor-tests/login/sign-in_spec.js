@@ -1,3 +1,10 @@
+	var user_un = 'test';
+	var user_pw = 'testuser';
+	var instructor_un = 'instructor';
+	var instructor_pw = 'instructoruser';
+	var admin_un = 'admin';
+	var admin_pw = 'adminuser';
+
 var SignInPage = function() {
 	// Page object for the sign in page
 	
@@ -6,14 +13,7 @@ var SignInPage = function() {
 	// These are items on the sign in page:
 	this.username_field = element(by.id('username'));
 	this.password_field = element(by.id('password'));
-	this.signin_btn = element(by.buttonText('Sign In'));
-
-	this.user_un = 'test';
-	this.user_pw = 'testuser';
-	this.instructor_un = 'instructor';
-	this.instructor_pw = 'instructoruser';
-	this.admin_un = 'admin';
-	this.admin_pw = 'adminuser';
+	this.signin_btn = element(by.buttonText('Sign in'));
 
 	// SignInPage.get will get the page
 	this.get = function() {
@@ -54,7 +54,24 @@ var SignInPage = function() {
 };
 
 describe('login as user', function() {
+	it('should redirect to the home page', function() {
+		var signin_page = new SignInPage();
+		signin_page.get();
+		signin_page.user_signin();
+		expect(browser.getLocationAbsUrl()).toBe('http://localhost:3000/#!/');
+	});
 
+	// I had to comment this out because I still can't figure out how to properly translate
+	// The user profile nav element should be visible
+	// Into a test
+	// Should be able to select the element somehow
+	// Then see that it's visible or invisible
+	//it('should show the user profile nav option', function() {
+		
+		//var navElement = browser.findElement(protractor.By.className('nav navbar-nav navbar-right'));
+		//var navElement = select the nav element somehow
+		//expect(navElement.isDisplayed()).toBeTruthy();
+	//});
 });
 
 describe('login as instructor', function() {

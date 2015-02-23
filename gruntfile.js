@@ -179,7 +179,7 @@ module.exports = function(grunt) {
 		          configFile: 'protractor-tests/example/conf.js',
 		          args: {}
 		        }
-		      }
+		      },
 		      login: {
 		      	verbose: true,
 		      	keepAlive: false,
