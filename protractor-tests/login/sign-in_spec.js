@@ -61,17 +61,11 @@ describe('login as user', function() {
 		expect(browser.getLocationAbsUrl()).toBe('http://localhost:3000/#!/');
 	});
 
-	// I had to comment this out because I still can't figure out how to properly translate
-	// The user profile nav element should be visible
-	// Into a test
-	// Should be able to select the element somehow
-	// Then see that it's visible or invisible
-	//it('should show the user profile nav option', function() {
-		
-		//var navElement = browser.findElement(protractor.By.className('nav navbar-nav navbar-right'));
-		//var navElement = select the nav element somehow
-		//expect(navElement.isDisplayed()).toBeTruthy();
-	//});
+	// I still don't know how to access the element without an id
+	// So I just added an id
+	it('should show the user profile nav option', function() {
+		expect(browser.findElement(by.id('profile_dropdown')).isDisplayed()).toBeTruthy();
+	});
 });
 
 describe('login as instructor', function() {
