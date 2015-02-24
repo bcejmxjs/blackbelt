@@ -9,21 +9,28 @@
 		</div>
 	</div>
 	<h3 class="col-md-12 text-center">Connect other social accounts:</h3>
-	<div class="col-md-12 text-center">
-		<a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/facebook.png">
-		</a>
-		<a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/twitter.png">
-		</a>
-		<a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/google.png">
-		</a>
-		<a href="/auth/linkedin" data-ng-hide="isConnectedSocialAccount('linkedin')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/linkedin.png">
-		</a>
-		<a href="/auth/github" data-ng-hide="isConnectedSocialAccount('github')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/github.png">
-		</a>
+	<div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+		    <a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
+			    <button type="button" class="btn btn-block btn-social btn-facebook">
+                    <i class="fa fa-facebook"></i> Connect with Facebook
+                </button>
+		    </a>
+            <br/>
+		    <a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
+			    <button type="button" class="btn btn-block btn-social btn-twitter">
+                    <i class="fa fa-twitter"></i> Connect with Twitter
+                </button>
+		    </a>
+            <br />
+		    <a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
+			    <button type="button" class="btn btn-block btn-social btn-google-plus">
+                    <i class="fa fa-google"></i> Connect with Google
+                </button>
+		    </a>
+        </div>
+        <div class="col-md-2"></div>
 	</div>
 </section>
