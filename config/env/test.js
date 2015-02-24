@@ -7,8 +7,8 @@ module.exports = {
 		title: 'Blackbelt - Test Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '632362650241923',
+		clientSecret: process.env.FACEBOOK_SECRET || 'dd27466c44c6ec963de7629c3fb2b21b',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
