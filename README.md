@@ -4,9 +4,8 @@
 Blackbelt is a web app made (read WIP) with love for Melbourne Martial Arts.
 
 ## Tell me more
-The application is targeted at karate dojos and will be available liberally via
-the Apache 2.0 or MIT liscense.
-We're intially using the [MEAN](http://meanjs.org/) stack to build the application's foundation.
+The application is targeted at karate dojos and will be available liberally via the Apache 2.0 or MIT liscense.
+We're using the [MEAN](http://meanjs.org/) stack to build the application's foundation.
 
 ## Contributors
 
@@ -20,17 +19,37 @@ We're intially using the [MEAN](http://meanjs.org/) stack to build the applicati
 - Emre Ozgener [@eozgener](https://github.com/eozgener)
 
 ## User Stories
-Via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
+User stories are hosted via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
+
+## Installation
+Install `node` and `mongodb` if they are not already installed.
+Make sure mongo is configured to use the default port `27017`.
+
+Install `bower` if it's not already installed:
+```bash
+$ npm install -g bower
+```
+
+Install `grunt` if it's not already installed:
+```bash
+$ npm install -g grunt-cli
+```
+
+## Testing
+To load test mongo fixtures:
+```bash
+$ grunt mongo:load
+```
+
+To run unit tests:
+```bash
+$ grunt test
+```
 
 ## Default Accounts
-### Admin
-- username: admin
-- password: adminuser
+These accounts are generated using `grunt mongo:load`
 
-### Instructor
-- username: instructor
-- password: instructoruser
-
-### Test User
-- username: test
-- password: testuser
+|  | Admin | Instructor | User |
+| - | ------- | ------------ | --------------- |
+| **Username** | admin | instructor | test |
+| **Password** | adminuser | instructoruser | testuser |
