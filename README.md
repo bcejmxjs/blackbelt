@@ -26,23 +26,23 @@ Install `node` and `mongodb` if they are not already installed.
 Make sure mongo is configured to use the default port `27017`.
 
 Install `bower` if it's not already installed:
-```bash
+```
 $ npm install -g bower
 ```
 
 Install `grunt` if it's not already installed:
-```bash
+```
 $ npm install -g grunt-cli
 ```
 
 ## Testing
 To load test mongo fixtures:
-```bash
+```
 $ grunt mongo:load
 ```
 
 To run unit tests:
-```bash
+```
 $ grunt test
 ```
 
