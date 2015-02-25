@@ -42,7 +42,7 @@ angular.module('users').config(['$stateProvider',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
 		}).
 		state('userprofile', {
-			url: '/authentication/userprofile',
+			url: '/userprofile',
 			templateUrl: 'modules/users/views/authentication/userprofile.client.view.html'
 		});
 	}
