@@ -49,7 +49,7 @@ $ grunt test
 ## Default Accounts
 These accounts are generated using `grunt mongo:load`
 
-|  | Admin | Instructor | User |
-| - | ------- | ------------ | --------------- |
-| **Username** | admin | instructor | test |
+|              | Admin  |  Instructor  | User     |
+| ------------ | ------ | ------------ | --------------- |
+| **Username** | admin  | instructor | test |
 | **Password** | adminuser | instructoruser | testuser |
