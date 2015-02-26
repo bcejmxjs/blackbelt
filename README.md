@@ -48,7 +48,7 @@ $ grunt test
 
 To run protractor tests:
 
-Ensure the Selenium Web Driver is up to date with `npm install`
+Ensure the Selenium Web Driver is up to date with `npm install`.
 
 Execute a test:
 ```
@@ -57,10 +57,10 @@ $ grunt protractor:target
 Where `target` is the desired test target.
 
 Test targets:
-| Target  | Test Material  |
-| ------- | --------------------------------- |
-| example | Example testing of angularjs.org |
-| login | User/Instructor/Admin login |
+Target  | Test Material
+------- | ---------------------------------
+example | Example testing of angularjs.org
+login   | User/Instructor/Admin login
 
 ## Default Accounts
 These accounts are generated using `grunt mongo:load`
