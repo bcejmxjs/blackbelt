@@ -9,7 +9,15 @@ exports.config = {
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  specs: ['*_spec.js'],
+  specs: ['*.spec.js'],
+  baseUrl: 'http://localhost:3000/#!/',
+
+  onPrepare: function() {
+    var SpecReporter = require('jasmine-spec-reporter');
+    // add jasmine spec reporter
+    jasmine.getEnv().addReporter(new
+    SpecReporter({displayFailuresSummary: false}));
+  },
 
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {

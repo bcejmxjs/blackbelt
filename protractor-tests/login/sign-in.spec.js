@@ -1,10 +1,3 @@
-	var user_un = 'test';
-	var user_pw = 'testuser';
-	var instructor_un = 'instructor';
-	var instructor_pw = 'instructoruser';
-	var admin_un = 'admin';
-	var admin_pw = 'adminuser';
-
 var SignInPage = function() {
 	// Page object for the sign in page
 	
@@ -15,9 +8,22 @@ var SignInPage = function() {
 	this.password_field = element(by.id('password'));
 	this.signin_btn = element(by.buttonText('Sign in'));
 
+	var admin = {
+		username: 'admin',
+		password: 'adminuser'
+	};
+	var instructor = {
+		username: 'instructor',
+		password: 'instructoruser'
+	};
+	var basic = {
+		username: 'test',
+		password: 'testuser'
+	};
+
 	// SignInPage.get will get the page
 	this.get = function() {
-		browser.get('http://localhost:3000/#!/signin')
+		browser.get('/#!/signin');
 	};
 
 	// Input custom text into the username field
@@ -32,33 +38,36 @@ var SignInPage = function() {
 
 	// Login as user
 	this.user_signin = function() {
-		this.setUsername(user_un);
-		this.setPassword(user_pw);
+		this.setUsername(basic.username);
+		this.setPassword(basic.password);
 		this.signin_btn.click();
 	};
 
 	// Login as instructor
 	this.instructor_signin = function() {
-		this.setUsername(instructor_un);
-		this.setPassword(instructor_pw);
+		this.setUsername(instructor.username);
+		this.setPassword(instructor.password);
 		this.signin_btn.click();
 	};
 
 	// Login as admin
 	this.admin_signin = function() {
-		this.setUsername(admin_un);
-		this.setPassword(instructor_pw);
+		this.setUsername(admin.username);
+		this.setPassword(admin.password);
 		this.signin_btn.click();
 	};
 
 };
 
 describe('login as user', function() {
+	var signin = new SignInPage();
+	it('Should be called Sign In', function() {
+		signin.get();
+		expect(browser.getTitle()).toBe('Sign In');
+	});
 	it('should redirect to the home page', function() {
-		var signin_page = new SignInPage();
-		signin_page.get();
-		signin_page.user_signin();
-		expect(browser.getLocationAbsUrl()).toBe('http://localhost:3000/#!/');
+		signin.user_signin();
+		expect(browser.getCurrentUrl()).toBe(browser.baseUrl);
 	});
 
 	// I still don't know how to access the element without an id
