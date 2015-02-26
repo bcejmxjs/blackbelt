@@ -74,7 +74,7 @@
                     <p>
                         {{ event.body }}
                         <button class="btn btn-danger pull-right" type="submit" data-ng-click="remove(event)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
-                            Delete
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
                         </button>
                     </p>
                 </div>
