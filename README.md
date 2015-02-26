@@ -46,6 +46,22 @@ To run unit tests:
 $ grunt test
 ```
 
+To run protractor tests:
+
+Ensure the Selenium Web Driver is up to date with `npm install`
+
+Execute a test:
+```
+$ grunt protractor:target
+```
+Where `target` is the desired test target.
+
+Test targets:
+| Target  | Test Material  |
+| ------- | --------------------------------- |
+| example | Example testing of angularjs.org |
+| login | User/Instructor/Admin login |
+
 ## Default Accounts
 These accounts are generated using `grunt mongo:load`
 
@@ -53,3 +69,11 @@ These accounts are generated using `grunt mongo:load`
 | ------------ | ------ | ------------ | --------------- |
 | **Username** | admin  | instructor | test |
 | **Password** | adminuser | instructoruser | testuser |
+
+
+## Facebook Info
+[Melbourne Martial Arts Facebook App](https://developers.facebook.com/apps/632362650241923/dashboard/)
+
+Facebook sign up/in won't work unless you access the functionality from [http://dev1.jacobejenkins.com:3000/#!/](http://dev1.jacobejenkins.com:3000/#!/).
+
+There are four test users, one for each combination of authorized/unauthorized and 18+/under 18. These test users can be viewed [here](https://developers.facebook.com/apps/632362650241923/roles/test-users/). Message [@corya14](https://github.com/corya14) for the passwords.
