@@ -42,7 +42,7 @@
                         </span>
                     </p>
                     <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-                </div> 
+                </div>
                 <div class="col-md-6">
                     <div class='row'>
                         <div class="col-md-12">
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div></div>
-            <div data-ng-repeat="event in events" class="panel panel-primary">
+            <div data-ng-repeat="event in events" data-ng-onclick="#!/events/{{event._id}}" class="panel panel-primary">
                 <div class="panel-heading">
                     <h1 class="panel-title">{{ event.title }}</h1>
                 </div>
@@ -73,6 +73,9 @@
                     <h4><b>{{ moment(event.date).format('MMMM DD, YYYY') }}</b></h4>
                     <p>
                         {{ event.body }}
+                        <button class="btn btn-danger pull-right" type="submit" data-ng-click="remove(event)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+                            Delete
+                        </button>
                     </p>
                 </div>
             </div>

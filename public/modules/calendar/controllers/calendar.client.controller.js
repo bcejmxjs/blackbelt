@@ -17,40 +17,38 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
 
         // TODO: Gets Hours for Different days from DB.
         // Define Open Days
-        $scope.days = [
-            {
-                name: 'Sunday',
-                isOpen: false
-            }, {
-                name: 'Monday',
-                isOpen: true,
-                openHour: 7,
-                closeHour: 18
-            }, {
-                name: 'Tuesday',
-                isOpen: true,
-                openHour: 7,
-                closeHour: 18
-            }, {
-                name: 'Wednesday',
-                isOpen: true,
-                openHour: 7,
-                closeHour: 18
-            }, {
-                name: 'Thursday',
-                isOpen: true,
-                openHour: 7,
-                closeHour: 18
-            }, {
-                name: 'Friday',
-                isOpen: true,
-                openHour: 7,
-                closeHour: 18
-            }, {
-                name: 'Saturday',
-                isOpen: false
-            }
-        ];
+        $scope.days = [{
+            name: 'Sunday',
+            isOpen: false
+        }, {
+            name: 'Monday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Tuesday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Wednesday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Thursday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Friday',
+            isOpen: true,
+            openHour: 7,
+            closeHour: 18
+        }, {
+            name: 'Saturday',
+            isOpen: false
+        }];
 
         //Takes in a day number and returns the correct style for the given day.
         $scope.getDayStyle = function(dayIndex) {
@@ -122,6 +120,22 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
+        };
+
+        $scope.remove = function(event) {
+            if (event) {
+                event.$remove();
+
+                for (var i in $scope.events) {
+                    if ($scope.events[i] === event) {
+                        $scope.events.splice(i, 1);
+                    }
+                }
+            } else {
+                $scope.event.$remove(function() {
+                    $location.path('calendar');
+                });
+            }
         };
 
         /* End Events Code */

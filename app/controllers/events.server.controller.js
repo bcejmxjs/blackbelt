@@ -55,6 +55,8 @@ exports.update = function(req, res) {
  * Delete an Event
  */
 exports.delete = function(req, res) {
+    var event = req.event;
+
     event.remove(function(err) {
         if (err) {
             return res.status(400).send({
