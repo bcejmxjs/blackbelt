@@ -57,10 +57,11 @@ $ grunt protractor:target
 Where `target` is the desired test target.
 
 Test targets:
+
 Target  | Test Material
 ------- | ---------------------------------
 example | Example testing of angularjs.org
-login   | User/Instructor/Admin login
+login   | User, Instructor, and Admin login testing
 
 ## Default Accounts
 These accounts are generated using `grunt mongo:load`
