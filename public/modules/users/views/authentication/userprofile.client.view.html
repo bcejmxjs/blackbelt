@@ -15,15 +15,16 @@
 							<div class="well col-xs-7 col-xs-offset-1" data-ng-controller="HeaderController">
 								<p><b>First Name:</b> <span data-ng-bind = "authentication.user.firstName"></p>
 								<p><b>Last Name:</b> <span data-ng-bind = "authentication.user.lastName"></p>
-								<p><b>Description:</b> Not Specified</p>
-								
-									<button type="button" class="btn btn-info btn-sm pull-left">
-										<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Account Setting
-
-									</button>
-									<button type="button" class="btn btn-info btn-sm"> 
-										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Message
-									</button>							
+                                <p><b>Email:</b> <span data-ng-bind = "authentication.user.email"></p>
+								<a class="btn btn-info btn-sm pull-left" href="/#!/settings/profile" role="setting"> 
+                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                     Account Setting
+                                 </a>
+                             </br></br>
+								<button type="button" class="btn btn-warning btn-sm"> 
+										<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> 
+                                            Report Error
+								</button>							
 							</div>
 						</div>
 					</div>
@@ -97,7 +98,7 @@
                 </div>
             </div>
                 <div class="panel-body">
-                    <button type="button" class="btn btn-warning btn-lg pull-right"> 
+                    <button type="button" class="btn btn-success btn-lg pull-right"> 
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						    Purchase New Course 
 					</button>
