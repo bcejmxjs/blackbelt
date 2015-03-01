@@ -66,6 +66,11 @@ var UserSchema = new Schema({
 		type: String,
 		required: 'Provider is required'
 	},
+	confirmed:
+	{
+		type: Boolean,
+		required: 'please confirm the statement'
+	},
 	providerData: {},
 	additionalProvidersData: {},
 	roles: {
