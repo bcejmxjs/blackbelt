@@ -30,6 +30,15 @@
 		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
 			<fieldset>
 				<div class="form-group">
+					<div data-ng-show="error" class="text-center text-danger">
+						<div class="alert alert-danger" role="alert">
+	 						 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 						 <span class="sr-only">Error:</span>
+							<strong data-ng-bind="error"></strong>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="username">Username</label>
 					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
 				</div>
@@ -44,9 +53,7 @@
 				<div class="text-center forgot-password">
 					<a href="/#!/password/forgot">Forgot your password?</a>
 				</div>
-				<div data-ng-show="error" class="text-center text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+				
 			</fieldset>
 		</form>
 	</div>
