@@ -10,9 +10,9 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-    'signin.spec.js'
-    //'basic_signin.spec.js',
-    //'basic_signout.spec.js'
+    'signin.spec.js',
+    'basic_signin.spec.js',
+    'basic_signout.spec.js'
     //'instructor_signin.spec.js',
     //'instructor_signout.spec.js',
     //'admin_signin.spec.js',
