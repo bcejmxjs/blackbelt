@@ -22,6 +22,9 @@ var LessonSchema = new Schema({
         type: String,
         trim: true
     },
+    position: {
+        type: Number
+    },
     course: {
         type: {
             type: mongoose.Schema.ObjectId,
