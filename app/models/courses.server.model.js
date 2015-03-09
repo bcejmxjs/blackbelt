@@ -12,10 +12,12 @@ var mongoose = require('mongoose'),
 var CourseSchema = new Schema({
     name: {
         type: String,
+        default: '',
         trim: true
     },
     description: {
         type: String,
+        default: 'TBA... ～(￣▽￣～)(～￣▽￣)～',
         trim: true
     },
     price: {
@@ -25,6 +27,14 @@ var CourseSchema = new Schema({
     level: {
         type: Number,
         min: 1
+    },
+    created:{
+        type: Date,
+        default: Date.now
+    },
+    user:{
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 });
 
