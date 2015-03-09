@@ -117,8 +117,8 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
 ]);      
 
-courseApp.controller('CoursesCreateController', ['$scope', 'Courses',
-    function($scope, Courses) {
+courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location',
+    function($scope, Courses, $location) {
         
         // Create new Course
         this.create = function() {

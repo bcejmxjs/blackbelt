@@ -1,55 +1,52 @@
-<section data-ng-controller="CoursesController">
+<section data-ng-controller="CoursesCreateController as courseCtrl">
      <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="page-header">
                 <h1 style="text-align: center;"> New Courses</h1>
             </div>
-     <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <fieldset>
-                <div class="row">
-                    <div class="col-sm-6 text-center">
-                         <img class="media-object" style="height:100px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" align="right">
-                    </div>
-                   
-                </div>
-                <div class="form-group">
-                  
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
-                    <label class="control-label" for="name">Description</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="description" required>
-                    </div>
-                    <label class="control-label" for="name">Price</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="price" required>
-                    </div>
-                    <label class="control-label" for="name">Total Level</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="level" id="level" class="form-control" placeholder="level" required>
-                    </div>
-                    <label class="control-label" for="name">Instructor</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="instructor" id="instructor" class="form-control" placeholder="instructor" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-lg btn-success">
-                        Save & Close
-                    </button>
-                    <button type="submit" class="btn btn-lg btn-warning">
-                        Cancel
-                    </button>
+             <div class="col-md-12">
+               
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+                                 <img class="media-object" style="height:100px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" align="right">
+                            </div>
+                           
+                        </div>
+                        <div class="form-group">
+                          
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="courseCtrl.name" id="name" class="form-control" placeholder="Name" required>
+                            </div>
+                            <label class="control-label" for="name">Description</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="courseCtrl.description" id="description" class="form-control" placeholder="description" >
+                            </div>
+                            <label class="control-label" for="name">Price</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="courseCtrl.price" id="price" class="form-control" placeholder="price" required>
+                            </div>
+                            <label class="control-label" for="name">Total Level</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="courseCtrl.level" id="level" class="form-control" placeholder="level" >
+                            </div>
+                            <label class="control-label" for="name">Instructor</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor" >
+                            </div>
+                        </div>
+                        
+        				<div data-ng-show="error" class="text-danger">
+        					<strong data-ng-bind="error"></strong>
+        				</div>
+                    </fieldset>
+               
+            </div>
 
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="courseCtrl.create();ok()">Save & Close</button>
+                <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
+               
+            </div>
 </section>
