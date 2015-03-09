@@ -9,12 +9,41 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
          
         this.courses = Courses.query();
+    
+        // Open a modal window to Create a single customer record
+        this.modalCreate = function (size) {
+
+             var modalInstance = $modal.open({
+                 templateUrl: 'modules/courses/views/create-course.client.view.html',
+                controller: ModalCreateCtrl,
+                size: size,
+             });
+
+            modalInstance.result.then(function (selectedItem) {
+    
+            }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+         
+        };
+
+
+        var ModalCreateCtrl = function ($scope, $modalInstance){
+            
+              $scope.ok = function () {
+                $modalInstance.close();
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
+        }
 
         // Open a modal window to update a single customer record
         this.modalUpdate = function (size, selectedCourse) {
 
              var modalInstance = $modal.open({
-                 templateUrl: 'modules/courses/views/edit-course.client.view.html',
+                templateUrl: 'modules/courses/views/edit-course.client.view.html',
                 controller: ModalInstanceCtrl,
                 size: size,
                 resolve: {
@@ -45,6 +74,42 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
               };
         }
 
+         // Open a modal window to Remove a single customer record
+        this.modalRemove = function (size, selectedCourse) {
+
+             var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/remove-course.client.view.html',
+                controller: ModalRemoveCtrl,
+                size: size,
+                resolve: {
+                    course: function () {
+                        return selectedCourse;
+                    }
+                 }
+             });
+
+            modalInstance.result.then(function (selectedItem) {
+             $scope.selected = selectedItem;
+            }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+         
+        };
+
+
+        var ModalRemoveCtrl = function ($scope, $modalInstance, course){
+             $scope.course = course;
+
+              $scope.ok = function () {
+                $modalInstance.close($scope.course);
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
+        }
+
+       
 
 
         
@@ -54,6 +119,32 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
 courseApp.controller('CoursesCreateController', ['$scope', 'Courses',
     function($scope, Courses) {
+        
+        // Create new Course
+        this.create = function() {
+            // Create new Course object
+            var course = new Courses({
+                name: this.name,
+                description: this.description,
+                price: this.price,
+                level: this.level,
+                instructor: this.instructor
+            });
+
+            // Redirect after save
+            course.$save(function(response) {
+                $location.path('courses/' + response._id);
+
+                // Clear form fields
+                $scope.name = '';
+                $scope.description = '';
+                $scope.price = '';
+                $scope.level = '';
+                $scope.instructor = '';
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
 
    }
 ]);  
@@ -70,9 +161,28 @@ courseApp.controller('CoursesEditController', ['$scope', 'Courses',
                 $scope.error = errorResponse.data.message;
             });
         };
+   }
+]);    
 
 
+courseApp.controller('CoursesRemoveController', ['$scope', 'Courses',
+    function($scope, Courses) {
+         // Remove existing Course
+        this.remove = function(course) {
+            if (course) {
+                course.$remove();
 
+                for (var i in $scope.courses) {
+                    if ($scope.courses[i] === course) {
+                        $scope.courses.splice(i, 1);
+                    }
+                }
+            } else {
+                course.$remove(function() {
+                    $location.path('courses');
+                });
+            }
+        };
    }
 ]);    
 //         $scope.authentication = Authentication;

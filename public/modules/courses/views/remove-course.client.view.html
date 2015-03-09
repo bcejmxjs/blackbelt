@@ -1,0 +1,28 @@
+<section data-ng-controller="CoursesRemoveController as courseRemoveCtrl" >
+
+        <div class="form-group">
+               
+                        <div class="alert alert-danger" role="alert">
+                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+                            <strong >You are going to remove Course:</strong>
+                        </div>
+                        <div class="text-center form-group">
+                                <b>{{course.name}}</b>
+                        </div> 
+                         
+        </div>
+       <div class="text-center form-group">
+               
+   
+            <button class="btn btn-danger btn=xs" ng-click="courseRemoveCtrl.remove(course); ok()">Delete</button>
+            <button class="btn btn-default btn=xs" ng-click="cancel()">Cancel</button>
+
+        </div>
+
+    </div>
+
+
+
+
+       
+</section>

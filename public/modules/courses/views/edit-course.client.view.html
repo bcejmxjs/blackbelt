@@ -3,8 +3,6 @@
         <h3 class="modal-title">Edit {{course.name}}</h3>
     </div>
     <div class="modal-body">
-    
-        <form >
             <fieldset>
                 <div class="row">
                     <div class="col-sm-6 text-center">
@@ -16,33 +14,29 @@
                   
                     <label class="control-label" for="name">Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name" >
                     </div>
                     <label class="control-label" for="name">Description</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="course.description" id="description" class="form-control" placeholder="description" required>
+                        <input type="text" data-ng-model="course.description" id="description" class="form-control" placeholder="description" >
                     </div>
                     <label class="control-label" for="name">Price</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="course.price" id="price" class="form-control" placeholder="price" required>
+                        <input type="text" data-ng-model="course.price" id="price" class="form-control" placeholder="price" >
                     </div>
                     <label class="control-label" for="name">Total Level</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="course.level" id="level" class="form-control" placeholder="level" required>
+                        <input type="text" data-ng-model="course.level" id="level" class="form-control" placeholder="level" >
                     </div>
                     <label class="control-label" for="name">Instructor</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor" required>
+                        <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor" >
                     </div>
-                </div>
-                
+                </div>    
                 <div data-ng-show="error" class="text-danger">
                     <strong data-ng-bind="error"></strong>
                 </div>
-         
             </fieldset>
-        </form>
-  
 
         </div>
         <div class="modal-footer">
