@@ -170,6 +170,7 @@ module.exports = function(grunt) {
 		        verbose: true,
 		        args: {
 		          // Arguments passed to the command
+		          chromeDriver: 'node_modules/protractor/selenium/chromedriver'
 		        }
 		      },
 		      example: {
@@ -187,7 +188,13 @@ module.exports = function(grunt) {
 		      	// An example arg would be specifying a test suite
 		      	// Unsure of arg syntax
 		      	args: {}
-		      }
+		      }//,
+		      /*calendar: {
+		      	verbose: true,
+		      	keepAlive: false,
+		      	configFile: 'protractor-tests/calendar/conf.js',
+		      	args: {}
+		      }*/
 		    }
 	});
 
