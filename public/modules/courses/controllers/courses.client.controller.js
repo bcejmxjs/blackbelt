@@ -35,6 +35,14 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         var ModalInstanceCtrl = function ($scope, $modalInstance, course){
              $scope.course = course;
+
+              $scope.ok = function () {
+                $modalInstance.close($scope.course);
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
         }
 
 
@@ -52,6 +60,18 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses',
 
 courseApp.controller('CoursesEditController', ['$scope', 'Courses',
     function($scope, Courses) {
+        // Update existing Course
+        this.update = function(updatedCourse) {
+            var course = updatedCourse;
+
+            course.$update(function() {
+               
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+
 
    }
 ]);    
