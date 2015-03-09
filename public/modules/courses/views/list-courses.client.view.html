@@ -19,10 +19,11 @@
                             </div>
                             <div class="media-body">
                                 <h1> {{course.name}}
-                                    
+
                                     <div class="btn-group pull-right">
-                                        <button class="btn btn-default btn-sm" type="submit" data-ng-click="/courses/:{{course._id}}/edit" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
-                                        <button class="btn btn-default btn-sm" type="submit" data-ng-click="/courses/:{{course._id}}/edit" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
+                                        <button class="btn btn-default btn-sm" type="submit" data-ng-click="#!/courses/:{{course._id}}/edit" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
+                                        
+                                        <button class="btn btn-default btn-sm" type="submit" data-ng-click="remove(course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                                     </div>
                                 </h1>
                             </div>
