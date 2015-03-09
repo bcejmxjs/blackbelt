@@ -27,14 +27,6 @@ var CourseSchema = new Schema({
     level: {
         type: Number,
         min: 1
-    },
-    created:{
-        type: Date,
-        default: Date.now
-    },
-    user:{
-        type: Schema.ObjectId,
-        ref: 'User'
     }
 });
 

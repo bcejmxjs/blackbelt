@@ -53,12 +53,6 @@
 			</li>
 		</ul>
 		<!--End Test Code -->
-
-        <ul class = "nav navbar-nav navbar-left" data-ng-show ="authentication.user.roles.indexOf('admin') > -1" >
-            <li ui-route="/courses/create" ng-class="{active: $uiRoute}">
-                <a class="createCourse" href = "/#!/courses/create"> Add Course </a>
-            </li>
-        </ul>
 		
         <ul class="nav navbar-nav navbar-right" id="profile_dropdown" data-ng-show="authentication.user">
             <li class="dropdown">

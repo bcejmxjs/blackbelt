@@ -1,8 +1,11 @@
 <section data-ng-controller="CoursesController" data-ng-init="find()">
+ <div class="alert alert-warning text-left" data-ng-show ="authentication.user.roles.indexOf('admin') > -1" >
+        Need more courses? Why not <a href="/#!/courses/create">create one</a>?
+    </div>
      <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            
+
             <div class="page-header">
                 <h1 style="text-align: center;">Courses</h1>
             </div> 
@@ -17,6 +20,12 @@
                                  <h4>
                                     {{course.description}}
                                     <button type="button" class="btn btn-success pull-right">Purchase</button>
+                                  
+                                    <button class="btn btn-default pull-right btn-sm" type="submit" data-ng-click="/courses/:{{course._id}}/edit" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> edit 
+                                    </button>
+                                    <button class="btn btn-default pull-right btn-sm" type="submit" data-ng-click="/courses/:{{course._id}}/edit" ng-show="authentication.user.roles.indexOf('admin') > -1"> delete 
+                                    </button>
+                              
                                 </h4>
                             </div>
                          </a>
@@ -25,9 +34,7 @@
             </div>
         </div>
         </div>
-         <div class="alert alert-warning text-center" data-ng-show ="authentication.user.roles.indexOf('admin') > -1" >
-         More courses, <a href="/#!/courses/create">create one</a>?
-    </div>
+        
     </div>
 
 </section>
