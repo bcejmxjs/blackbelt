@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "5500a897d21dec690fc66fe3" }, "price" : 12, "level" : 1, "instructor" : "TBA...", "description" : "Karate can be practiced as an art, as a sport, as a combat sport, or as self defense training.", "name" : "Karate", "__v" : 0 }
+{ "_id" : { "$oid" : "5500a8d8d21dec690fc66fe4" }, "price" : 12, "level" : 1, "instructor" : "TBA...", "description" : "A Japanese martial art and a method of close combat.", "name" : "Jujitsu", "__v" : 0 }
+{ "_id" : { "$oid" : "5500ab41d21dec690fc66fe5" }, "price" : 24, "level" : 6, "instructor" : "TBA...", "description" : "Straight up shinobi stuff. Literally become a Ninja.", "name" : "Ninjutsu", "__v" : 0 }
+{ "_id" : { "$oid" : "5500abb9d21dec690fc66fe6" }, "level" : 2, "instructor" : "TBA...", "description" : "A system of self-defense. Its techniques are almost entirely counters.", "name" : "Kenpō", "__v" : 0 }

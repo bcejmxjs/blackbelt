@@ -148,7 +148,7 @@ module.exports = function(grunt) {
 		      dir: './mongo-fixtures',
 		      override: true
 		    },
-		    collections: ['users', 'events'],
+		    collections: ['users', 'events', 'courses'],
 		    action: 'load'
 		  },
 
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
 		      dir: './mongo-fixtures',
 		      override: true
 		    },
-		    collections: ['users', 'events'],
+		    collections: ['users', 'events', 'courses'],
 		    action: 'save'
 		  }
 		},
