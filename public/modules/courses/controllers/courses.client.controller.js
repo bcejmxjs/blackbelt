@@ -3,14 +3,14 @@
 var courseApp = angular.module('courses');
 
 courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log',
+   
     function($scope, $stateParams, Authentication, Courses, $modal, $log) {
         
         this.authentication = Authentication;
-
          
         this.courses = Courses.query();
     
-        // Open a modal window to Create a single customer record
+        // Open a modal window to Create a single course record
         this.modalCreate = function (size) {
 
              var modalInstance = $modal.open({
@@ -39,12 +39,12 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
               };
         }
 
-        // Open a modal window to update a single customer record
+        // Open a modal window to update a single course record
         this.modalUpdate = function (size, selectedCourse) {
 
              var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/edit-course.client.view.html',
-                controller: ModalInstanceCtrl,
+                controller: ModalUpdateCtrl,
                 size: size,
                 resolve: {
                     course: function () {
@@ -62,7 +62,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
 
-        var ModalInstanceCtrl = function ($scope, $modalInstance, course){
+        var ModalUpdateCtrl = function ($scope, $modalInstance, course){
              $scope.course = course;
 
               $scope.ok = function () {
@@ -74,7 +74,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
               };
         }
 
-         // Open a modal window to Remove a single customer record
+         // Open a modal window to Remove a single course record
         this.modalRemove = function (size, selectedCourse) {
 
              var modalInstance = $modal.open({
@@ -109,7 +109,40 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
               };
         }
 
-       
+        // Open a modal window to View a single course record
+        this.modalView = function (size, selectedCourse) {
+
+             var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/view-course.client.view.html',
+                controller: ModalViewCtrl,
+                size: size,
+                resolve: {
+                    course: function () {
+                        return selectedCourse;
+                    }
+                 }
+             });
+
+            modalInstance.result.then(function (selectedItem) {
+             $scope.selected = selectedItem;
+            }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+         
+        };
+
+
+        var ModalViewCtrl = function ($scope, $modalInstance, course){
+             $scope.course = course;
+
+              $scope.ok = function () {
+                $modalInstance.close($scope.course);
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
+        }
 
 
         
@@ -151,7 +184,7 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location
 
 courseApp.controller('CoursesEditController', ['$scope', 'Courses',
     function($scope, Courses) {
-        // Update existing Course
+        // Edit existing Course
         this.update = function(updatedCourse) {
             var course = updatedCourse;
 
@@ -182,6 +215,19 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses',
                     $location.path('courses');
                 });
             }
+        };
+   }
+]);    
+
+
+courseApp.controller('CoursesViewController', ['$scope', 'Courses', '$stateParams',
+    function($scope, Courses, $stateParams) {
+         // View existing Course
+
+        this.findOne = function() {
+            $scope.course = Courses.get({
+                courseId: $stateParams.courseId
+            });
         };
    }
 ]);    
@@ -254,3 +300,5 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses',
 //         };
 //     }
 // ]);
+
+//data-ng-href="#!/courses/{{course._id}}" 
