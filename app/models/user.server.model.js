@@ -7,6 +7,14 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
+
+/**
+ * A Validation function for confirming statement
+ */
+var validateConfirmStatement = function(property) {
+    return (this.provider !== 'local' || property && property === true);
+};
+
 /**
  * A Validation function for local strategy properties
  */
@@ -20,6 +28,9 @@ var validateLocalStrategyProperty = function(property) {
 var validateLocalStrategyPassword = function(password) {
     return (this.provider !== 'local' || (password && password.length > 6));
 };
+
+
+
 
 /**
  * User Schema
@@ -56,7 +67,8 @@ var UserSchema = new Schema({
     },
     confirmed: {
         type: Boolean,
-        required: 'Please confirm the statement'
+        default: false,
+        validate: [validateConfirmStatement, 'Please confirm the statement']
     },
     password: {
         type: String,
