@@ -167,7 +167,7 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location
 
             // Redirect after save
             course.$save(function(response) {
-                $location.path('courses/' + response._id);
+                $location.path('courses');
 
                 // Clear form fields
                 $scope.name = '';
