@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('courses').config(['$stateProvider',
-	function($stateProvider) {
+angular.module('courses').config(['$stateProvider','$sceDelegateProvider',
+	function($stateProvider, $sceDelegateProvider) {
 		// Courses state routing
 		$stateProvider.
 		state('listCourses', {
@@ -25,5 +25,7 @@ angular.module('courses').config(['$stateProvider',
 			url: '/courses/:courseId/remove',
 			templateUrl: 'modules/courses/views/remove-course.client.view.html'
 		});
+
+		$sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
 	}
 ]);

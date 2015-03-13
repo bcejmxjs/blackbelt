@@ -30,7 +30,13 @@ var CourseSchema = new Schema({
     },
     instructor: {
         type: String,
-        default: 'TBA...'
+        default: 'TBA...',
+        trim: true
+    },
+    demo:{
+        type: String,
+        default: 'https://www.youtube.com/embed/6knJhq1oQi4?rel=0&autoplay=1',
+        trim: true
     }
 });
 

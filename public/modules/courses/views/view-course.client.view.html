@@ -1,21 +1,49 @@
-<section data-ng-controller="CoursesController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="course.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == course.user._id))">
-		<a class="btn btn-primary" href="/#!/courses/{{course._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="course.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="course.user.displayName"></span>
-		</em>
-	</small>
+<section data-ng-controller="CoursesViewController as courseViewCtrl" >
+
+<!-- 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == course.user._id))"> -->
+
+ <div class="modal-header">
+        <h3 class="modal-title">{{course.name}}</h3>
+    </div>
+    <div class="modal-body">
+            <fieldset>
+               <div class="form-group" >
+               	<center>
+                  <iframe width="500" height="315" ng-src="{{course.demo}}" autoplay allowfullscreen></iframe>
+              </br>
+ 
+				
+              </center>
+                </div> 
+ 
+                  <div class="form-group">
+                    course name: {{course.name}}</br>
+					course description: "{{course.description}}"</br>
+					course price: {{course.price}}</br>
+					course level:{{course.level}}</br>
+				</div>
+            </fieldset>
+        </div>
 </section>
+
+<!-- 
+<section data-ng-controller="CoursesRemoveController as courseRemoveCtrl" >
+    <div class="form-group">
+         <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+                <strong >You are going to remove Course:</strong>
+        </div>
+        <div class="text-center form-group">
+            <b>{{course.name}}</b>
+        </div> 
+                         
+    </div>
+    <div class="text-center form-group">
+        <button class="btn btn-danger btn=xs" ng-click="courseRemoveCtrl.remove(course); ok()">Delete</button>
+         <button class="btn btn-default btn=xs" ng-click="cancel()">Cancel</button>
+    </div>
+    </div>     
+</section>
+
+<div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="lg" index="0" animate="animate" style="z-index: 1050;">
+ -->

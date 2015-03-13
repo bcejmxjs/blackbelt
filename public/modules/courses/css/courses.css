@@ -37,3 +37,10 @@ h1>.badge, h2>.badge, h3>.badge {
 		height: 409.5px;
 	}
 }
+
+div.moviewrapper{
+
+ width: 560px;
+ height: 340px;
+ margin: 0 auto;
+}
