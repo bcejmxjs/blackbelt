@@ -188,13 +188,13 @@ module.exports = function(grunt) {
 		      	// An example arg would be specifying a test suite
 		      	// Unsure of arg syntax
 		      	args: {}
-		      }//,
-		      /*calendar: {
+		      },
+		      calendar: {
 		      	verbose: true,
 		      	keepAlive: false,
 		      	configFile: 'protractor-tests/calendar/conf.js',
 		      	args: {}
-		      }*/
+		      }
 		    }
 	});
 

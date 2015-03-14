@@ -10,18 +10,15 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-    'user_signin.spec.js',
-    'user.spec.js',
-    'signout.spec.js',
+    //'user_signin.spec.js',
+    //'user.spec.js',
+    //'signout.spec.js',
     'instructor_signin.spec.js',
-    'creation.spec.js',
-    'editing.spec.js',
-    'removal.spec.js',
+    'instructor.spec.js',
     'signout.spec.js',
     'admin_signin.spec.js',
-    'creation.spec.js',
-    'editing.spec.js',
-    'removal.spec.js'
+    'admin.spec.js',
+    'signout.spec.js'
   ],
   baseUrl: 'http://localhost:3000',
 
