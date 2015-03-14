@@ -6,19 +6,15 @@ var CalendarPage = function() {
 		browser.get(browser.baseUrl + '/#!/calendar');
 	};
 
-	this.getEvent = function(ind) {
-		var events = element.all(by.repeater('event in events'));
-		this.event_title = function() {
-			return events[ind].element(by.tagName('h1')).getText();
-		};
-		this.event_date = function() {
-			return events[ind].element(by.tagName('h4')).getText();
-		};
-		this.event_description = function() {
-			return events[ind].element(by.tagName('p')).getText();
-		};
-		return events[ind];
+	this.title = function(ind) {
+		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h1'));
 	};
+	this.date = function(ind) {
+		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h4'));
+	};
+	this.description = function(ind) {
+		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('p'));
+	};	
 
 	this.submit = function() {
 		this.btnSubmit.click();
@@ -61,6 +57,7 @@ describe('Simple event functionality', function() {
 	describe('Add simple event', function() {
 		var calendarPage = new CalendarPage();
 		it('Initalize calendar testing', function(){
+			browser.waitForAngular();
 			calendarPage.get();
 		});
 		it('Set name', function() {
@@ -70,7 +67,7 @@ describe('Simple event functionality', function() {
 			calendarPage.setEventDescription('Test event description.')
 		});
 		it('Set date', function(){
-			calendarPage.setDate('January 01, 2012');
+			calendarPage.setDate('January 22, 2012');
 		});
 		it('Set hour', function() {
 			calendarPage.setHour('08');
@@ -81,6 +78,60 @@ describe('Simple event functionality', function() {
 		it('Submit event', function(){
 			calendarPage.submit();
 			browser.sleep(2000);
+		});
+	});
+	describe('Event 1', function() {
+		var calendarPage = new CalendarPage();
+		it('Sh- be named Test Event Name', function() {
+			expect(
+				calendarPage.title(0).getText())
+			.toBe('Test Event Name');
+		});
+		it('Sh- have date of Jan 22, 2012', function() {
+			expect(
+				calendarPage.date(0).getText())
+			.toBe('January 22, 2012');
+		});
+		it('Sh- have test description', function() {
+			expect(
+				calendarPage.description(0).getText())
+			.toBe('Test event description.\nDelete');
+		});
+	});
+	describe('Event 1', function() {
+		var calendarPage = new CalendarPage();
+		it('Sh- be named Test Event Name', function() {
+			expect(
+				calendarPage.title(1).getText())
+			.toBe('Test Event Name');
+		});
+		it('Sh- have date of Jan 22, 2012', function() {
+			expect(
+				calendarPage.date(1).getText())
+			.toBe('January 22, 2012');
+		});
+		it('Sh- have test description', function() {
+			expect(
+				calendarPage.description(1).getText())
+			.toBe('Test event description.\nDelete');
+		});
+	});
+	describe('Event 2', function() {
+		var calendarPage = new CalendarPage();
+		it('Sh- be named Barbeque', function() {
+			expect(
+				calendarPage.title(2).getText())
+			.toBe('Barbeque');
+		});
+		it('Sh- have date of Mar 12, 2015', function() {
+			expect(
+				calendarPage.date(2).getText())
+			.toBe('March 12, 2015');
+		});
+		it('Sh- have test description', function() {
+			expect(
+				calendarPage.description(2).getText())
+			.toBe('We\'re making skewered lamb!\nDelete');
 		});
 	});
 });

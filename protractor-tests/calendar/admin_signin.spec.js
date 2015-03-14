@@ -1,4 +1,4 @@
-// signin as role
+// signin as instructor
 
 var SignInPage = function() {
 	// Page object for the sign in page
@@ -26,13 +26,12 @@ var SignInPage = function() {
 		this.password_field.sendKeys(password);
 	};
 
-	// Login as user
+	// Sign in
 	this.do_signin = function() {
 		this.setUsername(info.username);
 		this.setPassword(info.password);
 		this.signin_btn.click();
 	};
-
 };
 
 describe('Signin as admin', function() {
