@@ -203,7 +203,7 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses','$location'
          // Remove existing Course
         this.remove = function(course) {
 
-          Notify.sendMsg('Oldcourse');
+          Notify.sendMsg('Oldcourse', {'id': course._id});
 
             if (course) {
                 course.$remove();
@@ -236,25 +236,25 @@ courseApp.controller('CoursesViewController', ['$scope', 'Courses', '$stateParam
 ]);    
 
 
-courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
-    function($scope, Courses, User, $stateParams, Authentication) {
-         // User Purchases Course
+// courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
+//     function($scope, Courses, User, $stateParams, Authentication) {
+//          // User Purchases Course
 
-        this.purchaseCourse = function(purchaseCourse, purchaseUser) {
-           var course = purchaseCourse;
-           var user = purchaseUser;
-            $scope.course = Courses.get({
-                courseId: $stateParams.courseId
-            });
-            $scope.user = User.get({
-                userId: $stateParams.userId
-            });
-        };
-   }
-]);
+//         this.purchaseCourse = function(purchaseCourse, purchaseUser) {
+//            var course = purchaseCourse;
+//            var user = purchaseUser;
+//             $scope.course = Courses.get({
+//                 courseId: $stateParams.courseId
+//             });
+//             $scope.user = User.get({
+//                 userId: $stateParams.userId
+//             });
+//         };
+//    }
+// ]);
 
 
-courseApp.directive('courseList', ['courses', 'Notify', function(Courses, Notify) {
+courseApp.directive('courseList', ['Courses', 'Notify', function(Courses, Notify) {
   return{
     restrict: 'E',
     transclude: true,

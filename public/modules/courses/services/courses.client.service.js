@@ -19,10 +19,9 @@ angular.module('courses')
 			
 			var notify = {};
 
-			// notify.sendMsg = function(msg, data) {
-			//	data = data || {};
-				notify.sendMsg = function(msg) {
-				$rootScope.$emit(msg);
+			notify.sendMsg = function(msg, data) {
+				data = data || {};
+				$rootScope.$emit(msg,data);
 
 				console.log("message sent!");
 			 };

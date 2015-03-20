@@ -1,0 +1,12 @@
+<section data-ng-controller="CoursesController as coursesCtrl">
+    <div class="alert alert-warning text-left" data-ng-show ="coursesCtrl.authentication.user.roles.indexOf('admin') > -1" >
+        Need more courses? Why not <a href="/#!/courses/create">create</a> one?
+    </div>
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <course-list></course-list>
+           
+        </div>
+    </div>
+</section>
