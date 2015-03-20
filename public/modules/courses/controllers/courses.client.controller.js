@@ -2,7 +2,7 @@
 
 var courseApp = angular.module('courses');
 
-courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce',
+courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce', 
    
     function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce) {
         
@@ -143,14 +143,12 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
                 $modalInstance.dismiss('cancel');
               };
         };
-
-
         
    }    
 
 ]);      
 
-courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location',
+courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location', 
     function($scope, Courses, $location) {
         
         // Create new Course
@@ -200,10 +198,13 @@ courseApp.controller('CoursesEditController', ['$scope', 'Courses',
 ]);    
 
 
-courseApp.controller('CoursesRemoveController', ['$scope', 'Courses','$location',
-    function($scope, Courses, $location) {
+courseApp.controller('CoursesRemoveController', ['$scope', 'Courses','$location', 'Notify',
+    function($scope, Courses, $location, Notify) {
          // Remove existing Course
         this.remove = function(course) {
+
+          Notify.sendMsg('Oldcourse');
+
             if (course) {
                 course.$remove();
 
@@ -233,6 +234,45 @@ courseApp.controller('CoursesViewController', ['$scope', 'Courses', '$stateParam
         };
    }
 ]);    
+
+
+courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
+    function($scope, Courses, User, $stateParams, Authentication) {
+         // User Purchases Course
+
+        this.purchaseCourse = function(purchaseCourse, purchaseUser) {
+           var course = purchaseCourse;
+           var user = purchaseUser;
+            $scope.course = Courses.get({
+                courseId: $stateParams.courseId
+            });
+            $scope.user = User.get({
+                userId: $stateParams.userId
+            });
+        };
+   }
+]);
+
+
+courseApp.directive('courseList', ['courses', 'Notify', function(Courses, Notify) {
+  return{
+    restrict: 'E',
+    transclude: true,
+    templateUrl: 'modules/courses/views/course-list-template.html',
+    link: function(scope, element, attrs){
+
+      // when a course is delete, update the course-list
+
+      Notify.getMsg('Oldcourse', function(event, data){
+
+        scope.coursesCtrl.courses = Courses.query();
+        
+      })
+
+    }
+  };
+
+}]);
 
 
 //         $scope.authentication = Authentication;
