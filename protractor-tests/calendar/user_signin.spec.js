@@ -1,4 +1,4 @@
-// signin as user
+// signin as basic user
 
 var SignInPage = function() {
 	// Page object for the sign in page
@@ -26,7 +26,7 @@ var SignInPage = function() {
 		this.password_field.sendKeys(password);
 	};
 
-	// Login as user
+	// Sign in
 	this.do_signin = function() {
 		this.setUsername(info.username);
 		this.setPassword(info.password);
@@ -34,7 +34,7 @@ var SignInPage = function() {
 	};
 };
 
-describe('Signin as user', function() {
+describe('Signin as basic user', function() {
 	it('Do signin', function() {
 		var signin = new SignInPage();
 		signin.get();

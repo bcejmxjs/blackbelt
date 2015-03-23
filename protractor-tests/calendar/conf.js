@@ -10,17 +10,20 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-    //'user_signin.spec.js',
-    //'user.spec.js',
-    //'signout.spec.js',
+    'user_signin.spec.js',
+    'user.spec.js',
+    'user_signout.spec.js',
     'instructor_signin.spec.js',
     'instructor.spec.js',
-    'signout.spec.js',
+    'instructor_signout.spec.js',
     'admin_signin.spec.js',
     'admin.spec.js',
-    'signout.spec.js'
+    'admin_signout.spec.js',
+    'no_auth.spec.js'
   ],
   baseUrl: 'http://localhost:3000',
+
+  rootElement:'html',
 
   onPrepare: function() {
     var SpecReporter = require('jasmine-spec-reporter');

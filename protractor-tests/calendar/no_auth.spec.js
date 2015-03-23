@@ -17,17 +17,18 @@ var CalendarPage = function() {
 	};	
 
 };
-
-describe('As a basic user', function() {
+var topEventName;
+var topEventDescription;
+var topEventDate;
+describe('As an unauthorized user', function() {
 	var calendarPage = new CalendarPage();
 	describe('Initalize calendar testing', function() {
 		it('Get calendar page', function() {
-			browser.waitForAngular();
+			browser.sleep(5000);
 			calendarPage.get();
-			browser.waitForAngular();
 		});
 	});
-	describe('A user on calendar page', function() {
+	describe('An unauthorized user on calendar page', function() {
 		//These tests are just to see if title/date/desc are accessible
 		it('Sh- be able to access event0 title', function() {
 			expect(
