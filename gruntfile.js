@@ -173,6 +173,7 @@ module.exports = function(grunt) {
 		          chromeDriver: 'node_modules/protractor/selenium/chromedriver'
 		        }
 		      },
+		      /*
 		      example: {
 		        options: {
 		          verbose: true,
@@ -181,6 +182,7 @@ module.exports = function(grunt) {
 		          args: {}
 		        }
 		      },
+		      */
 		      login: {
 		      	verbose: true,
 		      	keepAlive: false,
