@@ -33,9 +33,9 @@ var CourseSchema = new Schema({
         default: 'TBA...',
         trim: true
     },
-    demo:{
+    demo: {
         type: String,
-        default: 'https://www.youtube.com/embed/6knJhq1oQi4?rel=0&autoplay=1',
+        default: 'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&autoplay=1',
         trim: true
     }
 });
