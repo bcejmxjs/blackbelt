@@ -5,40 +5,33 @@
                 <h1 style="text-align: center;">New Course</h1>
             </div>
                     <fieldset>
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                 <img class="media-object" style="height:100px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" align="right">
-                            </div>
-                           
-                        </div>
                         <div class="form-group">
                           
-                            <label class="control-label" for="name">Name</label>
+                            <label class="control-label" for="name">Course Name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.name" id="name" class="form-control" placeholder="Name" required>
+                                <input type="text" data-ng-model="courseCtrl.name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
                             </div>
                             <label class="control-label" for="name">Description</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.description" id="description" class="form-control" placeholder="description" >
+                                <input type="text" data-ng-model="courseCtrl.description" id="description" class="form-control" placeholder="A short course description" >
                             </div>
                             <label class="control-label" for="name">Price</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.price" id="price" class="form-control" placeholder="price" required>
+                                <input type="text" data-ng-model="courseCtrl.price" id="price" class="form-control" placeholder="12.00" required>
                             </div>
-                            <label class="control-label" for="name">Total Level</label>
+                            <label class="control-label" for="name">Level</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.level" id="level" class="form-control" placeholder="level" >
+                                <input type="text" data-ng-model="courseCtrl.level" id="level" class="form-control" placeholder="1, 2, 3, etc" >
                             </div>
                             <label class="control-label" for="name">Instructor</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor" >
+                                <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="First Last" >
                             </div>
-                             <label class="control-label" for="name">Demo Video</label>
+                             <label class="control-label" for="name">Video Demo</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="Example: https://www.youtube.com/watch?v=6knJhq1oQi4" >
+                                <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
                             </div>
                         </div>
-                        
         				<div data-ng-show="error" class="text-danger">
         					<strong data-ng-bind="error"></strong>
         				</div>
@@ -47,6 +40,5 @@
             <div class="modal-footer">
                 <button class="btn btn-success" ng-click="courseCtrl.create();ok()">Save</button>
                 <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
-               
             </div>
 </section>
