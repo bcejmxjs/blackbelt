@@ -2,7 +2,7 @@
      <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1 style="text-align: center;"> New Courses</h1>
+                <h1 style="text-align: center;">New Course</h1>
             </div>
                     <fieldset>
                         <div class="row">
@@ -33,7 +33,7 @@
                             <div class="controls">
                                 <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor" >
                             </div>
-                             <label class="control-label" for="name">Video Demo</label>
+                             <label class="control-label" for="name">Demo Video</label>
                             <div class="controls">
                                 <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="Example: https://www.youtube.com/watch?v=6knJhq1oQi4" >
                             </div>
@@ -45,7 +45,7 @@
                     </fieldset>
 
             <div class="modal-footer">
-                <button class="btn btn-success" ng-click="courseCtrl.create();ok()">Save & Close</button>
+                <button class="btn btn-success" ng-click="courseCtrl.create();ok()">Save</button>
                 <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
                
             </div>

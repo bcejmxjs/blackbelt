@@ -17,7 +17,7 @@ var CourseSchema = new Schema({
     },
     description: {
         type: String,
-        default: 'TBA... ～(￣▽￣～)(～￣▽￣)～',
+        default: '',
         trim: true
     },
     price: {
@@ -30,7 +30,7 @@ var CourseSchema = new Schema({
     },
     instructor: {
         type: String,
-        default: 'TBA...',
+        default: 'TBA',
         trim: true
     },
     demo: {
