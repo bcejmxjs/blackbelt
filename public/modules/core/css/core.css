@@ -27,7 +27,7 @@
 .front-jumbotron {
     color: #f2f2f2;
     background-color: #4F4656;
-    text-shadow: 0.1em 0.1em 0.1em black;
+    text-shadow: 0.1em 0.1em 0.2em black;
 }
 
 .container-footer {
@@ -41,4 +41,8 @@
 
 .page-header-dark {
     border-bottom-color: #dddddd;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
 }
