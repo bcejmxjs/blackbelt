@@ -26,8 +26,10 @@
 
 .front-jumbotron {
     color: #f2f2f2;
-    background-color: #4F4656;
+    background-color: #4E4E4E;
     text-shadow: 0.1em 0.1em 0.2em black;
+    background-image: url(http://subtlepatterns.com/patterns/dark_wall.png);
+    box-shadow: inset 0 0 0 1000px rgba(255,255,255,.2);
 }
 
 .container-footer {
