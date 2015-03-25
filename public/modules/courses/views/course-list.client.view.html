@@ -1,90 +1,12 @@
-<section data-ng-controller="CourselistController">
+<section data-ng-controller="CoursesController as coursesCtrl">
+    <div class="alert alert-warning text-left" data-ng-show ="coursesCtrl.authentication.user.roles.indexOf('admin') > -1" >
+        Need more courses? Why not <a href="/#!/courses/create">create</a> one?
+    </div>
     <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <div class="page-header">
-                <h1 style="text-align: center;">Courses</h1>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <img class="media-object" style="height:64px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h1>Jujitsu 1</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer clearfix">
-                    <h4>
-                        Insert description of course here!
-                        <button type="button" class="btn btn-success pull-right">Purchase</button>
-                    </h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-left media-bottom">
-                            <a href="#">
-                                <img class="media-object" style="height:64px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h1>Karate 1</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer clearfix">
-                    <h4>
-                        Insert description of course here!
-                        <button type="button" class="btn btn-success pull-right">Purchase</button>
-                    </h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-left media-bottom">
-                            <a href="#">
-                                <img class="media-object" style="height:64px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h1>Judo 1</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer clearfix">
-                    <h4>
-                        Insert description of course here!
-                        <button type="button" class="btn btn-success pull-right">Purchase</button>
-                    </h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-left media-bottom">
-                            <a href="#">
-                                <img class="media-object" style="height:64px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h1>Kickboxing 1</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer clearfix">
-                    <h4>
-                        Insert description of course here!
-                        <button type="button" class="btn btn-success pull-right">Purchase</button>
-                    </h4>
-                </div>
-            </div>
+            <course-list></course-list>
+           
         </div>
-        <div class="col-md-1" />
+    </div>
 </section>
