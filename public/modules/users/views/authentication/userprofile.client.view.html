@@ -1,36 +1,33 @@
 <section data-ng-controller="UserprofileController">
     <br/>
     <div class="container">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="panel panel-default">
-                <div class ="panel-body">
-                    <br/>
-                    <div class="col-sm-6">
-                        <img src="modules/users/img/Default_profile.gif" alt="Profile Picture" width="200" style ="border:2px solid black" height="200" align="left"></img>
-                    </div>
-                    <div class="col-sm-6">
-                            <div class="well" data-ng-controller="HeaderController">
-                                <p><b>First Name:</b> <span data-ng-bind = "authentication.user.firstName"></span></p>
-                                <p><b>Last Name:</b> <span data-ng-bind = "authentication.user.lastName"></span></p>
-                                <p><b>Email:</b> <span data-ng-bind = "authentication.user.email"></span></p>
-                                <a class="btn btn-info btn-sm pull-left" href="/#!/settings/profile" role="setting"> 
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    Account Setting
-                                </a>
-                                <br/>
-                                <br/>
-                                <button type="button" class="btn btn-warning btn-sm"> 
-                                    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> 
-                                    <a href="mailto:test@testuser.test?subject=Error from Melbourne Martial Arts website">Report Error</a>  
-                                </button>                           
-                        </div>
-                    </div>
-                </div>                
+        <div class="page-header">
+            <h1 style="text-align: center;">
+                <span data-ng-bind="authentication.user.firstName"></span>'s Profile
+            </h1>
+        </div>
+        <!-- Begin Notification Section -->
+        <div class="col-md-4">
+            <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <h4 class="list-group-item-heading">Notification Title</h4>
+                    <p class="list-group-item-text">This is some notification text</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">Master Wu Accepted Your Submission</h4>
+                    <p class="list-group-item-text">Click to recieve feedback.</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">Notification Title</h4>
+                    <p class="list-group-item-text">This is some notification text</p>
+                </a>
             </div>
-            <div class="page-header">
-                <h1 style="text-align: center;">Course Progress</h1>
-            </div>
+
+
+        </div>
+        <div class="col-md-8"> 
+            <h2 style="text-align: center; margin-top: 0px">Course Progress</h2>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="media">
@@ -47,7 +44,7 @@
                 </div>
                 <div class="panel-footer">
                     <div class="progress" style="margin-bottom: 0px">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                             40% Complete
                         </div>
                     </div>
@@ -69,7 +66,7 @@
                 </div>
                 <div class="panel-footer">
                     <div class="progress" style="margin-bottom: 0px">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                             60% Complete
                         </div>
                     </div>
@@ -92,7 +89,7 @@
                 <div class="panel-footer">
                     
                     <div class="progress" style="margin-bottom: 0px">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
                             25% Complete
                         </div>
                     </div>
@@ -106,6 +103,5 @@
                 </button>
             </div>
         </div>
-        <div class="col-md-1"></div>
     </div>
 </section>
