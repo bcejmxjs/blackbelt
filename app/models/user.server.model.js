@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
-
 /**
  * A Validation function for confirming statement
  */
@@ -28,9 +27,6 @@ var validateLocalStrategyProperty = function(property) {
 var validateLocalStrategyPassword = function(password) {
     return (this.provider !== 'local' || (password && password.length > 6));
 };
-
-
-
 
 /**
  * User Schema
@@ -90,6 +86,10 @@ var UserSchema = new Schema({
             enum: ['user', 'instructor', 'admin']
         }],
         default: ['user']
+    },
+    purchased: {
+        type: [String],
+        default: []
     },
     updated: {
         type: Date
