@@ -24,10 +24,6 @@ var CourseSchema = new Schema({
         type: Number,
         min: 0
     },
-    level: {
-        type: Number,
-        min: 1
-    },
     instructor: {
         type: String,
         default: 'TBA',
