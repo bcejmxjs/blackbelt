@@ -11,3 +11,5 @@ app/tests/coverage/
 \#*
 .tern-port
 *.orig
+videos/*
+*.swp
