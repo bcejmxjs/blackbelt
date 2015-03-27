@@ -11,15 +11,18 @@
     <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
         <!-- How to add an element to the header <ul> ... </ul> -->
         <ul class="nav navbar-nav">
-            <li><a href="#!/about">About</a>
+            <li  ui-route="/about" ng-class="{active: $uiRoute}">
+                <a href="#!/about">About</a>
             </li>
         </ul>
         <ul class="nav navbar-nav">
-            <li><a href="#!/calendar">Calendar</a>
+            <li ui-route="/calendar" ng-class="{active: $uiRoute}">
+                <a href="#!/calendar">Calendar</a>
             </li>
         </ul>
         <ul class="nav navbar-nav">
-            <li><a href="#!/courses">Courses</a>
+            <li ui-route="/courses" ng-class="{active: $uiRoute}">
+                <a href="#!/courses">Courses</a>
             </li>
         </ul>
         <ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
