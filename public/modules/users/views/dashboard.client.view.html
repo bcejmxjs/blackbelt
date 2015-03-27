@@ -1,6 +1,6 @@
-<section data-ng-controller="UserprofileController">
+<section data-ng-controller="DashboardController">
     <br/>
-    <div class="container">
+    <div class="container" data-ng-init="grabUsersCourses()">
         <div class="page-header">
             <h1 style="text-align: center;">My Dashboard</h1>
         </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-8"> 
             <h2 style="text-align: center; margin-top: 0px">Course Progress</h2>
-            <div class="panel panel-default">
+            <div class="panel panel-default" data-ng-repeat="course in courses">
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-left media-middle">
@@ -40,7 +40,7 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h1>Jujitsu</h1>
+                            <h1>{{course.name}}</h1>
 
                         </div>
                     </div>

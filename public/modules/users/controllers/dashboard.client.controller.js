@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('users').controller('UserprofileController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses',
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses',
     function($scope, $http, $location, Users, Authentication, Courses) {
         $scope.authentication = Authentication;
 
