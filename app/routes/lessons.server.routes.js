@@ -6,8 +6,8 @@ module.exports = function(app) {
     var lessons = require('../../app/controllers/lessons.server.controller');
 
     app.route('/course/:courseId')
-        .get(users.requiresLogin, lessons.listByCourse)
-        .post(users.requiresLogin, users.hasAuthorization(['admin']), courses.create);
+        .get(users.requiresLogin, lessons.courseByID)
+        .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
 
     app.route('/course/:courseId/:lessonId')
         .get(lessons.read)
@@ -15,6 +15,6 @@ module.exports = function(app) {
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
     // Finish by binding the course middleware
-    app.param('courseId', courses.courseByID);
+    app.param('courseId', lessons.courseByID);
     app.param('lessonId', lessons.lessonByID);
 };

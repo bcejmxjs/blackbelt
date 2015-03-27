@@ -88,11 +88,14 @@ exports.list = function(req, res) {
 exports.courseByID = function(req, res, next, id) {
     Lesson.find({
         courseId: id
-    }).populate('user', 'displayName').exec(function(err, lesson) {
-        if (err) return next(err);
-        if (!lesson) return next(new Error('Failed to load Lesson ' + id));
-        req.lesson = lesson;
-        next();
+    }).populate('user', 'displayName').exec(function(err, lessons) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(lessons);
+        }
     });
 };
 
