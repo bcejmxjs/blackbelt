@@ -87,15 +87,15 @@ var UserSchema = new Schema({
         }],
         default: ['user']
     },
-    purchased: {
+    coursesPurchased: {
         type: [{
             courseId: {
                 type: String
             },
-            completed: {
+            lessonsCompleted: {
                 type: [String]
             },
-            pending: {
+            lessonPending: {
                 type: String
             }
         }],
