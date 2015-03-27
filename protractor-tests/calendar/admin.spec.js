@@ -91,7 +91,6 @@ describe('Simple event functionality', function() {
 			});
 			it('Submit event', function(){
 				calendarPage.submit();
-				browser.sleep(2000);
 			});
 		});
 		describe('Event0', function() {
