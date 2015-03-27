@@ -158,7 +158,6 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location
                 name: this.name,
                 description: this.description,
                 price: this.price,
-                level: this.level,
                 instructor: this.instructor,
                 demo: this.demo
             });
@@ -171,7 +170,6 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location
                 $scope.name = '';
                 $scope.description = '';
                 $scope.price = '';
-                $scope.level = '';
                 $scope.instructor = '';
                 $scope.demo = '';
             }, function(errorResponse) {

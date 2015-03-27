@@ -24,7 +24,6 @@ describe('As an unauthorized user', function() {
 	var calendarPage = new CalendarPage();
 	describe('Initalize calendar testing', function() {
 		it('Get calendar page', function() {
-			browser.sleep(5000);
 			calendarPage.get();
 		});
 	});

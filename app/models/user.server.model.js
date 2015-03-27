@@ -88,7 +88,17 @@ var UserSchema = new Schema({
         default: ['user']
     },
     purchased: {
-        type: [String],
+        type: [{
+            courseId: {
+                type: String
+            },
+            completed: {
+                type: [String]
+            },
+            pending: {
+                type: String
+            }
+        }],
         default: []
     },
     updated: {

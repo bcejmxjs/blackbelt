@@ -25,11 +25,8 @@ var LessonSchema = new Schema({
     position: {
         type: Number
     },
-    course: {
-        type: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'Course'
-        }
+    courseId: {
+        type: String
     }
 });
 

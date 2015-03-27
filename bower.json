@@ -23,7 +23,8 @@
     "videogular-buffering": "~1.0.1",
     "videogular-overlay-play": "~1.0.1",
     "videogular-poster": "~1.0.1",
-    "open-sans-fontface": "~1.2.1"
+    "open-sans-fontface": "~1.2.1",
+    "angular-payments": "*"
   },
   "resolutions": {
     "angular": "~1.2",
