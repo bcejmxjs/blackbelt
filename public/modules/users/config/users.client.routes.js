@@ -41,9 +41,9 @@ angular.module('users').config(['$stateProvider',
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
 		}).
-		state('userprofile', {
-			url: '/userprofile',
-			templateUrl: 'modules/users/views/authentication/userprofile.client.view.html'
+		state('dashboard', {
+			url: '/dashboard',
+			templateUrl: 'modules/users/views/dashboard.client.view.html'
 		});
 	}
 ]);
