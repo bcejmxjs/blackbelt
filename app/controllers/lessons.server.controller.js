@@ -85,6 +85,17 @@ exports.list = function(req, res) {
     });
 };
 
+exports.courseByID = function(req, res, next, id) {
+    Lesson.find({
+        courseId: id
+    }).populate('user', 'displayName').exec(function(err, lesson) {
+        if (err) return next(err);
+        if (!lesson) return next(new Error('Failed to load Lesson ' + id));
+        req.lesson = lesson;
+        next();
+    });
+};
+
 exports.lessonByID = function(req, res, next, id) {
     Lesson.findById(id).populate('user', 'displayName').exec(function(err, lesson) {
         if (err) return next(err);
