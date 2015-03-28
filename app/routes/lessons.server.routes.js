@@ -14,7 +14,11 @@ module.exports = function(app) {
         .put(users.requiresLogin, users.hasAuthorization(['admin']), lessons.update)
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
+    app.route('/video/:filepath')
+        .get(lessons.play);
+
     // Finish by binding the course middleware
     app.param('parent_courseId', lessons.courseByID);
     app.param('lessonId', lessons.lessonByID);
+    app.param('filepath', lessons.play);
 };

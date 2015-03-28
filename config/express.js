@@ -22,7 +22,7 @@ var fs = require('fs'),
     config = require('./config'),
     consolidate = require('consolidate'),
     path = require('path'),
-    vidStreamer = require("vid-streamer");
+    ffmpeg = require('fluent-ffmpeg');
 
 var newSettings = {
     rootFolder: "/Users/jacob/Developer/blackbelt/videos/",
@@ -139,7 +139,7 @@ module.exports = function(db) {
         });
     });
 
-    app.get("/videos/", vidStreamer);
+    app.use(express.static('./flowplayer'));
 
     // Assume 404 since no middleware responded
     app.use(function(req, res) {
@@ -166,6 +166,7 @@ module.exports = function(db) {
         // Return HTTPS server instance
         return httpsServer;
     }
+
 
     // Return Express server instance
     return app;
