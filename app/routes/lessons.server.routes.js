@@ -5,16 +5,16 @@ module.exports = function(app) {
     var courses = require('../../app/controllers/courses.server.controller');
     var lessons = require('../../app/controllers/lessons.server.controller');
 
-    app.route('/course/:courseId')
+    app.route('/course/:parent_courseId')
         .get(users.requiresLogin, lessons.courseByID)
         .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
 
-    app.route('/course/:courseId/:lessonId')
+    app.route('/course/:parent_courseId/:lessonId')
         .get(lessons.read)
         .put(users.requiresLogin, users.hasAuthorization(['admin']), lessons.update)
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
     // Finish by binding the course middleware
-    app.param('courseId', lessons.courseByID);
+    app.param('parent_courseId', lessons.courseByID);
     app.param('lessonId', lessons.lessonByID);
 };

@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('lesson-list').controller('LessonListController', ['$scope',
-	function($scope) {
-		// Lesson list controller logic
-		// ...
-	}
+angular.module('courses').controller('LessonListController', ['$scope',
+    function($scope) {
+        // Lesson list controller logic
+        // ...
+    }
 ]);
 
-angular.module('lesson-list').controller('LessonListCreateController', ['$scope', 'LessonList', '$location',
+angular.module('courses').controller('LessonListCreateController', ['$scope', 'LessonList', '$location',
     function($scope, LessonList, $location) {
 
         // Create new Lesson
@@ -24,7 +24,7 @@ angular.module('lesson-list').controller('LessonListCreateController', ['$scope'
 
             // Redirect after save
             lesson.$save(function(response) {
-                $location.path('lesson-list');
+                $location.path('courses');
 
                 // Clear form fields
                 $scope.name = '';
@@ -40,7 +40,7 @@ angular.module('lesson-list').controller('LessonListCreateController', ['$scope'
     }
 ]);
 
-angular.module('lesson-list').controller('LessonListEditController', ['$scope', 'LessonList',
+angular.module('courses').controller('LessonListEditController', ['$scope', 'LessonList',
     function($scope, LessonList) {
         // Edit existing Course
         this.update = function(updatedLessson) {
@@ -55,7 +55,7 @@ angular.module('lesson-list').controller('LessonListEditController', ['$scope', 
     }
 ]);
 
-angular.module('lesson-list').controller('LessonListRemoveController', ['$scope', 'LessonList', '$location', 'Notify',
+angular.module('courses').controller('LessonListRemoveController', ['$scope', 'LessonList', '$location', 'Notify',
     function($scope, LessonList, $location, Notify) {
         // Remove existing Course
         this.remove = function(lesson) {
@@ -67,14 +67,14 @@ angular.module('lesson-list').controller('LessonListRemoveController', ['$scope'
             if (lesson) {
                 lesson.$remove();
 
-                for (var i in $scope.lesson-list) {
-                    if ($scope.lesson-list[i] === lesson) {
-                        $scope.lesson-list.splice(i, 1);
+                for (var i in $scope.lesson - list) {
+                    if ($scope.lesson - list[i] === lesson) {
+                        $scope.lesson - list.splice(i, 1);
                     }
                 }
             } else {
                 lesson.$remove(function() {
-                    $location.path('lesson-list');
+                    $location.path('lessons');
                 });
             }
         };

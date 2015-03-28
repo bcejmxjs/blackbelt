@@ -3,40 +3,39 @@
 //Courses service used to communicate Courses REST endpoints
 angular.module('courses')
 
-	.factory('Courses', ['$resource',
-		function($resource) {
-			return $resource('courses/:courseId', { courseId: '@_id'
-			}, {
-				update: {
-					method: 'PUT'
-				}
-			});
-		}
-	])
+.factory('Courses', ['$resource',
+    function($resource) {
+        return $resource('courses/:courseId', {
+            courseId: '@_id'
+        }, {
+            'update': {
+                method: 'PUT'
+            }
+        });
+    }
+])
 
 
-	.factory('Notify', ['$rootScope', function($rootScope) {
-			
-			var notify = {};
+.factory('Notify', ['$rootScope', function($rootScope) {
 
-			notify.sendMsg = function(msg, data) {
-				data = data || {};
-				$rootScope.$emit(msg,data);
+    var notify = {};
 
-				console.log("message sent!");
-			 };
+    notify.sendMsg = function(msg, data) {
+        data = data || {};
+        $rootScope.$emit(msg, data);
 
-	// // for updating delete information
+        console.log("message sent!");
+    };
 
-			notify.getMsg = function(msg, func, scope) {
-				var unbind = $rootScope.$on(msg, func);
+    // // for updating delete information
 
-				if (scope) {
-					scope.$on('destroy', unbind);
-				}
-			};
+    notify.getMsg = function(msg, func, scope) {
+        var unbind = $rootScope.$on(msg, func);
 
-			return notify;
-		}
-	])
-;
+        if (scope) {
+            scope.$on('destroy', unbind);
+        }
+    };
+
+    return notify;
+}]);
