@@ -1,1 +1,3 @@
 { "_id" : { "$oid" : "5515df66f969935751314cbc" }, "name" : "Blocking", "description" : "Learn how to block!", "uri" : "big_buck_bunny.mp4", "position" : 1, "courseId" : "5500abb9d21dec690fc66fe6" }
+{ "_id" : { "$oid" : "55177ebd960986f53e7ee772" }, "name" : "Kicking", "description" : "Learn how to kick!", "uri" : "big_buck_bunny.mp4", "position" : 2, "courseId" : "5500abb9d21dec690fc66fe6" }
+{ "_id" : { "$oid" : "55177ecf960986f53e7ee773" }, "name" : "Punching", "description" : "Learn how to punch!", "uri" : "big_buck_bunny.mp4", "position" : 3, "courseId" : "5500abb9d21dec690fc66fe6" }
