@@ -1,19 +1,173 @@
 'use strict';
 
-angular.module('courses').controller('LessonListController', ['$scope',
-    function($scope) {
-        // Lesson list controller logic
-        // ...
+angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce',
+
+    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce) {
+
+        this.authentication = Authentication;
+
+        this.list = function(){
+            $scope.lessons = Lessons.query({
+                courseId: $stateParams.courseId
+            });
+            $scope.course = Courses.get({
+                courseId: $stateParams.courseId
+            })
+        };
+
+        this.findOne = function(){
+            $scope.lesson = Lessons.get({
+                courseId: $stateParams.courseId,
+                lessonId: $stateParams.courseId
+            });
+        };
+
+
+        // Open a modal window to Create a single course record
+        this.modalCreate = function(size) {
+
+            var modalInstance = $modal.open({
+                //  templateUrl: 'modules/courses/views/create-course.client.view.html',
+                controller: ModalCreateCtrl,
+                size: size,
+            });
+
+            modalInstance.result.then(function(selectedItem) {
+
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+
+        var ModalCreateCtrl = function($scope, $modalInstance) {
+
+            $scope.ok = function() {
+                $modalInstance.close();
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        };
+
+        // Open a modal window to update a single course record
+        this.modalUpdate = function(size, selectedLesson) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/lesson-list-edit.client.view.html',
+                controller: ModalUpdateCtrl,
+                size: size,
+                resolve: {
+                    lesson: function() {
+                        return selectedLesson;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+
+        var ModalUpdateCtrl = function($scope, $modalInstance, lesson) {
+            $scope.lesson = lesson;
+
+            $scope.ok = function() {
+                $modalInstance.close($scope.lesson);
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        };
+
+        // Open a modal window to Remove a single course record
+        this.modalRemove = function(size, selectedCourse) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/lessson-remove.client.view.html',
+                controller: ModalRemoveCtrl,
+                size: size,
+                resolve: {
+                    course: function() {
+                        return selectedCourse;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+
+        var ModalRemoveCtrl = function($scope, $modalInstance, course) {
+            $scope.course = course;
+
+            $scope.ok = function() {
+                $modalInstance.close($scope.course);
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        };
+
+        // Open a modal window to View a single course record
+        this.modalView = function(size, selectedCourse) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/course-view.client.view.html',
+                controller: ModalViewCtrl,
+                size: size,
+                resolve: {
+                    course: function() {
+                        return selectedCourse;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+
+        var ModalViewCtrl = function($scope, $modalInstance, course) {
+            $scope.course = course;
+
+            $scope.ok = function() {
+                $modalInstance.close($scope.course);
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        };
+
     }
+
 ]);
 
-angular.module('courses').controller('LessonListCreateController', ['$scope', 'LessonList', '$location',
-    function($scope, LessonList, $location) {
+angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses','Lessons', '$location',
+    function($scope, Courses, Lessons, $location) {
 
         // Create new Lesson
         this.create = function() {
             // Create new Lesson object
-            var lesson = new LessonList({
+            var lesson = new Courses({
                 name: this.name,
                 description: this.description,
                 price: this.price,
@@ -24,7 +178,7 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'L
 
             // Redirect after save
             lesson.$save(function(response) {
-                $location.path('courses');
+                $location.path('lesson-list');
 
                 // Clear form fields
                 $scope.name = '';
@@ -40,8 +194,8 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'L
     }
 ]);
 
-angular.module('courses').controller('LessonListEditController', ['$scope', 'LessonList',
-    function($scope, LessonList) {
+angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons'
+    function($scope, Lessons) {
         // Edit existing Course
         this.update = function(updatedLessson) {
             var lesson = updatedLesson;
@@ -55,28 +209,58 @@ angular.module('courses').controller('LessonListEditController', ['$scope', 'Les
     }
 ]);
 
-angular.module('courses').controller('LessonListRemoveController', ['$scope', 'LessonList', '$location', 'Notify',
-    function($scope, LessonList, $location, Notify) {
-        // Remove existing Course
+angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', '$location', 'Notify',
+    function($scope, Courses, $location, Notify) {
+        // Remove existing Lesson
         this.remove = function(lesson) {
 
-            Notify.sendMsg('Oldcourse', {
+            Notify.sendMsg('Oldlesson', {
                 'id': lesson._id
             });
 
             if (lesson) {
                 lesson.$remove();
 
-                for (var i in $scope.lesson - list) {
-                    if ($scope.lesson - list[i] === lesson) {
-                        $scope.lesson - list.splice(i, 1);
+                for (var i in $scope.lesson-list) {
+                    if ($scope.lesson-list[i] === lesson) {
+                        $scope.lesson-list.splice(i, 1);
                     }
                 }
             } else {
                 lesson.$remove(function() {
-                    $location.path('lessons');
+                    $location.path('lesson-list');
                 });
             }
         };
     }
 ]);
+
+angular.module('courses').controller('LessonListViewController', ['$scope', 'Courses', '$stateParams',
+    function($scope, Courses, $stateParams) {
+        // View existing Course
+
+        this.findOne = function() {
+            $scope.lesson = Courses.get({
+                courseId: $stateParams.courseId
+            });
+        };
+    }
+]);
+
+angular.module('courses').directive('courseList', ['Lessons', 'Notify', function(Lessons, Notify) {
+    return {
+        restrict: 'E',
+        transclude: true,
+        templateUrl: 'modules/courses/views/lesson-list.client.view.html',
+        link: function(scope, element, attrs) {
+
+            // when a course is delete, update the course-list
+            Notify.getMsg('Oldcourse', function(event, data) {
+                scope.lessonsCtrl.lesson = Lessons.query({
+                courseId: $stateParams.courseId
+            });
+            })
+        }
+    };
+
+}]);
