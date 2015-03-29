@@ -5,8 +5,8 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
     function($stateProvider, $sceDelegateProvider) {
         // Courses state routing
         $stateProvider.
-        state('lesson-list', {
-            url: '/lesson-list',
+        state('listLessons', {
+            url: '/course/:courseId',
             templateUrl: 'modules/courses/views/lesson-list.client.view.html'
         }).
         state('listCourses', {
@@ -30,7 +30,7 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
             templateUrl: 'modules/courses/views/course-remove.client.view.html'
         }).
         state('Lesson', {
-            url: '/lesson',
+            url: '/course/:courseId/:lessonId',
             templateUrl: 'modules/courses/views/lesson-view.client.view.html'
         });
 

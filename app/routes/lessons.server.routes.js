@@ -15,7 +15,7 @@ module.exports = function(app) {
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
     app.route('/video/:filepath')
-        .get(lessons.play);
+        .get(users.requiresLogin, lessons.play);
 
     // Finish by binding the course middleware
     app.param('parent_courseId', lessons.courseByID);

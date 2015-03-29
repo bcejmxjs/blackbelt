@@ -111,9 +111,6 @@ exports.lessonByID = function(req, res, next, id) {
 };
 
 exports.play = function(req, res, next, id) {
-    res.contentType('flv');
-    console.log(id);
-    // make sure you set the correct path to your video file storage
     var path = 'videos/' + id;
     var stat = fs.statSync(path);
     var total = stat.size;

@@ -24,12 +24,6 @@ var fs = require('fs'),
     path = require('path'),
     ffmpeg = require('fluent-ffmpeg');
 
-var newSettings = {
-    rootFolder: "/Users/jacob/Developer/blackbelt/videos/",
-    rootPath: "/videos/",
-    forceDownload: true
-};
-
 module.exports = function(db) {
     // Initialize express app
     var app = express();
@@ -139,8 +133,6 @@ module.exports = function(db) {
         });
     });
 
-    app.use(express.static('./flowplayer'));
-
     // Assume 404 since no middleware responded
     app.use(function(req, res) {
         res.status(404).render('404', {
@@ -166,7 +158,6 @@ module.exports = function(db) {
         // Return HTTPS server instance
         return httpsServer;
     }
-
 
     // Return Express server instance
     return app;
