@@ -2,11 +2,13 @@
 
 var courseApp = angular.module('courses');
 
-courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce',
+courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce', '$location',
 
-    function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce) {
+    function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce, $location) {
 
-        this.authentication = Authentication;
+        window.MY_SCOPE = $scope;
+
+        $scope.authentication = Authentication;
 
         this.courses = Courses.query();
 
@@ -16,7 +18,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             var modalInstance = $modal.open({
                 //  templateUrl: 'modules/courses/views/create-course.client.view.html',
                 controller: ModalCreateCtrl,
-                size: size,
+                size: size
             });
 
             modalInstance.result.then(function(selectedItem) {
@@ -111,23 +113,34 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         // Open a modal window to View a single course record
         this.modalView = function(size, selectedCourse) {
+            $log.info(selectedCourse);
+            var modalFlag = true;
 
-            var modalInstance = $modal.open({
-                templateUrl: 'modules/courses/views/course-view.client.view.html',
-                controller: ModalViewCtrl,
-                size: size,
-                resolve: {
-                    course: function() {
-                        return selectedCourse;
-                    }
+            for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                if (Authentication.user.coursesPurchased[i].courseId == selectedCourse._id) {
+                    modalFlag = false;
+                    $location.path('course/' + selectedCourse._id);
                 }
-            });
+            }
+            if (modalFlag) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'modules/courses/views/course-view.client.view.html',
+                    controller: ModalViewCtrl,
+                    size: size,
+                    resolve: {
+                        course: function() {
+                            return selectedCourse;
+                        }
+                    }
+                });
 
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
+                modalInstance.result.then(function(selectedItem) {
+                    $scope.selected = selectedItem;
+                }, function() {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+            }
+
 
         };
 
