@@ -1,7 +1,7 @@
 <section data-ng-controller="LessonListController" data-ng-init="list()">
 	<div class="container" >
 		<div class="page-header">
-	    	<h1 style="text-align: center;">Lessons</h1>
+	    	<h1 style="text-align: center;">{{ course.name }}</h1>
 		</div>
 		<div class="panel panel-success" data-ng-repeat="lesson in lessons">
 		    <div class="panel-body">
