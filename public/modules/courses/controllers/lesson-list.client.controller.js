@@ -90,15 +90,15 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         // Open a modal window to Remove a single course record
-        this.modalRemove = function(size, selectedCourse) {
+        this.modalRemove = function(size, selectedLesson) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'modules/courses/views/lessson-remove.client.view.html',
+                templateUrl: 'modules/courses/views/lesson-list-remove.client.view.html',
                 controller: ModalRemoveCtrl,
                 size: size,
                 resolve: {
-                    course: function() {
-                        return selectedCourse;
+                    lesson: function() {
+                        return selectedLesson;
                     }
                 }
             });
@@ -112,11 +112,11 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
 
-        var ModalRemoveCtrl = function($scope, $modalInstance, course) {
-            $scope.course = course;
+        var ModalRemoveCtrl = function($scope, $modalInstance, lesson) {
+            $scope.lesson = lesson;
 
             $scope.ok = function() {
-                $modalInstance.close($scope.course);
+                $modalInstance.close($scope.lesson);
             };
 
             $scope.cancel = function() {
@@ -212,8 +212,8 @@ angular.module('courses').controller('LessonListEditController', ['$scope', 'Les
     }
 ]);
 
-angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', '$location', 'Notify',
-    function($scope, Courses, $location, Notify) {
+angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', 'Lessons', '$location', 'Notify',
+    function($scope, Lessons, $location, Notify) {
         // Remove existing Lesson
         this.remove = function(lesson) {
 
@@ -231,7 +231,7 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
                 }
             } else {
                 lesson.$remove(function() {
-                    $location.path('lesson-list');
+                    $location.path('listLessons');
                 });
             }
         };
