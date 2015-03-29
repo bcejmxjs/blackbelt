@@ -31,7 +31,7 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
         }).
         state('Lesson', {
             url: '/lesson',
-            templateUrl: 'modules/courses/views/lesson.client.view.html'
+            templateUrl: 'modules/courses/views/lesson-view.client.view.html'
         });
 
         $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
