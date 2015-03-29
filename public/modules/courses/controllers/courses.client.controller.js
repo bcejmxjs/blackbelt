@@ -8,7 +8,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         window.MY_SCOPE = $scope;
 
-        $scope.authentication = Authentication;
+        this.authentication = Authentication;
 
         this.courses = Courses.query();
 
