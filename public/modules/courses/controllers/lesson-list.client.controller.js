@@ -163,7 +163,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
 ]);
 
-courseApp.controller('LessonListCreateController', ['$scope', 'Courses', 'Lessons', '$location',
+angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'Lessons', '$location',
     function($scope, Courses, Lessons, $location) {
 
         // Create new Lesson
@@ -196,7 +196,7 @@ courseApp.controller('LessonListCreateController', ['$scope', 'Courses', 'Lesson
     }
 ]);
 
-courseApp.controller('LessonListEditController', ['$scope', 'Lessons',
+angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons',
 
     function($scope, Lessons) {
         // Edit existing Course
@@ -212,7 +212,7 @@ courseApp.controller('LessonListEditController', ['$scope', 'Lessons',
     }
 ]);
 
-courseApp.controller('LessonListRemoveController', ['$scope', 'Courses', '$location', 'Notify',
+angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', '$location', 'Notify',
     function($scope, Courses, $location, Notify) {
         // Remove existing Lesson
         this.remove = function(lesson) {
@@ -238,7 +238,7 @@ courseApp.controller('LessonListRemoveController', ['$scope', 'Courses', '$locat
     }
 ]);
 
-courseApp.controller('LessonListViewController', ['$scope', 'Courses', '$stateParams',
+angular.module('courses').controller('LessonListViewController', ['$scope', 'Courses', '$stateParams',
     function($scope, Courses, $stateParams) {
         // View existing Course
 
@@ -247,25 +247,5 @@ courseApp.controller('LessonListViewController', ['$scope', 'Courses', '$statePa
                 courseId: $stateParams.courseId
             });
         };
-    }
-]);
-
-courseApp.directive('courseList', ['Lessons', 'Notify', '$stateParams',
-    function(Lessons, Notify, $stateParams) {
-        return {
-            restrict: 'E',
-            transclude: true,
-            templateUrl: 'modules/courses/views/lesson-list.client.view.html',
-            link: function(scope, element, attrs) {
-
-                // when a course is delete, update the course-list
-                Notify.getMsg('Oldcourse', function(event, data) {
-                    scope.lessonsCtrl.lesson = Lessons.query({
-                        courseId: $stateParams.courseId
-                    });
-                });
-            }
-        };
-
     }
 ]);
