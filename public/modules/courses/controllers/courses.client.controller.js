@@ -116,15 +116,17 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             $log.info(selectedCourse);
             var modalFlag = true;
 
-            if (Authentication.user.roles.indexOf('instructor') > -1 ||
-                Authentication.user.roles.indexOf('admin') > -1) {
-                modalFlag = false;
-                $location.path('course/' + selectedCourse._id);
-            } else {
-                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                    if (Authentication.user.coursesPurchased[i].courseId == selectedCourse._id) {
-                        modalFlag = false;
-                        $location.path('course/' + selectedCourse._id);
+            if (Authentication.user) {
+                if (Authentication.user.roles.indexOf('instructor') > -1 ||
+                    Authentication.user.roles.indexOf('admin') > -1) {
+                    modalFlag = false;
+                    $location.path('course/' + selectedCourse._id);
+                } else {
+                    for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                        if (Authentication.user.coursesPurchased[i].courseId == selectedCourse._id) {
+                            modalFlag = false;
+                            $location.path('course/' + selectedCourse._id);
+                        }
                     }
                 }
             }

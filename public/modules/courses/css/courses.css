@@ -1,50 +1,52 @@
-.badge-important{
-  background-color:#b94a48;
+.badge-important {
+    background-color: #b94a48;
 }
-
-h1,h2,h3 {
-  vertical-align:middle;
+h1,
+h2,
+h3 {
+    vertical-align: middle;
 }
-
-h1>.badge, h2>.badge, h3>.badge {
-  vertical-align:middle;
+h1>.badge,
+h2>.badge,
+h3>.badge {
+    vertical-align: middle;
 }
-
 a {
-	cursor: pointer;
+    cursor: pointer;
 }
-
+.about-pic {
+    height: 256px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
 .videogular-container {
-	width: 100%;
-	height: 320px;
-	margin: auto;
-	overflow: hidden;
+    width: 100%;
+    height: 320px;
+    margin: auto;
+    overflow: hidden;
 }
- 
 @media (min-width: 1200px) {
-	.videogular-container {
-		width: 1170px;
-		height: 658.125px;
-	}
+    .videogular-container {
+        width: 1170px;
+        height: 658.125px;
+    }
 }
- 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.videogular-container {
-		width: 940px;
-		height: 528.75px;
-	}
+    .videogular-container {
+        width: 940px;
+        height: 528.75px;
+    }
 }
- 
 @media (min-width: 768px) and (max-width: 991px) {
-	.videogular-container {
-		width: 728px;
-		height: 409.5px;
-	}
+    .videogular-container {
+        width: 728px;
+        height: 409.5px;
+    }
 }
-
-div.moviewrapper{
-
- width: 560px;
- height: 340px;
- margin: 0 auto;
+div.moviewrapper {
+    width: 560px;
+    height: 340px;
+    margin: 0 auto;
 }
