@@ -2,9 +2,9 @@
 
 var courseApp = angular.module('courses');
 
-courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Users', 'Courses', '$modal', '$log', '$sce', '$location',
+courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce', '$location',
 
-    function($scope, $stateParams, Authentication, Users, Courses, $modal, $log, $sce, $location) {
+    function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce, $location) {
 
         window.MY_SCOPE = $scope;
 
@@ -123,7 +123,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
                     $location.path('course/' + selectedCourse._id);
                 } else {
                     for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                        if (Authentication.user.coursesPurchased[i].courseId === selectedCourse._id) {
+                        if (Authentication.user.coursesPurchased[i].courseId == selectedCourse._id) {
                             modalFlag = false;
                             $location.path('course/' + selectedCourse._id);
                         }
@@ -168,18 +168,13 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         $scope.purchaseCourse = function(addedCourseId) {
             //Update Authentication Object
-            $scope.user.coursesPurchased.push({courseId : addedCourseId});
+            Authentication.user.coursesPurchased.push({courseId : addedCourseId});
             //Push Changes to DB
-            $scope.success = $scope.error = null;
-            var user = new Users($scope.user);
-
-            user.$update(function(response) {
-                $scope.success = true;
-                Authentication.user = response;
-            }, function(response) {
-                $scope.error = response.data.message;
+            Authentication.user.$save(function() {
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
             });
-        };
+        }
 
     }
 
@@ -301,7 +296,7 @@ courseApp.directive('courseList', ['Courses', 'Notify', function(Courses, Notify
             // when a course is delete, update the course-list
             Notify.getMsg('Oldcourse', function(event, data) {
                 scope.coursesCtrl.courses = Courses.query();
-            });
+            })
         }
     };
 
