@@ -41,10 +41,10 @@ describe('Basic user sign in', function() {
 		signin.user_signin();
 	});
 	//--------------------------------------------------
-	it('Sh- redirect to the home page', function() {
+	it('Sh- redirect to the dashboard', function() {
 		expect(
 			browser.getCurrentUrl())
-		.toBe(browser.baseUrl + '/#!/');
+		.toBe(browser.baseUrl + '/#!/dashboard');
 	});
 	//--------------------------------------------------
 	it('Sh- not allow access of sign in page', function() {

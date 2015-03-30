@@ -24,8 +24,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
 
-				// And redirect to the index page
-				$location.path('/');
+				// And redirect to the dashboard page
+				$location.path('/dashboard');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
