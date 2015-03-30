@@ -165,6 +165,18 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             };
         };
 
+
+        $scope.purchaseCourse = function(course) {
+            //Update Authentication Object
+            Authentication.user.coursesPurchased.push({courseId:course.courseId});
+            //Push Changes to DB
+            Authentication.user.$save(function(response) {
+                $state.reload();
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        }
+
     }
 
 ]);
