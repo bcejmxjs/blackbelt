@@ -254,11 +254,7 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location
             if (course) {
                 course.$remove();
 
-                for (var i in $scope.courses) {
-                    if ($scope.courses[i] === course) {
-                        $scope.courses.splice(i, 1);
-                    }
-                }
+                
             } else {
                 course.$remove(function() {
                     $location.path('courses');
