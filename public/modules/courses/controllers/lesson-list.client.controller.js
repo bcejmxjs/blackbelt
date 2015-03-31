@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce',
+angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'CourseLessons', '$modal', '$log', '$sce',
 
-    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce) {
+    function($scope, $stateParams, Authentication, Courses, CourseLessons, $modal, $log, $sce) {
 
         window.MY_SCOPE = $scope;
 
         this.authentication = Authentication;
 
         $scope.list = function() {
-            $scope.lessons = Lessons.query({
+            $scope.lessons = CourseLessons.query({
                 courseId: $stateParams.courseId
             });
             $scope.course = Courses.get({
@@ -18,7 +18,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         this.findOne = function() {
-            $scope.lesson = Lessons.get({
+            $scope.lesson = CourseLessons.get({
                 courseId: $stateParams.courseId,
                 lessonId: $stateParams.courseId
             });
@@ -163,7 +163,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
 ]);
 
-angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'Lessons', '$location',
+angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'CourseLessons', '$location',
     function($scope, Courses, Lessons, $location) {
 
         // Create new Lesson
