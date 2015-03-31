@@ -31,7 +31,10 @@ angular.module('courses').controller('LectureController', ['$scope', '$sce', '$s
             theme: "lib/videogular-themes-default/videogular.css",
             plugins: {
                 poster: "http://www.videogular.com/assets/images/videogular.png"
-            }
-        }
+            },
+            responsive: true,
+            height: 380,
+            width: 740
+        };
     }
 ]);
