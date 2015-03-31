@@ -35,14 +35,14 @@ a {
 }
 @media (min-width: 992px) and (max-width: 1199px) {
     .videogular-container {
-        width: 728px;
-        height: 409.5px;
+        width: 753.28px;
+        height: 423.747px;
     }
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .videogular-container {
-        width: 728px;
-        height: 409.5px;
+        width: 690px;
+        height: 388.125px;
     }
 }
 div.moviewrapper {
