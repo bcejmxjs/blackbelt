@@ -29,14 +29,14 @@ a {
 }
 @media (min-width: 1200px) {
     .videogular-container {
-        width: 1170px;
-        height: 658.125px;
+        width: 920px;
+        height: 517.5px;
     }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
     .videogular-container {
-        width: 940px;
-        height: 528.75px;
+        width: 728px;
+        height: 409.5px;
     }
 }
 @media (min-width: 768px) and (max-width: 991px) {

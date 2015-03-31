@@ -1,5 +1,7 @@
 <section data-ng-controller="LectureController">
     <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
         <div class="page-header" style="text-align: center"><h1>{{ lesson.name }}</h1></div>
         <videogular vg-theme="config.theme" vg-height="config.height" vg-width="config.width" class="videogular-container embed-responsive-item">
 			<vg-media vg-src="config.sources"
@@ -24,5 +26,6 @@
 	    </videogular>
         <br/>
         <h4 style="text-align: center">{{ lesson.description }}</h4>
-    </div>
+        </div>
+        </div>
 </section>
