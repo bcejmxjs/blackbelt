@@ -104,6 +104,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
             $scope.ok = function() {
                 $modalInstance.close($scope.course);
+                location.reload();
             };
 
             $scope.cancel = function() {
