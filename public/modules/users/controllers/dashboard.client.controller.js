@@ -21,5 +21,9 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 );
             };
         };
+		
+		$scope.viewLesson = function(){
+			$location.path('/courses');
+		};
     }
 ]);
