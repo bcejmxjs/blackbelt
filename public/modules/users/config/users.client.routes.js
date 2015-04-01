@@ -44,6 +44,10 @@ angular.module('users').config(['$stateProvider',
 		state('dashboard', {
 			url: '/dashboard',
 			templateUrl: 'modules/users/views/dashboard.client.view.html'
+		}).
+		state('admin-dashboard', {
+			url: '/admindashboard',
+			templateUrl: 'modules/users/views/admin-dashboard.client.view.html'
 		});
 	}
 ]);
