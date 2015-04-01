@@ -34,6 +34,10 @@ exports.read = function(req, res) {
     res.jsonp(req.lesson);
 };
 
+exports.readAll = function(req, res) {
+    res.jsonp(req.lessons);
+};
+
 /**
  * Update a Lesson
  */
@@ -82,7 +86,7 @@ exports.list = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            req = lessons;
+            res.jsonp(lessons);
         }
     });
 };
@@ -96,10 +100,10 @@ exports.courseByID = function(req, res, next, id) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            req = lessons;
+            req.lessons = lessons;
+            next();
         }
     });
-    next();
 };
 
 exports.lessonByID = function(req, res, next, id) {

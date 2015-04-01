@@ -5,7 +5,7 @@ module.exports = function(app) {
     var lessons = require('../../app/controllers/lessons.server.controller');
 
     app.route('/courses/lessons/:parentCourseId')
-        .get(users.requiresLogin, lessons.read);
+        .get(users.requiresLogin, lessons.readAll);
 
     app.route('/lessons')
         .get(users.requiresLogin, lessons.list)
