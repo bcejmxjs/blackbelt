@@ -32,7 +32,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 			//Get number of lessons for a particular course.
 			var lessonCount = 0;
 			var i = 0;
-			for (i = 0; i < $scope.lessons.length(); i++){
+			for (i = 0; i < $scope.lessons.length; i++){
 				if ($scope.lessons[i].courseId === course._id){
 					lessonCount++;
 				}
@@ -41,13 +41,13 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 			var lessonsCompleted = 0;
 			if( Authentication.user.coursesPurchased )
 			{
-				for (i = 0; i <  Authentication.user.coursesPurchased.length(); i++){
+				for (i = 0; i <  Authentication.user.coursesPurchased.length; i++){
 					if ( Authentication.user.coursesPurchased[i] === course._id ){
-						lessonsCompleted =  Authentication.user.coursesPurchased[i].lessonsCompleted.length();
+						lessonsCompleted =  Authentication.user.coursesPurchased[i].lessonsCompleted.length;
 					}
 				}
 			}
-			if (lessonCount !== 0){
+			if (lessonCount > 0){
 				percentCompleted = (lessonsCompleted/lessonCount) * 100;
 			}
 			//return rounded percentage
