@@ -11,8 +11,9 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-  	
+    'no_auth.spec.js'
   ],
+  
   baseUrl: 'http://localhost:3000',
 
   rootElement:'html',
