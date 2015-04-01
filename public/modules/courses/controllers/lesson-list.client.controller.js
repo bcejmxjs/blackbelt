@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'CourseLessons', '$modal', '$log', '$sce',
+angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location',
 
-    function($scope, $stateParams, Authentication, Courses, CourseLessons, $modal, $log, $sce) {
+    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location) {
 
         window.MY_SCOPE = $scope;
 
         this.authentication = Authentication;
 
         this.list = function() {
-            $scope.lessons = CourseLessons.query({
+            $scope.lessons = Lessons.query({
                 courseId: $stateParams.courseId
             });
 
@@ -19,7 +19,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         this.findOne = function() {
-            $scope.lesson = CourseLessons.get({
+            $scope.lesson = Lessons.get({
                 courseId: $stateParams.courseId,
                 lessonId: $stateParams.courseId
             });
@@ -76,7 +76,6 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
             });
 
         };
-
 
         var ModalUpdateCtrl = function($scope, $modalInstance, lesson) {
             $scope.lesson = lesson;
@@ -139,8 +138,8 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                 }
             });
 
-            modalInstance.result.then(function(selectedLesson) {
-                $scope.selected = selectedLesson;
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -196,8 +195,8 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'C
     }
 ]);
 
-angular.module('courses').controller('LessonListEditController', ['$scope', 'CourseLessons',
-    function($scope, CourseLessons) {
+angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons',
+    function($scope, Lessons) {
         // Edit existing Course
         this.update = function(updatedLesson) {
             var lesson = updatedLesson;
@@ -211,22 +210,21 @@ angular.module('courses').controller('LessonListEditController', ['$scope', 'Cou
     }
 ]);
 
-angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', 'Lessons', '$location', 'Notify',
-    function($scope, Lessons, $location, Notify) {
+angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', 'Lessons', '$location', 'Notify', '$stateParams',
+    function($scope, Lessons, $location, Notify, $stateParams) {
         // Remove existing Lesson
         this.remove = function(lesson) {
 
-            // Notify.sendMsg('Oldlesson', {
-            //     'id': lesson._id
-            // });
+            Notify.sendMsg('Oldlesson', {
+                'id': lesson._id
+            })
 
             if (lesson) {
                 lesson.$remove();
 
-
             } else {
                 lesson.$remove(function() {
-                    $location.path('listLessons');
+                    $location.path('course/' + lesson.courseId);
                 });
             }
         };

@@ -249,9 +249,9 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location
         // Remove existing Course
         this.remove = function(course) {
 
-            Notify.sendMsg('Oldcourse', {
-                'id': course._id
-            });
+            // Notify.sendMsg('Oldcourse', {
+            //     'id': course._id
+            // });
 
             if (course) {
                 course.$remove();

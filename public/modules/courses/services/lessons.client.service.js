@@ -2,7 +2,7 @@
 
 angular.module('courses')
 
-.factory('CourseLessons', ['$resource',
+.factory('Lessons', ['$resource',
     function($resource) {
         return $resource('courses/:courseId/lessons', {
             courseId: 'courseId'
@@ -20,18 +20,13 @@ angular.module('courses')
                 params: {
                     lessonId: '@_id'
                 }
-            }
-        });
-    }
-])
-
-.factory('Lessons', ['$resource',
-    function($resource) {
-        return $resource('lessons/:lessonId', {
-            lessonId: '@_id'
-        }, {
-            update: {
-                method: 'PUT'
+            },
+            remove: {
+                method: 'DELETE',
+                url: 'lessons/:lessonId',
+                params: {
+                    lessonId: '@_id'
+                }
             }
         });
     }
