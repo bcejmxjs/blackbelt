@@ -117,6 +117,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
             $scope.ok = function() {
                 $modalInstance.close($scope.lesson);
+                location.reload();
             };
 
             $scope.cancel = function() {
@@ -215,9 +216,9 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
         // Remove existing Lesson
         this.remove = function(lesson) {
 
-            Notify.sendMsg('Oldlesson', {
-                'id': lesson._id
-            })
+            // Notify.sendMsg('Oldlesson', {
+            //     'id': lesson._id
+            // })
 
             if (lesson) {
                 lesson.$remove();
