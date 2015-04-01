@@ -196,15 +196,13 @@ module.exports = function(grunt) {
                 keepAlive: false,
                 configFile: 'protractor-tests/calendar/conf.js',
                 args: {}
-            } //,
-            /*
-		      courses: {
-		      	verbose: true,
-		      	keepAlive: false,
-		      	configFile: 'protractor-tests/courses/conf.js',
-		      	args: {}		      	
-		      }
-		      */
+            },
+            courses: {
+            	verbose: true,
+            	keepAlive: false,
+            	configFile: 'protractor-tests/courses/conf.js',
+            	args: {}		      	
+            }
         }
     });
 
