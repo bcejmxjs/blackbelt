@@ -27,6 +27,11 @@ angular.module('courses')
                 params: {
                     lessonId: '@_id'
                 }
+            },
+            getAll: {
+                method: 'GET',
+                url: 'lessons',
+                isArray: true
             }
         });
     }

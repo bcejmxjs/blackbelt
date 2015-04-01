@@ -61,11 +61,6 @@ var UserSchema = new Schema({
         required: 'Please fill in a username',
         trim: true
     },
-    confirmed: {
-        type: Boolean,
-        default: false,
-        validate: [validateConfirmStatement, 'Please confirm the statement']
-    },
     password: {
         type: String,
         default: '',
