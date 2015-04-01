@@ -1,35 +1,21 @@
 <section data-ng-controller="LessonListEditController as lessonEditCtrl">
     <div class="modal-header">
-        <h3 class="modal-title">Edit {{course.name}}</h3>
+        <h3 class="modal-title">Edit {{lesson.name}}</h3>
     </div>
     <div class="modal-body">
         <fieldset>
-            <div class="row">
-                <div class="col-sm-6 text-center">
-                    <img class="media-object" style="height:100px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" align="right">
-                </div>
-
-            </div>
             <div class="form-group">
                 <label class="control-label" for="name">Name</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name">
+                    <input type="text" data-ng-model="lesson.name" id="name" class="form-control" placeholder="Name">
                 </div>
                 <label class="control-label" for="name">Description</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="course.description" id="description" class="form-control" placeholder="description">
+                    <input type="text" data-ng-model="lesson.description" id="description" class="form-control" placeholder="description">
                 </div>
                 <label class="control-label" for="name">Price</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="course.price" id="price" class="form-control" placeholder="price">
-                </div>
-                <label class="control-label" for="name">Instructor</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor">
-                </div>
-                <label class="control-label" for="name">Video Demo</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="demo">
+                    <input type="text" data-ng-model="lesson.position" id="price" class="form-control" placeholder="price">
                 </div>
             </div>
             <div data-ng-show="error" class="text-danger">

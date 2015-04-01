@@ -163,31 +163,30 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
 ]);
 
-angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'CourseLessons', '$location',
-    function($scope, Courses, Lessons, $location) {
+angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'Lessons', '$location', '$stateparams',
+    function($scope, Courses, Lessons, $location, $stateparams) {
 
         // Create new Lesson
         this.create = function() {
             // Create new Lesson object
-            var lesson = new Courses({
+            var lesson = new Lessons({
                 name: this.name,
                 description: this.description,
-                price: this.price,
-                level: this.level,
-                instructor: this.instructor,
-                demo: this.demo
+                uri: 'big_buck_bunny.mp4',
+                position: this.position,
+                courseId: $stateparams.courseId
             });
 
             // Redirect after save
             lesson.$save(function(response) {
-                $location.path('lesson-list');
+                $location.path('course/' + $stateparams.courseId);
 
                 // Clear form fields
                 $scope.name = '';
                 $scope.description = '';
-                $scope.level = '';
-                $scope.instructor = '';
-                $scope.demo = '';
+                $scope.uri = '';
+                $scope.position = '';
+                $scope.courseId = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -197,10 +196,9 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'C
 ]);
 
 angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons',
-
     function($scope, Lessons) {
         // Edit existing Course
-        this.update = function(updatedLessson) {
+        this.update = function(updatedLesson) {
             var lesson = updatedLesson;
 
             lesson.$update(function() {
