@@ -2,9 +2,9 @@
 
 var courseApp = angular.module('courses');
 
-courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce', '$location',
+courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Courses', '$modal', '$log', '$sce', '$location', '$state',
 
-    function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce, $location) {
+    function($scope, $stateParams, Authentication, Courses, $modal, $log, $sce, $location, $state) {
 
         window.MY_SCOPE = $scope;
 
@@ -106,7 +106,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
             $scope.ok = function() {
                 $modalInstance.close($scope.course);
-                location.reload();
+                $state.reload();
             };
 
             $scope.cancel = function() {

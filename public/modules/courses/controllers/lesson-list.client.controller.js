@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location',
+angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location', '$state',
 
-    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location) {
+    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location, $state) {
 
         window.MY_SCOPE = $scope;
 
@@ -117,7 +117,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
             $scope.ok = function() {
                 $modalInstance.close($scope.lesson);
-                location.reload();
+                $state.reload()
             };
 
             $scope.cancel = function() {
