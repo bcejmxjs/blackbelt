@@ -44,7 +44,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         // Open a modal window to update a single course record
-        $scope.modalUpdate = function(size, selectedCourse) {
+        this.modalUpdate = function(size, selectedCourse) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-edit.client.view.html',
