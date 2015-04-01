@@ -44,7 +44,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         // Open a modal window to update a single course record
-        this.modalUpdate = function(size, selectedCourse) {
+        $scope.modalUpdate = function(size, selectedCourse) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-edit.client.view.html',
@@ -171,7 +171,9 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         $scope.purchaseCourse = function(addedCourseId) {
             //Update Authentication Object
-            $scope.user.coursesPurchased.push({courseId : addedCourseId});
+            $scope.user.coursesPurchased.push({
+                courseId: addedCourseId
+            });
             //Push Changes to DB (CURRENTLY NOT WORKING)
             $scope.user.$update(function(response) {
                 $scope.success = true;
@@ -180,10 +182,10 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             });
         };
 
-        $scope.isCoursePurchased = function( purchasedCourseId ) {
+        $scope.isCoursePurchased = function(purchasedCourseId) {
             var coursePurchased = false;
-            for( var a = 0; a != $scope.user.coursesPurchased.length; a++ ) {
-                if( $scope.user.coursesPurchased[a].courseId == purchasedCourseId ) {
+            for (var a = 0; a != $scope.user.coursesPurchased.length; a++) {
+                if ($scope.user.coursesPurchased[a].courseId == purchasedCourseId) {
                     coursePurchased = true;
                 }
             }
@@ -254,7 +256,7 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location
             if (course) {
                 course.$remove();
 
-                
+
             } else {
                 course.$remove(function() {
                     $location.path('courses');

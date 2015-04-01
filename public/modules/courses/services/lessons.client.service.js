@@ -8,7 +8,18 @@ angular.module('courses')
             courseId: 'courseId'
         }, {
             update: {
-                method: 'PUT'
+                method: 'PUT',
+                url: 'lessons/:lessonId',
+                params: {
+                    lessonId: '@_id'
+                }
+            },
+            get: {
+                method: 'GET',
+                url: 'lessons/:lessonId',
+                params: {
+                    lessonId: '@_id'
+                }
             }
         });
     }

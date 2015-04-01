@@ -8,10 +8,11 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
         this.authentication = Authentication;
 
-        $scope.list = function() {
+        this.list = function() {
             $scope.lessons = CourseLessons.query({
                 courseId: $stateParams.courseId
             });
+
             $scope.course = Courses.get({
                 courseId: $stateParams.courseId
             });
@@ -138,8 +139,8 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                 }
             });
 
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+            modalInstance.result.then(function(selectedLesson) {
+                $scope.selected = selectedLesson;
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -195,8 +196,8 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'C
     }
 ]);
 
-angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons',
-    function($scope, Lessons) {
+angular.module('courses').controller('LessonListEditController', ['$scope', 'CourseLessons',
+    function($scope, CourseLessons) {
         // Edit existing Course
         this.update = function(updatedLesson) {
             var lesson = updatedLesson;
@@ -222,7 +223,7 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
             if (lesson) {
                 lesson.$remove();
 
-                
+
             } else {
                 lesson.$remove(function() {
                     $location.path('listLessons');
