@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses',
-    function($scope, $http, $location, Users, Authentication, Courses) {
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons',
+    function($scope, $http, $location, Users, Authentication, Courses, Lessons) {
         $scope.authentication = Authentication;
 
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
@@ -21,5 +21,33 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 );
             };
         };
+		$scope.lessons = [];
+		
+		$scope.getAllLessons = function(){
+			$scope.lessons = Lessons.getAll();
+		};
+		
+		$scope.getCoursePercent = function( course ) {
+			var percentCompleted = 0;
+			//Get number of lessons for a particular course.
+			var lessonCount = 0;
+			for (var i = 0; i < $scope.lessons.length(); i++){
+				if ($scope.lessons[i].courseId == course._id){
+					lessonCount++;
+				}
+			}
+			//Get number of lessons completed for this particular course.
+			var lessonsCompleted = 0;
+			for (var i = 0; i <  Authentication.user.coursesPurchased.length(); i++){
+				if ( Authentication.user.coursesPurchased[i] == course._id ){
+					purchasedCourse =  Authentication.user.coursesPurchased[i].lessonsCompleted.length();
+				}
+			}
+			if (lessonCount != 0){
+				percentCompleted = (lessonsCompleted/lessonCount) * 100;
+			}
+			//return rounded percentage
+			return Math.round(percentCompleted);
+		};
     }
 ]);

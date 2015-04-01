@@ -1,6 +1,6 @@
 <section data-ng-controller="DashboardController">
     <br/>
-    <div class="container" data-ng-init="grabUsersCourses()">
+    <div class="container" data-ng-init="grabUsersCourses(); getAllLessons()">
         <div class="page-header">
             <h1 style="text-align: center;">My Dashboard</h1>
         </div>
@@ -49,8 +49,10 @@
                 </div>
                 <div class="panel-footer">
                     <div class="progress" style="margin-bottom: 0px">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                            40% Complete
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{getCoursePercent(course)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{getCoursePercent(course)}}%">
+                            <!--40% Complete-->
+							<!--{{(response*100/poll.responses.reduce(add,0)).toRound(course.getAll) + '%'}}-->
+							{{getCoursePercent(course) + '% Complete'}}
                         </div>
                     </div>
                 </div>
