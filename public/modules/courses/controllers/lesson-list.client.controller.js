@@ -215,18 +215,14 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
         // Remove existing Lesson
         this.remove = function(lesson) {
 
-            Notify.sendMsg('Oldlesson', {
-                'id': lesson._id
-            });
+            // Notify.sendMsg('Oldlesson', {
+            //     'id': lesson._id
+            // });
 
             if (lesson) {
                 lesson.$remove();
 
-                for (var i in $scope.lessons) {
-                    if ($scope.lessons[i] === lesson) {
-                        $scope.lessons.splice(i, 1);
-                    }
-                }
+                
             } else {
                 lesson.$remove(function() {
                     $location.path('listLessons');

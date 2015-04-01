@@ -10,6 +10,8 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         this.authentication = Authentication;
 
+        $scope.user = Authentication.user;
+
         this.courses = Courses.query();
 
         // Open a modal window to Create a single course record
@@ -169,13 +171,24 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         $scope.purchaseCourse = function(addedCourseId) {
             //Update Authentication Object
-            Authentication.user.coursesPurchased.push({courseId : addedCourseId});
-            //Push Changes to DB
-            Authentication.user.$save(function() {
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+            $scope.user.coursesPurchased.push({courseId : addedCourseId});
+            //Push Changes to DB (CURRENTLY NOT WORKING)
+            $scope.user.$update(function(response) {
+                $scope.success = true;
+            }, function(response) {
+                $scope.error = response.data.message;
             });
-        }
+        };
+
+        $scope.isCoursePurchased = function( purchasedCourseId ) {
+            var coursePurchased = false;
+            for( var a = 0; a != $scope.user.coursesPurchased.length; a++ ) {
+                if( $scope.user.coursesPurchased[a].courseId == purchasedCourseId ) {
+                    coursePurchased = true;
+                }
+            }
+            return coursePurchased;
+        };
 
     }
 
@@ -241,11 +254,7 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location
             if (course) {
                 course.$remove();
 
-                for (var i in $scope.courses) {
-                    if ($scope.courses[i] === course) {
-                        $scope.courses.splice(i, 1);
-                    }
-                }
+                
             } else {
                 course.$remove(function() {
                     $location.path('courses');
