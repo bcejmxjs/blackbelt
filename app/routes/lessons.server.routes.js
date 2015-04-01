@@ -10,7 +10,7 @@ module.exports = function(app) {
         .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
 
     app.route('/lessons')
-        .get(lessons.list);
+        .get(users.requiresLogin, lessons.list);
 
     app.route('/lessons/:lessonId')
         .get(lessons.read)
