@@ -4,7 +4,7 @@ angular.module('courses')
 
 .factory('Lessons', ['$resource',
     function($resource) {
-        return $resource('courses/:courseId/lessons', {
+        return $resource('courses/lessons/:courseId', {
             courseId: 'courseId'
         }, {
             update: {

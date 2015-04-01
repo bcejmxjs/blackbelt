@@ -4,15 +4,15 @@ module.exports = function(app) {
     var users = require('../../app/controllers/users.server.controller');
     var lessons = require('../../app/controllers/lessons.server.controller');
 
-    app.route('/courses/:parentCourseId/lessons')
-        .get(users.requiresLogin, lessons.read)
-        .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
+    app.route('/courses/lessons/:parentCourseId')
+        .get(users.requiresLogin, lessons.read);
 
     app.route('/lessons')
-        .get(users.requiresLogin, lessons.list);
+        .get(users.requiresLogin, lessons.list)
+        .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
 
     app.route('/lessons/:lessonId')
-        .get(lessons.read)
+        .get(users.requiresLogin, lessons.read)
         .put(users.requiresLogin, users.hasAuthorization(['admin']), lessons.update)
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
