@@ -2,7 +2,6 @@
 
 module.exports = function(app) {
     var users = require('../../app/controllers/users.server.controller');
-    var courses = require('../../app/controllers/courses.server.controller');
     var lessons = require('../../app/controllers/lessons.server.controller');
 
     app.route('/courses/:parentCourseId/lessons')
