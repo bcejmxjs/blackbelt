@@ -51,7 +51,30 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 percentCompleted = (lessonsCompleted / lessonCount) * 100;
             }
             //return rounded percentage
-            return Math.round(percentCompleted);
+			return Math.round(percentCompleted);
+        };
+		
+        $scope.getCourseCount = function(course) {
+            //Get number of lessons for a particular course.
+            var lessonCount = 0;
+            var i = 0;
+            for (i = 0; i < $scope.lessons.length; i++) {
+                if ($scope.lessons[i].courseId == course._id) {
+                    lessonCount++;
+                }
+            }
+            //Get number of lessons completed for this particular course.
+            var lessonsCompleted = 0;
+            if (Authentication.user.coursesPurchased) {
+                for (i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                    if (Authentication.user.coursesPurchased[i].courseId == course._id) {
+                        lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted.length;
+                    }
+                }
+            }
+            //return text of progress bar
+			return lessonsCompleted + " / " + lessonCount + " Completed";
+			//return lessonsCompleted + " out of " + lessonCount + " Completed";
         };
     }
 ]);
