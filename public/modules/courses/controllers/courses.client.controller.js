@@ -27,7 +27,6 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         };
 
-
         var ModalCreateCtrl = function($scope, $modalInstance) {
 
             $scope.ok = function() {
@@ -109,7 +108,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         // Open a modal window to View a single course record
         this.modalView = function(size, selectedCourse) {
-            $log.info(selectedCourse);
+
             var modalFlag = true;
 
             if (Authentication.user) {
@@ -235,8 +234,8 @@ courseApp.controller('CoursesEditController', ['$scope', 'Courses',
     }
 ]);
 
-courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location', 'Notify',
-    function($scope, Courses, $location, Notify) {
+courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location',
+    function($scope, Courses, $location) {
         // Remove existing Course
         this.remove = function(course) {
             if (course) {
