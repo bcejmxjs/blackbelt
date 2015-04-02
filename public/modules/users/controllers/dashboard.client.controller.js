@@ -51,9 +51,9 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 percentCompleted = (lessonsCompleted / lessonCount) * 100;
             }
             //return rounded percentage
-			return Math.round(percentCompleted);
+            return Math.round(percentCompleted);
         };
-		
+
         $scope.getCourseCount = function(course) {
             //Get number of lessons for a particular course.
             var lessonCount = 0;
@@ -73,8 +73,8 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 }
             }
             //return text of progress bar
-			return lessonsCompleted + " / " + lessonCount + " Completed";
-			//return lessonsCompleted + " out of " + lessonCount + " Completed";
+            return lessonsCompleted + " / " + lessonCount + " Completed";
+            //return lessonsCompleted + " out of " + lessonCount + " Completed";
         };
     }
 ]);

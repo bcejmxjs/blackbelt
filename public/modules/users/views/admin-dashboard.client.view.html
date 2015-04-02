@@ -1,103 +1,66 @@
 <section data-ng-controller="DashboardController">
-   	<div class="page-header">
-        <h1 style="text-align: center;">My Dashboard</h1>
-    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 style="text-align: center;">My Dashboard</h1>
+        </div>
+        <div class="col-md-8">
+            <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
+        	<div class="panel panel-primary">
+        	 	<div class="panel-heading">
+				    <div class="panel-title" style="text-align: center">
+				   		Student: <B>Awesome Test User</B>, Level: <B>Yellow Belt</B>
+				    </div>
+				</div>
+                <div class="panel-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+					    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/CrXDP8xEqp4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <br/>
+					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
+                        <div class="form-group">
+                            <textarea class="form-control" required ng-model="message.feedback" placeholder="Provide Feedback" rows="3"></textarea>
+                        </div>
+					</form>
+	            	<div class="wrapper">
+	                	<button type="button" class="btn btn-info btn-lg "> 
+	                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+	                        Fail
+	                    </button>
+	                    <button type="button" class="btn btn-success btn-lg"> 
+	                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+	                        Pass
+	                	</button>
+	                	<div class="panel-footing"></div>
+	                </div>
+            	</div>
+            </div>
+        </div>
         <div class="col-md-4" >
             <h2 style="text-align: center; margin-top: 0px">Classes</h2>
             <ul class="list-group">
-				  <a href="#" class="list-group-item active">
+				<a href="#" class="list-group-item active">
 				    <span class="badge">7</span>
 				    Karate
-				  </a>
+				</a>
 
-				  <a href="#" class="list-group-item">
+				<a href="#" class="list-group-item">
 				    <span class="badge">5</span>
-				    Kong Fu
-				  </a>
+				    Kung Fu
+				</a>
 			</ul>
         </div>
-        <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
-        <div class="col-md-8"> 
-        	 <div class="panel panel-primary">
-        	 	<div class="panel-heading">
-				   <h3 class="panel-title">
-				   		<P align=center>Student: <B>Awesome Test User</B>, Level: <B>Yellow Belt</B>
-				   </h3>
-				</div>
-                <div class="panel-body">
-					<iframe width="640" height="360" src="https://www.youtube.com/embed/CrXDP8xEqp4" frameborder="0" allowfullscreen></iframe>
-					<font SIZE=5>Student feedback:</font>
-						<font size=4></br>It is awesome!!!! thanks for your help!!!!!!!!!!!!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it!love it! >。<
-						</font>
-					<div class="feedbackTitle" ><font SIZE=5>Feedback</font>
-					</div>
-					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
-						<input name="txt_default" type="hidden" value="any sugguestion to this student?" disabled style="blackground-color: rgb(204,204,204);">
-							<div class="feedbackTextarea">
-								<textarea cols="14" rows="4" name="feedback" id="Textarea1" style="width: 650px; height: 173px; font-family: verdana; font-size: small; color: rgb(153, 153, 153); margin: 0px; background-color: rgb(255, 255, 255);">any sugguestion to this student?</textarea>
-							</div>
-						</input>
-					</form>
-	            	<div class="wrapper">
-	                	<button type="button" class="btn btn-info btn-lg "> 
-	                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-	                        FAIL
-	                    </button>
-	                     <button type="button" class="btn btn-success btn-lg"> 
-	                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-	                        PASS
-	                	</button>
-	                	<div class="panel-footing"></div>
-	                </div>
-            	</div>
-            </div>
+    </div>
+</section>
 
-             <div class="panel panel-primary">
-        	 	<div class="panel-heading">
-				   <h3 class="panel-title">
-				   		<P align=center>Student: <B>More Awesome User</B>, Level: <B>Green Belt</B>
-				   </h3>
-				</div>
-                <div class="panel-body">
-					<iframe width="640" height="360" src="https://www.youtube.com/embed/CrXDP8xEqp4" frameborder="0" allowfullscreen></iframe>
-					<font SIZE=5>Student feedback:</font>
-						<font size=4></br>not bad. ^ ^
-						</font>
-					<div class="feedbackTitle" ><font SIZE=5>Feedback</font>
-					</div>
-					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
-						<input name="txt_default" type="hidden" value="any sugguestion to this student?" disabled style="blackground-color: rgb(204,204,204);">
-							<div class="feedbackTextarea">
-								<textarea cols="14" rows="4" name="feedback" id="Textarea1" style="width: 650px; height: 173px; font-family: verdana; font-size: small; color: rgb(153, 153, 153); margin: 0px; background-color: rgb(255, 255, 255);">any sugguestion to this student?</textarea>
-							</div>
-						</input>
-					</form>
-	            	<div class="wrapper">
-	                	<button type="button" class="btn btn-info btn-lg "> 
-	                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-	                        FAIL
-	                    </button>
-	                     <button type="button" class="btn btn-success btn-lg"> 
-	                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-	                        PASS
-	                	</button>
-	                	<div class="panel-footing"></div>
-	                </div>
-            	</div>
-            </div>
-
-    	</div>
- </section>
 <!--
-   <div class="list-group-item">
-	                	<div class="row">
-							  <div class="col-xs-6 media-left">Student name: Test user</div>
-							  <div class="col-xs-6 media-right" >Level: Yellow belt</div>
-						</div>
-	                    
-	                    Student feedback:
-	                   
-	            </div>
-	            <div class="list-group-item">
-	            	Your feedback:
-	            </div>
+<div class="list-group-item">
+	<div class="row">
+		<div class="col-xs-6 media-left">Student name: Test user</div>
+		<div class="col-xs-6 media-right" >Level: Yellow belt</div>
+	</div>
+	Student feedback:
+</div>
+<div class="list-group-item">
+	Your feedback:
+</div>
+-->
