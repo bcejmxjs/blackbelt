@@ -109,3 +109,8 @@ body > .container {
 code {
   font-size: 80%;
 }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
