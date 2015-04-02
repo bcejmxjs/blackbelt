@@ -178,7 +178,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             var user = new Users($scope.user);
 
             //Push Changes to DB (CURRENTLY NOT WORKING)
-            $scope.user.$update(function(response) {
+            user.$update(function(response) {
                 $scope.success = true;
             }, function(response) {
                 $scope.error = response.data.message;
