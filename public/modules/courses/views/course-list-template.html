@@ -17,7 +17,7 @@
         </div>
         <div class="media-body">
             <h1> 
-                <a ng-click="coursesCtrl.modalView('lg', course)">
+                <a ng-click="coursesCtrl.modalView('md', course)">
                     {{course.name}}
                 </a>
                 <div class="btn-group pull-right">                  
@@ -30,16 +30,18 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="col-sm-10 col-xs-9">
-        <h4 class="truncate">
-            {{course.description}}
-        </h4>
+            <h4 class="truncate">
+                {{course.description}}
+            </h4>
         </div>
         <div class="col-sm-2 col-xs-3" style="padding-top: 3px; padding-right: 0px">
             <button
                 type="button" 
                 class="btn btn-success pull-right" 
                 data-ng-click="purchaseCourse(course._id)"
-                data-ng-show="!isCoursePurchased(course._id)" >Purchase</button>
+                data-ng-show="!isCoursePurchased(course._id)">
+                Purchase
+            </button>
         </div>
     </div>    
 </div>

@@ -1,56 +1,26 @@
 <section data-ng-controller="CoursesViewController as courseViewCtrl" >
-
-<!-- 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == course.user._id))"> -->
-
- <div class="modal-header">
+    <div class="modal-header">
         <h3 class="modal-title">{{course.name}}
-          <button id="exit" class="btn btn-danger btn-circle btn-sm pull-right" ng-click="cancel()">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </button>
+            <button id="exit" class="btn btn-danger btn-circle btn-sm pull-right" ng-click="cancel()">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
         </h3>
-
     </div>
     <div class="modal-body">
-            <fieldset>
-               <div class="form-group" >
-               	   <center>
-                       <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" width="500" height="315" ng-src="{{course.demo}}" autoplay allowfullscreen></iframe>
-                       </div>
-                  <br/>
- 
-				
-              </center>
-                </div> 
- 
-                  <div class="list-group">
-					  <li class="list-group-item">{{course.description}}</li>
-                      <li class="list-group-item">Taught by {{course.instructor}}</li>
-                      <li class="list-group-item"><b><font size="5">${{course.price}}.00</font></b>
-                      <button type="button" class="btn btn-success pull-right">Purchase</button></li>
-				</div>
-            </fieldset>
-        </div>
-</section>
-
-<!-- 
-<section data-ng-controller="CoursesRemoveController as courseRemoveCtrl" >
-    <div class="form-group">
-         <div class="alert alert-danger" role="alert">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
-                <strong >You are going to remove Course:</strong>
-        </div>
-        <div class="text-center form-group">
-            <b>{{course.name}}</b>
-        </div> 
-                         
+        <fieldset>
+            <div class="form-group" >
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" width="500" height="315" ng-src="{{course.demo}}" autoplay allowfullscreen></iframe>
+                </div>
+                <br/>
+            </div> 
+            <div class="list-group">
+				<li class="list-group-item">{{course.description}}</li>
+                <li class="list-group-item">Taught by {{course.instructor}}</li>
+                <li class="list-group-item"><b><font size="5">${{course.price}}.00</font></b>
+                    <button type="button" class="btn btn-success pull-right">Purchase</button>
+                </li>
+			</div>
+        </fieldset>
     </div>
-    <div class="text-center form-group">
-        <button class="btn btn-danger btn=xs" ng-click="courseRemoveCtrl.remove(course); ok()">Delete</button>
-         <button class="btn btn-default btn=xs" ng-click="cancel()">Cancel</button>
-    </div>
-    </div>     
 </section>
-
-<div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="lg" index="0" animate="animate" style="z-index: 1050;">
- -->
