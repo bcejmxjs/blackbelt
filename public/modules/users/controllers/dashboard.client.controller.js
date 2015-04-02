@@ -47,7 +47,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     }
                 }
             }
-            if (lessonCount !== 0) {
+            if (lessonCount > 0) {
                 percentCompleted = (lessonsCompleted / lessonCount) * 100;
             }
             //return rounded percentage
