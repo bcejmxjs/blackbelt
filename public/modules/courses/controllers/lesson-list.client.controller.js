@@ -13,13 +13,17 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                 courseId: $stateParams.courseId
             });
 
-            Courses.get({
-                courseId: $stateParams.courseId
-            }, function(res) {
-                $scope.course = res;
-            }, function(error) {
+            if ($stateParams.courseId) {
+                Courses.get({
+                    courseId: $stateParams.courseId
+                }, function(res) {
+                    $scope.course = res;
+                }, function(error) {
+                    $location.path('/error/course');
+                });
+            } else {
                 $location.path('/error/course');
-            });
+            }
         };
 
         this.findOne = function() {
