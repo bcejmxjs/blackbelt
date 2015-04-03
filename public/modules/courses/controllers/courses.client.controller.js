@@ -159,6 +159,9 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         // Dummy purchase when clicking on the purchase button.
         $scope.purchaseCourse = function(addedCourseId) {
+            if (Authentication.user === '') {
+                $location.path('/signin');
+            }
             // Update Authentication Object
             Authentication.user.coursesPurchased.push({
                 courseId: addedCourseId
