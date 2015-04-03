@@ -8,6 +8,32 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
         this.authentication = Authentication;
 
+        //Will if the lesson is completed
+        /*$scope.isCurrentlyDone = function() {
+            var done;
+            if ()
+                return true;
+            else
+                return false;
+        };
+
+        //Gets correct panel style to associate with being done.
+        $scope.getDonePanelClass = function() {
+            if ()
+                return 'panel-success';
+            else
+                return 'panel-default';
+
+        };
+
+        //Gets correct panel TEXT to associate with being done.
+        $scope.getDonePanelText = function() {
+            if ($scope.isCurrentlyDone())
+                return 'Done';
+            else
+                return ;
+        };*/
+
         this.list = function() {
             $scope.lessons = Lessons.query({
                 courseId: $stateParams.courseId
