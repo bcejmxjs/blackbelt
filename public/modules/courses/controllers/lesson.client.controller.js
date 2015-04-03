@@ -40,8 +40,8 @@ angular.module('courses').controller('LectureController', ['$scope', '$sce', '$s
         $scope.modalUserUpload = function(size, selectedLesson) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'modules/lessons/views/lesson-remove.client.view.html',
-                controller: ModalUserUploadController,
+                templateUrl: 'modules/courses/views/lesson-user-upload.client.view.html',
+                controller: ModalUserUploadCtrl,
                 size: size,
                 resolve: {
                     lesson: function() {
@@ -58,7 +58,7 @@ angular.module('courses').controller('LectureController', ['$scope', '$sce', '$s
 
         };
 
-        var ModalRemoveCtrl = function($scope, $modalInstance, lesson) {
+        var ModalUserUploadCtrl = function($scope, $modalInstance, lesson) {
             $scope.lesson = lesson;
 
             $scope.ok = function() {
