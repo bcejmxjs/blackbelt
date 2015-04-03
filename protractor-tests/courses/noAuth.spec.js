@@ -136,6 +136,24 @@ describe('Course page as noAuth user', function() {
 			.toBe(browser.baseUrl + '/#!/courses');
 		});
 	});
+	describe('/course/ page',function () {
+		it('Sh- direct to course error page', function() {
+			//Assuming user will be directed to course error page
+			browser.get(browser.baseUrl + '/#!/course/');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
+	describe('Accessing invalid course id', function() {
+		it('Sh- direct to course error page', function() {
+			coursePage.get();
+			browser.get(browser.baseUrl + '/#!/course/NEVERGONNAGIVEYOUUP');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
 	describe('Course0 modal', function() {
 		it('Open modal', function() {
 			coursePage.get();
