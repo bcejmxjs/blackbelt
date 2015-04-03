@@ -1,4 +1,4 @@
-//no_auth spec
+//noAuth spec
 
 var CoursePage = function() {
 
@@ -37,7 +37,7 @@ var CoursePage = function() {
 	}
 
 
-	// Modal items
+	// <--- Modal items --->
 
 	this.modal = function() {
 		return element(by.className('modal-content'));
@@ -75,19 +75,17 @@ var CoursePage = function() {
 	}
 	this.modal_price = function() {
 		return this.modal()
-		.element(by.className('modal-content'))
 		.element.all(by.css('.list-group li'))
 		.get(2).element(by.tagName('b')).getText();
 	}
 
 	this.modal_clickPurchase = function() {
 		this.modal()
-		.element.all(by.css('.list-group li'))
-		.get(2).element(by.buttonText('Purchase')).click();
+		.element(by.buttonText('Purchase')).click();
 	}
 };
 
-describe('Course page as no_auth user', function() {
+describe('Course page as noAuth user', function() {
 	var coursePage = new CoursePage();
 	it('Initialize test', function() {
 		coursePage.get();
@@ -100,15 +98,8 @@ describe('Course page as no_auth user', function() {
 			.toBeFalsy();
 		});
 	});
-	describe('Course0 title', function(){
-		it('Sh- be Karate', function(){
-			expect(
-				coursePage.course_title(0).getText())
-			.toBe('Karate');
-		});
-	});
 	// ASSUMPTION:
-	//	There is >= 1 course viewable by no-auth user
+	//	There is >= 1 course viewable by noAuth user
 	// 	Otherwise, tests will fail
 	describe('Course0 edit button', function() {
 		it('Sh- not be visible', function() {
@@ -126,10 +117,28 @@ describe('Course page as no_auth user', function() {
 			.toBeFalsy();
 		});
 	});
+	describe('Clicking purchase', function() {
+		it('Perform click', function() {
+			coursePage.btn_purchase(0).click();
+		});
+		it('Sh- direct to signin page', function() {
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/signin');
+		});
+	});
+	describe('/create page', function() {
+		it('Sh- not be accessible', function() {
+			coursePage.get();
+			browser.get(browser.baseUrl + '/#!/courses/create');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/courses');
+		});
+	});
 	describe('Course0 modal', function() {
-		// Modal actually takes in the header element
-		// This is used to open the modal
 		it('Open modal', function() {
+			coursePage.get();
 			coursePage.modal_open(0);
 		});
 		describe('Modal0 title', function(){
@@ -138,6 +147,19 @@ describe('Course page as no_auth user', function() {
 					coursePage.modal_title())
 				.toBe('Karate');
 			});
+		});
+		describe('Click modal purchase', function() {
+			it('Perform click', function() {
+				coursePage.modal_clickPurchase();
+			});
+			it('Sh- direct to signin page', function() {
+				expect(
+					browser.getCurrentUrl())
+				.toBe(browser.baseUrl + '/#!/signin');
+			});
+		});
+		it('Close modal', function() {
+			coursePage.modal_close();
 		});
 	});
 });
