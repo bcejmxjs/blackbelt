@@ -1,11 +1,15 @@
 'use strict';
 
-angular.module('courses').controller('LectureController', ['$scope', '$sce', '$stateParams', '$modal', '$state', 'Lessons',
-    function($scope, $sce, $stateParams, $modal, $state, Lessons) {
+angular.module('courses').controller('LectureController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Lessons',
+    function($scope, $sce, $stateParams, $modal, $state, $location, Lessons) {
         window.MY_SCOPE = $scope;
 
-        $scope.lesson = Lessons.get({
+        Lessons.get({
             lessonId: $stateParams.lessonId
+        }, function(response) {
+            $scope.lesson = response;
+        }, function(error) {
+            $location.path('/error/lesson');
         });
 
         // Configuration for video container.
