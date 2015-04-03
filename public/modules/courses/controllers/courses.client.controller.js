@@ -176,13 +176,15 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
 
         // Check to see if a course has already been purchased.
         $scope.isCoursePurchased = function(purchasedCourseId) {
-            var coursePurchased = false;
+            if (Authentication.user === '') {
+                return false;
+            }
             for (var a = 0; a != Authentication.user.coursesPurchased.length; a++) {
                 if (Authentication.user.coursesPurchased[a].courseId == purchasedCourseId) {
-                    coursePurchased = true;
+                    return true;
                 }
             }
-            return coursePurchased;
+            return false;
         };
     }
 ]);

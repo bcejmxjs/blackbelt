@@ -30,7 +30,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.getCoursePercent = function(course) {
             var percentCompleted = 0;
-            //Get number of lessons for a particular course.
+            // Get number of lessons for a particular course.
             var lessonCount = 0;
             var i = 0;
             for (i = 0; i < $scope.lessons.length; i++) {
@@ -38,7 +38,8 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     lessonCount++;
                 }
             }
-            //Get number of lessons completed for this particular course.
+
+            // Get number of lessons completed for this particular course.
             var lessonsCompleted = 0;
             if (Authentication.user.coursesPurchased) {
                 for (i = 0; i < Authentication.user.coursesPurchased.length; i++) {
@@ -50,7 +51,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             if (lessonCount > 0) {
                 percentCompleted = (lessonsCompleted / lessonCount) * 100;
             }
-            //return rounded percentage
+            // Return rounded percentage
             return Math.round(percentCompleted);
         };
 
@@ -63,7 +64,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     lessonCount++;
                 }
             }
-            //Get number of lessons completed for this particular course.
+            // Get number of lessons completed for this particular course.
             var lessonsCompleted = 0;
             if (Authentication.user.coursesPurchased) {
                 for (i = 0; i < Authentication.user.coursesPurchased.length; i++) {
@@ -72,9 +73,9 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     }
                 }
             }
-            //return text of progress bar
+            // return text of progress bar.
             return lessonsCompleted + " / " + lessonCount + " Completed";
-            //return lessonsCompleted + " out of " + lessonCount + " Completed";
+            // return lessonsCompleted + " out of " + lessonCount + " Completed";
         };
     }
 ]);

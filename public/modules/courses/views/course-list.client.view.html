@@ -29,10 +29,9 @@
                                 <button class="btn btn-default btn-sm" type="submit" data-ng-click="coursesCtrl.modalRemove('sm', course)" ng-show="coursesCtrl.authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                             </div>
                         </h1>
-
                     </div>
                 </div>
-                <div class="panel-footer clearfix" data-ng-show="isCoursePurchased(course._id)">
+                <div class="panel-footer clearfix" data-ng-show="isCoursePurchased(course._id) && isLoggedin()">
                     <div class="col-sm-12"">
                     <h4 class="truncate" style="padding-bottom: 2px">
                             {{course.description}}
