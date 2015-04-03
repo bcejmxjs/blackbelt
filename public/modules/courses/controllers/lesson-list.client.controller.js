@@ -13,8 +13,10 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                 courseId: $stateParams.courseId
             });
 
-            $scope.course = Courses.get({
+            Courses.get({
                 courseId: $stateParams.courseId
+            }, function(res) {}, function(error) {
+                $location.path('/error/course');
             });
         };
 

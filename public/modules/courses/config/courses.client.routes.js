@@ -29,6 +29,10 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
             url: '/courses/:courseId/remove',
             templateUrl: 'modules/courses/views/course-remove.client.view.html'
         }).
+        state('CourseError', {
+            url: '/error/course',
+            templateUrl: 'modules/courses/views/course-error.client.view.html'
+        }).
         state('Lesson', {
             url: '/course/:courseId/:lessonId',
             templateUrl: 'modules/courses/views/lesson-view.client.view.html'

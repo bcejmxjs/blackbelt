@@ -8,7 +8,10 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         window.MY_SCOPE = $scope;
 
         this.authentication = Authentication;
-        this.courses = Courses.query();
+
+        this.list = function() {
+            this.courses = Courses.query();
+        };
 
         // Open a modal window to create a single course record
         this.modalCreate = function(size) {
