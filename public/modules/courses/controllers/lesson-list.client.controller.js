@@ -15,7 +15,9 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
             Courses.get({
                 courseId: $stateParams.courseId
-            }, function(res) {}, function(error) {
+            }, function(res) {
+                $scope.course = res;
+            }, function(error) {
                 $location.path('/error/course');
             });
         };
