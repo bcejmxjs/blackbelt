@@ -39,10 +39,12 @@
 		            </h1>
 		        </div>
 		    </div>
-		    <div class="panel-footer clearfix" style="background-color: #DFF0D8">
+		    <div class="panel-footer clearfix" data-ng-style="lessonsCtrl.getBackgroundColor(lesson)">
                 <h4>
                     {{ lesson.description }}
-                    <div class="pull-right"><font color="#3c763d">Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></font></div>
+                    <div class="pull-right" data-ng-show="lessonsCtrl.isLessonComplete(lesson)">
+                    	<font color="#3c763d">Completed <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></font>
+                    </div>
                     <br/>
                 </h4>
             </div>
