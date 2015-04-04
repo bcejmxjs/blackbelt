@@ -12,3 +12,4 @@ app/tests/coverage/
 .tern-port
 *.orig
 *.swp
+!public/lib/bootstrap/dist/css/bootstrap.css
