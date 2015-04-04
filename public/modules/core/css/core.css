@@ -118,5 +118,8 @@ code {
 /* New Prog Bar Style
 -------------------------------------------------- */
 .progress-bar-null {
-  background-color: #8c8c8c;
+	background-color: #8c8c8c;
+}
+.progress-bar-inprog {
+	background-color: #84DE87;
 }
