@@ -44,6 +44,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                     courseId: $stateParams.courseId
                 }, function(res) {
                     $scope.course = res;
+                    $scope.grabLessonsCompleted();
                 }, function(error) {
                     $location.path('/error/course');
                 });
@@ -192,6 +193,42 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
             $scope.cancel = function() {
                 $modalInstance.dismiss('cancel');
             };
+        };
+
+        $scope.lessonsCompleted = [];
+
+        $scope.grabLessonsCompleted = function() {
+            // Get the lessons completed for this particular course.
+
+            //Step 1: Find This Course in Courses Purchased
+            if ( Authentication.user.coursesPurchased ) {
+                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                    if (Authentication.user.coursesPurchased[i].courseId == $scope.course._id ) {
+                        $scope.lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted;
+                    }
+                }
+            }
+        };
+
+        /* ======= Begin Style Functions For Lessons ======= */
+
+        //returns true/false depending on if lesson is complete.
+        this.isLessonComplete = function( lesson ) {
+            for( var a = 0; a != $scope.lessonsCompleted.length; a++ ) {
+                if( $scope.lessonsCompleted[a] == lesson._id )
+                    return true;
+            }
+            return false;
+        };
+
+        //changes the background color on the object depending on whether it has been completed or not.
+        this.getBackgroundColor = function( lesson ) {
+            if ( this.isLessonComplete( lesson ) ) {
+                return { 'background-color' : '#DFF0D8' }; //that nice green success!
+            }
+            else {
+                return { 'background-color' : '#E8E8E8' }; //returns a greyish color
+            }
         };
 
     }
