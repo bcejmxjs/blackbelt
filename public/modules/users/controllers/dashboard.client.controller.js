@@ -21,15 +21,16 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 );
             }
         };
-
+		
         $scope.lessons = [];
 
         $scope.getAllLessons = function() {
             $scope.lessons = Lessons.getAll();
         };
 
-        $scope.getCoursePercent = function(course) {
-            var percentCompleted = 0;
+        $scope.getCourseProgress = function(course) {
+            var percentCompleted = 100;
+			var progBarText;
             // Get number of lessons for a particular course.
             var lessonCount = 0;
             var i = 0;
@@ -48,34 +49,20 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     }
                 }
             }
+			var progBarType;
             if (lessonCount > 0) {
                 percentCompleted = (lessonsCompleted / lessonCount) * 100;
+				progBarText = lessonsCompleted + " / " + lessonCount + " Completed";
+				progBarType = 'success';
             }
-            // Return rounded percentage
-            return Math.round(percentCompleted);
-        };
-
-        $scope.getCourseCount = function(course) {
-            //Get number of lessons for a particular course.
-            var lessonCount = 0;
-            var i = 0;
-            for (i = 0; i < $scope.lessons.length; i++) {
-                if ($scope.lessons[i].courseId == course._id) {
-                    lessonCount++;
-                }
-            }
-            // Get number of lessons completed for this particular course.
-            var lessonsCompleted = 0;
-            if (Authentication.user.coursesPurchased) {
-                for (i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                    if (Authentication.user.coursesPurchased[i].courseId == course._id) {
-                        lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted.length;
-                    }
-                }
-            }
-            // return text of progress bar.
-            return lessonsCompleted + " / " + lessonCount + " Completed";
-            // return lessonsCompleted + " out of " + lessonCount + " Completed";
+			else{
+				progBarText = "No lessons in this course at this time";
+				progBarType = 'null';
+			}
+            //Set Scope Variables
+			$scope.progBarText=progBarText;
+			$scope.progBarValue=percentCompleted;
+			$scope.progBarType=progBarType;
         };
     }
 ]);

@@ -33,6 +33,7 @@
         <div class="col-md-8"> 
             <h2 style="text-align: center; margin-top: 0px">Course Progress</h2>
             <div class="panel panel-default" data-ng-repeat="course in courses">
+				{{getCourseProgress(course)}}
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-left media-middle">
@@ -48,12 +49,9 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <div class="progress" style="margin-bottom: 0px">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{getCoursePercent(course)}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{getCoursePercent(course)}}%;">
-							<!--{{getCoursePercent(course)}}% Complete-->
-							{{getCourseCount(course)}}
-                        </div>
-                    </div>
+                    <div class="progress" style="margin-bottom: 0px; white-space: nowrap;">
+						<progressbar class="progress" value="progBarValue" type="{{progBarType}}"><b style="color:black">{{progBarText}}</b> </progressbar>
+					</div>
                 </div>
             </div>
             <div class="panel-body">
