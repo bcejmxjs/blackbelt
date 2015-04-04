@@ -114,3 +114,9 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* New Prog Bar Style
+-------------------------------------------------- */
+.progress-bar-null {
+  background-color: #8c8c8c;
+}
