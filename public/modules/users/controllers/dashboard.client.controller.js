@@ -54,10 +54,8 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             if (lessonCount > 0) {
 				progBarType = 'inprog';
                 percentCompleted = Math.round((lessonsCompleted / lessonCount) * 100);
-				if (percentCompleted > 100){
+				if (percentCompleted >= 100){
 					percentCompleted = 100;
-				}
-				if (percentCompleted == 100){
 					progBarText = "You have completed this course!";
 					progBarType = 'success';
 				}
@@ -66,6 +64,11 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 				}
 				else if (percentCompleted >=10 && percentCompleted <=25){
 					progBarText = lessonsCompleted + " / " + lessonCount;
+				}
+				else if (percentCompleted == 0){
+					percentCompleted = 100;
+					progBarText = "You have not started this course."
+					progBarType = 'null'
 				}
 				else{
 					$scope.percent=false;
