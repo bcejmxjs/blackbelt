@@ -3,7 +3,7 @@
 .sass-cache/
 npm-debug.log
 node_modules/
-public/lib/*
+public/lib
 app/tests/coverage/
 .bower-*/
 .idea/
@@ -12,10 +12,4 @@ app/tests/coverage/
 .tern-port
 *.orig
 *.swp
-!public/lib/bootstrap/
-public/lib/bootstrap/*
-!public/lib/bootstrap/dist/
-public/lib/bootstrap/dist/*
-!public/lib/bootstrap/dist/css/
-public/lib/bootstrap/dist/css/*
 !public/lib/bootstrap/dist/css/bootstrap.css
