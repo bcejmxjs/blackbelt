@@ -9,8 +9,8 @@ We're using the [MEAN](http://meanjs.org/) stack to build the application's foun
 
 ## Screenshot
 ![](https://dl.dropboxusercontent.com/u/11061210/Screen%20Shot%202015-02-26%20at%201.39.17%20PM.png)
-## Contributors
 
+## Contributors
 [![](https://avatars1.githubusercontent.com/u/10470227?v=3&s=200)](https://github.com/bcejmxjs/)
 
 - Brent Lewis [@blewis954](https://github.com/blewis954)
@@ -77,6 +77,6 @@ These accounts are generated using `grunt mongo:load`
 ## Facebook Info
 [Melbourne Martial Arts Facebook App](https://developers.facebook.com/apps/632362650241923/dashboard/)
 
-Facebook sign up/in won't work unless you access the functionality from [http://dev1.jacobejenkins.com:3000/#!/](http://dev1.jacobejenkins.com:3000/#!/).
+Facebook sign up/in won't work unless you access the functionality from [http://blackbelt.jacobejenkins.com](http://blackbelt.jacobejenkins.com).
 
 There are four test users, one for each combination of authorized/unauthorized and 18+/under 18. These test users can be viewed [here](https://developers.facebook.com/apps/632362650241923/roles/test-users/). Message [@corya14](https://github.com/corya14) for the passwords.
