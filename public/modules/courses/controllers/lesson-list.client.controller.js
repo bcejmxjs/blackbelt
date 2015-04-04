@@ -250,10 +250,6 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
         // Remove existing Lesson
         this.remove = function(lesson) {
 
-            // Notify.sendMsg('Oldlesson', {
-            //     'id': lesson._id
-            // })
-
             if (lesson) {
                 lesson.$remove();
 
