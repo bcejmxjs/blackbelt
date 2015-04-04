@@ -149,13 +149,13 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         var ModalViewCtrl = function($scope, $modalInstance, course) {
-            $scope.course = course;
+            this.course = course;
 
-            $scope.ok = function() {
+            this.ok = function() {
                 $modalInstance.close($scope.course);
             };
 
-            $scope.cancel = function() {
+            this.cancel = function() {
                 $modalInstance.dismiss('cancel');
             };
         };

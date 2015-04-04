@@ -151,7 +151,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
             $scope.ok = function() {
                 $modalInstance.close($scope.lesson);
-                $state.reload()
+                $state.reload();
             };
 
             $scope.cancel = function() {
@@ -198,8 +198,13 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
 ]);
 
-angular.module('courses').controller('LessonListCreateController', ['$scope', 'Courses', 'Lessons', '$location', '$stateparams',
-    function($scope, Courses, Lessons, $location, $stateparams) {
+angular.module('courses').controller('LessonListCreateController', ['$scope', '$stateParams', 'Courses', 'Lessons', '$location',
+    function($scope, $stateParams, Courses, Lessons, $location) {
+
+        window.MY_SCOPE = this;
+        this.courseId = $stateParams.courseId;
+        //useful for getting name of course
+        this.course = Courses.get({ courseId: this.courseId });
 
         // Create new Lesson
         this.create = function() {
@@ -209,12 +214,12 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', 'C
                 description: this.description,
                 uri: 'big_buck_bunny.mp4',
                 position: this.position,
-                courseId: $stateparams.courseId
+                courseId: $stateParams.courseId
             });
 
             // Redirect after save
             lesson.$save(function(response) {
-                $location.path('course/' + $stateparams.courseId);
+                $location.path('course/' + $stateParams.courseId);
 
                 // Clear form fields
                 $scope.name = '';

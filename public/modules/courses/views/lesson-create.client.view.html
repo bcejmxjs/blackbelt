@@ -2,7 +2,7 @@
      <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1 style="text-align: center;">New Lesson</h1>
+                <h1 style="text-align: center;">New {{lessonCreateCntrl.course.name}} Lesson</h1>
             </div>
                     <fieldset>
                         <div class="form-group">
@@ -22,7 +22,7 @@
                     </fieldset>
 
             <div class="modal-footer">
-                <button class="btn btn-success" ng-click="lessonCreateCntrl.create();ok()">Save</button>
-                <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
+                <button class="btn btn-success" ng-click="lessonCreateCntrl.create()">Save</button>
+                <a class="btn btn-info pull-right" href="/#!/course/{{lessonCreateCntrl.courseId}}" role="setting">Cancel</a>
             </div>
 </section>

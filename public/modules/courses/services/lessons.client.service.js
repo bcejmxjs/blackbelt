@@ -21,6 +21,10 @@ angular.module('courses')
                     lessonId: '@_id'
                 }
             },
+            save: {
+                method: 'POST',
+                url: 'lessons'
+            },
             remove: {
                 method: 'DELETE',
                 url: 'lessons/:lessonId',
