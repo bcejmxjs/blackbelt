@@ -1,20 +1,18 @@
 'use strict';
 
-var courseApp = angular.module('courses');
-
-courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Users', 'Courses', '$modal', '$log', '$sce', '$location', '$state',
+angular.module('courses').controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Users', 'Courses', '$modal', '$log', '$sce', '$location', '$state',
     function($scope, $stateParams, Authentication, Users, Courses, $modal, $log, $sce, $location, $state) {
         // Allows us to debug scope using dev tools.
         window.MY_SCOPE = $scope;
 
-        this.authentication = Authentication;
+        $scope.authentication = Authentication;
 
-        this.list = function() {
-            this.courses = Courses.query();
+        $scope.list = function() {
+            $scope.courses = Courses.query();
         };
 
         // Open a modal window to create a single course record
-        this.modalCreate = function(size) {
+        $scope.modalCreate = function(size) {
 
             var modalInstance = $modal.open({
                 //  templateUrl: 'modules/courses/views/create-course.client.view.html',
@@ -42,7 +40,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         // Open a modal window to update a single course record
-        this.modalUpdate = function(size, selectedCourse) {
+        $scope.modalUpdate = function(size, selectedCourse) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-edit.client.view.html',
@@ -75,7 +73,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         // Open a modal window to Remove a single course record
-        this.modalRemove = function(size, selectedCourse) {
+        $scope.modalRemove = function(size, selectedCourse) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-remove.client.view.html',
@@ -110,7 +108,7 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
         };
 
         // Open a modal window to View a single course record
-        this.modalView = function(size, selectedCourse) {
+        $scope.modalView = function(size, selectedCourse) {
 
             var modalFlag = true;
 
@@ -193,14 +191,9 @@ courseApp.controller('CoursesController', ['$scope', '$stateParams', 'Authentica
             }
             return false;
         };
-    }
-]);
-
-courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location',
-    function($scope, Courses, $location) {
 
         // Create new Course
-        this.create = function() {
+        $scope.create = function() {
             // Create new Course object
             var course = new Courses({
                 name: this.name,
@@ -215,23 +208,17 @@ courseApp.controller('CoursesCreateController', ['$scope', 'Courses', '$location
                 $location.path('courses');
 
                 // Clear form fields
-                $scope.name = '';
-                $scope.description = '';
-                $scope.price = '';
-                $scope.instructor = '';
-                $scope.demo = '';
+                this.name = '';
+                this.description = '';
+                this.price = '';
+                this.instructor = '';
+                this.demo = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
-    }
-]);
-
-courseApp.controller('CoursesEditController', ['$scope', 'Courses',
-    function($scope, Courses) {
-        // Edit existing Course
-        this.update = function(updatedCourse) {
+        $scope.update = function(updatedCourse) {
             var course = updatedCourse;
 
             course.$update(function() {
@@ -240,13 +227,9 @@ courseApp.controller('CoursesEditController', ['$scope', 'Courses',
                 $scope.error = errorResponse.data.message;
             });
         };
-    }
-]);
 
-courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location',
-    function($scope, Courses, $location) {
         // Remove existing Course
-        this.remove = function(course) {
+        $scope.remove = function(course) {
             if (course) {
                 course.$remove();
             } else {
@@ -255,14 +238,8 @@ courseApp.controller('CoursesRemoveController', ['$scope', 'Courses', '$location
                 });
             }
         };
-    }
-]);
 
-courseApp.controller('CoursesViewController', ['$scope', 'Courses', '$stateParams',
-    function($scope, Courses, $stateParams) {
-        // View existing Course
-
-        this.findOne = function() {
+        $scope.findOne = function() {
             $scope.course = Courses.get({
                 courseId: $stateParams.courseId
             });
@@ -273,7 +250,7 @@ courseApp.controller('CoursesViewController', ['$scope', 'Courses', '$stateParam
 // courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
 //     function($scope, Courses, User, $stateParams, Authentication) {
 //          // User Purchases Course
-//         this.purchaseCourse = function(purchaseCourse, purchaseUser) {
+//         $scope.purchaseCourse = function(purchaseCourse, purchaseUser) {
 //            var course = purchaseCourse;
 //            var user = purchaseUser;
 //             $scope.course = Courses.get({

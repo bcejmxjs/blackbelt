@@ -1,18 +1,18 @@
-<section data-ng-controller="CoursesController as coursesCtrl" data-ng-init="coursesCtrl.list()">
+<section data-ng-controller="CoursesController" data-ng-init="list()">
     <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="page-header">
                 <h1 style="text-align: center;">Courses</h1>
             </div>
-            <a href="/#!/courses/create" ng-show="coursesCtrl.authentication.user.roles.indexOf('instructor') > -1 || coursesCtrl.authentication.user.roles.indexOf('admin') > -1">
+            <a href="/#!/courses/create" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
                 <button type="submit" class="btn btn-primary btn-lg center-block" > 
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     Add New Course 
                 </button>
                 <br/>
             </a>
-            <div class="panel panel-default" data-ng-repeat="course in coursesCtrl.courses">
+            <div class="panel panel-default" data-ng-repeat="course in courses">
                 <div class="panel-body">
                     <div class="media-left media-middle">
                         <a href="#">
@@ -21,12 +21,12 @@
                     </div>
                     <div class="media-body">
                         <h1> 
-                            <a ng-click="coursesCtrl.modalView('md', course)">
+                            <a ng-click="modalView('md', course)">
                                 {{course.name}}
                             </a>
                             <div class="btn-group pull-right">                  
-                                <button class="btn btn-default btn-sm" type="submit" data-ng-click="coursesCtrl.modalUpdate('lg', course)" ng-show="coursesCtrl.authentication.user.roles.indexOf('instructor') > -1 || coursesCtrl.authentication.user.roles.indexOf('admin') > -1"> Edit </button>
-                                <button class="btn btn-default btn-sm" type="submit" data-ng-click="coursesCtrl.modalRemove('sm', course)" ng-show="coursesCtrl.authentication.user.roles.indexOf('admin') > -1"> Delete </button>
+                                <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
+                                <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                             </div>
                         </h1>
                     </div>

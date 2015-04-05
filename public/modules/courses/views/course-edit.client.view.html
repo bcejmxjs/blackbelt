@@ -1,4 +1,4 @@
-<section data-ng-controller="CoursesEditController as courseEditCtrl">
+<section data-ng-controller="CoursesController">
     <div class="modal-header">
         <h3 class="modal-title">Edit {{course.name}}</h3>
     </div>
@@ -39,7 +39,7 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" ng-click="courseEditCtrl.update(course); ok()">OK</button>
+        <button class="btn btn-success" ng-click="update(course); ok()">OK</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </section>
