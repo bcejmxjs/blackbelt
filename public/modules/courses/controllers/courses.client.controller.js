@@ -7,7 +7,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 
         $scope.authentication = Authentication;
 
-        $scope.list = function() {
+        $scope.find = function() {
             $scope.courses = Courses.query();
         };
 
