@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('courses').controller('LessonListController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location', '$state',
+angular.module('courses').controller('LessonsController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location', '$state',
 
     function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location, $state) {
 
         window.MY_SCOPE = $scope;
 
-        this.authentication = Authentication;
+        $scope.authentication = Authentication;
 
         //Will if the lesson is completed
         /*$scope.isCurrentlyDone = function() {
@@ -34,7 +34,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
                 return ;
         };*/
 
-        this.list = function() {
+        $scope.list = function() {
             $scope.lessons = Lessons.query({
                 courseId: $stateParams.courseId
             });
@@ -53,7 +53,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
             }
         };
 
-        this.findOne = function() {
+        $scope.findOne = function() {
             $scope.lesson = Lessons.get({
                 courseId: $stateParams.courseId,
                 lessonId: $stateParams.courseId
@@ -62,7 +62,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
 
 
         // Open a modal window to Create a single course record
-        this.modalCreate = function(size) {
+        $scope.modalCreate = function(size) {
 
             var modalInstance = $modal.open({
                 // templateUrl: 'modules/courses/views/create-course.client.view.html',
@@ -91,10 +91,10 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         // Open a modal window to update a single course record
-        this.modalUpdate = function(size, selectedLesson) {
+        $scope.modalUpdate = function(size, selectedLesson) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'modules/courses/views/lesson-list-edit.client.view.html',
+                templateUrl: 'modules/courses/views/lesson-edit.client.view.html',
                 controller: ModalUpdateCtrl,
                 size: size,
                 resolve: {
@@ -125,10 +125,10 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         // Open a modal window to Remove a single course record
-        this.modalRemove = function(size, selectedLesson) {
+        $scope.modalRemove = function(size, selectedLesson) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'modules/courses/views/lesson-list-remove.client.view.html',
+                templateUrl: 'modules/courses/views/lesson-remove.client.view.html',
                 controller: ModalRemoveCtrl,
                 size: size,
                 resolve: {
@@ -161,7 +161,7 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         };
 
         // Open a modal window to View a single course record
-        this.modalView = function(size, selectedCourse) {
+        $scope.modalView = function(size, selectedCourse) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-view.client.view.html',
@@ -198,12 +198,12 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         $scope.lessonsCompleted = [];
 
         $scope.grabLessonsCompleted = function() {
-            // Get the lessons completed for this particular course.
+            // Get the lessons completed for $scope particular course.
 
-            //Step 1: Find This Course in Courses Purchased
-            if ( Authentication.user.coursesPurchased ) {
+            //Step 1: Find $scope Course in Courses Purchased
+            if (Authentication.user.coursesPurchased) {
                 for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                    if (Authentication.user.coursesPurchased[i].courseId == $scope.course._id ) {
+                    if (Authentication.user.coursesPurchased[i].courseId == $scope.course._id) {
                         $scope.lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted;
                     }
                 }
@@ -213,38 +213,35 @@ angular.module('courses').controller('LessonListController', ['$scope', '$stateP
         /* ======= Begin Style Functions For Lessons ======= */
 
         //returns true/false depending on if lesson is complete.
-        this.isLessonComplete = function( lesson ) {
-            for( var a = 0; a != $scope.lessonsCompleted.length; a++ ) {
-                if( $scope.lessonsCompleted[a] == lesson._id )
+        $scope.isLessonComplete = function(lesson) {
+            for (var a = 0; a != $scope.lessonsCompleted.length; a++) {
+                if ($scope.lessonsCompleted[a] == lesson._id)
                     return true;
             }
             return false;
         };
 
         //changes the background color on the object depending on whether it has been completed or not.
-        this.getBackgroundColor = function( lesson ) {
-            if ( this.isLessonComplete( lesson ) ) {
-                return { 'background-color' : '#DFF0D8' }; //that nice green success!
-            }
-            else {
-                return { 'background-color' : '#E8E8E8' }; //returns a greyish color
+        $scope.getBackgroundColor = function(lesson) {
+            if ($scope.isLessonComplete(lesson)) {
+                return {
+                    'background-color': '#DFF0D8'
+                }; //that nice green success!
+            } else {
+                return {
+                    'background-color': '#E8E8E8'
+                }; //returns a greyish color
             }
         };
 
-    }
-
-]);
-
-angular.module('courses').controller('LessonListCreateController', ['$scope', '$stateParams', 'Courses', 'Lessons', '$location',
-    function($scope, $stateParams, Courses, Lessons, $location) {
-
-        window.MY_SCOPE = this;
-        this.courseId = $stateParams.courseId;
+        $scope.courseId = $stateParams.courseId;
         //useful for getting name of course
-        this.course = Courses.get({ courseId: this.courseId });
+        $scope.course = Courses.get({
+            courseId: $scope.courseId
+        });
 
         // Create new Lesson
-        this.create = function() {
+        $scope.create = function() {
             // Create new Lesson object
             var lesson = new Lessons({
                 name: this.name,
@@ -269,13 +266,8 @@ angular.module('courses').controller('LessonListCreateController', ['$scope', '$
             });
         };
 
-    }
-]);
-
-angular.module('courses').controller('LessonListEditController', ['$scope', 'Lessons',
-    function($scope, Lessons) {
         // Edit existing Course
-        this.update = function(updatedLesson) {
+        $scope.update = function(updatedLesson) {
             var lesson = updatedLesson;
 
             lesson.$update(function() {
@@ -284,13 +276,9 @@ angular.module('courses').controller('LessonListEditController', ['$scope', 'Les
                 $scope.error = errorResponse.data.message;
             });
         };
-    }
-]);
 
-angular.module('courses').controller('LessonListRemoveController', ['$scope', 'Courses', 'Lessons', '$location', 'Notify', '$stateParams',
-    function($scope, Lessons, $location, Notify, $stateParams) {
         // Remove existing Lesson
-        this.remove = function(lesson) {
+        $scope.remove = function(lesson) {
 
             if (lesson) {
                 lesson.$remove();
@@ -301,14 +289,10 @@ angular.module('courses').controller('LessonListRemoveController', ['$scope', 'C
                 });
             }
         };
-    }
-]);
 
-angular.module('courses').controller('LessonListViewController', ['$scope', 'Courses', '$stateParams',
-    function($scope, Courses, $stateParams) {
         // View existing Course
 
-        this.findOne = function() {
+        $scope.findOne = function() {
             $scope.lesson = Courses.get({
                 courseId: $stateParams.courseId
             });

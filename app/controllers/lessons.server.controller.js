@@ -69,7 +69,7 @@ exports.delete = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            req.jsonp(lesson);
+            res.jsonp(lesson);
         }
     });
 };

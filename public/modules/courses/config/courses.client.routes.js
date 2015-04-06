@@ -41,7 +41,7 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
             url: '/course/:courseId/:lessonId',
             templateUrl: 'modules/courses/views/lesson-view.client.view.html'
         }).
-        state('Lessonrror', {
+        state('LessonError', {
             url: '/error/lesson',
             templateUrl: 'modules/courses/views/lesson-error.client.view.html'
         });

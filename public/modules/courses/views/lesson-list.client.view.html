@@ -1,4 +1,4 @@
-<section data-ng-controller="LessonListController as lessonsCtrl" data-ng-init="lessonsCtrl.list()">
+<section data-ng-controller="LessonsController" data-ng-init="list()">
 	<div class="container" >
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -6,7 +6,7 @@
 	    	<h1 style="text-align: center;">{{ course.name }}</h1>
 		</div>
 
-		<a href="/#!/course/{{course._id}}/createLesson" ng-show="lessonsCtrl.authentication.user.roles.indexOf('instructor') > -1 || lessonsCtrl.authentication.user.roles.indexOf('admin') > -1">
+		<a href="/#!/course/{{course._id}}/createLesson" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
 		    <button type="submit" class="btn btn-primary btn-lg center-block" > 
 		        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		        Add New Lesson
@@ -27,22 +27,22 @@
 		                    {{ lesson.name }}
 		                </a>
 		                <div class="btn-group pull-right">
-                            <button class="btn btn-default btn-sm" type="submit" data-ng-click="lessonsCtrl.modalUpdate('lg', lesson)" ng-show="lessonsCtrl.authentication.user.roles.indexOf('instructor') > -1 || lessonsCtrl.authentication.user.roles.indexOf('admin') > -1"> Edit </button>
-                            <button class="btn btn-default btn-sm" type="submit" data-ng-click="lessonsCtrl.modalRemove('sm', lesson)" ng-show="lessonsCtrl.authentication.user.roles.indexOf('admin') > -1"> Delete </button>
-		                    <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="lessonsCtrl.authentication.user.roles.indexOf('instructor') > -1 || lessonsCtrl.authentication.user.roles.indexOf('admin') > -1">
+                            <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', lesson)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
+                            <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', lesson)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
+		                    <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
 		                    	<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
 		                    </button>
-		                    <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="lessonsCtrl.authentication.user.roles.indexOf('admin') > -1">
+		                    <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1">
 		                    	<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
 		                    </button>
 		                </div>
 		            </h1>
 		        </div>
 		    </div>
-		    <div class="panel-footer clearfix" data-ng-style="lessonsCtrl.getBackgroundColor(lesson)">
+		    <div class="panel-footer clearfix" data-ng-style="getBackgroundColor(lesson)">
                 <h4>
                     {{ lesson.description }}
-                    <div class="pull-right" data-ng-show="lessonsCtrl.isLessonComplete(lesson)">
+                    <div class="pull-right" data-ng-show="isLessonComplete(lesson)">
                     	<font color="#3c763d">Completed <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></font>
                     </div>
                     <br/>
