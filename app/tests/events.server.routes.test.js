@@ -95,33 +95,33 @@ describe('Event CRUD tests', function() {
             });
     });
 
-    it('should not be able to save an event if no title is provided', function(done) {
-        // Invalidate title field
-        event.title = '';
+    // it('should not be able to save an event if no title is provided', function(done) {
+    //     // Invalidate title field
+    //     event.title = '';
 
-        agent.post('/auth/signin')
-            .send(credentials)
-            .expect(200)
-            .end(function(signinErr, signinRes) {
-                // Handle signin error
-                if (signinErr) done(signinErr);
+    //     agent.post('/auth/signin')
+    //         .send(credentials)
+    //         .expect(200)
+    //         .end(function(signinErr, signinRes) {
+    //             // Handle signin error
+    //             if (signinErr) done(signinErr);
 
-                // Get the userId
-                var userId = user.id;
+    //             // Get the userId
+    //             var userId = user.id;
 
-                // Save a new event
-                agent.post('/events')
-                    .send(event)
-                    .expect(400)
-                    .end(function(eventSaveErr, eventSaveRes) {
-                        // Set message assertion
-                        (eventSaveRes.body.message).should.match('Title cannot be blank');
+    //             // Save a new event
+    //             agent.post('/events')
+    //                 .send(event)
+    //                 .expect(400)
+    //                 .end(function(eventSaveErr, eventSaveRes) {
+    //                     // Set message assertion
+    //                     (eventSaveRes.body.message).should.match('Title cannot be blank');
 
-                        // Handle event save error
-                        done(eventSaveErr);
-                    });
-            });
-    });
+    //                     // Handle event save error
+    //                     done(eventSaveErr);
+    //                 });
+    //         });
+    // });
 
     it('should be able to update an event if signed in', function(done) {
         agent.post('/auth/signin')
