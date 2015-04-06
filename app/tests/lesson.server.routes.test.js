@@ -73,7 +73,7 @@ describe('Lesson CRUD tests', function() {
                                 if (lessonsGetErr) done(lessonsGetErr);
 
                                 // Get lessons list
-                                var lessons = lessonsGetRes.description;
+                                var lessons = lessonsGetRes.body;
 
                                 // Set assertions
                                 (lessons[0].user._id).should.equal(userId);
@@ -116,7 +116,7 @@ describe('Lesson CRUD tests', function() {
                     .expect(400)
                     .end(function(lessonSaveErr, lessonSaveRes) {
                         // Set message assertion
-                        (lessonSaveRes.description.message).should.match('Name cannot be blank');
+                        (lessonSaveRes.body.message).should.match('Name cannot be blank');
 
                         // Handle lesson save error
                         done(lessonSaveErr);
@@ -147,7 +147,7 @@ describe('Lesson CRUD tests', function() {
                         lesson.name = 'WHY YOU GOTTA BE SO MEAN?';
 
                         // Update an existing lesson
-                        agent.put('/lessons/' + lessonSaveRes.description._id)
+                        agent.put('/lessons/' + lessonSaveRes.body._id)
                             .send(lesson)
                             .expect(200)
                             .end(function(lessonUpdateErr, lessonUpdateRes) {
@@ -155,8 +155,8 @@ describe('Lesson CRUD tests', function() {
                                 if (lessonUpdateErr) done(lessonUpdateErr);
 
                                 // Set assertions
-                                (lessonUpdateRes.description._id).should.equal(lessonSaveRes.description._id);
-                                (lessonUpdateRes.description.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                                (lessonUpdateRes.body._id).should.equal(lessonSaveRes.body._id);
+                                (lessonUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                                 // Call the assertion callback
                                 done();
@@ -167,7 +167,7 @@ describe('Lesson CRUD tests', function() {
 
     it('should be able to get a list of lessons if not signed in', function(done) {
         // Create new lesson model instance
-        var lessonObj = new lesson(lesson);
+        var lessonObj = new Lesson(lesson);
 
         // Save the lesson
         lessonObj.save(function() {
@@ -175,7 +175,7 @@ describe('Lesson CRUD tests', function() {
             request(app).get('/lessons')
                 .end(function(req, res) {
                     // Set assertion
-                    res.description.should.be.an.Array.with.lengthOf(1);
+                    res.body.should.be.an.Array.with.lengthOf(1);
 
                     // Call the assertion callback
                     done();
@@ -187,14 +187,14 @@ describe('Lesson CRUD tests', function() {
 
     it('should be able to get a single lesson if not signed in', function(done) {
         // Create new lesson model instance
-        var lessonObj = new lesson(lesson);
+        var lessonObj = new Lesson(lesson);
 
         // Save the lesson
         lessonObj.save(function() {
             request(app).get('/lessons/' + lessonObj._id)
                 .end(function(req, res) {
                     // Set assertion
-                    res.description.should.be.an.Object.with.property('name', lesson.name);
+                    res.body.should.be.an.Object.with.property('name', lesson.name);
 
                     // Call the assertion callback
                     done();

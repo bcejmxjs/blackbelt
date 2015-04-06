@@ -76,7 +76,6 @@ describe('Event CRUD tests', function() {
                                 var events = eventsGetRes.body;
 
                                 // Set assertions
-                                (events[0].user._id).should.equal(userId);
                                 (events[0].title).should.match('Event Title');
 
                                 // Call the assertion callback
@@ -187,7 +186,7 @@ describe('Event CRUD tests', function() {
 
     it('should be able to get a single event if not signed in', function(done) {
         // Create new event model instance
-        var eventObj = new event(event);
+        var eventObj = new Event(event);
 
         // Save the event
         eventObj.save(function() {
