@@ -1,40 +1,40 @@
-<section data-ng-controller="CoursesController as courseCtrl">
-     <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="page-header">
-                <h1 style="text-align: center;">New Course</h1>
+<section data-ng-controller="CoursesController" data-ng-init="redirect()">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="page-header">
+            <h1 style="text-align: center;">New Course</h1>
+        </div>
+        <fieldset>
+            <div class="form-group">
+                
+                <label class="control-label" for="name">Course Name</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
+                </div>
+                <label class="control-label" for="name">Description</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" >
+                </div>
+                <label class="control-label" for="name">Price</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
+                </div>
+                <label class="control-label" for="name">Instructor</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="First Last" >
+                </div>
+                <label class="control-label" for="name">Video Demo</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
+                </div>
             </div>
-                    <fieldset>
-                        <div class="form-group">
-                          
-                            <label class="control-label" for="name">Course Name</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
-                            </div>
-                            <label class="control-label" for="name">Description</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.description" id="description" class="form-control" placeholder="A short course description" >
-                            </div>
-                            <label class="control-label" for="name">Price</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="courseCtrl.price" id="price" class="form-control" placeholder="12.00" required>
-                            </div>
-                            <label class="control-label" for="name">Instructor</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="First Last" >
-                            </div>
-                             <label class="control-label" for="name">Video Demo</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
-                            </div>
-                        </div>
-        				<div data-ng-show="error" class="text-danger">
-        					<strong data-ng-bind="error"></strong>
-        				</div>
-                    </fieldset>
+        	<div data-ng-show="error" class="text-danger">
+        		<strong data-ng-bind="error"></strong>
+        	</div>
+        </fieldset>
 
-            <div class="modal-footer">
-                <button class="btn btn-success" ng-click="courseCtrl.create();ok()">Save</button>
-                <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
-            </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="create();ok()">Save</button>
+            <a class="btn btn-info pull-right" href="/#!/courses" role="setting">Cancel</a>
+        </div>
 </section>

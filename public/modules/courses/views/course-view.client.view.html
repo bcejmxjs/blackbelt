@@ -18,7 +18,7 @@
 				<li class="list-group-item">{{course.description}}</li>
                 <li class="list-group-item">Taught by {{course.instructor}}</li>
                 <li class="list-group-item"><b><font size="5">${{course.price}}.00</font></b>
-                    <button type="button" class="btn btn-success pull-right">Purchase</button>
+                    <button type="button" class="btn btn-success pull-right" ng-click="purchaseCourse(course._id)">Purchase</button>
                 </li>
 			</div>
         </fieldset>

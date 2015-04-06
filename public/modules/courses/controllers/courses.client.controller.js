@@ -11,6 +11,15 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             $scope.courses = Courses.query();
         };
 
+        // Redirect's users trying to access the create page back to Courses.
+        $scope.redirect = function() {
+            if (!Authentication.user) {
+                $location.path('/courses');
+            } else if (Authentication.user.roles.indexOf('admin') == -1) {
+                $location.path('/courses');
+            }
+        };
+
         // Open a modal window to create a single course record
         $scope.modalCreate = function(size) {
 
