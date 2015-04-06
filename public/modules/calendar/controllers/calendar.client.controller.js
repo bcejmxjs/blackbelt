@@ -78,7 +78,6 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
                 return 'panel-success';
             else
                 return 'panel-danger';
-
         };
 
         //Gets correct panel TEXT to associate with being opened/closed.

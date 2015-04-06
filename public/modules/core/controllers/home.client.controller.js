@@ -6,7 +6,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
-        // TODO: Gets Hours for Different days from DB.
         // Define Open Days
         $scope.martialArtStyles = [
             { name: 'Savate', 		url: 'http://en.wikipedia.org/wiki/Savate' }, 

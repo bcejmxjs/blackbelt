@@ -50,6 +50,8 @@
             });
         }));
 
+        /* Test Open/Close Functions */
+
         it('Open/close hours properly formatted', inject(function() {
             expect(scope.hourFormat(18)).toBe('6:00 PM');
         }));
@@ -61,5 +63,15 @@
         it('Assure noon is properly formatted', inject(function() {
             expect(scope.hourFormat(12)).toBe('12:00 PM');
         }));
+
+        it('Assure an AM time is properly formatted', inject(function() {
+            expect(scope.hourFormat(2)).toBe('2:00 AM');
+        }));
+
+        it('Assure an AM time is properly formatted', inject(function() {
+            expect(scope.hourFormat(2)).toBe('2:00 AM');
+        }));
+
+
     });
 }());
