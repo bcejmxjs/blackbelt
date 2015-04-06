@@ -11,27 +11,27 @@ var CoursePage = function() {
 
 	// Course items
 	this.course_title = function(ind) {
-		return element.all(by.repeater('course in coursesCtrl.courses'))
+		return element.all(by.repeater('course in courses'))
 			.get(ind)
 			.element(by.tagName('h1'))
 			.element(by.tagName('a'));
 	};
 	this.course_description = function(ind) {
-		return element.all(by.repeater('course in coursesCtrl.courses'))
+		return element.all(by.repeater('course in courses'))
 			.get(ind).element(by.tagName('h4'));
 	};
 	this.btn_purchase = function(ind) { 
-		return element.all(by.repeater('course in coursesCtrl.courses'))
+		return element.all(by.repeater('course in courses'))
 		.get(ind)
 		.element(by.buttonText('Purchase'));
 	}
 	this.btn_edit = function(ind) {
-		return element.all(by.repeater('course in coursesCtrl.courses'))
+		return element.all(by.repeater('course in courses'))
 		.get(ind)
 		.element(by.buttonText('Edit'));
 	}
 	this.btn_delete = function(ind) {
-		return element.all(by.repeater('course in coursesCtrl.courses'))
+		return element.all(by.repeater('course in courses'))
 		.get(ind)
 		.element(by.buttonText('Delete'));
 	}
