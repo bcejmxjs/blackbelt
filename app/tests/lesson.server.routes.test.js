@@ -164,7 +164,7 @@ describe('Lesson CRUD tests', function() {
             });
     });
 
-    it('should be able to get a list of lessons if not signed in', function(done) {
+    it('should be able to get a list of lessons if signed in', function(done) {
         agent.post('/auth/signin')
             .send(credentials)
             .expect(200)
@@ -193,8 +193,28 @@ describe('Lesson CRUD tests', function() {
             });
     });
 
+    it('should not be able to get a list of lessons if not signed in', function(done) {
 
-    it('should be able to get a single lesson if not signed in', function(done) {
+        // Create new lesson model instance
+        var lessonObj = new Lesson(lesson);
+
+        // Save the lesson
+        lessonObj.save(function() {
+            // Request lessons
+            request(app).get('/lessons')
+                .expect(401)
+                .end(function(lessonGetErr, lessonGetRes) {
+                    // Set message assertion
+                    (lessonGetRes.body.message).should.match('User is not logged in');
+
+
+                    // Call the assertion callback
+                    done(lessonGetErr);
+                });
+        });
+    });
+
+    it('should be able to get a single lesson if signed in', function(done) {
         agent.post('/auth/signin')
             .send(credentials)
             .expect(200)
@@ -220,6 +240,30 @@ describe('Lesson CRUD tests', function() {
                         });
                 });
             });
+
+
+    });
+
+    it('should not be able to get a single lesson if not signed in', function(done) {
+        // Create new lesson model instance
+        var lessonObj = new Lesson(lesson);
+
+        // Save the lesson
+        lessonObj.save(function() {
+            request(app).get('/lessons/' + lessonObj._id)
+                .expect(401)
+                .end(function(lessonGetErr, lessonGetRes) {
+                    // Set message assertion
+                    (lessonGetRes.body.message).should.match('User is not logged in');
+
+
+                    // Call the assertion callback
+                    done(lessonGetErr);
+                });
+
+        });
+
+
     });
 
     it('should be able to delete an lesson if signed in', function(done) {
@@ -279,6 +323,28 @@ describe('Lesson CRUD tests', function() {
                     done(lessonDeleteErr);
                 });
         });
+    });
+
+    it('should not be able to stream a video if not signed in', function(done) {
+        // Create new lesson model instance
+        var lessonObj = new Lesson(lesson);
+
+        // Save the lesson
+        lessonObj.save(function() {
+            request(app).get('/videos/big_buck_bunny.mp4')
+                .expect(401)
+                .end(function(lessonGetErr, lessonGetRes) {
+                    // Set message assertion
+                    (lessonGetRes.body.message).should.match('User is not logged in');
+
+
+                    // Call the assertion callback
+                    done(lessonGetErr);
+                });
+
+        });
+
+
     });
 
     afterEach(function(done) {
