@@ -341,10 +341,21 @@ describe('Lesson CRUD tests', function() {
                     // Call the assertion callback
                     done(lessonGetErr);
                 });
-
         });
+    });
 
+    it('should be able to stream a video if signed in', function(done) {
+        // Create new lesson model instance
+        var lessonObj = new Lesson(lesson);
 
+        // Save the lesson
+        lessonObj.save(function() {
+            request(app).get('/videos/big_buck_bunny.mp4')
+                .expect(206)
+                .end(function() {
+                    done();
+                });
+        });
     });
 
     afterEach(function(done) {
