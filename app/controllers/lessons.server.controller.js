@@ -75,7 +75,7 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of Lessns
+ * List of Lessons
  */
 exports.list = function(req, res) {
     Lesson.find().sort({
