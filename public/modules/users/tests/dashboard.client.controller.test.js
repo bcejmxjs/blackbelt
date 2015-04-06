@@ -200,5 +200,153 @@
 				expect(scope.progBarType).toEqual("null");
         	}));
 		});
+		
+		describe('Tests .getCourseProgress() low percent cases', function(){
+			beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_, Lessons, Courses){
+				var sampleLesson1 = new Lessons({
+					name: "blocking",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson2 = new Lessons({
+					_id:"55177ecf960986f53e7ee774",
+					name: "kicking",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson3 = new Lessons({
+					_id:"55177ecf960986f53e7ee775",
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson4 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson5 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson6 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson7 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson8 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson9 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson10 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLesson11 = new Lessons({
+					name: "punching",
+					courseId: "5500abb9d21dec690fc66fe6"
+				});
+				var sampleLessons = [sampleLesson1, sampleLesson2, sampleLesson3, sampleLesson4, sampleLesson5, sampleLesson6, sampleLesson7, sampleLesson8, sampleLesson9, sampleLesson10, sampleLesson11];
+				scope.lessons = sampleLessons;
+				var sampleCourse1 = new Courses({
+					_id:"5500abb9d21dec690fc66fe6",
+					name: "Started"
+				});
+				var sampleCourses = [sampleCourse1];
+				scope.sampleCourses = sampleCourses;
+				/*scope.authentication.user = {
+					            firstName: 'Test',
+					            lastName: 'McTesterson',
+					            displayName: 'Testy McTesterson',
+					            email: 'test@test.com',
+					            roles: ['user'],
+								coursesPurchased : [ { courseId : "5500abb9d21dec690fc66fe6", lessonsCompleted : [ "55177ecf960986f53e7ee773" ] } ]
+				};*/
+			}));
+			
+			describe('Tests .getCourseProgress() <10% cases', function(){
+				beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_, Lessons, Courses){
+					scope.authentication.user = {
+						            firstName: 'Test',
+						            lastName: 'McTesterson',
+						            displayName: 'Testy McTesterson',
+						            email: 'test@test.com',
+						            roles: ['user'],
+									coursesPurchased : [ { courseId : "5500abb9d21dec690fc66fe6", lessonsCompleted : [ "55177ecf960986f53e7ee773" ] } ]
+					};
+				}));
+				//Started Course Tests  <10% completion
+        		it('$scope.getCourseProgress() should set the progBarText to right value of Started course under Test user <10% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+        		    expect(scope.progBarText).toBeUndefined();
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarValue to right value of Started course under Test user <10% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarValue).toEqual(9);
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarType to right value of Started course under Test user <10% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarType).toEqual("inprog");
+        		}));
+        		it('$scope.getCourseProgress() should set the $scope.percent to false of Started course under Test user <10% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.percent).toEqual(false);
+        		}));
+			});
+			describe('Tests .getCourseProgress() >=10% and <= 25% cases', function(){
+				beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_){
+					scope.authentication.user = {
+						            firstName: 'Test',
+						            lastName: 'McTesterson',
+						            displayName: 'Testy McTesterson',
+						            email: 'test@test.com',
+						            roles: ['user'],
+									coursesPurchased : [ { courseId : "5500abb9d21dec690fc66fe6", lessonsCompleted : [ "55177ecf960986f53e7ee773", "55177ecf960986f53e7ee774"] } ]
+					};
+				}));
+				//Started Course Tests  >10% and <=25% completion
+        		it('$scope.getCourseProgress() should set the progBarText to right value of Started course under Test user >=10% and <=25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+        		    expect(scope.progBarText).toEqual("2 / 11");
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarValue to right value of Started course under Test user >=10% and <=25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarValue).toEqual(18);
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarType to right value of Started course under Test user >=10% and <=25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarType).toEqual("inprog");
+        		}));
+			});
+			describe('Tests .getCourseProgress() >=10% and <= 25% cases', function(){
+				beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_){
+					scope.authentication.user = {
+						            firstName: 'Test',
+						            lastName: 'McTesterson',
+						            displayName: 'Testy McTesterson',
+						            email: 'test@test.com',
+						            roles: ['user'],
+									coursesPurchased : [ { courseId : "5500abb9d21dec690fc66fe6", lessonsCompleted : [ "55177ecf960986f53e7ee773", "55177ecf960986f53e7ee774", "55177ecf960986f53e7ee775"] } ]
+					};
+				}));
+				//Started Course Tests >25% completion
+        		it('$scope.getCourseProgress() should set the progBarText to right value of Started course under Test user >25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+        		    expect(scope.progBarText).toEqual("3 / 11 Completed");
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarValue to right value of Started course under Test user >25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarValue).toEqual(27);
+        		}));
+        		it('$scope.getCourseProgress() should set the progBarType to right value of Started course under Test user >25% completion', inject(function() {
+        		    scope.getCourseProgress(scope.sampleCourses[0]);
+					expect(scope.progBarType).toEqual("inprog");
+        		}));
+			});
+		});
+		
     });
 }());
