@@ -1,28 +1,31 @@
 <section data-ng-controller="LessonsController">
-     <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="page-header">
-                <h1 style="text-align: center;">New {{course.name}} Lesson</h1>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="page-header">
+            <h1 style="text-align: center;">New {{course.name}} Lesson</h1>
+        </div>
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label" for="name">Lesson Name</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Lesson Name Goes Here" required>
+                </div>
+                <label class="control-label" for="name">Description</label>
+                <div class="controls">
+                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description">
+                </div>
             </div>
-                    <fieldset>
-                        <div class="form-group">
-                          
-                            <label class="control-label" for="name">Lesson Name</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Lesson Name Goes Here" required>
-                            </div>
-                            <label class="control-label" for="name">Description</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description" >
-                            </div>
-                        </div>
-        				<div data-ng-show="error" class="text-danger">
-        					<strong data-ng-bind="error"></strong>
-        				</div>
-                    </fieldset>
-
-            <div class="modal-footer">
-                <button class="btn btn-success" ng-click="create()">Save</button>
-                <a class="btn btn-info pull-right" href="/#!/course/{{courseId}}" role="setting">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg center-block" > 
+		        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		        Upload Video
+		    </button>
+            <br/>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
             </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="create()">Save</button>
+            <a class="btn btn-info pull-right" href="/#!/course/{{courseId}}" role="setting">Cancel</a>
+        </div>
 </section>
