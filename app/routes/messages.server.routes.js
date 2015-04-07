@@ -12,7 +12,7 @@ module.exports = function(app) {
         .get(users.requiresLogin, messages.readAll);
 
     app.route('/messages/:messageId')
-        .delete(users.requiresLogin, users.hasAuthorization(['admin', 'instructor']), messages.delete);
+        .delete(users.requiresLogin, messages.delete);
 
     app.param('messageId', messages.messageByID);
     app.param('recipientId', messages.messagesByRecipientID);

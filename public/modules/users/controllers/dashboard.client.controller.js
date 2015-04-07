@@ -79,6 +79,11 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             });
         };
 
+        $scope.readMessage = function(message) {
+            message.$delete();
+            $state.reload();
+        };
+
         $scope.getCourseProgress = function(course) {
             var percentCompleted = 100;
             var progBarText;
