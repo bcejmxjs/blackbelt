@@ -1,6 +1,6 @@
 <section data-ng-controller="DashboardController">
     <br/>
-    <div class="container" data-ng-init="grabUsersCourses(); getAllLessons()">
+    <div class="container" data-ng-init="grabUsersCourses(); getAllLessons(); messagesList()">
         <div class="page-header">
             <h1 style="text-align: center;">My Dashboard</h1>
         </div>
@@ -13,17 +13,9 @@
         <div class="col-md-4" >
             <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
             <div class="list-group">
-                <a href="#" class="list-group-item active">
-                    <h4 class="list-group-item-heading">Master Splinter Accepted Your Submission</h4>
-                    <p class="list-group-item-text">Click to recieve feedback.</p>
-                </a>
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Master Wu Accepted Your Submission</h4>
-                    <p class="list-group-item-text">Click to recieve feedback.</p>
-                </a>
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Mr. Miyagi Accepted Your Submission</h4>
-                    <p class="list-group-item-text">Click to recieve feedback.</p>
+                <a data-ng-repeat="message in messages" href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{ message.title }}</h4>
+                    <p class="list-group-item-text">{{ message.body }}</p>
                 </a>
             </div>
         </div>

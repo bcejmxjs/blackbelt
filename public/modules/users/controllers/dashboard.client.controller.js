@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions',
-    function($scope, $http, $location, Users, Authentication, Courses, Lessons, Submissions) {
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions', 'Messages',
+    function($scope, $http, $location, Users, Authentication, Courses, Lessons, Submissions, Messages) {
         $scope.authentication = Authentication;
 
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
@@ -14,6 +14,10 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.submissionsList = function() {
             $scope.submissions = Submissions.query();
+        };
+
+        $scope.messagesList = function() {
+            $scope.messages = Messages.query();
         };
 
         $scope.grabUsersCourses = function() {
@@ -30,6 +34,45 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.getAllLessons = function() {
             $scope.lessons = Lessons.getAll();
+        };
+
+        // Formats title of message body.
+        var formatTitle = function(decision) {
+            var decisionText = ' denied ';
+            if (decision) {
+                decisionText = ' accepted ';
+            }
+            return Authentication.user.displayName + decisionText + 'your submission.';
+        };
+
+        $scope.pass = function(submission) {
+            var decision = true;
+            $scope.createMessage(submission, decision);
+        };
+
+        $scope.fail = function(submission) {
+            var decision = false;
+            $scope.createMessage(submission, decision);
+        };
+
+        $scope.createMessage = function(submission, decision) {
+            var message = new Messages({
+                recipientId: submission.userID,
+                senderId: Authentication.user._id,
+                submissionId: submission._id,
+                title: formatTitle(decision),
+                body: this.body,
+                read: false
+            });
+
+            message.$save(function(response) {
+                // $location.path('course/' + +$stateParams.courseId);
+
+                // Clear form fields
+                this.body = '';
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
         };
 
         $scope.getCourseProgress = function(course) {
