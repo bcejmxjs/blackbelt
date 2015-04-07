@@ -8,7 +8,17 @@ angular.module('users').factory('Messages', ['$resource',
         }, {
             'update': {
                 method: 'PUT'
+            },
+            getMessages: {
+                method: 'GET',
+                url: 'messages/list/:recipientId',
+                isArray: true,
+                params: {
+                    recipientId: 'recipientId'
+                }
+
             }
+
         });
     }
 ]);

@@ -17,7 +17,9 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
         };
 
         $scope.messagesList = function() {
-            $scope.messages = Messages.query();
+            $scope.messages = Messages.getMessages({
+                recipientId: Authentication.user._id
+            });
         };
 
         $scope.grabUsersCourses = function() {
@@ -57,7 +59,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.createMessage = function(submission, decision) {
             var message = new Messages({
-                recipientId: submission.userID,
+                recipientId: submission.userId,
                 senderId: Authentication.user._id,
                 submissionId: submission._id,
                 title: formatTitle(decision),

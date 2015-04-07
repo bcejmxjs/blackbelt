@@ -32,6 +32,10 @@ exports.read = function(req, res) {
     res.jsonp(req.message);
 };
 
+exports.readAll = function(req, res) {
+    res.jsonp(req.messages);
+};
+
 /**
  * Update a Message
  */
@@ -81,6 +85,21 @@ exports.list = function(req, res) {
             });
         } else {
             res.jsonp(messages);
+        }
+    });
+};
+
+exports.messagesByRecipientID = function(req, res, next, id) {
+    Message.find({
+        recipientId: id
+    }).populate('user', 'displayName').exec(function(err, messages) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            req.messages = messages;
+            next();
         }
     });
 };
