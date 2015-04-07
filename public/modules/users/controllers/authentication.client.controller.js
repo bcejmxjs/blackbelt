@@ -25,7 +25,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.authentication.user = response;
 
 				// And redirect to the dashboard page
-				$location.path('/dashboard');
+				if($scope.authentication.user.roles.indexOf('admin') > -1 ||
+					$scope.authentication.user.roles.indexOf('instructor') > -1 )
+					$location.path('/admindashboard');
+				else 
+					$location.path('/dashboard');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
