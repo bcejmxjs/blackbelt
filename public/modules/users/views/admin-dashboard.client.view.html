@@ -1,66 +1,40 @@
 <section data-ng-controller="DashboardController" ng-init="submissionsList()">
     <div class="container">
-        <div class="page-header">
-            <h1 style="text-align: center;">My Dashboard</h1>
-        </div>
+        <div class="col-md-2"></div>
         <div class="col-md-8">
-            <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
-            <div class="panel panel-primary" data-ng-repeat="submission in submissions">
-        	 	<div class="panel-heading">
-				    <div class="panel-title" style="text-align: center">
-                        Student: {{submission.userDisplayName}} Lesson: {{submission.lessonName}} 
-                    </div>
-				</div>
+            <!-- <h2 style="text-align: center; margin-top: 0px">Notifications </h2> -->
+            <div class="page-header">
+                <h1 style="text-align: center;">My Dashboard</h1>
+            </div>
+            <div class="panel panel-default" data-ng-repeat="submission in submissions">
+                <div class="panel-heading">
+                    <h1 class="panel-title"> <span class="glyphicon glyphicon-facetime-video"></span> {{submission.lessonName}} - Course </h1>
+                </div>
                 <div class="panel-body">
                     <div class="embed-responsive embed-responsive-16by9">
 					    <iframe class="embed-responsive-item" ng-src="{{submission.url}}" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <br/>
+                    <h4>Uploaded by <b>{{submission.userDisplayName}}</b></h4>
 					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
                         <div class="form-group">
                             <textarea class="form-control" required ng-model="message.feedback" placeholder="Provide Feedback" rows="3"></textarea>
                         </div>
 					</form>
 	            	<div class="wrapper">
-	                	<button type="button" class="btn btn-info btn-lg "> 
-	                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-	                        Fail
-	                    </button>
-	                    <button type="button" class="btn btn-success btn-lg"> 
-	                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-	                        Pass
-	                	</button>
+                        <div class="col-xs-6" style="padding-right: 5px; padding-left: 0px">
+	                        <button type="button" class="btn btn-success btn-lg" style="width: 100%"> 
+	                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Pass
+	                	    </button>
+                        </div>
+                        <div class="col-xs-6" style="padding-right: 0px; padding-left: 5px">
+                            <button type="button" class="btn btn-danger btn-lg" style="width: 100%"> 
+	                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Fail
+	                        </button>
+                        </div>
 	                	<div class="panel-footing"></div>
 	                </div>
             	</div>
             </div>
         </div>
-        <div class="col-md-4" >
-            <h2 style="text-align: center; margin-top: 0px">Classes</h2>
-            <ul class="list-group">
-				<a href="#" class="list-group-item active">
-				    <span class="badge">7</span>
-				    Karate
-				</a>
-
-				<a href="#" class="list-group-item">
-				    <span class="badge">5</span>
-				    Kung Fu
-				</a>
-			</ul>
-        </div>
     </div>
 </section>
-
-<!--
-<div class="list-group-item">
-	<div class="row">
-		<div class="col-xs-6 media-left">Student name: Test user</div>
-		<div class="col-xs-6 media-right" >Level: Yellow belt</div>
-	</div>
-	Student feedback:
-</div>
-<div class="list-group-item">
-	Your feedback:
-</div>
--->
