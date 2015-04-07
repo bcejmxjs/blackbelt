@@ -14,10 +14,10 @@
                     <div class="embed-responsive embed-responsive-16by9">
 					    <iframe class="embed-responsive-item" ng-src="{{submission.url}}" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <h4>Uploaded by <b>{{submission.userDisplayName}}</b></h4>
+                    <h4>Uploaded by <b>{{ submission.userDisplayName }}</b></h4>
 					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
                         <div class="form-group">
-                            <textarea class="form-control" required data-ng-model="body" placeholder="Provide Feedback" rows="3"></textarea>
+                            <textarea class="form-control" type="text" data-ng-model="submission.body" required placeholder="Provide Feedback" rows="3"></textarea>
                         </div>
 					</form>
 	            	<div class="wrapper">

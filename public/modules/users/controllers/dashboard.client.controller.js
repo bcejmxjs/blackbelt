@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions', 'Messages',
-    function($scope, $http, $location, Users, Authentication, Courses, Lessons, Submissions, Messages) {
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', '$state', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions', 'Messages',
+    function($scope, $http, $location, $state, Users, Authentication, Courses, Lessons, Submissions, Messages) {
         $scope.authentication = Authentication;
 
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
@@ -57,21 +57,23 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             $scope.createMessage(submission, decision);
         };
 
-        $scope.createMessage = function(submission, decision) {
+        $scope.createMessage = function(submission, decision, body) {
             var message = new Messages({
                 recipientId: submission.userId,
                 senderId: Authentication.user._id,
                 submissionId: submission._id,
                 title: formatTitle(decision),
-                body: this.body,
+                body: submission.body,
                 read: false
             });
 
             message.$save(function(response) {
                 // $location.path('course/' + +$stateParams.courseId);
+                submission.$delete();
+                $state.reload();
 
                 // Clear form fields
-                this.body = '';
+                submission.body = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
