@@ -1,19 +1,19 @@
-<section data-ng-controller="DashboardController">
+<section data-ng-controller="DashboardController" ng-init="submissionsList()">
     <div class="container">
         <div class="page-header">
             <h1 style="text-align: center;">My Dashboard</h1>
         </div>
         <div class="col-md-8">
             <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
-        	<div class="panel panel-primary">
+            <div class="panel panel-primary" data-ng-repeat="submission in submissions">
         	 	<div class="panel-heading">
 				    <div class="panel-title" style="text-align: center">
-				   		Student: <b>Awesome Test User</b>, Level: <b>Yellow Belt</b>
-				    </div>
+                        Student: {{submission.userDisplayName}} Lesson: {{submission.lessonName}} 
+                    </div>
 				</div>
                 <div class="panel-body">
                     <div class="embed-responsive embed-responsive-16by9">
-					    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/CrXDP8xEqp4" frameborder="0" allowfullscreen></iframe>
+					    <iframe class="embed-responsive-item" ng-src="{{submission.url}}" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <br/>
 					<form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">

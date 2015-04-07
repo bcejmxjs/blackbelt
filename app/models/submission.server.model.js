@@ -13,10 +13,16 @@ var SubmissionSchema = new Schema({
     userId: {
         type: String
     },
+    userDisplayName: {
+        type: String
+    },
     instructorId: {
         type: String
     },
     lessonId: {
+        type: String
+    },
+    lessonName: {
         type: String
     },
     url: {

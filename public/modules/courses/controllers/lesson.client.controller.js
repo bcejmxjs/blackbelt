@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('courses').controller('LectureController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Lessons',
-    function($scope, $sce, $stateParams, $modal, $state, $location, Lessons) {
+angular.module('courses').controller('LessonController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Authentication', 'Lessons', 'Submissions',
+    function($scope, $sce, $stateParams, $modal, $state, $location, Authentication, Lessons, Submissions) {
         window.MY_SCOPE = $scope;
+
+        $scope.authentication = Authentication;
 
         Lessons.get({
             lessonId: $stateParams.lessonId
@@ -32,6 +34,28 @@ angular.module('courses').controller('LectureController', ['$scope', '$sce', '$s
             width: 740
         };
 
+        $scope.create = function() {
+            this.url = this.url.replace('watch?v=', 'embed/');
+
+            var submission = new Submissions({
+                userId: Authentication.user._id,
+                userDisplayName: Authentication.user.displayName,
+                instructorId: 'kfajsklfjsdkljfklsdajfkljsad',
+                lessonId: this.lesson._id,
+                lessonName: this.lesson.name,
+                url: this.url
+            });
+
+            submission.$save(function(response) {
+                // $location.path('course/' + +$stateParams.courseId);
+
+                // Clear form fields
+                this.url = '';
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
         // Open a modal window to Remove a single lesson record
         $scope.modalUserUpload = function(size, selectedLesson) {
 
@@ -49,7 +73,7 @@ angular.module('courses').controller('LectureController', ['$scope', '$sce', '$s
             modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
             }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
+                // $log.info('Modal dismissed at: ' + new Date());
             });
 
         };

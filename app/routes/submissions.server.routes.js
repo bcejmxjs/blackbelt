@@ -6,7 +6,8 @@ module.exports = function(app) {
 
     app.route('/submissions')
         .get(submissions.list)
-        .post(users.requiresLogin, users.hasAuthorization(['admin', 'instructor']), submissions.create);
+        .post(users.requiresLogin, submissions.create);
+
     app.route('/submissions/:submissionId')
         .delete(users.requiresLogin, users.hasAuthorization(['admin', 'instructor']), submissions.delete);
 

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons',
-    function($scope, $http, $location, Users, Authentication, Courses, Lessons) {
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions',
+    function($scope, $http, $location, Users, Authentication, Courses, Lessons, Submissions) {
         $scope.authentication = Authentication;
 
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
@@ -12,6 +12,10 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.courses = [];
 
+        $scope.submissionsList = function() {
+            $scope.submissions = Submissions.query();
+        };
+
         $scope.grabUsersCourses = function() {
             for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
                 this.courses.push(
@@ -21,7 +25,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 );
             }
         };
-		
+
         $scope.lessons = [];
 
         $scope.getAllLessons = function() {
@@ -30,7 +34,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
 
         $scope.getCourseProgress = function(course) {
             var percentCompleted = 100;
-			var progBarText;
+            var progBarText;
             // Get number of lessons for a particular course.
             var lessonCount = 0;
             var i = 0;
@@ -49,39 +53,34 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     }
                 }
             }
-			var progBarType;
-			$scope.percent=true;
+            var progBarType;
+            $scope.percent = true;
             if (lessonCount > 0) {
-				progBarType = 'inprog';
+                progBarType = 'inprog';
                 percentCompleted = Math.round((lessonsCompleted / lessonCount) * 100);
-				if (percentCompleted >= 100){
-					percentCompleted = 100;
-					progBarText = "You have completed this course!";
-					progBarType = 'success';
-				}
-				else if (percentCompleted > 25 && percentCompleted < 100){
-					progBarText = lessonsCompleted + " / " + lessonCount + " Completed";
-				}
-				else if (percentCompleted >=10 && percentCompleted <=25){
-					progBarText = lessonsCompleted + " / " + lessonCount;
-				}
-				else if (percentCompleted == 0){
-					percentCompleted = 100;
-					progBarText = "You have not started this course."
-					progBarType = 'null'
-				}
-				else{
-					$scope.percent=false;
-				}	
+                if (percentCompleted >= 100) {
+                    percentCompleted = 100;
+                    progBarText = 'You have completed this course!';
+                    progBarType = 'success';
+                } else if (percentCompleted > 25 && percentCompleted < 100) {
+                    progBarText = lessonsCompleted + ' / ' + lessonCount + ' Completed';
+                } else if (percentCompleted >= 10 && percentCompleted <= 25) {
+                    progBarText = lessonsCompleted + ' / ' + lessonCount;
+                } else if (percentCompleted == 0) {
+                    percentCompleted = 100;
+                    progBarText = 'You have not started this course.';
+                    progBarType = 'null';
+                } else {
+                    $scope.percent = false;
+                }
+            } else {
+                progBarText = 'No lessons in this course at this time';
+                progBarType = 'null';
             }
-			else{
-				progBarText = "No lessons in this course at this time";
-				progBarType = 'null';
-			}
             //Set Scope Variables
-			$scope.progBarText=progBarText;
-			$scope.progBarValue=percentCompleted;
-			$scope.progBarType=progBarType;
+            $scope.progBarText = progBarText;
+            $scope.progBarValue = percentCompleted;
+            $scope.progBarType = progBarType;
         };
     }
 ]);
