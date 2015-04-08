@@ -11,6 +11,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
         if (!Authentication.user) $location.path('/');
 
         $scope.courses = [];
+        $scope.lessons = [];
 
         $scope.submissionsList = function() {
             $scope.submissions = Submissions.query();
@@ -31,8 +32,6 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 );
             }
         };
-
-        $scope.lessons = [];
 
         $scope.getAllLessons = function() {
             $scope.lessons = Lessons.getAll();
@@ -90,21 +89,17 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
         // updating lessonsCompleted
         $scope.readMessage = function(message) {
             if (message.decision) {
-
-                $log.info(message);
-
                 var msgSubmission = Submissions.get({
                     submissionId: message.submissionId
                 }, function(msgSubmission) {
-                    $log.info(msgSubmission);
+                    // Update coursesPurchased
                     for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
                         if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
-                            $log.info('we made it');
                             Authentication.user.coursesPurchased[i].lessonsCompleted
                                 .push(msgSubmission.lessonId);
                         }
                     }
-
+                    // Save those updates to the db!
                     var user = new Users(Authentication.user);
                     user.$update(function(response) {
                         $scope.success = true;
@@ -114,10 +109,12 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     });
                 });
             }
+            // Remove the message and reload the state.
             message.$delete();
             $state.reload();
         };
 
+        // Progress bar logic.
         $scope.getCourseProgress = function(course) {
             var percentCompleted = 100;
             var progBarText;
