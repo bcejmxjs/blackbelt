@@ -72,8 +72,10 @@ exports.delete = function(req, res) {
  * List of Submissions
  */
 exports.list = function(req, res) {
-    Submission.find().sort({
-        position: 1
+    Submission.find({
+        reviewed: false
+    }).sort({
+        created: 1
     }).populate('user', 'displayName').exec(function(err, submissions) {
         if (err) {
             return res.status(400).send({

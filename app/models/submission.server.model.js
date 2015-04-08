@@ -22,11 +22,17 @@ var SubmissionSchema = new Schema({
     lessonId: {
         type: String
     },
-    lessonName: {
+    courseId: {
         type: String
+    },
+    created: {
+        type: Date
     },
     url: {
         type: String
+    },
+    reviewed: {
+        type: Boolean
     }
 });
 

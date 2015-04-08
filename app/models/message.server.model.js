@@ -27,7 +27,7 @@ var MessageSchema = new Schema({
         type: String,
         trim: true
     },
-    read: {
+    decision: {
         type: Boolean
     }
 });

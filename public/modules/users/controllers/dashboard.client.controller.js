@@ -64,13 +64,17 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 submissionId: submission._id,
                 title: formatTitle(decision),
                 body: submission.body,
-                read: false
+                decision: decision
             });
 
             message.$save(function(response) {
                 // $location.path('course/' + +$stateParams.courseId);
-                submission.$delete();
-                $state.reload();
+                submission.reviewed = true;
+                submission.$update(function() {
+                    $state.reload();
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
 
                 // Clear form fields
                 submission.body = '';
@@ -80,6 +84,17 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
         };
 
         $scope.readMessage = function(message) {
+            if (message.decision) {
+                $scope.msgSubmission = Submissions.get({
+                    submissionId: message.submissionId
+                });
+
+                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                    if (Authentication.user.coursesPurchased[i].courseId == $scope.msgSubmission.courseId) {
+                        Authentication.user.coursesPurchased[i].lessonsCompleted.push($scope.msgSubmission.lessonId);
+                    }
+                }
+            }
             message.$delete();
             $state.reload();
         };

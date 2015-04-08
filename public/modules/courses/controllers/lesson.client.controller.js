@@ -36,14 +36,17 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
 
         $scope.create = function() {
             this.url = this.url.replace('watch?v=', 'embed/');
+            this.url = this.url.replace('.be/', 'be.com/embed/');
 
             var submission = new Submissions({
                 userId: Authentication.user._id,
                 userDisplayName: Authentication.user.displayName,
                 instructorId: 'kfajsklfjsdkljfklsdajfkljsad',
                 lessonId: this.lesson._id,
-                lessonName: this.lesson.name,
-                url: this.url
+                courseId: this.lesson.courseId,
+                url: this.url,
+                created: new Date(),
+                reviewed: false
             });
 
             submission.$save(function(response) {
