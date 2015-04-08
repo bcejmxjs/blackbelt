@@ -4,39 +4,41 @@
     </div>
     <div class="modal-body">
         <fieldset>
-            <div class="row">
-                <div class="col-sm-6 text-center">
-                    <img class="media-object" style="height:100px;" src="http://www.coreygates.com/afma/images/roundhouse-kick.png" align="right">
-                </div>
-
-            </div>
             <div class="form-group">
-                <label class="control-label" for="name">Name</label>
+                <label for="name">Name</label>
                 <div class="controls">
                     <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name">
                 </div>
-                <label class="control-label" for="name">Description</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Description</label>
                 <div class="controls">
                     <input type="text" data-ng-model="course.description" id="description" class="form-control" placeholder="description">
                 </div>
-                <label class="control-label" for="name">Price</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Price</label>
                 <div class="controls">
                     <input type="text" data-ng-model="course.price" id="price" class="form-control" placeholder="price">
                 </div>
-                <label class="control-label" for="name">Instructor</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Instructor</label>
                 <div class="controls">
                     <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="instructor">
                 </div>
-                <label class="control-label" for="name">Video Demo</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Video Demo</label>
                 <div class="controls">
                     <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="demo">
                 </div>
+            </div>
             </div>
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>
         </fieldset>
-
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" ng-click="update(course); ok()">OK</button>
@@ -53,7 +55,7 @@
             <fieldset>
 
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label for="name">Name</label>
                     <div class="controls">
                         <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name" required>
                     </div>

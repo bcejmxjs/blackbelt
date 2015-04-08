@@ -6,20 +6,24 @@
         </div>
         <fieldset>
             <div class="form-group">
-                <label class="control-label" for="name">Lesson Name</label>
+                <label for="name">Lesson Name</label>
                 <div class="controls">
                     <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Lesson Name Goes Here" required>
                 </div>
-                <label class="control-label" for="name">Description</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Description</label>
                 <div class="controls">
                     <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg center-block" > 
-		        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		        Upload Video
-		    </button>
-            <br/>
+            <div class="form-group">
+                <span class="btn btn-primary btn-lg btn-block btn-file"> 
+		            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		            Upload Video
+                    <input type="file">
+		        </span>
+            </div>
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>
