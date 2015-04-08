@@ -156,3 +156,34 @@ exports.play = function(req, res, next, id) {
         });
     }
 };
+
+exports.hasAuthorization = function(req, res, next) {
+    if (req.user.roles.indexOf('admin') > -1) {
+        next();
+    }
+    if (req.user.coursesPurchased) {
+        if (req.lessons !== undefined) {
+            _.forEach(req.user.coursesPurchased, function(course) {
+                if (course.courseId == req.lessons[0].courseId) {
+                    next();
+                }
+            });
+            return res.status(403).send({
+                message: 'User is not authorized'
+            });
+        } else if (req.lesson !== undefined) {
+            _.forEach(req.user.coursesPurchased, function(course) {
+                if (course.courseId == req.lesson.courseId) {
+                    next();
+                }
+            });
+            return res.status(403).send({
+                message: 'User is not authorized'
+            });
+        }
+    } else {
+        return res.status(403).send({
+            message: 'User is not authorized'
+        });
+    }
+};
