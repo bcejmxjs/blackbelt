@@ -172,6 +172,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             if (Authentication.user === '') {
                 $location.path('/signin');
             }
+
             // Update Authentication Object
             Authentication.user.coursesPurchased.push({
                 courseId: addedCourseId

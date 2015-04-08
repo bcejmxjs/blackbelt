@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', '$state', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions', 'Messages',
-    function($scope, $http, $location, $state, Users, Authentication, Courses, Lessons, Submissions, Messages) {
+angular.module('users').controller('DashboardController', ['$scope', '$http', '$location', '$state', '$log', 'Users', 'Authentication', 'Courses', 'Lessons', 'Submissions', 'Messages',
+    function($scope, $http, $location, $state, $log, Users, Authentication, Courses, Lessons, Submissions, Messages) {
         $scope.authentication = Authentication;
 
         // Debug info for Chrome Dev Tools inspect the scope using MY_SCOPE!
@@ -47,16 +47,19 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             return Authentication.user.displayName + decisionText + 'your submission.';
         };
 
+        // Passing feedback function
         $scope.pass = function(submission) {
             var decision = true;
             $scope.createMessage(submission, decision);
         };
 
+        // Failing feedback function
         $scope.fail = function(submission) {
             var decision = false;
             $scope.createMessage(submission, decision);
         };
 
+        // Creates a new message upon sending feedback
         $scope.createMessage = function(submission, decision, body) {
             var message = new Messages({
                 recipientId: submission.userId,
@@ -83,17 +86,33 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             });
         };
 
+        // Reads message, removing it from notifications and
+        // updating lessonsCompleted
         $scope.readMessage = function(message) {
             if (message.decision) {
-                $scope.msgSubmission = Submissions.get({
-                    submissionId: message.submissionId
-                });
 
-                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                    if (Authentication.user.coursesPurchased[i].courseId == $scope.msgSubmission.courseId) {
-                        Authentication.user.coursesPurchased[i].lessonsCompleted.push($scope.msgSubmission.lessonId);
+                $log.info(message);
+
+                var msgSubmission = Submissions.get({
+                    submissionId: message.submissionId
+                }, function(msgSubmission) {
+                    $log.info(msgSubmission);
+                    for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                        if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
+                            $log.info('we made it');
+                            Authentication.user.coursesPurchased[i].lessonsCompleted
+                                .push(msgSubmission.lessonId);
+                        }
                     }
-                }
+
+                    var user = new Users(Authentication.user);
+                    user.$update(function(response) {
+                        $scope.success = true;
+                        Authentication.user = response;
+                    }, function(response) {
+                        $scope.error = response.data.message;
+                    });
+                });
             }
             message.$delete();
             $state.reload();
