@@ -37,7 +37,8 @@ module.exports = {
                 'public/lib/videogular-controls/vg-controls.js',
                 'public/lib/videogular-overlay-play/vg-overlay-play.js',
                 'public/lib/videogular-poster/vg-poster.js',
-                'public/lib/videogular-buffering/vg-buffering.js'
+                'public/lib/videogular-buffering/vg-buffering.js',
+                'public/lib/angular-payments/lib/angular-payments.js'
             ]
         },
         css: [
