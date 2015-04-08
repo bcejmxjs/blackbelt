@@ -5,14 +5,13 @@ module.exports = function(app) {
         messages = require('../../app/controllers/messages.server.controller');
 
     app.route('/messages')
-        .get(messages.list)
         .post(users.requiresLogin, messages.create);
 
     app.route('/messages/list/:recipientId')
-        .get(users.requiresLogin, messages.readAll);
+        .get(users.requiresLogin, messages.hasAuthorization, messages.readAll);
 
     app.route('/messages/:messageId')
-        .delete(users.requiresLogin, messages.delete);
+        .delete(users.requiresLogin, messages.hasAuthorization, messages.delete);
 
     app.param('messageId', messages.messageByID);
     app.param('recipientId', messages.messagesByRecipientID);

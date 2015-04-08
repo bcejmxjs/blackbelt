@@ -112,3 +112,20 @@ exports.messageByID = function(req, res, next, id) {
         next();
     });
 };
+
+exports.hasAuthorization = function(req, res, next) {
+    if (req.messages) {
+        if (req.messages[0].recipientId !== req.user.id) {
+            return res.status(403).send({
+                message: 'User is not authorized'
+            });
+        }
+    } else if (req.message) {
+        if (req.message.recipientId !== req.user.id) {
+            return res.status(403).send({
+                message: 'User is not authorized'
+            });
+        }
+    }
+    next();
+};
