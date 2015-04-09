@@ -6,6 +6,9 @@
             <div class="page-header">
                 <h1 style="text-align: center;">My Dashboard</h1>
             </div>
+            <div data-ng-show="!submissions.length">
+                <h3 style="text-align: center; color: #b0b0b0"> Your inbox is empty! :) </h3>
+            </div>
             <div class="panel panel-default" data-ng-repeat="submission in submissions">
                 <div class="panel-heading">
                     <h1 class="panel-title"> <span class="glyphicon glyphicon-facetime-video"></span> {{submission.lessonName}} - Course </h1>
