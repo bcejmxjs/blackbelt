@@ -51,27 +51,78 @@
         }));
 
         /* Test Open/Close Functions */
-
-        it('Open/close hours properly formatted', inject(function() {
-            expect(scope.hourFormat(18)).toBe('6:00 PM');
-        }));
-
-        it('Assure midnight is properly formatted', inject(function() {
-            expect(scope.hourFormat(24)).toBe('12:00 AM');
-        }));
-
-        it('Assure noon is properly formatted', inject(function() {
-            expect(scope.hourFormat(12)).toBe('12:00 PM');
-        }));
-
-        it('Assure an AM time is properly formatted', inject(function() {
-            expect(scope.hourFormat(2)).toBe('2:00 AM');
-        }));
-
-        it('Assure an AM time is properly formatted', inject(function() {
-            expect(scope.hourFormat(2)).toBe('2:00 AM');
-        }));
-
-
+		describe('Tests .hourFormat() method', function(){
+        	it('Open/close hours properly formatted', inject(function() {
+        	    expect(scope.hourFormat(18)).toBe('6:00 PM');
+        	}));
+        	
+        	it('Assure midnight is properly formatted', inject(function() {
+        	    expect(scope.hourFormat(24)).toBe('12:00 AM');
+        	}));
+        	
+        	it('Assure noon is properly formatted', inject(function() {
+        	    expect(scope.hourFormat(12)).toBe('12:00 PM');
+        	}));
+        	
+        	it('Assure an AM time is properly formatted', inject(function() {
+        	    expect(scope.hourFormat(2)).toBe('2:00 AM');
+        	}));
+        	
+        	it('Assure an AM time is properly formatted', inject(function() {
+        	    expect(scope.hourFormat(2)).toBe('2:00 AM');
+        	}));
+		});
+		describe('Tests functions return values if it is open', function(){
+	        beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+				//redefine the value of days so that functions always work regardless of when test is ran
+				scope.days=[
+					{ name: 'Sunday', isOpen: true, openHour: 0, closeHour: 24 },
+					{ name: 'Monday', isOpen: true, openHour: 0, closeHour: 24 }, 
+					{ name: 'Tuesday', isOpen: true, openHour: 0, closeHour: 24 },
+					{ name: 'Wednesday', isOpen: true, openHour: 0, closeHour: 24 }, 
+					{ name: 'Thursday', isOpen: true, openHour: 0, closeHour: 24 },
+					{ name: 'Friday', isOpen: true, openHour: 0, closeHour: 24 }, 
+					{ name: 'Saturday', isOpen: true, openHour: 0, closeHour: 24 }
+				];
+	        }));
+			it('Test .isCurrentlyOpen()', inject(function(){
+				expect(scope.isCurrentlyOpen()).toBe(true);
+			}));
+			it('Test .getDayStyle()', inject(function(){
+				expect(scope.getDayStyle(moment().day())).toEqual({ background : 'whitesmoke' });
+			}));
+			it('Test .getOpenPanelClass()', inject(function(){
+				expect(scope.getOpenPanelClass()).toBe('panel-success');
+			}));
+			it('Test .getOpenPanelText()', inject(function(){
+				expect(scope.getOpenPanelText()).toBe('Currently Open');
+			}));
+		});
+		describe('Tests functions return values if it is closed', function(){
+	        beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+				//redefine the value of days so that functions always work regardless of when test is ran
+				scope.days=[
+					{ name: 'Sunday', isOpen: false },
+					{ name: 'Monday', isOpen: false }, 
+					{ name: 'Tuesday', isOpen: false },
+					{ name: 'Wednesday', isOpen: false }, 
+					{ name: 'Thursday', isOpen: false },
+					{ name: 'Friday', isOpen: false }, 
+					{ name: 'Saturday', isOpen: false }
+				];
+	        }));
+			it('Test .isCurrentlyOpen()', inject(function(){
+				expect(scope.isCurrentlyOpen()).toBe(false);
+			}));
+			it('Test .getDayStyle()', inject(function(){
+				expect(scope.getDayStyle(moment().add(1, 'days').day())).toEqual({ });
+			}));
+			it('Test .getOpenPanelClass()', inject(function(){
+				expect(scope.getOpenPanelClass()).toBe('panel-danger');
+			}));
+			it('Test .getOpenPanelText()', inject(function(){
+				expect(scope.getOpenPanelText()).toBe('Currently Closed');
+			}));
+		});
     });
 }());
