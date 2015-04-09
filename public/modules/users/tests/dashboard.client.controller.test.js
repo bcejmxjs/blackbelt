@@ -257,14 +257,6 @@
 				});
 				var sampleCourses = [sampleCourse1];
 				scope.sampleCourses = sampleCourses;
-				/*scope.authentication.user = {
-					            firstName: 'Test',
-					            lastName: 'McTesterson',
-					            displayName: 'Testy McTesterson',
-					            email: 'test@test.com',
-					            roles: ['user'],
-								coursesPurchased : [ { courseId : "5500abb9d21dec690fc66fe6", lessonsCompleted : [ "55177ecf960986f53e7ee773" ] } ]
-				};*/
 			}));
 			
 			describe('Tests .getCourseProgress() <10% cases', function(){
@@ -321,7 +313,7 @@
 					expect(scope.progBarType).toEqual("inprog");
         		}));
 			});
-			describe('Tests .getCourseProgress() >=10% and <= 25% cases', function(){
+			describe('Tests .getCourseProgress() > 25% cases', function(){
 				beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_){
 					scope.authentication.user = {
 						            firstName: 'Test',

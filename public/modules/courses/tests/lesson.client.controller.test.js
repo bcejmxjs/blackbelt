@@ -2,9 +2,9 @@
 
 (function() {
 	// Lecture Controller Spec
-	describe('Lecture Controller Tests', function() {
+	describe('Lesson Controller Tests', function() {
 		// Initialize global variables
-		var LectureController,
+		var LessonController,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -45,7 +45,7 @@
 			$location = _$location_;
 
 			// Initialize the Lecture controller.
-			LectureController = $controller('LectureController', {
+			LessonController = $controller('LessonController', {
 				$scope: scope
 			});
 		}));
