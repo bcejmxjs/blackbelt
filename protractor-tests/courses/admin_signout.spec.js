@@ -18,7 +18,7 @@ var MainPage = function() {
 };
 
 describe('Signout', function() {
-	it('Do instructor signout', function() {
+	it('Do admin signout', function() {
 		var mainpage = new MainPage();
 		mainpage.get();
 		mainpage.signout();

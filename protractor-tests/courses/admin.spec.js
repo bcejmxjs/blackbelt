@@ -1,4 +1,4 @@
-//instructor spec
+//admin spec
 
 var CoursePage = function() {
 
@@ -38,7 +38,7 @@ var CoursePage = function() {
 	}
 }
 
-describe('Course page as instructor', function() {
+describe('Course page as admin', function() {
 	var coursePage = new CoursePage();
 	it('Initialize test', function() {
 		browser.waitForAngular();

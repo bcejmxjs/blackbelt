@@ -14,7 +14,10 @@ exports.config = {
     'noAuth.spec.js',
     'instructor_signin.spec.js',
     'instructor.spec.js',
-    'instructor_signout.spec.js'
+    'instructor_signout.spec.js',
+    'admin_signin.spec.js',
+    'admin.spec.js',
+    'admin_signout.spec.js'
   ],
   
   baseUrl: 'http://localhost:3000',
