@@ -45,18 +45,98 @@
             });
         }));
 
-
-        it('$scope.signin() should login with a correct user and password', function() {
-            // Test expected GET request
-            $httpBackend.when('POST', '/auth/signin').respond(200, 'Fred');
-
-            scope.signin();
-            $httpBackend.flush();
-
-            // Test scope value
-            expect(scope.authentication.user).toEqual('Fred');
-            expect($location.url()).toEqual('/dashboard');
-        });
+		describe('Tests $scope.signin() should login as a regular user and & redirect users to dashboard', function(){
+        	it('login with a correct user and password', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['user']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect(scope.authentication.user).toEqual(user);
+        	});
+        	it('redirect to users dasboard', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['user']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect($location.url()).toEqual('/dashboard');
+        	});
+		});
+		
+		describe('Tests $scope.signin() should login as an instructor user and & redirect users to dashboard', function(){
+        	it('login with a correct user and password', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['instructor']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect(scope.authentication.user).toEqual(user);
+        	});
+        	it('redirect to instructor dasboard', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['instructor']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect($location.url()).toEqual('/admindashboard');
+        	});
+		});
+		
+		describe('Tests $scope.signin() should login as an admin user and & redirect users to dashboard', function(){
+        	it('login with a correct user and password', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['admin']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect(scope.authentication.user).toEqual(user);
+        	});
+        	it('redirect to admin dasboard', function() { 
+				var user = {
+		            firstName: 'Fred',
+					roles: ['admin']
+				};
+        	    // Test expected GET request
+        	    $httpBackend.when('POST', '/auth/signin').respond(200, user);
+        	
+        	    scope.signin();
+        	    $httpBackend.flush();
+        	
+        	    // Test scope value
+        	    expect($location.url()).toEqual('/admindashboard');
+        	});
+		});
 
         it('$scope.signin() should fail to log in with nothing', function() {
             // Test expected POST request
