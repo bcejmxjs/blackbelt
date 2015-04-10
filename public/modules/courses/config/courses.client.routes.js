@@ -44,6 +44,10 @@ angular.module('courses').config(['$stateProvider', '$sceDelegateProvider',
         state('LessonError', {
             url: '/error/lesson',
             templateUrl: 'modules/courses/views/lesson-error.client.view.html'
+        }).
+        state('Purchase', {
+            url: '/courses/5500a8d8d21dec690fc66fe4/purchase',
+            templateUrl: 'modules/courses/views/course-purchase.view.html'
         });
 
         $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);

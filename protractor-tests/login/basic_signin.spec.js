@@ -1,11 +1,19 @@
 var SignInPage = function() {
 	// Page object for the sign in page
 
-	this.username_field = element(by.id('username'));
-	this.password_field = element(by.id('password'));
-	this.signin_btn = element(by.buttonText('Sign in'));
+	this.username_field = function() {
+		return element(by.id('username'));
+	};
 
-	var basic = {
+	this.password_field = function() {
+		return element(by.id('password'));
+	};
+
+	this.signin_btn = function() {
+		return element(by.buttonText('Sign in'));
+	};
+
+	var user = {
 		username: 'test',
 		password: 'testuser'
 	};
@@ -16,27 +24,26 @@ var SignInPage = function() {
 
 	// Input custom text into the username field
 	this.setUsername = function(username) {
-		this.username_field.sendKeys(username);
+		this.username_field().sendKeys(username);
 	};
 
 	// Input custom text into password field
 	this.setPassword = function(password) {
-		this.password_field.sendKeys(password);
+		this.password_field().sendKeys(password);
 	};
 
 	// Login as user
 	this.user_signin = function() {
-		this.setUsername(basic.username);
-		this.setPassword(basic.password);
-		this.signin_btn.click();
+		this.setUsername(user.username);
+		this.setPassword(user.password);
+		this.signin_btn().click();
 	};
 
 };
 
+var signin = new  SignInPage();
 describe('Basic user sign in', function() {
-	//--------------------------------------------------
 	it('Do basic user sign in', function() {
-		var signin = new  SignInPage();
 		signin.get();
 		signin.user_signin();
 	});
@@ -53,5 +60,4 @@ describe('Basic user sign in', function() {
 			browser.getCurrentUrl())
 		.toBe(browser.baseUrl + '/#!/');
 	});
-	//--------------------------------------------------
 });
