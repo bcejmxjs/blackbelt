@@ -25,6 +25,7 @@
 }
 
 .front-jumbotron {
+    margin-bottom: 0px;
     color: #f2f2f2;
     background-color: #4E4E4E;
     text-shadow: 0.1em 0.1em 0.2em black;
