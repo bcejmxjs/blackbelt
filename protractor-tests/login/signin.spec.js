@@ -14,7 +14,7 @@ var SignInPage = function() {
 	};
 
 	this.signin_click = function() {
-		this.signin_btn.click();
+		this.signin_btn().click();
 	};
 
 	this.get = function() {

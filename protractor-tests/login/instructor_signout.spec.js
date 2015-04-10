@@ -23,8 +23,8 @@ var Page = function() {
 var page = new Page();
 describe('Instructor signout', function() {
 	it('Do signout', function() {
-		mainpage.get();
-		mainpage.signout();
+		page.get();
+		page.signout();
 	});
 	//--------------------------------------------------
 	it('Sh- remain on the homepage', function() {
