@@ -4,10 +4,11 @@ var CoursePage = function() {
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/courses');
-	};
+	}
 
-	this.btn_addCourse =
-		element(by.buttonText('Add New Course'));
+	this.btn_addCourse = function() {
+		return element(by.buttonText('Add New Course'));
+	}
 
 	// Course items
 	this.course_title = function(ind) {
@@ -15,11 +16,11 @@ var CoursePage = function() {
 			.get(ind)
 			.element(by.tagName('h1'))
 			.element(by.tagName('a'));
-	};
+	}
 	this.course_description = function(ind) {
 		return element.all(by.repeater('course in courses'))
 			.get(ind).element(by.tagName('h4'));
-	};
+	}
 	this.btn_purchase = function(ind) { 
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
@@ -93,7 +94,7 @@ describe('Course page as noAuth user', function() {
 	describe('Add course button', function() {
 		it('Sh- not be visible', function() {
 			expect(
-				coursePage.btn_addCourse
+				coursePage.btn_addCourse()
 				.isDisplayed())
 			.toBeFalsy();
 		});

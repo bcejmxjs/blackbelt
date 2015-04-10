@@ -4,10 +4,11 @@ var CoursePage = function() {
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/courses');
-	};
+	}
 
-	this.btn_addCourse =
-		element(by.buttonText('Add New Course'));
+	this.btn_addCourse = function() {
+		return element(by.buttonText('Add New Course'));
+	}
 
 	// Course items
 	this.course_title = function(ind) {
@@ -15,11 +16,11 @@ var CoursePage = function() {
 			.get(ind)
 			.element(by.tagName('h1'))
 			.element(by.tagName('a'));
-	};
+	}
 	this.course_description = function(ind) {
 		return element.all(by.repeater('course in courses'))
 			.get(ind).element(by.tagName('h4'));
-	};
+	}
 	this.btn_purchase = function(ind) { 
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
@@ -35,65 +36,18 @@ var CoursePage = function() {
 		.get(ind)
 		.element(by.buttonText('Delete'));
 	}
-
-
-	// <--- Modal items --->
-
-	this.modal = function() {
-		return element(by.className('modal-content'));
-	}
-	this.modal_open = function(ind) {
-		this.course_title(ind).click();
-	}
-	this.modal_btnClose = this.modal()
-		.element(by.id('exit'));
-
-	this.modal_close = function() {
-		this.modal_btnClose.click();
-	}
-	this.modal_title = function() {
-		return this.modal()
-		.element(by.className('modal-header'))
-		.element(by.tagName('h3'))
-		.getText();
-	}
-
-	this.modal_videoLink = function() {
-		return this.modal()
-		.element(by.tagName('iframe'))
-		.getAttribute('src');
-	}
-	this.modal_description = function() {
-		return this.modal()
-		.element.all(by.css('.list-group li'))
-		.get(0).getText();
-	}
-	this.modal_instructor = function() {
-		return this.modal()
-		.element.all(by.css('.list-group li'))
-		.get(1).getText();
-	}
-	this.modal_price = function() {
-		return this.modal()
-		.element.all(by.css('.list-group li'))
-		.get(2).element(by.tagName('b')).getText();
-	}
-
-	this.modal_clickPurchase = function() {
-		this.modal()
-		.element(by.buttonText('Purchase')).click();
-	}
-};
+}
 
 describe('Course page as instructor', function() {
 	var coursePage = new CoursePage();
 	it('Initialize test', function() {
+		browser.waitForAngular();
 		coursePage.get();
 	});
 	describe('Add course button', function() {
 		it('Sh- be visible', function() {
 			expect(
-				coursePage.btn_addCourse
+				coursePage.btn_addCourse()
 				.isDisplayed())
 			.toBeTruthy();
 		});
@@ -102,15 +56,15 @@ describe('Course page as instructor', function() {
 	//	There is >= 1 course viewable by noAuth user
 	// 	Otherwise, tests will fail
 	describe('Course0 edit button', function() {
-		it('Sh- not be visible', function() {
+		it('Sh- be visible', function() {
 			expect(
 				coursePage.btn_edit(0)
 				.isDisplayed())
-			.toBeFalsy();
+			.toBeTruthy();
 		});
 	});
 	describe('Course0 delete button', function() {
-		it('Sh- not be visible', function() {
+		it('Sh- be visible', function() {
 			expect(
 				coursePage.btn_delete(0)
 				.isDisplayed())
@@ -147,32 +101,5 @@ describe('Course page as instructor', function() {
 			.toBe(browser.baseUrl + '/#!/error/course');
 		});
 	});
-	describe('Course0 modal', function() {
-		it('Open modal', function() {
-			coursePage.get();
-			coursePage.modal_open(0);
-		});
-		describe('Modal0 title', function(){
-			it('Sh- match the h1 title text for course0', function() {
-				expect(
-					coursePage.modal_title())
-				.toBe('Karate');
-			});
-		});
-		/*
-		describe('Click modal purchase', function() {
-			it('Perform click', function() {
-				coursePage.modal_clickPurchase();
-			});
-			it('Sh- direct to signin page', function() {
-				expect(
-					browser.getCurrentUrl())
-				.toBe(browser.baseUrl + '/#!/signin');
-			});
-		});
-		*/
-		it('Close modal', function() {
-			coursePage.modal_close();
-		});
-	});
+	//Add lesson page testing here
 });

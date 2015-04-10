@@ -12,7 +12,9 @@ exports.config = {
   // protractor is called.
   specs: [
     'noAuth.spec.js',
-    'instructor.spec.js'
+    'instructor_signin.spec.js',
+    'instructor.spec.js',
+    'instructor_signout.spec.js'
   ],
   
   baseUrl: 'http://localhost:3000',
