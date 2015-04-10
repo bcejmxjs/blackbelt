@@ -1,9 +1,8 @@
-<section class="row" data-ng-controller="AuthenticationController">
-	<h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
-    <div class="col-md-4"></div>
-    <div class="col-md-4 text-center">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 text-center">
+<Section class="row" data-ng-controller="AuthenticationController">
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 text-center" style="padding: 20px">
+            <h3 class="text-center">Sign in using your social accounts</h3>
 		    <a href="/auth/facebook" class="undecorated-link">
 			    <button type="button" class="btn btn-block btn-social btn-facebook">
                     <i class="fa fa-facebook"></i> Sign in with Facebook
@@ -22,38 +21,36 @@
                 </button>
 		    </a>
         </div>
-        <div class="col-md-2"></div>
-	</div>
-    <div class="col-md-4"></div>
-	<h3 class="col-md-12 text-center">Or with your account</h3>
-	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
-			<fieldset>
-				<div class="form-group">
-					<div data-ng-show="error" class="text-center text-danger">
-						<div class="alert alert-danger" role="alert">
-	 						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-	 						<span class="sr-only">Error:</span>
-							<strong data-ng-bind="error"></strong>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-				</div>
-				<div class="text-center form-group">
-					<button type="submit" class="btn btn-primary">Sign in</button>&nbsp; or&nbsp;
-					<a href="/#!/signup">Sign up</a>
-				</div>
-				<div class="text-center forgot-password">
-					<a href="/#!/password/forgot">Forgot your password?</a>
-				</div>
-			</fieldset>
-		</form>
-	</div>
+        <div class="col-md-5" style="padding: 20px">
+	        <h3 class="text-center">Or with your account</h3>
+		    <form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
+			    <fieldset style="padding-left: 20px; padding-right: 20px">
+				    <div class="form-group">
+					    <div data-ng-show="error" class="text-center text-danger">
+						    <div class="alert alert-danger" role="alert">
+	 						    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 						    <span class="sr-only">Error:</span>
+							    <strong data-ng-bind="error"></strong>
+						    </div>
+					    </div>
+				    </div>
+				    <div class="form-group">
+					    <label for="username">Username</label>
+					    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+				    </div>
+				    <div class="form-group">
+					    <label for="password">Password</label>
+					    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+				    </div>
+				    <div class="text-center form-group">
+					    <button type="submit" class="btn btn-primary">Sign in</button>&nbsp; or&nbsp;
+					    <a href="/#!/signup">Sign up</a>
+				    </div>
+				    <div class="text-center forgot-password">
+					    <a href="/#!/password/forgot">Forgot your password?</a>
+				    </div>
+			    </fieldset>
+		    </form>
+	    </div>
+    </div>
 </section>

@@ -114,7 +114,7 @@ exports.messageByID = function(req, res, next, id) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-    if (req.messages) {
+    if (req.messages.length) {
         if (req.messages[0].recipientId !== req.user.id) {
             return res.status(403).send({
                 message: 'User is not authorized'
