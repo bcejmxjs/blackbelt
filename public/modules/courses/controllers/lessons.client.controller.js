@@ -35,8 +35,12 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
         };*/
 
         $scope.list = function() {
-            $scope.lessons = Lessons.query({
+            Lessons.query({
                 courseId: $stateParams.courseId
+            }, function(res) {
+                $scope.lessons = res;
+            }, function(error) {
+                $location.path('error/course');
             });
 
             if ($stateParams.courseId) {

@@ -12,7 +12,7 @@ module.exports = function(app) {
         .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.create);
 
     app.route('/lessons/:lessonId')
-        .get(users.requiresLogin, lessons.read)
+        .get(users.requiresLogin, lessons.hasAuthorization, lessons.read)
         .put(users.requiresLogin, users.hasAuthorization(['admin']), lessons.update)
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
