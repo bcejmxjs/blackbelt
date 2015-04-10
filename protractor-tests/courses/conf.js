@@ -12,6 +12,9 @@ exports.config = {
   // protractor is called.
   specs: [
     'noAuth.spec.js',
+    'user_signin.spec.js',
+    'user.spec.js',
+    'user_signout.spec.js',
     'instructor_signin.spec.js',
     'instructor.spec.js',
     'instructor_signout.spec.js',
