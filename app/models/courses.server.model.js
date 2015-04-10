@@ -31,7 +31,7 @@ var CourseSchema = new Schema({
     },
     demo: {
         type: String,
-        default: 'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&autoplay=1',
+        default: 'https://www.youtube.com/embed/TEQnTv31SYo?rel=0&autoplay=1',
         trim: true
     }
 });
