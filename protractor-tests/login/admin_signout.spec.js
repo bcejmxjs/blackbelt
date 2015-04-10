@@ -1,27 +1,28 @@
-var MainPage = function() {
-	// Page object for the sign in page
-	
-	// This code is already fairly readable
-	// 'this' references this function, the SignInPage
-	// These are items on the sign in page:
-	var dropdown_toggle = element(by.css('li.dropdown > a.dropdown-toggle'));
-	var signout_btn = element(by.linkText('Signout'));
+// Generic page object -- interacts with header
+var Page = function() {
+
+	this.dropdown_toggle = function() {
+		return element(by.css('li.dropdown > a.dropdown-toggle'));
+	};
+
+	this.signout_btn = function() {
+		return element(by.linkText('Signout'));
+	};
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/');
-	}
+	};
+
 	this.signout = function() {
 		// Have to click twice for some reason
-		dropdown_toggle.click().click();
-		signout_btn.click();
-	}
-
+		this.dropdown_toggle().click().click();
+		this.signout_btn().click();
+	};
 };
 
+var page = new Page();
 describe('Admin signout', function() {
-	//--------------------------------------------------
 	it('Do signout', function() {
-		var mainpage = new MainPage();
 		mainpage.get();
 		mainpage.signout();
 	});
@@ -38,5 +39,4 @@ describe('Admin signout', function() {
 			browser.getCurrentUrl())
 		.toBe(browser.baseUrl + '/#!/signin');
 	});
-	//--------------------------------------------------
 });
