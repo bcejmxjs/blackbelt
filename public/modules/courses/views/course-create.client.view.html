@@ -16,9 +16,11 @@
                 <div class="controls">
                     <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" >
                 </div>
+
             </div>
             <div class="form-group">
                 <label for="name">Price</label>
+
                 <div class="controls">
                     <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
                 </div>
@@ -34,6 +36,15 @@
                 <div class="controls">
                     <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
                 </div>
+                <!--
+                <label class="control-label" for="name">Description</label>
+
+                <form name="discription" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
+                    <div class="controls">
+                            <textarea class="form-control" required ng-model="course.discription" placeholder="Discription" rows="3"></textarea>
+                    </div>
+                </form>
+            -->
             </div>
         	<div data-ng-show="error" class="text-danger">
         		<strong data-ng-bind="error"></strong>

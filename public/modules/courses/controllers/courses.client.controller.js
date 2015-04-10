@@ -202,6 +202,20 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             return false;
         };
 
+
+        //payment setup
+        $scope.handleStripe = function(status, response){
+            if(response.error) {
+              // there was an error. Fix it.
+            } 
+            else 
+            {
+              // got stripe token, now charge it or smt
+              token = response.id
+            }
+        };
+
+
         // Create new Course
         $scope.create = function() {
             // Create new Course object
