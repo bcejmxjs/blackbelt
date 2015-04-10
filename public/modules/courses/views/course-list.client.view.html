@@ -20,11 +20,11 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h1 style="margin: 12px"> 
+                        <h1 class="course-heading"> 
                             <a ng-click="modalView('md', course)">
                                 {{course.name}}
                             </a>
-                            <div class="btn-group pull-right">                  
+                            <div class="btn-group pull-right" style="padding-top: 5px;">                  
                                 <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
                                 <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                             </div>

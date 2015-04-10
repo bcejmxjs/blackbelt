@@ -1,6 +1,11 @@
 .badge-important {
     background-color: #b94a48;
 }
+.course-heading {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
 h1,
 h2,
 h3 {

@@ -229,7 +229,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
                 }; //that nice green success!
             } else {
                 return {
-                    'background-color': '#E8E8E8'
+                    'background-color': '#F5F5F5'
                 }; //returns a greyish color
             }
         };
