@@ -85,17 +85,17 @@ var CoursePage = function() {
 	}
 };
 
-describe('Course page as noAuth user', function() {
+describe('Course page as instructor', function() {
 	var coursePage = new CoursePage();
 	it('Initialize test', function() {
 		coursePage.get();
 	});
 	describe('Add course button', function() {
-		it('Sh- not be visible', function() {
+		it('Sh- be visible', function() {
 			expect(
 				coursePage.btn_addCourse
 				.isDisplayed())
-			.toBeFalsy();
+			.toBeTruthy();
 		});
 	});
 	// ASSUMPTION:
@@ -114,9 +114,10 @@ describe('Course page as noAuth user', function() {
 			expect(
 				coursePage.btn_delete(0)
 				.isDisplayed())
-			.toBeFalsy();
+			.toBeTruthy();
 		});
 	});
+	/*
 	describe('Clicking purchase', function() {
 		it('Perform click', function() {
 			coursePage.btn_purchase(0).click();
@@ -127,15 +128,7 @@ describe('Course page as noAuth user', function() {
 			.toBe(browser.baseUrl + '/#!/signin');
 		});
 	});
-	describe('/create page', function() {
-		it('Sh- not be accessible', function() {
-			coursePage.get();
-			browser.get(browser.baseUrl + '/#!/courses/create');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/courses');
-		});
-	});
+	*/
 	describe('/course/ page',function () {
 		it('Sh- direct to course error page', function() {
 			//Assuming user will be directed to course error page
@@ -166,6 +159,7 @@ describe('Course page as noAuth user', function() {
 				.toBe('Karate');
 			});
 		});
+		/*
 		describe('Click modal purchase', function() {
 			it('Perform click', function() {
 				coursePage.modal_clickPurchase();
@@ -175,6 +169,10 @@ describe('Course page as noAuth user', function() {
 					browser.getCurrentUrl())
 				.toBe(browser.baseUrl + '/#!/signin');
 			});
+		});
+		*/
+		it('Close modal', function() {
+			coursePage.modal_close();
 		});
 	});
 });
