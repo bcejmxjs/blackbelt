@@ -44,7 +44,7 @@ describe('Admin signin', function() {
 	it('Sh- redirect to the dashboard', function() {			
 		expect(
 			browser.getCurrentUrl())
-		.toBe(browser.baseUrl + '/#!/dashboard');
+		.toBe(browser.baseUrl + '/#!/admindashboard');
 	});
 	//--------------------------------------------------
 	it('Sh- not allow access of sign in page', function() {

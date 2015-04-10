@@ -176,8 +176,5 @@ describe('Course page as noAuth user', function() {
 				.toBe(browser.baseUrl + '/#!/signin');
 			});
 		});
-		it('Close modal', function() {
-			coursePage.modal_close();
-		});
 	});
 });
