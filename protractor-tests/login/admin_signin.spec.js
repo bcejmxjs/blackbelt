@@ -41,7 +41,7 @@ describe('Admin signin', function() {
 		signin.admin_signin();
 	});
 	//--------------------------------------------------
-	it('Sh- redirect to the dashboard', function() {			
+	it('Sh- redirect to the admin dashboard', function() {			
 		expect(
 			browser.getCurrentUrl())
 		.toBe(browser.baseUrl + '/#!/admindashboard');
