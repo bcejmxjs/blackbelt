@@ -238,12 +238,6 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
             }
         };
 
-        $scope.courseId = $stateParams.courseId;
-        //useful for getting name of course
-        $scope.course = Courses.get({
-            courseId: $scope.courseId
-        });
-
         // Create new Lesson
         $scope.create = function() {
             // Create new Lesson object
