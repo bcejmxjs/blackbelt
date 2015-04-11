@@ -1,26 +1,24 @@
-//Sign out
-
-var MainPage = function() {
-	// Page object for the sign in page
+//User sign out
+var Page = function() {
 	
-	var dropdown_toggle = element(by.css('li.dropdown > a.dropdown-toggle'));
-	var signout_btn = element(by.linkText('Signout'));
+	this.dropdown_toggle = function() {
+		return element(by.css('li.dropdown > a.dropdown-toggle'));
+	};
 
-	this.get = function() {
-		browser.get(browser.baseUrl + '/#!/');
-	}
+	this.signout_btn = function() {
+		return element(by.linkText('Signout'));
+	};
+
 	this.signout = function() {
 		// Have to click twice for some reason
-		dropdown_toggle.click().click();
-		signout_btn.click();
-	}
-
+		this.dropdown_toggle().click().click();
+		this.signout_btn().click();
+	};
 };
 
+var page = new Page();
 describe('Signout', function() {
-	it('Do signout', function() {
-		var mainpage = new MainPage();
-		mainpage.get();
-		mainpage.signout();
+	it('Do user signout', function() {
+		page.signout();
 	});
 });

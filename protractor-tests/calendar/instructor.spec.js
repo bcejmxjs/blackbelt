@@ -9,55 +9,85 @@ var CalendarPage = function() {
 	this.title = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h1')).getText();
 	};
+
 	this.date = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h4')).getText();
 	};
+
 	this.description = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('p')).getText();
 	};
+
 	this.deleteEvent = function(ind) {
 		element.all(by.repeater('event in events')).get(ind).element(by.buttonText('Delete')).click();
 	};		
 
 	this.submit = function() {
-		this.btnSubmit.click();
-	}
+		this.btnSubmit().click();
+	};
+
 	this.setEventName = function(name) {
-		this.tbEventName.clear();
-		this.tbEventName.sendKeys(name);
-	}
+		this.tbEventName().clear();
+		this.tbEventName().sendKeys(name);
+	};
+
 	this.setEventDescription = function(description) {
-		this.tbEventDescription.clear();
-		this.tbEventDescription.sendKeys(description)
-	}
+		this.tbEventDescription().clear();
+		this.tbEventDescription().sendKeys(description)
+	};
+
 	this.setDate = function(date) {
-		this.tbDate.clear();
-		this.tbDate.sendKeys(date);
-	}
+		this.tbDate().clear();
+		this.tbDate().sendKeys(date);
+	};
+
 	this.toggleAMPM = function() {
-		this.btnAMPM.click();
-	}
+		this.btnAMPM().click();
+	};
+
 	this.setHour = function(hour) {
-		this.tbHour.clear();
-		this.tbHour.sendKeys(hour);
-	}
+		this.tbHour().clear();
+		this.tbHour().sendKeys(hour);
+	};
+
 	this.setMinute = function(minute) {
-		this.tbMinute.clear();
-		this.tbMinute.sendKeys(minute);
-	}
+		this.tbMinute().clear();
+		this.tbMinute().sendKeys(minute);
+	};
 
-	this.tbEventName = element(by.model('event.title'));
-	this.tbEventDescription = element(by.model('event.body'));
-	this.btnSubmit = element(by.buttonText('Submit'));
-	this.tbDate = element(by.model('dt'));
-	this.tbHour = element(by.model('hours'));
-	this.tbMinute = element(by.model('minutes'));
-	this.btnAMPM = element(by.css('[ng-click="toggleMeridian()"]'));
+	this.tbEventName = function() {
+		return element(by.model('event.title'));
+	};
 
+	this.tbEventDescription = function() {
+		return element(by.model('event.body'));
+	};
+
+	this.btnSubmit = function() {
+		return element(by.buttonText('Submit'));
+	};
+
+	this.tbDate = function() {
+		return element(by.model('dt'));
+	};
+
+	this.tbHour = function() {
+		return element(by.model('hours'));
+	};
+
+	this.tbMinute = function() {
+		return element(by.model('minutes'));
+	};
+	
+	this.btnAMPM = function() {
+		return element(by.css('[ng-click="toggleMeridian()"]'));
+	};
 };
+
 var topEventName;
 var topEventDescription;
 var topEventDate;
+
 describe('Simple event functionality', function() {
 	var calendarPage = new CalendarPage();
 	describe('Initalize calendar testing', function() {
@@ -66,7 +96,6 @@ describe('Simple event functionality', function() {
 			calendarPage.get();
 		});
 		it('Get top event properties', function() {
-			browser.waitForAngular();
 			topEventName = calendarPage.title(0);
 			topEventDescription = calendarPage.description(0);
 			topEventDate = calendarPage.date(0);

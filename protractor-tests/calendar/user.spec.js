@@ -24,7 +24,6 @@ describe('As a basic user', function() {
 		it('Get calendar page', function() {
 			browser.waitForAngular();
 			calendarPage.get();
-			browser.waitForAngular();
 		});
 	});
 	describe('A user on calendar page', function() {

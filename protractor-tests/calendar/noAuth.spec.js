@@ -17,9 +17,11 @@ var CalendarPage = function() {
 	};	
 
 };
+
 var topEventName;
 var topEventDescription;
 var topEventDate;
+
 describe('As an unauthorized user', function() {
 	var calendarPage = new CalendarPage();
 	describe('Initalize calendar testing', function() {
