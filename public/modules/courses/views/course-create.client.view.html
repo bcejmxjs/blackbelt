@@ -1,58 +1,74 @@
 <section data-ng-controller="CoursesController" data-ng-init="redirect()">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <div class="page-header">
-            <h1 style="text-align: center;">New Course</h1>
-        </div>
-        <fieldset>
-            <div class="form-group">
-                <label for="name">Course Name</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
-                </div>
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="page-header">
+                <h1 style="text-align: center;">New Course</h1>
             </div>
-            <div class="form-group">
-                <label for="name">Description</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" >
-                </div>
-
-            </div>
-            <div class="form-group">
-                <label for="name">Price</label>
-
-                <div class="controls">
-                    <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="name">Instructor</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="First Last" >
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="name">Video Demo</label>
-                <div class="controls">
-                    <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
-                </div>
-                <!--
-                <label class="control-label" for="name">Description</label>
-
-                <form name="discription" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
+            <fieldset>
+                <div class="form-group">
+                    <label for="name">Course Name</label>
                     <div class="controls">
-                            <textarea class="form-control" required ng-model="course.discription" placeholder="Discription" rows="3"></textarea>
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
                     </div>
-                </form>
-            -->
-            </div>
-        	<div data-ng-show="error" class="text-danger">
-        		<strong data-ng-bind="error"></strong>
-        	</div>
-        </fieldset>
+                </div>
+                <div class="form-group">
+                    <label for="name">Description</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Price</label>
 
-        <div class="modal-footer">
-            <button class="btn btn-success" ng-click="create();ok()">Save</button>
-            <a class="btn btn-danger pull-right" href="/#!/courses" role="setting">Cancel</a>
+                    <div class="controls">
+                        <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Instructor</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="course.instructor" id="instructor" class="form-control" placeholder="First Last" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Video Demo</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Style</label>
+                    <select class="form-control" id="sel1" data-ng-model="course.style">
+                        <option selected="selected">Karate</option>
+                        <option>Kenpō</option>
+                        <option>Jujitsu</option>
+                        <option>Ninjitsu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Belt</label>
+                    <select class="form-control" id="sel1" data-ng-model="course.belt">
+                        <option selected="selected">White</option>
+                        <option>Yellow</option>
+                        <option>Gold</option>
+                        <option>Orange</option>
+                        <option>Green</option>
+                        <option>Blue</option>
+                        <option>Purple</option>
+                        <option>Brown</option>
+                        <option>Red</option>
+                        <option>Black</option>
+                    </select>
+                </div>
+        	    <div data-ng-show="error" class="text-danger">
+        		    <strong data-ng-bind="error"></strong>
+        	    </div>
+            </fieldset>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="create();ok()">Save</button>
+                <a class="btn btn-danger pull-right" href="/#!/courses" role="setting">Cancel</a>
+            </div>
         </div>
+    </div>
 </section>

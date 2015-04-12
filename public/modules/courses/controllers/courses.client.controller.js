@@ -222,7 +222,9 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 description: this.description,
                 price: this.price,
                 instructor: this.instructor,
-                demo: this.demo
+                demo: this.demo,
+                style: this.style,
+                belt: this.belt
             });
 
             // Redirect after save
@@ -235,6 +237,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 this.price = '';
                 this.instructor = '';
                 this.demo = '';
+                // this.style = 'Karate';
+                // this.belt = 'White';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
