@@ -33,6 +33,16 @@ var CourseSchema = new Schema({
         type: String,
         default: 'https://www.youtube.com/embed/TEQnTv31SYo?rel=0&autoplay=1',
         trim: true
+    },
+    style: {
+        type: String,
+        enum: ['Karate', 'Kenpō', 'Jujitsu', 'Ninjitsu'],
+        default: 'Karate'
+    },
+    belt: {
+        type: String,
+        enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
+        default: 'White'
     }
 });
 

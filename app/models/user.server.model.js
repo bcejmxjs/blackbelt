@@ -99,6 +99,21 @@ var UserSchema = new Schema({
         }],
         default: []
     },
+    belts: {
+        type: [{
+            style: {
+                type: String,
+                enum: ['Karate', 'Kenpō', 'Jujitsu', 'Ninjitsu'],
+                default: 'Karate'
+            },
+            belt: {
+                type: String,
+                enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
+                default: 'White'
+            }
+        }],
+        default: []
+    },
     updated: {
         type: Date
     },
