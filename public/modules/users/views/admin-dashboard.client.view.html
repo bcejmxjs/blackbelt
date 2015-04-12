@@ -1,11 +1,11 @@
 <section data-ng-controller="DashboardController" ng-init="submissionsList(); usersList()">
     <div class="container">
-         <div class="page-header">
-                <h1 style="text-align: center;">My Dashboard</h1>
-         </div>
+        <div class="page-header">
+            <h1 style="text-align: center;">My Dashboard</h1>
+        </div>
         <div class="col-md-8">
             <!-- <h2 style="text-align: center; margin-top: 0px">Notifications </h2> -->
-           
+            
             <div data-ng-show="!submissions.length">
                 <h3 style="text-align: center; color: #b0b0b0"> Your inbox is empty! :) </h3>
             </div>
@@ -40,12 +40,23 @@
             </div>
         </div>
         <div class="col-md-4">
-             <div class="form-group">
-            <input type="text" class="form-control" ng-model="searchText" aria-label="...">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="searchText" aria-label="...">
             </div>
             <div class="panel panel-default" data-ng-repeat="user in users | filter:searchText">
                 <div class="panel-body">
-                    {{ user.displayName }}
+                    <h3 style="margin: 0px">{{ user.displayName }}</h3>
+                    <h4 style="margin-bottom: 0px"><i>{{ user.username }}</i> &nbsp <font color="#ccc">|</font> &nbsp <b>Red Belt</b>
+                        <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+		                    <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+		                </button>
+		                <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1">
+		                    <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+		                </button>
+                        </div>
+                    </h4>
+                    </table>
                 </div>
             </div>
         </div>
