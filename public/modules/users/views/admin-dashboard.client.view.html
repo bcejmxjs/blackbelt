@@ -1,11 +1,11 @@
-<section data-ng-controller="DashboardController" ng-init="submissionsList()">
+<section data-ng-controller="DashboardController" ng-init="submissionsList(); usersList()">
     <div class="container">
-        <div class="col-md-2"></div>
+         <div class="page-header">
+                <h1 style="text-align: center;">My Dashboard</h1>
+         </div>
         <div class="col-md-8">
             <!-- <h2 style="text-align: center; margin-top: 0px">Notifications </h2> -->
-            <div class="page-header">
-                <h1 style="text-align: center;">My Dashboard</h1>
-            </div>
+           
             <div data-ng-show="!submissions.length">
                 <h3 style="text-align: center; color: #b0b0b0"> Your inbox is empty! :) </h3>
             </div>
@@ -37,6 +37,16 @@
 	                	<div class="panel-footing"></div>
 	                </div>
             	</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+             <div class="form-group">
+            <input type="text" class="form-control" ng-model="searchText" aria-label="...">
+            </div>
+            <div class="panel panel-default" data-ng-repeat="user in users | filter:searchText">
+                <div class="panel-body">
+                    {{ user.displayName }}
+                </div>
             </div>
         </div>
     </div>

@@ -37,6 +37,10 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             $scope.lessons = Lessons.getAll();
         };
 
+        $scope.usersList = function() {
+            $scope.users = Users.query();
+        };
+
         // Formats title of message body.
         var formatTitle = function(decision) {
             var decisionText = ' denied ';
