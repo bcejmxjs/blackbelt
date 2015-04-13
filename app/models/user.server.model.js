@@ -101,15 +101,15 @@ var UserSchema = new Schema({
     },
     belts: {
         type: [{
+            color: {
+                type: String,
+                enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
+                default: 'White'
+            },
             style: {
                 type: String,
                 enum: ['Karate', 'Kenpō', 'Jujitsu', 'Ninjitsu'],
                 default: 'Karate'
-            },
-            belt: {
-                type: String,
-                enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
-                default: 'White'
             }
         }],
         default: []

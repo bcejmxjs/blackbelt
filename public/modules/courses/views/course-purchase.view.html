@@ -6,11 +6,11 @@
         <fieldset>
             <form stripe-form="handleStripe" name="myForm">
                 <div class="form-group">    
-                    <label for="">Name on card </label>
+                    <label for="">Name</label>
                     <input type="text" class="input-block-level form-control">
                 </div>
                 <div class="form-group">
-                    <label for="">Card number</label>
+                    <label for="">Card</label>
                     <input type="text" class="input-block-level form-control" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
                 </div>
                 <div class="col-xs-6" style="padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:5px">
