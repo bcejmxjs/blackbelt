@@ -157,6 +157,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             };
         };
 
+
         // Open a modal window to View a single course record
         $scope.modalView = function(size, selectedCourse) {
 
@@ -230,19 +231,64 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             });
         };
 
+
         // Check to see if a course has already been purchased.
         $scope.isCoursePurchased = function(purchasedCourseId) {
             if (Authentication.user === '') {
                 return false;
             }
+            // if (Authentication.user.roles.indexOf('instructor') > -1 ||
+            //         Authentication.user.roles.indexOf('admin') > -1) {
+            //         modalFlag = false;
+            // }
             for (var a = 0; a != Authentication.user.coursesPurchased.length; a++) {
+                if (Authentication.user.roles.indexOf('instructor') > -1 ||
+                    Authentication.user.roles.indexOf('admin') > -1) {
+                    return true;
+                }
                 if (Authentication.user.coursesPurchased[a].courseId == purchasedCourseId) {
                     return true;
                 }
+               
             }
             return false;
         };
 
+
+        // Open a modal window to Purchase a single course record
+        $scope.modalPurchase = function(size, selectedCourse) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'modules/courses/views/course-purchase.view.html',
+                controller: ModalPurchaseCtrl,
+                size: size,
+                resolve: {
+                    course: function() {
+                        return selectedCourse;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+        var ModalPurchaseCtrl = function($scope, $modalInstance, course) {
+            $scope.course = course;
+
+            $scope.ok = function() {
+                $modalInstance.close($scope.course);
+                $state.reload();
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        };
 
         //payment setup
         $scope.handleStripe = function(status, response) {

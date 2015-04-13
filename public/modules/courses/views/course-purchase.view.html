@@ -1,43 +1,47 @@
 <div class="container" ng-controller="CoursesController">
-   
-      <div class="row">
-        <div class="span4 offset4">
-          <div class="row">
-            
+    <div class="form-group">
             <div class="span4">
               <h3>Shut up and take my money!</h3>
-            </div>
-            
+            </div>   
             <form stripe-form="handleStripe" name="myForm">
-
+    </div>
+    <div class="form-group">
               <div class="span3">
                 <label for="">Card number</label>
                 <input type="text" class="input-block-level form-control" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
               </div>
-              
+      </div>
+      <div class="form-group">        
               <div class="span1">
                 <label for="">Expiry</label>
                 <input type="text" class="input-block-level form-control" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
               </div>
-              
+      </div>
+      <div class="form-group">    
               <div class="span3">
                 <label for="">Name on card </label>
                 <input type="text" class="input-block-level form-control">
               </div>
-              
-              <div class="span1">
+         </div>
+         <div class="form-group">     
+            
                 <label for="">CVC</label>
+                <div class="controls">
                 <input type="text" class="input-block-level form-control" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type"/>
-              </div>
-              
+                </div>
+          </div>
+          <div class="form-group">     
               <div class="span4">
                 <button type="submit" class="btn btn-primary btn-large">Submit</button>
+                <button class="btn btn-danger btn=xs" data-ng-click="purchaseCourse(course._id); ok()">test purchase</button>
+                 <!-- <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="purchaseCourse(course._id)">
+                            Purchase
+                        </button> -->
+               <button class="btn btn-default btn=xs" ng-click="cancel()">Cancel</button>
               </div>
+            </div>
             </form>
-
-          </div>
-        </div>
-      </div>
+  
 </div>
 
 

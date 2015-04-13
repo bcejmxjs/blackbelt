@@ -44,10 +44,11 @@
                             {{course.description}}
                         </h4>
                     </div>
-                    <div class="col-sm-2" style="padding-top: 3px; padding-right: 0px; padding-left: 0px" data-ng-show="!isCoursePurchased(course._id)">
-                        <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="purchaseCourse(course._id)">
+                    <div class="col-sm-2" style="padding-top: 3px; padding-right: 0px; padding-left: 0px" data-ng-show="!isCoursePurchased(course._id) ">
+                        <!-- <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="purchaseCourse(course._id)">
                             Purchase
-                        </button>
+                        </button> -->
+                        <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="modalPurchase('lg', course)"> Purchase </button>
                     </div>
                 </div>    
             </div>
