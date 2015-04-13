@@ -20,7 +20,6 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Price</label>
-
                     <div class="controls">
                         <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
                     </div>
@@ -40,7 +39,8 @@
                 <div class="form-group">
                     <label for="sel1">Style</label>
                     <select class="form-control" id="sel1" data-ng-model="style">
-                        <option>Karate</option>
+                        <option style="display:none" value="">Select a style...</option>
+                        <option >Karate</option>
                         <option>Kenpō</option>
                         <option>Jujitsu</option>
                         <option>Ninjitsu</option>
@@ -49,6 +49,7 @@
                 <div class="form-group">
                     <label for="sel1">Belt</label>
                     <select class="form-control" id="sel1" data-ng-model="belt">
+                        <option style="display:none" value="">Select a color...</option>
                         <option>White</option>
                         <option>Yellow</option>
                         <option>Gold</option>

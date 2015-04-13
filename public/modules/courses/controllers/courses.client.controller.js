@@ -4,13 +4,43 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
     function($scope, $stateParams, Authentication, Users, Courses, $modal, $log, $sce, $location, $state) {
         // Allows us to debug scope using dev tools.
 
-
         window.MY_SCOPE = $scope;
 
         $scope.authentication = Authentication;
 
+        $scope.belts = {};
+
         $scope.find = function() {
-            $scope.courses = Courses.query();
+            Courses.query(function(res) {
+                if (Authentication.user) {
+                    if (Authentication.user.roles.indexOf('admin') > -1) {
+                        $scope.courses = res;
+                    } else {
+                        var beltMap = createBeltMap();
+                        Authentication.user.belts.forEach(function(belt) {
+                            $scope.belts['belt.style'] = beltMap[belt.color];
+                        });
+                        var authCourses = [];
+                        res.forEach(function(course) {
+                            if ($scope.belts[course.style] === undefined &&
+                                course.belt.level == 1) {
+                                authCourses.push(course);
+                            } else if ($scope.belts[course.style] + 1 == course.belt.level) {
+                                authCourses.push(course);
+                            }
+                        });
+                        $scope.courses = authCourses;
+                    }
+                } else {
+                    var noAuthCourses = [];
+                    res.forEach(function(course) {
+                        if (course.belt.level == 1) {
+                            noAuthCourses.push(course);
+                        }
+                    });
+                    $scope.courses = noAuthCourses;
+                }
+            });
         };
 
         // Redirect's users trying to access the create page back to Courses.
@@ -19,6 +49,15 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 $location.path('/courses');
             } else if (Authentication.user.roles.indexOf('admin') == -1) {
                 $location.path('/courses');
+            }
+        };
+
+
+        $scope.getUserBelts = function() {
+            if (Authentication.user) {
+                Authentication.user.belts.forEach(function(belt) {
+                    $scope.belts['belt.style'] = belt.color;
+                });
             }
         };
 
@@ -258,8 +297,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 this.price = '';
                 this.instructor = '';
                 this.demo = '';
-                // this.style = 'Karate';
-                // this.belt = 'White';
+                this.style = '';
+                this.belt = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -295,6 +334,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
         };
     }
 ]);
+
+
 
 // courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
 //     function($scope, Courses, User, $stateParams, Authentication) {
