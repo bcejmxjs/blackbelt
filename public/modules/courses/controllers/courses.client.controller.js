@@ -267,6 +267,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 
         $scope.update = function(updatedCourse) {
             var course = updatedCourse;
+            var beltMap = createBeltMap();
+            course.belt.level = beltMap[course.belt.color];
 
             course.$update(function() {
 

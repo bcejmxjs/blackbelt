@@ -34,6 +34,29 @@
                     <input type="text" data-ng-model="course.demo" id="demo" class="form-control" placeholder="demo">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="sel1">Style</label>
+                <select class="form-control" id="sel1" data-ng-model="course.style">
+                    <option>Karate</option>
+                    <option>Kenpō</option>
+                    <option>Jujitsu</option>
+                    <option>Ninjitsu</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Belt</label>
+                <select class="form-control" id="sel1" data-ng-model="course.belt.color">
+                    <option>White</option>
+                    <option>Yellow</option>
+                    <option>Gold</option>
+                    <option>Orange</option>
+                    <option>Green</option>
+                    <option>Blue</option>
+                    <option>Purple</option>
+                    <option>Brown</option>
+                    <option>Red</option>
+                    <option>Black</option>
+                </select>
             </div>
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
@@ -47,25 +70,25 @@
 </section>
 
 <!-- 
-    <div class="page-header">
-        <h1>Edit Course</h1>
-    </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
-            <fieldset>
+<div class="page-header">
+<h1>Edit Course</h1>
+</div>
+<div class="col-md-12">
+<form class="form-horizontal" data-ng-submit="update()" novalidate>
+<fieldset>
 
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
-    </div> -->
+<div class="form-group">
+<label for="name">Name</label>
+<div class="controls">
+<input type="text" data-ng-model="course.name" id="name" class="form-control" placeholder="Name" required>
+</div>
+</div>
+<div class="form-group">
+<input type="submit" value="Update" class="btn btn-default">
+</div>
+<div data-ng-show="error" class="text-danger">
+<strong data-ng-bind="error"></strong>
+</div>
+</fieldset>
+</form>
+</div> -->

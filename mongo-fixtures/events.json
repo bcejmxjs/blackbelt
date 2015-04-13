@@ -1,4 +1,4 @@
-{"_id":{"$oid":"54e56d208baa00e64655113d"},"body":"We're making skewered lamb!","date":{"$date":"2015-03-12T04:00:00.000Z"},"title":"Barbeque"}
-{"_id":{"$oid":"54e56d478baa00e64655113e"},"body":"Chuck Norris is coming on over to say hello!","date":{"$date":"2015-03-25T04:00:00.000Z"},"title":"Chuck Norris Visit"}
-{"_id":{"$oid":"54e56d778baa00e64655113f"},"body":"Who's got the best chops? We'll find out!","date":{"$date":"2015-05-13T04:00:00.000Z"},"title":"Karate Chop Contest"}
-{"_id":{"$oid":"54e63fe3fb6bb5532a4b10d1"},"body":"We're flying kites! It will be a blast. Bring like five friends","date":{"$date":"2015-03-22T04:00:00.000Z"},"title":"Kite Flying Ceremony"}
+{ "_id" : { "$oid" : "54e56d208baa00e64655113d" }, "body" : "We're making skewered lamb!", "date" : { "$date" : "2015-03-12T00:00:00.000-0400" }, "title" : "Barbeque" }
+{ "_id" : { "$oid" : "54e56d478baa00e64655113e" }, "body" : "Chuck Norris is coming on over to say hello!", "date" : { "$date" : "2015-03-25T00:00:00.000-0400" }, "title" : "Chuck Norris Visit" }
+{ "_id" : { "$oid" : "54e56d778baa00e64655113f" }, "body" : "Who's got the best chops? We'll find out!", "date" : { "$date" : "2015-05-13T00:00:00.000-0400" }, "title" : "Karate Chop Contest" }
+{ "_id" : { "$oid" : "54e63fe3fb6bb5532a4b10d1" }, "body" : "We're flying kites! It will be a blast. Bring like five friends", "date" : { "$date" : "2015-03-22T00:00:00.000-0400" }, "title" : "Kite Flying Ceremony" }
