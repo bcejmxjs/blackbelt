@@ -40,9 +40,22 @@ var CourseSchema = new Schema({
         default: 'Karate'
     },
     belt: {
-        type: String,
-        enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
-        default: 'White'
+        type: {
+            color: {
+                type: String,
+                enum: ['White', 'Yellow', 'Gold', 'Orange', 'Green', 'Blue', 'Purple', 'Brown', 'Red', 'Black'],
+                default: 'White'
+            },
+            level: {
+                value: Number,
+                default: 1,
+                min: 1
+            }
+        },
+        default: {
+            color: 'White',
+            level: 1
+        }
     }
 });
 

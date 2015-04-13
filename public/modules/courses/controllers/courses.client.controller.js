@@ -3,6 +3,8 @@
 angular.module('courses').controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Users', 'Courses', '$modal', '$log', '$sce', '$location', '$state',
     function($scope, $stateParams, Authentication, Users, Courses, $modal, $log, $sce, $location, $state) {
         // Allows us to debug scope using dev tools.
+
+
         window.MY_SCOPE = $scope;
 
         $scope.authentication = Authentication;
@@ -213,10 +215,26 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             }
         };
 
+        var createBeltMap = function() {
+            var beltMap = {};
+            beltMap['White'] = 1;
+            beltMap['Yellow'] = 2;
+            beltMap['Gold'] = 3;
+            beltMap['Orange'] = 4;
+            beltMap['Green'] = 5;
+            beltMap['Blue'] = 6;
+            beltMap['Purple'] = 7;
+            beltMap['Brown'] = 8;
+            beltMap['Red'] = 9;
+            beltMap['Black'] = 10;
+            return beltMap;
+        };
 
         // Create new Course
         $scope.create = function() {
             // Create new Course object
+            var beltMap = createBeltMap();
+
             var course = new Courses({
                 name: this.name,
                 description: this.description,
@@ -224,7 +242,10 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 instructor: this.instructor,
                 demo: this.demo,
                 style: this.style,
-                belt: this.belt
+                belt: {
+                    type: this.belt,
+                    level: beltMap[this.belt]
+                }
             });
 
             // Redirect after save
