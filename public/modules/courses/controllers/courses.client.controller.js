@@ -18,12 +18,11 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                     } else {
                         var beltMap = createBeltMap();
                         Authentication.user.belts.forEach(function(belt) {
-                            $scope.belts['belt.style'] = beltMap[belt.color];
+                            $scope.belts[belt.style] = beltMap[belt.color];
                         });
                         var authCourses = [];
                         res.forEach(function(course) {
-                            if ($scope.belts[course.style] === undefined &&
-                                course.belt.level == 1) {
+                            if ($scope.belts[course.style] === undefined) {
                                 authCourses.push(course);
                             } else if ($scope.belts[course.style] + 1 == course.belt.level) {
                                 authCourses.push(course);
@@ -249,7 +248,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 if (Authentication.user.coursesPurchased[a].courseId == purchasedCourseId) {
                     return true;
                 }
-               
+
             }
             return false;
         };

@@ -113,10 +113,10 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                         }
                     });
 
-                    Courses.get({
-                        courseId: msgSubmission.courseId
-                    }, function(response) {
-                        if (lessonCount == lessonsCompleted) {
+                    if (lessonCount == lessonsCompleted) {
+                        Courses.get({
+                            courseId: msgSubmission.courseId
+                        }, function(response) {
                             if (!Authentication.user.belts.length) {
                                 Authentication.user.belts.push({
                                     color: response.belt.color,
@@ -137,16 +137,25 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                                     });
                                 }
                             }
-                        }
-                    });
-                    // Save those updates to the db!
-                    var user = new Users(Authentication.user);
-                    user.$update(function(response) {
-                        $scope.success = true;
-                        Authentication.user = response;
-                    }, function(response) {
-                        $scope.error = response.data.message;
-                    });
+                            // Save those updates to the db!
+                            var user = new Users($scope.authentication.user);
+                            user.$update(function(response) {
+                                $scope.success = true;
+                                Authentication.user = response;
+                            }, function(response) {
+                                $scope.error = response.data.message;
+                            });
+                        });
+                    } else {
+                        // Save those updates to the db!
+                        var user = new Users($scope.authentication.user);
+                        user.$update(function(response) {
+                            $scope.success = true;
+                            Authentication.user = response;
+                        }, function(response) {
+                            $scope.error = response.data.message;
+                        });
+                    }
                 });
             }
             // Remove the message and reload the state.
