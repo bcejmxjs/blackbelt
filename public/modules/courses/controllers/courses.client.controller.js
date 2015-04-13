@@ -22,7 +22,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                         });
                         var authCourses = [];
                         res.forEach(function(course) {
-                            if ($scope.belts[course.style] === undefined) {
+                            if ($scope.belts[course.style] === undefined && course.belt.level == 1) {
                                 authCourses.push(course);
                             } else if ($scope.belts[course.style] + 1 == course.belt.level) {
                                 authCourses.push(course);

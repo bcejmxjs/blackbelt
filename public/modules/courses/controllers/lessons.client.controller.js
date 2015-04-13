@@ -204,6 +204,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
         $scope.grabLessonsCompleted = function() {
             // Get the lessons completed for $scope particular course.
 
+            $scope.lessonsCompleted = [];
             //Step 1: Find $scope Course in Courses Purchased
             if (Authentication.user.coursesPurchased) {
                 for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
@@ -218,7 +219,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
             if (Authentication.user.roles.indexOf('admin') > -1) {
                 console.log('course/' + $stateParams.courseId + '/' + lesson._id);
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
-            } else if (lesson.position <= $scope.lessonsCompleted.length + 1) {
+            } else if (lesson.position <= ($scope.lessonsCompleted.length + 1)) {
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
             }
         };
