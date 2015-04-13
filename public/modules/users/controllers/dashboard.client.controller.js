@@ -97,12 +97,48 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     submissionId: message.submissionId
                 }, function(msgSubmission) {
                     // Update coursesPurchased
+                    var lessonsCompleted = 0;
                     for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
                         if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
                             Authentication.user.coursesPurchased[i].lessonsCompleted
                                 .push(msgSubmission.lessonId);
+                            lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted.length;
                         }
                     }
+
+                    var lessonCount = 0;
+                    $scope.lessons.forEach(function(lesson) {
+                        if (lesson.courseId == msgSubmission.courseId) {
+                            lessonCount++;
+                        }
+                    });
+
+                    Courses.get({
+                        courseId: msgSubmission.courseId
+                    }, function(response) {
+                        if (lessonCount == lessonsCompleted) {
+                            if (!Authentication.user.belts.length) {
+                                Authentication.user.belts.push({
+                                    color: response.belt.color,
+                                    style: response.style
+                                });
+                            } else {
+                                var found = false;
+                                Authentication.user.belts.forEach(function(belt, index, belts) {
+                                    if (belt.style == response.style) {
+                                        found = true;
+                                        belts[index].color = response.color;
+                                    }
+                                });
+                                if (!found) {
+                                    Authentication.user.belts.push({
+                                        color: response.belt.color,
+                                        style: response.style
+                                    });
+                                }
+                            }
+                        }
+                    });
                     // Save those updates to the db!
                     var user = new Users(Authentication.user);
                     user.$update(function(response) {
