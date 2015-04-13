@@ -214,6 +214,15 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
             }
         };
 
+        $scope.viewLesson = function(lesson) {
+            if (Authentication.user.roles.indexOf('admin') > -1) {
+                console.log('course/' + $stateParams.courseId + '/' + lesson._id);
+                $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
+            } else if (lesson.position <= $scope.lessonsCompleted.length + 1) {
+                $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
+            }
+        };
+
         /* ======= Begin Style Functions For Lessons ======= */
 
         //returns true/false depending on if lesson is complete.

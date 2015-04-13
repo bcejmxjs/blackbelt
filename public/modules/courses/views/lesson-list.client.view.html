@@ -22,7 +22,7 @@
                     </div>
                     <div class="media-body">
                         <h1 class="course-heading"> 
-		                    <a href="/#!/course/{{lesson.courseId}}/{{lesson._id}}">
+		                    <a data-ng-click="viewLesson(lesson)">
 		                        {{ lesson.name }}
 		                    </a>
 		                    <div class="btn-group pull-right" style="padding-top: 5px;">
