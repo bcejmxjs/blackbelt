@@ -255,7 +255,6 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
             var lesson = new Lessons({
                 name: this.name,
                 description: this.description,
-                uri: 'big_buck_bunny.mp4',
                 position: this.position,
                 courseId: $stateParams.courseId
             });
@@ -275,6 +274,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
             }).success(function(data, status, headers, config) {
                 // console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
                 // Redirect after save
+                lesson.uri = data.filename;
                 lesson.$save(function(response) {
                     $location.path('course/' + $stateParams.courseId);
 

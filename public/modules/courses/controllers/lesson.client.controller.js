@@ -6,32 +6,34 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
 
         $scope.authentication = Authentication;
 
-        Lessons.get({
-            lessonId: $stateParams.lessonId
-        }, function(response) {
-            $scope.lesson = response;
-        }, function(error) {
-            $location.path('/error/lesson');
-        });
+        $scope.getOne = function() {
+            Lessons.get({
+                lessonId: $stateParams.lessonId
+            }, function(response) {
+                $scope.lesson = response;
 
-        // Configuration for video container.
-        $scope.config = {
-            sources: [{
-                src: $sce.trustAsResourceUrl("videos/big_buck_bunny.mp4"),
-                type: "video/mp4"
-            }],
-            tracks: [{
-                src: "http://www.videogular.com/assets/subs/pale-blue-dot.vtt",
-                kind: "subtitles",
-                srclang: "en",
-                label: "English",
-                default: ""
-            }],
-            theme: "lib/videogular-themes-default/videogular.css",
-            plugins: {},
-            responsive: true,
-            height: 380,
-            width: 740
+                // Configuration for video container.
+                $scope.config = {
+                    sources: [{
+                        src: $sce.trustAsResourceUrl("videos/" + $scope.lesson.uri),
+                        type: "video/mp4"
+                    }],
+                    tracks: [{
+                        src: "http://www.videogular.com/assets/subs/pale-blue-dot.vtt",
+                        kind: "subtitles",
+                        srclang: "en",
+                        label: "English",
+                        default: ""
+                    }],
+                    theme: "lib/videogular-themes-default/videogular.css",
+                    plugins: {},
+                    responsive: true,
+                    height: 380,
+                    width: 740
+                };
+            }, function(error) {
+                $location.path('/error/lesson');
+            });
         };
 
         $scope.create = function() {

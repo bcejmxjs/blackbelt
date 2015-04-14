@@ -117,11 +117,10 @@ exports.lessonByID = function(req, res, next, id) {
 };
 
 exports.upload = function(req, res) {
-    console.log(req);
     var file = req.files.file;
-    console.log(file.name);
-    console.log(file.type);
-    res.send();
+    res.jsonp({
+        filename: file.name
+    });
 };
 
 exports.play = function(req, res, next, id) {
