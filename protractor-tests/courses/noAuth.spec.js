@@ -177,12 +177,12 @@ var CoursePage = function() {
 		this.purchaseModal_cvcField().sendKeys(text);
 	}
 
-	this.purchaseModal_testPurchase = function(text) {
+	this.purchaseModal_testPurchase = function() {
 		this.purchaseModal_btnTestPurchase().click();
 	}
 
-	this.purchaseModal_submit = function(text) {
-		this.purchaseModal_btnSubmit().cllick();
+	this.purchaseModal_submit = function() {
+		this.purchaseModal_btnSubmit().click();
 	}
 }
 
