@@ -177,12 +177,12 @@ var CoursePage = function() {
 		this.purchaseModal_cvcField().sendKeys(text);
 	}
 
-	this.purchaseModal_testPurchase = function(text) {
+	this.purchaseModal_testPurchase = function() {
 		this.purchaseModal_btnTestPurchase().click();
 	}
 
-	this.purchaseModal_submit = function(text) {
-		this.purchaseModal_btnSubmit().cllick();
+	this.purchaseModal_submit = function() {
+		this.purchaseModal_btnSubmit().click();
 	}
 }
 
@@ -222,27 +222,27 @@ describe('Course page as user', function() {
 	describe('Course0 modal', function() {
 		it('Open modal', function() {
 			coursePage.get();
-			coursePage.modal_open(0);
+			coursePage.courseModal_open(0);
 		});
 		describe('Modal0 title', function(){
 			it('Sh- match the h1 title text for course0', function() {
 				expect(
-					coursePage.modal_title())
-				.toBe('Karate');
+					coursePage.courseModal_title())
+				.toBe('Jujitsu 1');
 			});
 		});
 		it('Close modal', function() {
-			coursePage.modal_close();
+			coursePage.courseModal_close();
 		});
 		//This will purchase course 0
 		describe('Clicking modal purchase', function() {
 			it('Reopen modal', function() {
-				coursePage.modal_open(0);
+				coursePage.courseModal_open(0);
 			});
 			it('Perform click', function() {
-				coursePage.modal_clickPurchase();
+				coursePage.courseModal_clickPurchase();
 			});
-			it('Sh- remain on courses page', function() {
+			it('Sh- open purchase modal', function() {
 				expect(
 					browser.getCurrentUrl())
 				.toBe(browser.baseUrl + '/#!/courses');
