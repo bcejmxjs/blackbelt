@@ -221,6 +221,8 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
             } else if (lesson.position <= ($scope.lessonsCompleted.length + 1)) {
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
+            } else {
+                $scope.error = "You aren't able to view that lesson yet!";
             }
         };
 

@@ -5,18 +5,19 @@
             <div class="page-header">
                 <h1 style="text-align: center;">{{ course.name }}</h1>
             </div>
-
             <a href="/#!/course/{{course._id}}/createLesson" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
                 <button type="submit" class="btn btn-primary btn-lg center-block">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Lesson
                 </button>
                 <br/>
             </a>
-
+            <div ng-show="error">
+                <h3 style="text-align:center; color:#D9534F">{{ error }}</h3>
+            </div>
             <div class="panel panel-default" data-ng-repeat="lesson in lessons">
                 <div class="panel-body">
                     <div class="media-left media-middle">
-                        <a href="/#!/course/{{lesson.courseId}}/{{lesson._id}}">
+                        <a href="/#!/course/{{lesson.courseIdr}}/{{lesson._id}}">
                             <img class="media-object custom-media" style="height:64px;" src="http://upload.wikimedia.org/wikipedia/commons/9/9f/Wikiversity-Mooc-Icon-Video.svg" alt="...">
                         </a>
                     </div>
