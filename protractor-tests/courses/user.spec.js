@@ -41,59 +41,148 @@ var CoursePage = function() {
 		.element(by.buttonText('Delete'));
 	}
 
-	// <--- Modal items --->
 
-	this.modal = function() {
+	// <--- courseModal items --->
+
+	this.courseModal = function() {
 		return element(by.className('modal-content'));
 	}
 
-	this.modal_open = function(ind) {
+	this.courseModal_open = function(ind) {
 		this.course_title(ind).click();
 	}
 
-	this.modal_btnClose = function() {
-		return this.modal()
+	this.courseModal_btnClose = function() {
+		return this.courseModal()
 		.element(by.id('exit'));
 	}
 
-	this.modal_close = function() {
-		this.modal_btnClose().click();
+	this.courseModal_close = function() {
+		this.courseModal_btnClose.click();
 	}
 
-	this.modal_title = function() {
-		return this.modal()
+	this.courseModal_title = function() {
+		return this.courseModal()
 		.element(by.className('modal-header'))
 		.element(by.tagName('h3'))
 		.getText();
 	}
 
-	this.modal_videoLink = function() {
-		return this.modal()
+	this.courseModal_videoLink = function() {
+		return this.courseModal()
 		.element(by.tagName('iframe'))
 		.getAttribute('src');
 	}
 
-	this.modal_description = function() {
-		return this.modal()
+	this.courseModal_description = function() {
+		return this.courseModal()
 		.element.all(by.css('.list-group li'))
 		.get(0).getText();
 	}
 
-	this.modal_instructor = function() {
-		return this.modal()
+	this.courseModal_instructor = function() {
+		return this.courseModal()
 		.element.all(by.css('.list-group li'))
 		.get(1).getText();
 	}
 
-	this.modal_price = function() {
-		return this.modal()
+	this.courseModal_price = function() {
+		return this.courseModal()
 		.element.all(by.css('.list-group li'))
 		.get(2).element(by.tagName('b')).getText();
 	}
 
-	this.modal_clickPurchase = function() {
-		this.modal()
+	this.courseModal_clickPurchase = function() {
+		this.courseModal()
 		.element(by.buttonText('Purchase')).click();
+	}
+
+	// <--- purchaseModal items --->
+
+	this.purchaseModal = function() {
+		return element(by.className('modal-content'));
+	}
+
+	this.purchaseModal_btnClose = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-footer'))
+		.element(by.buttonText('Cancel'));
+	}
+
+	this.purchaseModal_btnSubmit = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-footer'))
+		.element(by.buttonText('Submit'));
+	}
+
+	this.purchaseModal_btnTestPurchase = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-footer'))
+		.element(by.buttonText('Test'));
+	}
+
+	this.purchaseModal_title = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-header'))
+		.getText();
+	}
+
+	this.purchaseModal_nameField = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-body'))
+		.element(by.id('purchase_name'));
+	}
+
+	this.purchaseModal_cardField = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-body'))
+		.element(by.id('purchase_card'));
+	}
+
+	this.purchaseModal_expiryField = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-body'))
+		.element(by.id('purchase_expiry'));
+	}
+
+	this.purchaseModal_cvcField = function() {
+		return this.purchaseModal()
+		.element(by.className('modal-body'))
+		.element(by.id('purchase_cvc'));
+	}
+
+	// <--- purchaseModal actions --->
+
+	this.purchaseModal_open = function(ind) {
+		this.btn_purchase(ind).click();
+	}
+
+	this.purchaseModal_close = function() {
+		this.purchaseModal_btnClose.click();
+	}
+
+	this.purchaseModal_setName = function(text) {
+		this.purchaseModal_nameField().sendKeys(text);
+	}
+
+	this.purchaseModal_setCard = function(text) {
+		this.purchaseModal_cardField().sendKeys(text);
+	}
+
+	this.purchaseModal_setExpiry = function(text) {
+		this.purchaseModal_expiryField().sendKeys(text);
+	}
+
+	this.purchaseModal_setCvc = function(text) {
+		this.purchaseModal_cvcField().sendKeys(text);
+	}
+
+	this.purchaseModal_testPurchase = function(text) {
+		this.purchaseModal_btnTestPurchase().click();
+	}
+
+	this.purchaseModal_submit = function(text) {
+		this.purchaseModal_btnSubmit().cllick();
 	}
 }
 
