@@ -264,7 +264,8 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 url: 'videos',
                 method: 'POST',
                 fields: {
-                    'courseId': $scope.courseId
+                    'courseId': $stateParams.courseId,
+                    'lessonName': this.name
                 },
                 file: this.files[0]
             }).progress(function(evt) {
@@ -272,7 +273,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 // console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                 $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             }).success(function(data, status, headers, config) {
-                console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                // console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
                 // Redirect after save
                 lesson.$save(function(response) {
                     $location.path('course/' + $stateParams.courseId);

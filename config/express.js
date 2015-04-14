@@ -117,7 +117,10 @@ module.exports = function(db) {
 
     // Multer config
     app.use(multer({
-        dest: './videos/'
+        dest: './videos/',
+        rename: function(fieldname, filename, req, res) {
+            return req.body.courseId + '-' + req.body.lessonName.replace(/\W+/g, '-');
+        }
     }));
 
     // Globbing routing files
