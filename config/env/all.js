@@ -39,7 +39,7 @@ module.exports = {
                 'public/lib/videogular-poster/vg-poster.js',
                 'public/lib/videogular-buffering/vg-buffering.js',
                 'public/lib/angular-payments/lib/angular-payments.js',
-                'public/lib/ng-file-upload/angular-file-upload.js'
+                'public/lib/ng-file-upload/angular-file-upload-all.js'
             ]
         },
         css: [

@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('courses').controller('LessonsController', ['$scope', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location', '$state',
-
-    function($scope, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location, $state) {
+angular.module('courses').controller('LessonsController', ['$scope', '$upload', '$stateParams', 'Authentication', 'Courses', 'Lessons', '$modal', '$log', '$sce', '$location', '$state',
+    function($scope, $upload, $stateParams, Authentication, Courses, Lessons, $modal, $log, $sce, $location, $state) {
 
         window.MY_SCOPE = $scope;
 
@@ -10,29 +9,29 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
 
         //Will if the lesson is completed
         /*$scope.isCurrentlyDone = function() {
-            var done;
-            if ()
-                return true;
-            else
-                return false;
-        };
+         var done;
+         if ()
+         return true;
+         else
+         return false;
+         };
 
-        //Gets correct panel style to associate with being done.
-        $scope.getDonePanelClass = function() {
-            if ()
-                return 'panel-success';
-            else
-                return 'panel-default';
+         //Gets correct panel style to associate with being done.
+         $scope.getDonePanelClass = function() {
+         if ()
+         return 'panel-success';
+         else
+         return 'panel-default';
 
-        };
+         };
 
-        //Gets correct panel TEXT to associate with being done.
-        $scope.getDonePanelText = function() {
-            if ($scope.isCurrentlyDone())
-                return 'Done';
-            else
-                return ;
-        };*/
+         //Gets correct panel TEXT to associate with being done.
+         $scope.getDonePanelText = function() {
+         if ($scope.isCurrentlyDone())
+         return 'Done';
+         else
+         return ;
+         };*/
 
         $scope.list = function() {
             Lessons.query({
@@ -261,18 +260,32 @@ angular.module('courses').controller('LessonsController', ['$scope', '$statePara
                 courseId: $stateParams.courseId
             });
 
-            // Redirect after save
-            lesson.$save(function(response) {
-                $location.path('course/' + $stateParams.courseId);
+            $upload.upload({
+                url: 'videos',
+                method: 'POST',
+                fields: {
+                    'courseId': $scope.courseId
+                },
+                file: this.files[0]
+            }).progress(function(evt) {
+                // var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                // console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            }).success(function(data, status, headers, config) {
+                console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                // Redirect after save
+                lesson.$save(function(response) {
+                    $location.path('course/' + $stateParams.courseId);
 
-                // Clear form fields
-                $scope.name = '';
-                $scope.description = '';
-                $scope.uri = '';
-                $scope.position = '';
-                $scope.courseId = '';
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+                    // Clear form fields
+                    $scope.name = '';
+                    $scope.description = '';
+                    $scope.uri = '';
+                    $scope.position = '';
+                    $scope.courseId = '';
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
             });
         };
 

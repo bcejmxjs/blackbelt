@@ -16,8 +16,8 @@ module.exports = function(app) {
         .put(users.requiresLogin, users.hasAuthorization(['admin']), lessons.update)
         .delete(users.requiresLogin, users.hasAuthorization(['admin']), lessons.delete);
 
-    app.route('/videos/upload')
-        .put();
+    app.route('/videos')
+        .post(users.requiresLogin, users.hasAuthorization(['admin']), lessons.upload);
 
     app.route('/videos/:filepath')
         .get(users.requiresLogin, lessons.play);

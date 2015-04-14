@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
     ffmpeg = require('fluent-ffmpeg'),
     fs = require('fs');
 
+
 /**
  * Create a Lesson
  */
@@ -113,6 +114,14 @@ exports.lessonByID = function(req, res, next, id) {
         req.lesson = lesson;
         next();
     });
+};
+
+exports.upload = function(req, res) {
+    console.log(req);
+    var file = req.files.file;
+    console.log(file.name);
+    console.log(file.type);
+    res.send();
 };
 
 exports.play = function(req, res, next, id) {

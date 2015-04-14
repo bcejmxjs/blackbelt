@@ -14,16 +14,20 @@
             <div class="form-group">
                 <label for="name">Description</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description">
+                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description" required>
                 </div>
             </div>
             <div class="form-group">
-                <span class="btn btn-primary btn-lg btn-block btn-file"> 
+                <span class="btn btn-primary btn-lg btn-block btn-file" ng-file-select ng-model="files"> 
 		            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		            Upload Video
-                    <input type="file">
+		            Choose Video
 		        </span>
             </div>
+
+            <div class="progress">
+				<progressbar class="progress-striped active" value="progressPercentage" ng-show="progressPercentage">{{ progressPercentage }} %</progressbar>
+			</div>
+            
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>
