@@ -9,14 +9,17 @@
                     <label for="">Name</label>
                     <input type="text" name="number" class="input-block-level form-control">
                 </div>
+                <div class="span3">
+
                 <div class="form-group">
                     <label for="">Card</label>
                     <input type="text" class="input-block-level form-control" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
                 </div>
+                </div>
                 <div class="col-xs-6" style="padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:5px">
                     <div class="form-group">        
                         <label for="">Expiry</label>
-                        <input type="text" class="input-block-level form-control" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
+                        <input type="text" class="input-block-level form-control" ng-model="expiry" payments-validate="expiry" payments-format="expiry"/>
                     </div>
                 </div>
                 <div class="col-xs-6" style="padding-top:0px; padding-bottom:0px; padding-left:5px; padding-right:0px">

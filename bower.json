@@ -25,8 +25,7 @@
     "videogular-poster": "~1.0.1",
     "open-sans-fontface": "~1.2.1",
     "angular-payments": "*",
-    "flowplayer": "~5.5.2",
-    "bootswatch-dist": "darkly"
+    "ng-file-upload": "~3.3.1"
   },
   "resolutions": {
     "angular": "~1.2",

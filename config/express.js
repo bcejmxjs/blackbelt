@@ -22,7 +22,8 @@ var fs = require('fs'),
     config = require('./config'),
     consolidate = require('consolidate'),
     path = require('path'),
-    ffmpeg = require('fluent-ffmpeg');
+    ffmpeg = require('fluent-ffmpeg'),
+    multer = require('multer');
 
 module.exports = function(db) {
     // Initialize express app
@@ -113,6 +114,11 @@ module.exports = function(db) {
 
     // Setting the app router and static folder
     app.use(express.static(path.resolve('./public')));
+
+    // Multer config
+    app.use(multer({
+        dest: './videos/'
+    }));
 
     // Globbing routing files
     config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
