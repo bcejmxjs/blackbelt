@@ -8,25 +8,27 @@
             <div class="form-group">
                 <label for="name">Lesson Name</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Lesson Name Goes Here" required>
+                    <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Lesson Name Goes Here" required ng-disabled="showProgressBar">
                 </div>
             </div>
             <div class="form-group">
                 <label for="name">Description</label>
                 <div class="controls">
-                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description" required>
+                    <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description" required ng-disabled="showProgressBar">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-hide="showProgressBar">
                 <span class="btn btn-primary btn-lg btn-block btn-file" ng-file-select ng-model="files" accept="video/mp4"> 
 		            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		            Choose Video
 		        </span>
             </div>
-
-            <div class="progress" ng-show="showProgressBar">
-				<progressbar class="progress-striped active" value="progressPercentage">{{ progressPercentage }}%</progressbar>
-			</div>
+            <div class="form-group" ng-show="showProgressBar">
+                <label for="name">Upload Progress</label>
+                <div class="progress">
+				    <progressbar class="progress-striped active" value="progressPercentage">{{ progressPercentage }}%</progressbar>
+			    </div>
+            </div>
             
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
