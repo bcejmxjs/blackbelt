@@ -40,7 +40,8 @@ describe('Event CRUD tests', function() {
         user.save(function() {
             event = {
                 title: 'Event Title',
-                body: 'Event Body'
+                body: 'Event Body',
+                date: new Date()
             };
 
             done();

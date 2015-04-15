@@ -32,9 +32,13 @@ describe('Course Model Unit Tests:', function() {
             course = new Course({
                 name: 'Course Name',
                 description: 'Course Description',
-                price: 0,
+                price: 12,
                 instructor: 'Bruce Lee',
-                demo: 'youtube.com/who-cares'
+                style: 'Karate',
+                belt: {
+                    color: 'White',
+                    level: 1
+                }
             });
 
             done();

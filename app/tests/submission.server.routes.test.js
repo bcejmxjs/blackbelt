@@ -39,7 +39,7 @@ describe('Submission CRUD tests', function() {
         // Save a user to the test db and create new submission
         user.save(function() {
             submission = {
-                url: 'Submission Description'
+                url: 'https://www.youtube.com/embed/OmcQZD_LIAE'
             };
 
             done();

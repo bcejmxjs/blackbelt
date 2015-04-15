@@ -40,7 +40,9 @@ describe('Lesson CRUD tests', function() {
         user.save(function() {
             lesson = {
                 name: 'Lesson Name',
-                description: 'Lesson Description'
+                description: 'Lesson Description',
+                uri: 'big_buck_bunny.mp4',
+                position: 1
             };
 
             done();

@@ -40,7 +40,14 @@ describe('Course CRUD tests', function() {
         user.save(function() {
             course = {
                 name: 'Course Name',
-                description: 'Course Description'
+                description: 'Course Description',
+                price: 12,
+                instructor: 'Bruce Lee',
+                style: 'Karate',
+                belt: {
+                    color: 'White',
+                    level: 1
+                }
             };
 
             done();
