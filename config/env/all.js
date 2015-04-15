@@ -16,7 +16,9 @@ module.exports = {
                 'public/lib/bootstrap/dist/css/bootstrap.css',
                 'public/lib/bootstrap-social/bootstrap-social.css',
                 'public/lib/font-awesome/css/font-awesome.css',
-                'public/lib/open-sans-fontface/open-sans.css'
+                'public/lib/open-sans-fontface/open-sans.css',
+                'public/lib/bootstrap-material-design/dist/css/material.css',
+                'public/lib/bootstrap-material-design/dist/css/ripple.css'
             ],
             js: [
                 'public/lib/angular/angular.js',
@@ -39,7 +41,9 @@ module.exports = {
                 'public/lib/videogular-poster/vg-poster.js',
                 'public/lib/videogular-buffering/vg-buffering.js',
                 'public/lib/angular-payments/lib/angular-payments.js',
-                'public/lib/ng-file-upload/angular-file-upload-all.js'
+                'public/lib/ng-file-upload/angular-file-upload-all.js',
+                'public/lib/bootstrap-material-design/dist/css/material.js',
+                'public/lib/bootstrap-material-design/dist/css/ripple.js'
             ]
         },
         css: [
