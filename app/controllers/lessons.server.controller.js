@@ -8,7 +8,8 @@ var mongoose = require('mongoose'),
     Lesson = mongoose.model('Lesson'),
     _ = require('lodash'),
     ffmpeg = require('fluent-ffmpeg'),
-    fs = require('fs');
+    fs = require('fs'),
+    exec = require('child_process').exec;
 
 
 /**
@@ -121,6 +122,10 @@ exports.upload = function(req, res) {
     res.jsonp({
         filename: file.name
     });
+    // var command = 'ffmpeg -i ./video/' + file.name + ' -vcodec libx264 -crf 20 output.mp4';
+    // exec(command, function(error, stdout, stderr) {
+    //     console.log(stdout);
+    // });
 };
 
 exports.play = function(req, res, next, id) {

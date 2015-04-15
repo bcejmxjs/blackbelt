@@ -1,4 +1,4 @@
-<section data-ng-controller="LessonsController" data-ng-init="redirect()">
+<section data-ng-controller="LessonsController" data-ng-init="redirect(); list()">
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="page-header">
@@ -17,9 +17,9 @@
                     <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short lesson description" required ng-disabled="showProgressBar">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-hide="showProgressBar">
                 <label for="name">Video File</label>
-                <div class="input-group" ng-hide="showProgressBar">
+                <div class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file" ng-file-select ng-model="files" accept="video/mp4"> 
 		                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> &nbsp Browse...

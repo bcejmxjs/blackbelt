@@ -200,7 +200,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
             var lesson = new Lessons({
                 name: this.name,
                 description: this.description,
-                position: this.position,
+                position: $scope.lessons.length + 1,
                 courseId: $stateParams.courseId
             });
 
