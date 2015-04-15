@@ -43,7 +43,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
         };
 
         // Redirect's users trying to access the create page back to Courses.
-        $scope.redirect = function() {
+        $scope.courseRedirect = function() {
             if (!Authentication.user) {
                 $location.path('/courses');
             } else if (Authentication.user.roles.indexOf('admin') == -1) {
@@ -202,29 +202,27 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 
         // Check to see if a course has already been purchased.
         $scope.isCoursePurchased = function(purchasedCourseId) {
-            if (Authentication.user === '') {
+            if (!Authentication.user) {
+                return false;
+            } else if (Authentication.user.roles.indexOf('instructor') > -1 ||
+                Authentication.user.roles.indexOf('admin') > -1) {
+                return true;
+            } else {
+                for (var a = 0; a != Authentication.user.coursesPurchased.length; a++) {
+                    if (Authentication.user.coursesPurchased[a].courseId == purchasedCourseId) {
+                        return true;
+                    }
+                }
                 return false;
             }
-            // if (Authentication.user.roles.indexOf('instructor') > -1 ||
-            //         Authentication.user.roles.indexOf('admin') > -1) {
-            //         modalFlag = false;
-            // }
-            for (var a = 0; a != Authentication.user.coursesPurchased.length; a++) {
-                if (Authentication.user.roles.indexOf('instructor') > -1 ||
-                    Authentication.user.roles.indexOf('admin') > -1) {
-                    return true;
-                }
-                if (Authentication.user.coursesPurchased[a].courseId == purchasedCourseId) {
-                    return true;
-                }
-
-            }
-            return false;
         };
 
 
         // Open a modal window to Purchase a single course record
         $scope.modalPurchase = function(size, selectedCourse) {
+            if (!Authentication.user) {
+                $location.path('/signin');
+            }
 
             var modalInstance = $modal.open({
                 templateUrl: 'modules/courses/views/course-purchase.view.html',

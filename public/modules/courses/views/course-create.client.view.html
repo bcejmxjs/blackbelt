@@ -1,4 +1,4 @@
-<section data-ng-controller="CoursesController" data-ng-init="redirect()">
+<section data-ng-controller="CoursesController" data-ng-init="courseRedirect()">
     <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -25,13 +25,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Instructor</label>
+                    <label for="name">Instructor &nbsp <span class="text-muted">(optional)</span></label>
                     <div class="controls">
                         <input type="text" data-ng-model="instructor" id="instructor" class="form-control" placeholder="First Last" >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Video Demo</label>
+                    <label for="name">Video Demo &nbsp <span class="text-muted">(optional)</span></label>
                     <div class="controls">
                         <input type="text" data-ng-model="demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
                     </div>

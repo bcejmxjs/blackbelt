@@ -29,7 +29,7 @@ var CourseSchema = new Schema({
     },
     instructor: {
         type: String,
-        default: 'TBA',
+        default: 'All',
         trim: true
     },
     demo: {
