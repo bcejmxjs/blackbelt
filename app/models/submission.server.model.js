@@ -29,7 +29,9 @@ var SubmissionSchema = new Schema({
         type: Date
     },
     url: {
-        type: String
+        type: String,
+        required: true,
+        match: [/^http(s):\/\/(?:www\.)?www\.youtube\.com\/embed\/\S*$/, 'Please fill in a youtube url']
     },
     reviewed: {
         type: Boolean

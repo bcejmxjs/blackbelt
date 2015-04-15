@@ -35,7 +35,8 @@ var CourseSchema = new Schema({
     demo: {
         type: String,
         default: 'https://www.youtube.com/embed/TEQnTv31SYo?rel=0&autoplay=1',
-        trim: true
+        trim: true,
+        match: [/^http(s):\/\/(?:www\.)?www\.youtube\.com\/embed\/\S*$/, 'Please fill in a youtube url']
     },
     style: {
         type: String,

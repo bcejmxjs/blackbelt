@@ -286,6 +286,11 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             // Create new Course object
             var beltMap = createBeltMap();
 
+            if (this.demo) {
+                this.demo = this.demo.replace('watch?v=', 'embed/');
+                this.demo = this.demo.replace('.be/', 'be.com/embed/');
+            }
+
             var course = new Courses({
                 name: this.name,
                 description: this.description,
@@ -294,7 +299,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 demo: this.demo,
                 style: this.style,
                 belt: {
-                    type: this.belt,
+                    color: this.belt,
                     level: beltMap[this.belt]
                 }
             });
