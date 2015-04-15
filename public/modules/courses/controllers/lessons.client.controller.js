@@ -259,7 +259,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 courseId: $stateParams.courseId
             });
 
-            if (this.files) {
+            if (this.files && this.name && this.description) {
                 $upload.upload({
                     url: 'videos',
                     method: 'POST',
@@ -288,7 +288,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                     });
                 });
             } else {
-                $scope.error = "Please choose a video!";
+                $scope.error = "Please fill out all fields!";
             }
         };
 
