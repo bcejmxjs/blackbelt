@@ -51,41 +51,12 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             }
         };
 
-
         $scope.getUserBelts = function() {
             if (Authentication.user) {
                 Authentication.user.belts.forEach(function(belt) {
                     $scope.belts['belt.style'] = belt.color;
                 });
             }
-        };
-
-        // Open a modal window to create a single course record
-        $scope.modalCreate = function(size) {
-
-            var modalInstance = $modal.open({
-                //  templateUrl: 'modules/courses/views/create-course.client.view.html',
-                controller: ModalCreateCtrl,
-                size: size
-            });
-
-            modalInstance.result.then(function(selectedItem) {
-
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
-        };
-
-        var ModalCreateCtrl = function($scope, $modalInstance) {
-
-            $scope.ok = function() {
-                $modalInstance.close();
-            };
-
-            $scope.cancel = function() {
-                $modalInstance.dismiss('cancel');
-            };
         };
 
         // Open a modal window to update a single course record
@@ -155,7 +126,6 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 $modalInstance.dismiss('cancel');
             };
         };
-
 
         // Open a modal window to View a single course record
         $scope.modalView = function(size, selectedCourse) {
@@ -230,7 +200,6 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             });
         };
 
-
         // Check to see if a course has already been purchased.
         $scope.isCoursePurchased = function(purchasedCourseId) {
             if (Authentication.user === '') {
@@ -295,7 +264,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
                 // there was an error. Fix it.
             } else {
                 // got stripe token, now charge it or smt
-                token = response.id;
+                var token = response.id;
             }
         };
 
@@ -379,21 +348,3 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
         };
     }
 ]);
-
-
-
-// courseApp.controller('CoursesPurchaseController', ['$scope', 'Courses', 'User', '$stateParams','Authentication',
-//     function($scope, Courses, User, $stateParams, Authentication) {
-//          // User Purchases Course
-//         $scope.purchaseCourse = function(purchaseCourse, purchaseUser) {
-//            var course = purchaseCourse;
-//            var user = purchaseUser;
-//             $scope.course = Courses.get({
-//                 courseId: $stateParams.courseId
-//             });
-//             $scope.user = User.get({
-//                 userId: $stateParams.userId
-//             });
-//         };
-//    }
-// ]);

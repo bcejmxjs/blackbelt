@@ -7,31 +7,8 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
 
         $scope.authentication = Authentication;
 
-        //Will if the lesson is completed
-        /*$scope.isCurrentlyDone = function() {
-         var done;
-         if ()
-         return true;
-         else
-         return false;
-         };
-
-         //Gets correct panel style to associate with being done.
-         $scope.getDonePanelClass = function() {
-         if ()
-         return 'panel-success';
-         else
-         return 'panel-default';
-
-         };
-
-         //Gets correct panel TEXT to associate with being done.
-         $scope.getDonePanelText = function() {
-         if ($scope.isCurrentlyDone())
-         return 'Done';
-         else
-         return ;
-         };*/
+        // Current course, for returning back during lesson creation.
+        $scope.courseParam = $stateParams.courseId;
 
         $scope.list = function() {
             Lessons.query({
@@ -61,36 +38,6 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 courseId: $stateParams.courseId,
                 lessonId: $stateParams.courseId
             });
-        };
-
-
-        // Open a modal window to Create a single course record
-        $scope.modalCreate = function(size) {
-
-            var modalInstance = $modal.open({
-                // templateUrl: 'modules/courses/views/create-course.client.view.html',
-                controller: ModalCreateCtrl,
-                size: size
-            });
-
-            modalInstance.result.then(function(selectedItem) {
-
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
-        };
-
-
-        var ModalCreateCtrl = function($scope, $modalInstance) {
-
-            $scope.ok = function() {
-                $modalInstance.close();
-            };
-
-            $scope.cancel = function() {
-                $modalInstance.dismiss('cancel');
-            };
         };
 
         // Open a modal window to update a single course record
@@ -184,7 +131,6 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
             });
 
         };
-
 
         var ModalViewCtrl = function($scope, $modalInstance, course) {
             $scope.course = course;
