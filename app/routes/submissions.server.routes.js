@@ -5,7 +5,7 @@ module.exports = function(app) {
         submissions = require('../../app/controllers/submissions.server.controller');
 
     app.route('/submissions')
-        .get(submissions.list)
+        .get(users.requiresLogin, users.hasAuthorization(['admin', 'instructor']), submissions.list)
         .post(users.requiresLogin, submissions.create);
 
     app.route('/submissions/:submissionId')

@@ -39,7 +39,8 @@ describe('Submission CRUD tests', function() {
         // Save a user to the test db and create new submission
         user.save(function() {
             submission = {
-                url: 'https://www.youtube.com/embed/OmcQZD_LIAE'
+                url: 'https://www.youtube.com/embed/OmcQZD_LIAE',
+                reviewed: false
             };
 
             done();
@@ -75,7 +76,7 @@ describe('Submission CRUD tests', function() {
                                 var submissions = submissionsGetRes.body;
 
                                 // Set assertions
-                                (submissions[0].url).should.match('Submission Description');
+                                (submissions[0].url).should.match('https://www.youtube.com/embed/OmcQZD_LIAE');
 
                                 // Call the assertion callback
                                 done();
@@ -142,7 +143,7 @@ describe('Submission CRUD tests', function() {
                         if (submissionSaveErr) done(submissionSaveErr);
 
                         // Update submission name
-                        submission.name = 'WHY YOU GOTTA BE SO MEAN?';
+                        submission.reviewed = true;
 
                         // Update an existing submission
                         agent.put('/submissions/' + submissionSaveRes.body._id)
@@ -154,7 +155,7 @@ describe('Submission CRUD tests', function() {
 
                                 // Set assertions
                                 (submissionUpdateRes.body._id).should.equal(submissionSaveRes.body._id);
-                                (submissionUpdateRes.body.url).should.match('WHY YOU GOTTA BE SO MEAN?');
+                                (submissionUpdateRes.body.reviewed).should.match(true);
 
                                 // Call the assertion callback
                                 done();
@@ -175,7 +176,7 @@ describe('Submission CRUD tests', function() {
                 var userId = user.id;
 
                 // Create new submission model instance
-                var submissionObj = new submission(submission);
+                var submissionObj = new Submission(submission);
 
                 // Save the submission
                 submissionObj.save(function() {
@@ -232,7 +233,7 @@ describe('Submission CRUD tests', function() {
                     agent.get('/submissions/' + submissionObj._id)
                         .end(function(req, res) {
                             // Set assertion
-                            res.body.should.be.an.Object.with.property('name', submission.name);
+                            res.body.should.be.an.Object.with.property('url', submission.url);
 
                             // Call the assertion callback
                             done();
