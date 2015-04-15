@@ -127,9 +127,12 @@ code {
 
 /* New Prog Bar Style
 -------------------------------------------------- */
-.progress-bar-null {
+.progress{
+	height: 20px;
+}
+.progress .progress-bar-null {
 	background-color: #C3C3C3;
 }
-.progress-bar-inprog {
+.progress .progress-bar-inprog {
 	background-color: #84DE87;
 }
