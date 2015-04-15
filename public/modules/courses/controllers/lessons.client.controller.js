@@ -162,12 +162,11 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
 
         $scope.viewLesson = function(lesson) {
             if (Authentication.user.roles.indexOf('admin') > -1) {
-                console.log('course/' + $stateParams.courseId + '/' + lesson._id);
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
             } else if (lesson.position <= ($scope.lessonsCompleted.length + 1)) {
                 $location.path('course/' + $stateParams.courseId + '/' + lesson._id);
             } else {
-                $scope.error = "You aren't able to view that lesson yet!";
+                $scope.error = 'You aren\'t able to view ' + lesson.name + ' yet!';
             }
         };
 

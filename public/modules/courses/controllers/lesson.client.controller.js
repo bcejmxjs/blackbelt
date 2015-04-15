@@ -1,10 +1,18 @@
 'use strict';
 
-angular.module('courses').controller('LessonController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Authentication', 'Lessons', 'Submissions',
-    function($scope, $sce, $stateParams, $modal, $state, $location, Authentication, Lessons, Submissions) {
+angular.module('courses').controller('LessonController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Authentication', 'Users', 'Lessons', 'Submissions',
+    function($scope, $sce, $stateParams, $modal, $state, $location, Authentication, Users, Lessons, Submissions) {
         window.MY_SCOPE = $scope;
 
         $scope.authentication = Authentication;
+
+        $scope.checkPending = function() {
+            Authentication.user.coursesPurchased.forEach(function(course, index, courses) {
+                if (course.lessonPending == $stateParams.lessonId) {
+                    $scope.pending = true;
+                }
+            });
+        };
 
         $scope.findOne = function() {
             Lessons.get({
@@ -43,7 +51,7 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
             var submission = new Submissions({
                 userId: Authentication.user._id,
                 userDisplayName: Authentication.user.displayName,
-                instructorId: 'kfajsklfjsdkljfklsdajfkljsad',
+                instructorId: '',
                 lessonId: this.lesson._id,
                 courseId: this.lesson.courseId,
                 url: this.url,
@@ -52,10 +60,18 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
             });
 
             submission.$save(function(response) {
-                // $location.path('course/' + +$stateParams.courseId);
+                Authentication.user.coursesPurchased.forEach(function(course, index, courses) {
+                    if (course.courseId == $stateParams.courseId) {
+                        courses[index].lessonPending = $stateParams.lessonId;
+                    }
+                });
 
-                // Clear form fields
-                this.url = '';
+                var user = new Users(Authentication.user);
+
+                user.$update(function(res) {
+                    $location.path('course/' + $stateParams.courseId);
+                });
+
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });

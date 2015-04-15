@@ -102,6 +102,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                         if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
                             Authentication.user.coursesPurchased[i].lessonsCompleted
                                 .push(msgSubmission.lessonId);
+                            Authentication.user.coursesPurchased[i].lessonPending = '';
                             lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted.length;
                         }
                     }
