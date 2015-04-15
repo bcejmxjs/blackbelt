@@ -6,7 +6,7 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
 
         $scope.authentication = Authentication;
 
-        $scope.getOne = function() {
+        $scope.findOne = function() {
             Lessons.get({
                 lessonId: $stateParams.lessonId
             }, function(response) {

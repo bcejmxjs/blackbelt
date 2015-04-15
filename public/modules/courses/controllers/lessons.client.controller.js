@@ -259,35 +259,37 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 courseId: $stateParams.courseId
             });
 
-            $upload.upload({
-                url: 'videos',
-                method: 'POST',
-                fields: {
-                    'courseId': $stateParams.courseId,
-                    'lessonName': this.name
-                },
-                file: this.files[0]
-            }).progress(function(evt) {
-                // var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                // console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            }).success(function(data, status, headers, config) {
-                // console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                // Redirect after save
-                lesson.uri = data.filename;
-                lesson.$save(function(response) {
-                    $location.path('course/' + $stateParams.courseId);
+            if (this.files) {
+                $upload.upload({
+                    url: 'videos',
+                    method: 'POST',
+                    fields: {
+                        'courseId': $stateParams.courseId,
+                        'lessonName': this.name
+                    },
+                    file: this.files[0]
+                }).progress(function(evt) {
+                    $scope.showProgressBar = true;
+                    $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                }).success(function(data, status, headers, config) {
+                    // Redirect after save
+                    lesson.uri = data.filename;
+                    lesson.$save(function(response) {
+                        $location.path('course/' + $stateParams.courseId);
 
-                    // Clear form fields
-                    $scope.name = '';
-                    $scope.description = '';
-                    $scope.uri = '';
-                    $scope.position = '';
-                    $scope.courseId = '';
-                }, function(errorResponse) {
-                    $scope.error = errorResponse.data.message;
+                        // Clear form fields
+                        $scope.name = '';
+                        $scope.description = '';
+                        $scope.uri = '';
+                        $scope.position = '';
+                        $scope.courseId = '';
+                    }, function(errorResponse) {
+                        $scope.error = errorResponse.data.message;
+                    });
                 });
-            });
+            } else {
+                $scope.error = "Please choose a video!";
+            }
         };
 
         // Edit existing Course
@@ -315,7 +317,6 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
         };
 
         // View existing Course
-
         $scope.findOne = function() {
             $scope.lesson = Courses.get({
                 courseId: $stateParams.courseId

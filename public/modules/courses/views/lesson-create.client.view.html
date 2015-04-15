@@ -24,8 +24,8 @@
 		        </span>
             </div>
 
-            <div class="progress">
-				<progressbar class="progress-striped active" value="progressPercentage" ng-show="progressPercentage">{{ progressPercentage }} %</progressbar>
+            <div class="progress" ng-show="showProgressBar">
+				<progressbar class="progress-striped active" value="progressPercentage">{{ progressPercentage }}%</progressbar>
 			</div>
             
             <div data-ng-show="error" class="text-danger">
