@@ -13,16 +13,19 @@ var CourseSchema = new Schema({
     name: {
         type: String,
         default: '',
-        trim: true
+        trim: true,
+        required: 'Please fill in a name'
     },
     description: {
         type: String,
         default: '',
-        trim: true
+        trim: true,
+        required: 'Please fill in a description'
     },
     price: {
         type: Number,
-        min: 0
+        min: 0,
+        required: 'Please fill in a price'
     },
     instructor: {
         type: String,
@@ -37,7 +40,8 @@ var CourseSchema = new Schema({
     style: {
         type: String,
         enum: ['Karate', 'Kenpō', 'Jujitsu', 'Ninjitsu'],
-        default: 'Karate'
+        default: 'Karate',
+        required: 'Please choose a style'
     },
     belt: {
         type: {
@@ -55,7 +59,8 @@ var CourseSchema = new Schema({
         default: {
             color: 'White',
             level: 1
-        }
+        },
+        required: 'Please choose a belt'
     }
 });
 

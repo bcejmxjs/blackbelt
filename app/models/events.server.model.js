@@ -4,24 +4,27 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 /**
  * Event Schema
  */
 var EventSchema = new Schema({
-	title : {
+    title: {
         type: String,
-        trim: true
+        trim: true,
+        required: 'Please fill in a title'
     },
-    date : {
-        type: Date
+    date: {
+        type: Date,
+        required: 'Please choose a date'
     },
-    body : {
+    body: {
         type: String,
-        trim: true
+        trim: true,
+        required: 'Please fill in a description'
     }
-	// ...
+    // ...
 });
 
 mongoose.model('Event', EventSchema);

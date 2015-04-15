@@ -2,7 +2,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="page-header">
-            <h1 style="text-align: center;">New {{course.name}} Lesson</h1>
+            <h1 style="text-align: center">New {{course.name}} Lesson</h1>
         </div>
         <fieldset>
             <div class="form-group">
@@ -22,9 +22,8 @@
                 <div class="input-group" ng-hide="showProgressBar">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file" ng-file-select ng-model="files" accept="video/mp4"> 
-		                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                            &nbsp Browse...
-                        </span>
+		                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> &nbsp Browse...
+                    </span>
                     </span>
                     <input type="text" class="form-control" readonly placeholder="{{files[0].name}}">
                 </div>
