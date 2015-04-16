@@ -51,13 +51,13 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top: 20px">
                                 <textarea class="form-control" required ng-model="event.body" placeholder="Event Description" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <button type="submit" ng-click="create()" class="btn btn-default pull-right">Submit</button>
+                                <button type="submit" ng-click="create()" class="btn btn-primary pull-right">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     <h4><b>{{ moment(event.date).format('MMMM DD, YYYY') }}</b></h4>
                     <p>
                         {{ event.body }}
-                        <button class="btn btn-danger pull-right" type="submit" data-ng-click="remove(event)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+                        <button class="btn btn-danger pull-right" type="submit" data-ng-click="remove(event)" style="margin-top: 10px; margin-bottom: 0px" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
                         </button>
                     </p>

@@ -6,7 +6,7 @@
                 <h1 style="text-align: center;">Courses</h1>
             </div>
             <a href="/#!/courses/create" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
-                <button type="submit" class="btn btn-primary btn-lg center-block" > 
+                <button type="submit" class="btn btn-primary btn-lg center center-block" > 
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     Add New Course 
                 </button>
@@ -24,7 +24,7 @@
                             <a ng-click="modalView('md', course)">
                                 {{course.name}}
                             </a>
-                            <div class="btn-group pull-right" style="padding-top: 5px;">                  
+                            <div class="btn-group pull-right"">                  
                                 <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
                                 <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                             </div>

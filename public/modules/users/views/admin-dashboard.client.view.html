@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <input type="text" class="form-control" ng-model="searchText" aria-label="...">
+                <input class="form-control floating-label" id="focusedInput"  type="text" ng-model="searchText" placeholder="Search...">
             </div>
             <div class="panel panel-default" data-ng-repeat="user in users | filter:searchText">
                 <div class="panel-body">

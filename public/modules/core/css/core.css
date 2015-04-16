@@ -27,10 +27,10 @@
 .front-jumbotron {
     margin-bottom: 0px;
     color: #f2f2f2;
-    background-color: #4E4E4E;
-    text-shadow: 0.1em 0.1em 0.2em black;
-    background-image: url(http://subtlepatterns.com/patterns/dark_wall.png);
-    box-shadow: inset 0 0 0 1000px rgba(59, 71, 69,.8);
+    background-color: #11887B;
+    /* text-shadow: 0.1em 0.1em 0.2em black; */
+    /* background-image: url(http://subtlepatterns.com/patterns/dark_wall.png); */
+    /* box-shadow: inset 0 0 0 1000px rgba(59, 71, 69,.8); */
 }
 
 .btn-circle {
@@ -139,4 +139,13 @@ code {
 }
 .progress .progress-bar-inprog {
 	background-color: #84DE87;
+}
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+.page-header {
+  padding-bottom: 0px;
+  border-bottom: 0px
 }

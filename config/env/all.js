@@ -17,8 +17,9 @@ module.exports = {
                 'public/lib/bootstrap-social/bootstrap-social.css',
                 'public/lib/font-awesome/css/font-awesome.css',
                 'public/lib/open-sans-fontface/open-sans.css',
-                'public/lib/bootstrap-material-design/dist/css/material.css',
-                'public/lib/bootstrap-material-design/dist/css/ripple.css'
+                // 'public/lib/bootswatch-dist/css/bootstrap.css'
+                'public/lib/bootstrap-material-design/dist/css/material-fullpalette.css',
+                'public/lib/bootstrap-material-design/dist/css/ripples.css'
             ],
             js: [
                 'public/lib/angular/angular.js',
@@ -42,8 +43,8 @@ module.exports = {
                 'public/lib/videogular-buffering/vg-buffering.js',
                 'public/lib/angular-payments/lib/angular-payments.js',
                 'public/lib/ng-file-upload/angular-file-upload-all.js',
-                'public/lib/bootstrap-material-design/dist/css/material.js',
-                'public/lib/bootstrap-material-design/dist/css/ripple.js'
+                'public/lib/bootstrap-material-design/dist/js/material.js',
+                'public/lib/bootstrap-material-design/dist/js/ripples.js'
             ]
         },
         css: [
