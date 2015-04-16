@@ -1,70 +1,78 @@
 <section class="row" data-ng-controller="AuthenticationController">
 	<div class="container">
-		<div class="col-md-1"></div>
-		<div class="col-md-5 text-center" style="padding: 20px">
-			<h3 class="text-center" style="padding-bottom: 20px">Sign up using your social accounts</h3>
-			<a href="/auth/facebook" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-raised btn-facebook">
-					<i class="fa fa-facebook"></i> <div style="padding-left: 10px">Sign up with Facebook</div>
-				</button>
-			</a>
-			<br/>
-			<a href="/auth/twitter" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-raised btn-twitter">
-					<i class="fa fa-twitter"></i> <div style="padding-left: 10px">Sign up with Twitter</div>
-				</button>
-			</a>
-			<br />
-			<a href="/auth/google" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-raised btn-google-plus">
-					<i class="fa fa-google"></i> <div style="padding-left: 10px">Sign up with Google</div>
-				</button>
-			</a>
-		</div>
-		<div class="col-md-5" style="padding: 20px">
-			<h3 class="text-center">Or with your email</h3>
-			<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
-				<fieldset style="padding-left: 20px; padding-right: 20px">
-					<div class="form-group">
-						<div data-ng-show="error" class="text-center text-danger">
-							<div class="alert alert-danger" role="alert">
-								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-								<span class="sr-only">Error:</span>
-								<strong data-ng-bind="error"></strong>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="firstName">First Name</label>
-						<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
-					</div>
-					<div class="form-group">
-						<label for="lastName">Last Name</label>
-						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
-					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
-					</div>
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-					</div>
-					<div class="form-group" style="text-align:center">
-						<font size="-1" color="grey">By signing up you confirm that you are at least 18 years of age.</font>
-					</div>
-				  
-					<div class="text-center form-group">
-						<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
-					
-						<a href="/#!/signin" class="show-signup">Sign in</a>
-					</div>
-				</fieldset>
-			</form>
-		</div>		
-	</div>
+		<div class="col-md-1"></div>i
+        <div class="col-md-10">
+            <br/>
+            <br/>
+            <div class="panel panel-default">
+                <div class="panel-body">
+		            <div class="col-md-6 text-center" style="padding: 20px">
+			            <h3 class="text-center" style="padding-bottom: 20px">Sign up using your social accounts</h3>
+			            <a href="/auth/facebook" class="undecorated-link">
+				            <button type="button" class="btn btn-block btn-social btn-raised btn-facebook">
+					            <i class="fa fa-facebook"></i> <div style="padding-left: 10px">Sign up with Facebook</div>
+				            </button>
+			            </a>
+			            <br/>
+			            <a href="/auth/twitter" class="undecorated-link">
+				            <button type="button" class="btn btn-block btn-social btn-raised btn-twitter">
+					            <i class="fa fa-twitter"></i> <div style="padding-left: 10px">Sign up with Twitter</div>
+				            </button>
+			            </a>
+			            <br />
+			            <a href="/auth/google" class="undecorated-link">
+				            <button type="button" class="btn btn-block btn-social btn-raised btn-google-plus">
+					            <i class="fa fa-google"></i> <div style="padding-left: 10px">Sign up with Google</div>
+				            </button>
+			            </a>
+		            </div>
+		            <div class="col-md-6" style="padding: 20px">
+			            <h3 class="text-center">Or with your email</h3>
+			            <form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+				            <fieldset style="padding-left: 20px; padding-right: 20px">
+					            <div class="form-group">
+						            <div data-ng-show="error" class="text-center text-danger">
+							            <div class="alert alert-danger" role="alert">
+								            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								            <span class="sr-only">Error:</span>
+								            <strong data-ng-bind="error"></strong>
+							            </div>
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label for="firstName">First Name</label>
+						            <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+					            </div>
+					            <div class="form-group">
+						            <label for="lastName">Last Name</label>
+						            <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+					            </div>
+					            <div class="form-group">
+						            <label for="email">Email</label>
+						            <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+					            </div>
+					            <div class="form-group">
+						            <label for="username">Username</label>
+						            <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+					            </div>
+					            <div class="form-group">
+						            <label for="password">Password</label>
+						            <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+					            </div>
+					            <div class="form-group" style="text-align:center">
+						            <font size="-1" color="grey">By signing up you confirm that you are at least 18 years of age.</font>
+					            </div>
+				                
+					            <div class="text-center form-group">
+						            <button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
+					                
+						            <a href="/#!/signin" class="show-signup">Sign in</a>
+					            </div>
+				            </fieldset>
+			            </form>
+		            </div>		
+	            </div>
+            </div>
+        </div>
+    </div>
 </section>
