@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <div class="page-header" style="text-align: center"><h1>{{ lesson.name }}</h1></div>
+            <div class="page-header bg-text" style="text-align: center"><h1>{{ lesson.name }}</h1></div>
             <videogular vg-theme="config.theme" vg-height="config.height" vg-width="config.width" class="videogular-container embed-responsive-item">
 			    <vg-media vg-src="config.sources"
 					      vg-tracks="config.tracks">
@@ -24,7 +24,7 @@
 			    <vg-overlay-play></vg-overlay-play>
 	        </videogular>
             <br/>
-            <h4 style="text-align: center">{{ lesson.description }}</h4>
+            <h4 class="bg-text" style="text-align: center">{{ lesson.description }}</h4>
             <br/>
             <button type="submit" class="btn btn-success btn-lg center-block center" ng-click="modalUserUpload(sm, lesson)" ng-hide="pending"> 
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

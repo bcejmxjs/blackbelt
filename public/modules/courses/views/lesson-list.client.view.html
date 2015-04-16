@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <div class="page-header">
+            <div class="page-header bg-text">
                 <h1 style="text-align: center;">{{ course.name }}</h1>
             </div>
             <a href="/#!/course/{{course._id}}/createLesson" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">

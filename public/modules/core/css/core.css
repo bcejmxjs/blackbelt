@@ -75,6 +75,7 @@
 
 body {
     font-family: "Exo 2", sans-serif;
+    background-image: url(../img/brand/footer_lodyas.png);
     margin-bottom: 60px;
 }
 
@@ -153,4 +154,12 @@ code {
 }
 .btn-social>:first-child {
     line-height: 40px;
+}
+.bg-text {
+    color: #f2f2f2
+}
+.panel-fields {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
