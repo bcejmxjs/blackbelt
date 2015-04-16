@@ -8,6 +8,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
         $(function() {
             $.material.init();
+
         });
 
         $scope.toggleCollapsibleMenu = function() {
