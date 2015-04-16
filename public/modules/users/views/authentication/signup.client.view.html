@@ -4,19 +4,19 @@
 		<div class="col-md-5 text-center" style="padding: 20px">
 			<h3 class="text-center" style="padding-bottom: 20px">Sign up using your social accounts</h3>
 			<a href="/auth/facebook" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-facebook">
+				<button type="button" class="btn btn-block btn-social btn-raised btn-facebook">
 					<i class="fa fa-facebook"></i> <div style="padding-left: 10px">Sign up with Facebook</div>
 				</button>
 			</a>
 			<br/>
 			<a href="/auth/twitter" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-twitter">
+				<button type="button" class="btn btn-block btn-social btn-raised btn-twitter">
 					<i class="fa fa-twitter"></i> <div style="padding-left: 10px">Sign up with Twitter</div>
 				</button>
 			</a>
 			<br />
 			<a href="/auth/google" class="undecorated-link">
-				<button type="button" class="btn btn-block btn-social btn-google-plus">
+				<button type="button" class="btn btn-block btn-social btn-raised btn-google-plus">
 					<i class="fa fa-google"></i> <div style="padding-left: 10px">Sign up with Google</div>
 				</button>
 			</a>
@@ -54,9 +54,8 @@
 						<label for="password">Password</label>
 						<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
 					</div>
-					<div class="form-group">
-						<input type="checkbox" id="confirmed" name="confirmed" data-ng-model="credentials.confirmed">
-						<font size="-2"><font color="grey">*If you are under 18, you may use the websites only with involvement of a parent or guardian.</font></font>
+					<div class="form-group" style="text-align:center">
+						<font size="-1" color="grey">By signing up you confirm that you are at least 18 years of age.</font>
 					</div>
 				  
 					<div class="text-center form-group">

@@ -151,12 +151,6 @@ code {
 .text-muted {
     color:  #f2f2f2;
 }
-/* Btn Style Override
--------------------------------------------------- */
-.btn-social {
-	border: 1px solid rgba(127,127,127,.5);
-}
-.btn.btn-sm{
-	padding-left:0px;
-	padding-right:0px;
+.btn-social>:first-child {
+    line-height: 40px;
 }
