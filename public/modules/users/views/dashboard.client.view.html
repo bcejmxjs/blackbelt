@@ -2,7 +2,7 @@
     <br/>
     <div class="container" data-ng-init="grabUsersCourses(); getAllLessons(); messagesList()">
         <div class="page-header">
-            <h1 style="text-align: center;">My Dashboard</h1>
+            <h1 class="bg-text" style="text-align: center;">My Dashboard</h1>
         </div>
         <!-- Begin Notification Section -->
 		<!-- 
@@ -11,7 +11,7 @@
 		Admin - Pending Approvals and List of courses managed
 		-->
         <div class="col-md-4" >
-            <h2 style="text-align: center; margin-top: 0px">Notifications</h2>
+            <h2 class="bg-text" style="text-align: center; margin-top: 0px">Notifications</h2>
             <h3 style="text-align: center; color: #b0b0b0" data-ng-show="!messages.length"><b> You have no notifications! :) </b></h3> 
             <div class="list-group">
                 <a data-ng-repeat="message in messages" ng-click="readMessage(message)" class="list-group-item">
@@ -19,7 +19,7 @@
                     <p class="list-group-item-text">{{ message.body }}</p>
                 </a>
             </div>
-            <h2 style="text-align: center; margin-top: 0px">Belts</h2>
+            <h2 class="bg-text" style="text-align: center; margin-top: 0px">Belts</h2>
             <div class="panel panel-default" data-ng-repeat="belt in authentication.user.belts">
                 <div class="panel-body">
                     <h2 style="margin:0px; text-align: center"> <b>{{ belt.style }}</b> &nbsp | &nbsp {{ belt.color }} </h2>
@@ -30,7 +30,7 @@
         <!-- Begin Courses Section -->
         
         <div class="col-md-8"> 
-            <h2 style="text-align: center; margin-top: 0px">Course Progress</h2>
+            <h2 class="bg-text" style="text-align: center; margin-top: 0px">Course Progress</h2>
             <div class="panel panel-default" data-ng-repeat="course in courses">
 				{{getCourseProgress(course)}}
                 <div class="panel-body">
