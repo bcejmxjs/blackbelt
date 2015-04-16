@@ -43,6 +43,7 @@ module.exports = {
                 'public/lib/videogular-buffering/vg-buffering.js',
                 'public/lib/angular-payments/lib/angular-payments.js',
                 'public/lib/ng-file-upload/angular-file-upload-all.js',
+                'public/lib/arrive/src/arrive.js',
                 'public/lib/bootstrap-material-design/dist/js/material.js',
                 'public/lib/bootstrap-material-design/dist/js/ripples.js'
             ]
