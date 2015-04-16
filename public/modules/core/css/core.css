@@ -157,3 +157,7 @@ code {
 .btn-social {
 	border: 1px solid rgba(127,127,127,.5);
 }
+.btn.btn-sm{
+	padding-left:0px;
+	padding-right:0px;
+}
