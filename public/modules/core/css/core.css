@@ -103,8 +103,8 @@ html {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 65px;
-  background-color: #3F51B5;
-  border-top: 5px #6276E6 solid;  
+  background-color: #004D40;
+  border-top: 5px #00796B solid;  
 }
 
 body > .container {
@@ -150,4 +150,7 @@ code {
 }
 .text-muted {
     color:  #f2f2f2;
+}
+.navbar-default {
+    background-color: #004D40;
 }

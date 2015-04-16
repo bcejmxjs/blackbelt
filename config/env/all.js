@@ -18,7 +18,7 @@ module.exports = {
                 'public/lib/font-awesome/css/font-awesome.css',
                 'public/lib/open-sans-fontface/open-sans.css',
                 // 'public/lib/bootswatch-dist/css/bootstrap.css'
-                'public/lib/bootstrap-material-design/dist/css/material-fullpalette.css',
+                'public/lib/bootstrap-material-design/dist/css/material.css',
                 'public/lib/bootstrap-material-design/dist/css/ripples.css'
             ],
             js: [
