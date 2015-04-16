@@ -4,6 +4,13 @@
     </div>
     <div class="modal-body">
         <fieldset>
+            <div data-ng-show="error" class="text-center text-danger">
+                <div class="alert alert-danger" role="alert">
+	 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 				<span class="sr-only">Error:</span>
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </div>
             <div class="form-group">
                 <label for="name">Name</label>
                 <div class="controls">
@@ -57,9 +64,6 @@
                     <option>Red</option>
                     <option>Black</option>
                 </select>
-            </div>
-            <div data-ng-show="error" class="text-danger">
-                <strong data-ng-bind="error"></strong>
             </div>
         </fieldset>
     </div>

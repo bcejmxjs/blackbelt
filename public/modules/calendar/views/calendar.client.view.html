@@ -4,7 +4,7 @@
             <div class="page-header bg-text">
                 <h1>Hours</h1>
             </div>
-            <div class="panel" data-ng-class="getOpenPanelClass()">
+            <div class="panel" data-ng-class="getOpenPanelClass()" style="border-radius: 4px">
                 <div class="panel-heading">
                     <h1 class="panel-title">
                         {{ getOpenPanelText() }}
@@ -31,6 +31,13 @@
         <div class="col-md-8">
             <div class="page-header bg-text">
                 <h1>Events</h1>
+            </div>
+            <div data-ng-show="error" class="text-center text-danger">
+                <div class="alert alert-danger" role="alert">
+	 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 				<span class="sr-only">Error:</span>
+					<strong data-ng-bind="error"></strong>
+				</div>
             </div>
             <div class="panel panel-default" ng-show="authentication.user.roles.indexOf('instructor') > -1 || 
                                                       authentication.user.roles.indexOf('admin') > -1">

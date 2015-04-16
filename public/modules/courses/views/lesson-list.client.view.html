@@ -11,8 +11,12 @@
                 </button>
                 <br/>
             </a>
-            <div ng-show="error">
-                <h3 style="text-align:center; color:#D9534F">{{ error }}</h3>
+            <div data-ng-show="error" class="text-center text-danger">
+                <div class="alert alert-danger" role="alert">
+	 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 				<span class="sr-only">Error:</span>
+					<strong data-ng-bind="error"></strong>
+				</div>
             </div>
             <div class="panel panel-default" data-ng-repeat="lesson in lessons">
                 <div class="panel-body">

@@ -6,73 +6,77 @@
                 <h1 class="bg-text" style="text-align: center;">New Course</h1>
             </div>
             <div class="panel panel-default">
-            <fieldset class="panel-fields">
-                <div class="form-group">
-                    <label for="name">Course Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
+                <fieldset class="panel-fields">
+                    <div data-ng-show="error" class="text-center text-danger">
+                        <div class="alert alert-danger" role="alert">
+	 				        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	 				        <span class="sr-only">Error:</span>
+					        <strong data-ng-bind="error"></strong>
+				        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="name">Description</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" required>
+                    <div class="form-group">
+                        <label for="name">Course Name</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Karate, Jujitsu, etc" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="name">Price</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
+                    <div class="form-group">
+                        <label for="name">Description</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="A short course description" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="name">Instructor &nbsp <span style="color: #999999">(optional)</span></label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="instructor" id="instructor" class="form-control" placeholder="First Last" >
+                    <div class="form-group">
+                        <label for="name">Price</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="price" id="price" class="form-control" placeholder="12.00" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="name">Video Demo &nbsp <span style="color: #999999">(optional)</span></label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
+                    <div class="form-group">
+                        <label for="name">Instructor &nbsp <span style="color: #999999">(optional)</span></label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="instructor" id="instructor" class="form-control" placeholder="First Last" >
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="name">Video Demo &nbsp <span style="color: #999999">(optional)</span></label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="demo" id="demo" class="form-control" placeholder="https://www.youtube.com/watch?v=6knJhq1oQi4" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Style</label>
+                        <select class="form-control" id="sel1" data-ng-model="style" required>
+                            <option style="display:none" value="">Select a style...</option>
+                            <option >Karate</option>
+                            <option>Kenpō</option>
+                            <option>Jujitsu</option>
+                            <option>Ninjitsu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Belt</label>
+                        <select class="form-control" id="sel1" data-ng-model="belt" required>
+                            <option style="display:none" value="">Select a color...</option>
+                            <option>White</option>
+                            <option>Yellow</option>
+                            <option>Gold</option>
+                            <option>Orange</option>
+                            <option>Green</option>
+                            <option>Blue</option>
+                            <option>Purple</option>
+                            <option>Brown</option>
+                            <option>Red</option>
+                            <option>Black</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="create();ok()">Save</button>
+                    <a class="btn btn-danger pull-right" href="/#!/courses" role="setting">Cancel</a>
                 </div>
-                <div class="form-group">
-                    <label for="sel1">Style</label>
-                    <select class="form-control" id="sel1" data-ng-model="style" required>
-                        <option style="display:none" value="">Select a style...</option>
-                        <option >Karate</option>
-                        <option>Kenpō</option>
-                        <option>Jujitsu</option>
-                        <option>Ninjitsu</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sel1">Belt</label>
-                    <select class="form-control" id="sel1" data-ng-model="belt" required>
-                        <option style="display:none" value="">Select a color...</option>
-                        <option>White</option>
-                        <option>Yellow</option>
-                        <option>Gold</option>
-                        <option>Orange</option>
-                        <option>Green</option>
-                        <option>Blue</option>
-                        <option>Purple</option>
-                        <option>Brown</option>
-                        <option>Red</option>
-                        <option>Black</option>
-                    </select>
-                </div>
-        	    <div data-ng-show="error" class="text-danger">
-        		    <strong data-ng-bind="error"></strong>
-        	    </div>
-            </fieldset>
-            <div class="modal-footer">
-                <button class="btn btn-success" ng-click="create();ok()">Save</button>
-                <a class="btn btn-danger pull-right" href="/#!/courses" role="setting">Cancel</a>
             </div>
-            </div>
-           
+            
         </div>
     </div>
 </section>
