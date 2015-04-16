@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label for="">Card</label>
-                    <input type="text" id="purchase_card" name="number" class="input-block-level form-control" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
+                    <input type="text" id="purchase_card" class="input-block-level form-control" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
                 </div>
                 </div>
                 <div class="col-xs-6" style="padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:5px">
@@ -32,13 +32,13 @@
                 </div>
             </fieldset>
         </div>
-        <div class="modal-footer">     
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="modal-footer">
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
             <button class="btn btn-danger" data-ng-click="purchaseCourse(course._id); ok()">Test</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <!-- <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="purchaseCourse(course._id)">
             Purchase
             </button> -->
-            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
         </div>
     </form>
 </section>

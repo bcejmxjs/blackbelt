@@ -27,7 +27,6 @@
 .front-jumbotron {
     margin-bottom: 0px;
     color: #f2f2f2;
-    background-color: #11887B;
     /* text-shadow: 0.1em 0.1em 0.2em black; */
     /* background-image: url(http://subtlepatterns.com/patterns/dark_wall.png); */
     /* box-shadow: inset 0 0 0 1000px rgba(59, 71, 69,.8); */
@@ -104,8 +103,8 @@ html {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 65px;
-  background-color: #333333;
-  border-top: 5px #666666 solid;  
+  background-color: #3F51B5;
+  border-top: 5px #6276E6 solid;  
 }
 
 body > .container {
@@ -148,4 +147,7 @@ code {
 .page-header {
   padding-bottom: 0px;
   border-bottom: 0px
+}
+.text-muted {
+    color:  #f2f2f2;
 }
