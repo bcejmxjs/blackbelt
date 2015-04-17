@@ -53,7 +53,7 @@
 			<li ui-route="/dashboard" ng-class="{active: $uiRoute}" ng-show="authentication.user.roles.indexOf('user') > -1 ">
                 <a class="dashboard" href = "/#!/dashboard">Dashboard</a>
 			</li>
-			<li ui-route="/admindashboard" ng-class="{active: $uiRoute}" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+			<li ng-class="{active:state.current.name.search('dashboard') > -1}" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
 				<a class="dashboard" href = "/#!/admindashboard">Dashboard</a>
 			</li>
 			<li class="divider-vertical"></li>
