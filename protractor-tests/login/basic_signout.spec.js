@@ -17,7 +17,6 @@ var Page = function() {
 
 	this.signout = function() {
 		this.dropdown().click();
-		browser.sleep(5000);
 		this.signout_btn().click();
 	}
 }

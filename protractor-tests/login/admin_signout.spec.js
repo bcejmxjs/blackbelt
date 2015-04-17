@@ -16,7 +16,6 @@ var Page = function() {
 	}
 
 	this.signout = function() {
-		// Have to click twice for some reason
 		this.dropdown().click();
 		this.signout_btn().click();
 	}

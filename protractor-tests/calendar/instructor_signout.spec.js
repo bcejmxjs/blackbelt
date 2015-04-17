@@ -1,17 +1,20 @@
 //Instructor sign out
 var Page = function() {
 	
-	this.dropdown_toggle = function() {
-		return element(by.css('li.dropdown > a.dropdown-toggle'));
+	this.dropdown = function() {
+		return element(by.id('profile_dropdown'))
+		.element(by.className('dropdown'))
 	}
 
 	this.signout_btn = function() {
-		return element(by.linkText('Signout'));
+		return element.all(by.className('dropdown-menu'))
+		.get(0)
+		.element(by.linkText('Signout'));
 	}
 
 	this.signout = function() {
 		// Have to click twice for some reason
-		this.dropdown_toggle().click().click();
+		this.dropdown().click();
 		this.signout_btn().click();
 	}
 }
