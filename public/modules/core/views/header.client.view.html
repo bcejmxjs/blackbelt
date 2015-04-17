@@ -50,9 +50,11 @@
         </ul>
 		
         <ul class="nav navbar-nav navbar-right" id="profile_dropdown" data-ng-show="authentication.user">
-			<li ui-route="/dashboard || /admindashboard" ng-class="{active: $uiRoute}">
-				<a class="dashboard" href = "/#!/admindashboard" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">Dashboard</a>
-                <a class="dashboard" href = "/#!/dashboard" ng-show="authentication.user.roles.indexOf('user') > -1 ">Dashboard</a>
+			<li ui-route="/dashboard" ng-class="{active: $uiRoute}" ng-show="authentication.user.roles.indexOf('user') > -1 ">
+                <a class="dashboard" href = "/#!/dashboard">Dashboard</a>
+			</li>
+			<li ui-route="/admindashboard" ng-class="{active: $uiRoute}" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+				<a class="dashboard" href = "/#!/admindashboard">Dashboard</a>
 			</li>
 			<li class="divider-vertical"></li>
             <li class="dropdown">
