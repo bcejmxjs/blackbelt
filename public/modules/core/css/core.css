@@ -107,7 +107,16 @@ html {
   background-color: #004D40;
   border-top: 5px #00796B solid;  
 }
-
+.footer-mobile {
+    padding-top: 10px;
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 105px;
+  background-color: #004D40;
+  border-top: 5px #00796B solid;  
+}
 body > .container {
   padding: 60px 15px 0;
 }
@@ -162,4 +171,8 @@ code {
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
+}
+.cal-submit {
+    margin-top: 20px;
+    margin-bottom: 0px;
 }

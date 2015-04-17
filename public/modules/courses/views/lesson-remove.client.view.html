@@ -1,17 +1,15 @@
 <section data-ng-controller="LessonsController" >
     <div class="form-group">
-         <div class="alert alert-danger" role="alert">
+         <div class="alert alert-danger text-center" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
-                <strong >You are going to remove this lesson!</strong>
+                <span>You are going to remove this lesson!</span>
         </div>
         <div class="text-center form-group">
             <b>{{lesson.name}}</b>
         </div> 
-                         
     </div>
     <div class="text-center form-group">
-        <button class="btn btn-danger btn=xs" ng-click="remove(lesson); ok()">Delete</button>
-         <button class="btn btn-default btn=xs" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-danger btn" ng-click="remove(lesson); ok()">Delete</button>
     </div>
-    </div>     
 </section>
