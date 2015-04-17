@@ -14,6 +14,6 @@
         </fieldset>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success btn-large pull-right" ng-click="cancel(); purchaseCourse(course._id)"> $ {{course.price}}.00 </button>
+        <button type="button" class="btn btn-success btn-large pull-right" ng-click="cancel(); purchaseCourse(course._id)"> {{course.price | currency}} </button>
     </div>
 </section>

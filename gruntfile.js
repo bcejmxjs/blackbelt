@@ -173,16 +173,6 @@ module.exports = function(grunt) {
                     chromeDriver: 'node_modules/protractor/selenium/chromedriver'
                 }
             },
-            /*
-		      example: {
-		        options: {
-		          verbose: true,
-		          keepAlive:false,
-		          configFile: 'protractor-tests/example/conf.js',
-		          args: {}
-		        }
-		      },
-		      */
             login: {
                 verbose: true,
                 keepAlive: false,
