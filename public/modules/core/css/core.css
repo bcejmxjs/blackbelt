@@ -176,3 +176,10 @@ code {
     margin-top: 20px;
     margin-bottom: 0px;
 }
+
+/* Carousel Override
+-------------------------------------------------- */
+.carousel-control{
+	color: transparent;
+	text-shadow: none;
+}
