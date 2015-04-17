@@ -77,8 +77,8 @@
                     <h4><b>{{ moment(event.date).format('MMMM DD, YYYY') }}</b></h4>
                     <p>
                         {{ event.body }}
-                        <button id="delete" class="btn btn-danger pull-right" type="submit" data-ng-click="remove(event)" style="margin-top: 10px; margin-bottom: 0px" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                        <button id="delete" class="btn btn-material-red pull-right" type="submit" data-ng-click="remove(event)" style="margin-top: 10px; margin-bottom: 0px" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
+                            Delete
                         </button>
                     </p>
                 </div>
