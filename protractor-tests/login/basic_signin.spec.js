@@ -10,7 +10,7 @@ var SignInPage = function() {
 	};
 
 	this.signin_btn = function() {
-		return element(by.buttonText('Sign in'));
+		return element(by.id('signin'));
 	};
 
 	var user = {
