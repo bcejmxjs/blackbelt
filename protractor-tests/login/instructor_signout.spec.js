@@ -1,24 +1,26 @@
 // Generic page object -- interacts with header
 var Page = function() {
 
-	this.dropdown_toggle = function() {
-		return element(by.css('li.dropdown > a.dropdown-toggle'));
-	};
+	this.dropdown = function() {
+		return element(by.id('profile_dropdown'))
+		.element(by.className('dropdown'))
+	}
 
 	this.signout_btn = function() {
-		return element(by.linkText('Signout'));
-	};
+		return element(by.className('dropdown-menu'))
+		.element(by.linkText('Signout'));
+	}
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/');
-	};
+	}
 
 	this.signout = function() {
 		// Have to click twice for some reason
-		this.dropdown_toggle().click().click();
+		this.dropdown().click();
 		this.signout_btn().click();
-	};
-};
+	}
+}
 
 var page = new Page();
 describe('Instructor signout', function() {
