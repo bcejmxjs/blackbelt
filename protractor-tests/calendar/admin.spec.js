@@ -3,85 +3,93 @@ var CalendarPage = function() {
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/calendar');
-	};
+	}
 
 	this.title = function(ind) {
-		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h1')).getText();
-	};
+		return element.all(by.repeater('event in events'))
+		.get(ind).element(by.tagName('h1')).getText();
+	}
 
 	this.date = function(ind) {
-		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h4')).getText();
-	};
+		return element.all(by.repeater('event in events'))
+		.get(ind).element(by.tagName('h4')).getText();
+	}
 
 	this.description = function(ind) {
-		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('p')).getText();
-	};
+		return element.all(by.repeater('event in events'))
+		.get(ind).element(by.tagName('p')).getText();
+	}
+
+	this.btnDelete_event = function(ind) {
+		return element.all(by.repeater('event in events'))
+		.get(ind).element(by.id('delete'));
+	}
 
 	this.deleteEvent = function(ind) {
-		element.all(by.repeater('event in events')).get(ind).element(by.buttonText('Delete')).click();
-	};		
+		this.btnDelete_event(ind).click();
+	}		
 
 	this.submit = function() {
 		this.btnSubmit().click();
-	};
+	}
 
 	this.setEventName = function(name) {
 		this.tbEventName().clear();
 		this.tbEventName().sendKeys(name);
-	};
+	}
 
 	this.setEventDescription = function(description) {
 		this.tbEventDescription().clear();
 		this.tbEventDescription().sendKeys(description)
-	};
+	}
 
 	this.setDate = function(date) {
 		this.tbDate().clear();
 		this.tbDate().sendKeys(date);
-	};
+	}
 
 	this.toggleAMPM = function() {
 		this.btnAMPM().click();
-	};
+	}
 
 	this.setHour = function(hour) {
 		this.tbHour().clear();
 		this.tbHour().sendKeys(hour);
-	};
+	}
 
 	this.setMinute = function(minute) {
 		this.tbMinute().clear();
 		this.tbMinute().sendKeys(minute);
-	};
+	}
 
 	this.tbEventName = function() {
 		return element(by.model('event.title'));
-	};
+	}
 
 	this.tbEventDescription = function() {
 		return element(by.model('event.body'));
-	};
+	}
 
 	this.btnSubmit = function() {
-		return element(by.buttonText('Submit'));
-	};
+		return element(by.id('submit_event'));
+	}
 
 	this.tbDate = function() {
 		return element(by.model('dt'));
-	};
+	}
 
 	this.tbHour = function() {
 		return element(by.model('hours'));
-	};
+	}
 
 	this.tbMinute = function() {
 		return element(by.model('minutes'));
-	};
+	}
 	
 	this.btnAMPM = function() {
 		return element(by.css('[ng-click="toggleMeridian()"]'));
-	};
-};
+	}
+}
 
 var topEventName;
 var topEventDescription;
@@ -89,8 +97,9 @@ var topEventDate;
 
 describe('Simple event functionality', function() {
 	var calendarPage = new CalendarPage();
-	describe('Initalize calendar testing', function() {
+	describe('Initalize calendar admin testing', function() {
 		it('Get calendar page', function() {
+			console.log('Errors may result if mongo:load has not been run');
 			browser.waitForAngular();
 			calendarPage.get();
 		});
@@ -135,7 +144,7 @@ describe('Simple event functionality', function() {
 			it('Sh- have test description', function() {
 				expect(
 					calendarPage.description(0))
-				.toBe('Test event description.\nDelete');
+				.toBe('Test event description.\nDELETE');
 			});			
 		});
 		describe('Event1', function() {

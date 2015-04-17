@@ -4,19 +4,30 @@ var CalendarPage = function() {
 
 	this.get = function() {
 		browser.get(browser.baseUrl + '/#!/calendar');
-	};
+	}
+
+	this.addEventStuff = function() {
+		return element.all(by.className('panel-body'))
+		.get(0);
+	}
+
+	this.btnDelete_event = function(ind) {
+		return element.all(by.repeater('event in events'))
+		.get(ind).element(by.buttonText('Delete'));
+	}
 
 	this.title = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h1')).getText();
-	};
+	}
+
 	this.date = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('h4')).getText();
-	};
+	}
+
 	this.description = function(ind) {
 		return element.all(by.repeater('event in events')).get(ind).element(by.tagName('p')).getText();
-	};	
-
-};
+	}	
+}
 
 describe('As a basic user', function() {
 	var calendarPage = new CalendarPage();
@@ -45,14 +56,13 @@ describe('As a basic user', function() {
 		});
 		it('Sh- not be able to see event adding fields', function() {
 			expect(
-				element(by.css('[class="row ng-hide"]'))
+				calendarPage.addEventStuff()
 				.isDisplayed())
 			.toBeFalsy();
 		});
 		it('Sh- not be able to see event delete button', function() {
 			expect(
-				element.all(by.repeater('event in events')).get(0)
-				.element(by.css('[data-ng-click="remove(event)"]'))
+				calendarPage.btnDelete_event(0)
 				.isDisplayed())
 			.toBeFalsy();
 		});
