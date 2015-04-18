@@ -194,7 +194,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                 if (percentCompleted >= 100) {
                     percentCompleted = 100;
                     progBarText = 'You have completed this course!';
-                    progBarType = 'success';
+                    progBarType = 'done';
                 } else if (percentCompleted > 25 && percentCompleted < 100) {
                     progBarText = lessonsCompleted + ' / ' + lessonCount + ' Completed';
                 } else if (percentCompleted >= 10 && percentCompleted <= 25) {

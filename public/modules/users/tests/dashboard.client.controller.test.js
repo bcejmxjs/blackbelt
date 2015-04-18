@@ -184,7 +184,7 @@
         	}));
         	it('$scope.getCourseProgress() should set the progBarType to right value of Completed course under Test user', inject(function() {
         	    scope.getCourseProgress(scope.sampleCourses[2]);
-				expect(scope.progBarType).toEqual('success');
+				expect(scope.progBarType).toEqual('done');
         	}));
 			//NotStarted Course Tests
         	it('$scope.getCourseProgress() should set the progBarText to right value of NotStarted course under Test user', inject(function() {
