@@ -144,7 +144,7 @@ code {
 	height: 20px;
 }
 .progress .progress-bar-null {
-	background-color: #C3C3C3;
+	background-color: #c8c8c8;
 }
 .progress .progress-bar-inprog {
 	background-color: #00baa9;
