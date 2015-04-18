@@ -223,24 +223,24 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
             if (!Authentication.user) {
                 $location.path('/signin');
             }
-
-            var modalInstance = $modal.open({
-                templateUrl: 'modules/courses/views/course-purchase.view.html',
-                controller: ModalPurchaseCtrl,
-                size: size,
-                resolve: {
-                    course: function() {
-                        return selectedCourse;
+            else {
+                var modalInstance = $modal.open({
+                    templateUrl: 'modules/courses/views/course-purchase.view.html',
+                    controller: ModalPurchaseCtrl,
+                    size: size,
+                    resolve: {
+                        course: function() {
+                            return selectedCourse;
+                        }
                     }
-                }
-            });
+                });
 
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
+                modalInstance.result.then(function(selectedItem) {
+                    $scope.selected = selectedItem;
+                }, function() {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+            }
         };
 
         var ModalPurchaseCtrl = function($scope, $modalInstance, course) {
