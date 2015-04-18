@@ -211,6 +211,7 @@ describe('Course page as user', function() {
 			.toBeFalsy();
 		});
 	});
+
 	describe('Course0 delete button', function() {
 		it('Sh- not be visible', function() {
 			expect(
@@ -219,65 +220,25 @@ describe('Course page as user', function() {
 			.toBeFalsy();
 		});
 	});
-	describe('Course0 modal', function() {
-		it('Open modal', function() {
-			coursePage.get();
-			coursePage.courseModal_open(0);
-		});
-		describe('Modal0 title', function(){
-			it('Sh- match the h1 title text for course0', function() {
-				expect(
-					coursePage.courseModal_title())
-				.toBe('Jujitsu 1');
-			});
-		});
-		it('Close modal', function() {
-			coursePage.courseModal_close();
-		});
-		//This will purchase course 0
-		describe('Clicking modal purchase', function() {
-			it('Reopen modal', function() {
-				coursePage.courseModal_open(0);
-			});
-			it('Perform click', function() {
-				coursePage.courseModal_clickPurchase();
-			});
-			it('Sh- open purchase modal', function() {
-				expect(
-					browser.getCurrentUrl())
-				.toBe(browser.baseUrl + '/#!/courses');
-			});
-			it('Sh- make purchase button disappear', function() {
-				expect(
-					coursePage.btn_purchase(0)
-					.isDisplayed())
-				.toBeFalsy();
-			});
-		});
-	});
+
 	describe('Clicking purchased course header', function() {
+		it('Third lesson should be purchased && Kenpo 1', function() {
+			expect(
+				coursePage.course_title(2)
+				.getText())
+			.toBe('Kenpō 1');
+		});
 		it('Do click', function() {
-			coursePage.course_title(0).click();
+			//Reliant on third course being
+			coursePage.course_title(2).click();
 		});
 		it('Sh- direct to a lesson page', function() {
 			expect(
 				browser.getCurrentUrl())
 			.toContain(browser.baseUrl + '/#!/course/');
 		});
-	});
-	// This will purchase course 1
-	describe('Clicking purchase', function() {
-		it('Do click', function() {
-			coursePage.get();
-			coursePage.btn_purchase(1).click();
-		});
-		it('Sh- make purchase button disappear', function() {
-			expect(
-				coursePage.btn_purchase(1)
-				.isDisplayed())
-			.toBeFalsy();
-		});
-	});
+	});	
+
 	describe('/create page', function() {
 		it('Sh- not be accessible', function() {
 			coursePage.get();
@@ -287,6 +248,7 @@ describe('Course page as user', function() {
 			.toBe(browser.baseUrl + '/#!/courses');
 		});
 	});
+
 	describe('/course/ page',function () {
 		it('Sh- direct to course error page', function() {
 			//Assuming user will be directed to course error page
@@ -296,6 +258,7 @@ describe('Course page as user', function() {
 			.toBe(browser.baseUrl + '/#!/error/course');
 		});
 	});
+
 	describe('Accessing invalid course id', function() {
 		it('Sh- direct to course error page', function() {
 			coursePage.get();
@@ -305,4 +268,5 @@ describe('Course page as user', function() {
 			.toBe(browser.baseUrl + '/#!/error/course');
 		});
 	});
+	
 });
