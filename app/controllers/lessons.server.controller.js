@@ -130,38 +130,59 @@ exports.upload = function(req, res) {
 
 exports.play = function(req, res, next, id) {
     if (req.isAuthenticated()) {
-        var path = 'videos/' + id;
-        var stat = fs.statSync(path);
-        var total = stat.size;
-        if (req.headers['range']) {
-            var range = req.headers.range;
-            var parts = range.replace(/bytes=/, "").split("-");
-            var partialstart = parts[0];
-            var partialend = parts[1];
-
-            var start = parseInt(partialstart, 10);
-            var end = partialend ? parseInt(partialend, 10) : total - 1;
-            var chunksize = (end - start) + 1;
-            console.log('RANGE: ' + start + ' - ' + end + ' = ' + chunksize);
-
-            var file = fs.createReadStream(path, {
-                start: start,
-                end: end
-            });
-            res.writeHead(206, {
-                'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
-                'Accept-Ranges': 'bytes',
-                'Content-Length': chunksize,
-                'Content-Type': 'video/mp4'
-            });
-            file.pipe(res);
+        var videocourse = id.split('-')[0];
+        var isAuthorized = false;
+        if (req.user.roles.indexOf('admin') > -1) {
+            isAuthorized = true;
+        } else if (id == "big_buck_bunny.mp4") {
+            // Makes sure our test video plays for dummy courses
+            isAuthorized = true;
         } else {
-            console.log('ALL: ' + total);
-            res.writeHead(200, {
-                'Content-Length': total,
-                'Content-Type': 'video/mp4'
+            req.user.coursesPurchased.forEach(function(course) {
+                if (course.courseId == videocourse) {
+                    isAuthorized = true;
+                }
             });
-            fs.createReadStream(path).pipe(res);
+        }
+        if (isAuthorized) {
+            var path = 'videos/' + id;
+            var stat = fs.statSync(path);
+            var total = stat.size;
+            if (req.headers['range']) {
+                var range = req.headers.range;
+                var parts = range.replace(/bytes=/, "").split("-");
+                var partialstart = parts[0];
+                var partialend = parts[1];
+
+                var start = parseInt(partialstart, 10);
+                var end = partialend ? parseInt(partialend, 10) : total - 1;
+                var chunksize = (end - start) + 1;
+                console.log('RANGE: ' + start + ' - ' + end + ' = ' + chunksize);
+
+                var file = fs.createReadStream(path, {
+                    start: start,
+                    end: end
+                });
+                res.writeHead(206, {
+                    'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
+                    'Accept-Ranges': 'bytes',
+                    'Content-Length': chunksize,
+                    'Content-Type': 'video/mp4'
+                });
+                file.pipe(res);
+
+            } else {
+                console.log('ALL: ' + total);
+                res.writeHead(200, {
+                    'Content-Length': total,
+                    'Content-Type': 'video/mp4'
+                });
+                fs.createReadStream(path).pipe(res);
+            }
+        } else {
+            return res.status(403).send({
+                message: 'User is not authorized'
+            });
         }
     } else {
         return res.status(401).send({
