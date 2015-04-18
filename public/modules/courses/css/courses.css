@@ -75,7 +75,6 @@ div.moviewrapper {
     cursor: inherit;
     display: block;
 }
-
 .ng-invalid {
     border-color: #f00 !important;
 }
@@ -106,4 +105,9 @@ div.moviewrapper {
     background-repeat: no-repeat;
     background-position-x: 98%;
     background-position-y: 50%;
+}
+.file-input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 99%;
 }
