@@ -29,11 +29,11 @@
                     <label for="name">Video File</label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <span class="btn btn-primary btn-file btn-sm" ng-file-select ng-model="files" accept="video/mp4"> 
+                            <span class="btn btn-primary btn-file btn-sm" style="border-radius: 2px; margin-right: 5px" ng-file-select ng-model="files" accept="video/mp4"> 
 		                        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> &nbsp Browse...
                             </span>
                         </span>
-                        <input type="text" class="form-control file-input" readonly placeholder="{{files[0].name}}">
+                        <input type="text" class="form-control" readonly placeholder="{{files[0].name}}">
                     </div>
                 </div>
                 <div class="form-group" ng-show="showProgressBar">

@@ -118,6 +118,7 @@ exports.lessonByID = function(req, res, next, id) {
 };
 
 exports.upload = function(req, res) {
+    // Uses multer for uploads.
     var file = req.files.file;
     res.jsonp({
         filename: file.name
