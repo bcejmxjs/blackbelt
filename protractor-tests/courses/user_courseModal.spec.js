@@ -77,7 +77,7 @@ var CoursePage = function() {
 	this.purchaseModal_btnClose = function() {
 		return this.purchaseModal()
 		.element(by.className('modal-footer'))
-		.element(by.buttonText('Cancel'));
+		.element(by.id('cancel'));
 	}
 
 	this.purchaseModal_title = function() {
