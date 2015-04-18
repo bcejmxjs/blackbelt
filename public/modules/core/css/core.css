@@ -147,7 +147,10 @@ code {
 	background-color: #C3C3C3;
 }
 .progress .progress-bar-inprog {
-	background-color: #84DE87;
+	background-color: #00baa9;
+}
+.progress .progress-bar-done {
+	background-color: #00816b;
 }
 .center {
      float: none;
