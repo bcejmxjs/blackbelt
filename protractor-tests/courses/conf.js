@@ -15,6 +15,7 @@ exports.config = {
     'user_signin.spec.js',
     'user.spec.js',
     'user_courseModal.spec.js',
+    'user_purchase.spec.js',
     'user_signout.spec.js',
     'instructor_signin.spec.js',
     'instructor.spec.js',
