@@ -6,7 +6,7 @@
                 <h1 style="text-align: center;">Courses</h1>
             </div>
             <a href="/#!/courses/create" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1">
-                <button type="submit" class="btn btn-primary btn-lg center center-block" > 
+                <button id="add_course" type="submit" class="btn btn-primary btn-lg center center-block" > 
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     Add New Course 
                 </button>
@@ -25,8 +25,8 @@
                                 {{course.name}}
                             </a>
                             <div class="btn-group pull-right">                  
-                                <button class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
-                                <button class="btn btn-default btn-sm btn-material-red" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
+                                <button id = "edit" class="btn btn-default btn-sm" type="submit" data-ng-click="modalUpdate('lg', course)" ng-show="authentication.user.roles.indexOf('instructor') > -1 || authentication.user.roles.indexOf('admin') > -1"> Edit </button>
+                                <button id = "delete" class="btn btn-default btn-sm btn-material-red" type="submit" data-ng-click="modalRemove('sm', course)" ng-show="authentication.user.roles.indexOf('admin') > -1"> Delete </button>
                             </div>
                         </h1>
                     </div>
@@ -48,7 +48,7 @@
                         <!-- <button type="button" class="btn btn-block btn-success pull-right" data-ng-click="purchaseCourse(course._id)">
                             Purchase
                         </button> -->
-                        <button type="button" class="btn btn-block btn-success pull-right" style="margin: 0px" data-ng-click="modalPurchase('sm', course)"> {{course.price | currency}} </button>
+                        <button id="purchase" type="button" class="btn btn-block btn-success pull-right" style="margin: 0px" data-ng-click="modalPurchase('sm', course)"> {{course.price | currency}} </button>
                     </div>
                 </div>    
             </div>

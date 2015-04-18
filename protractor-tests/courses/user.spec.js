@@ -7,7 +7,7 @@ var CoursePage = function() {
 	}
 
 	this.btn_addCourse = function() {
-		return element(by.buttonText('Add New Course'));
+		return element(by.id('add_course'));
 	}
 
 	// Course items
@@ -26,19 +26,19 @@ var CoursePage = function() {
 	this.btn_purchase = function(ind) { 
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Purchase'));
+		.element(by.id('purchase'));
 	}
 
 	this.btn_edit = function(ind) {
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Edit'));
+		.element(by.id('edit'));
 	}
 
 	this.btn_delete = function(ind) {
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Delete'));
+		.element(by.id('delete'));
 	}
 
 
@@ -54,11 +54,11 @@ var CoursePage = function() {
 
 	this.courseModal_btnClose = function() {
 		return this.courseModal()
-		.element(by.id('exit'));
+		.element(by.id('close'));
 	}
 
 	this.courseModal_close = function() {
-		this.courseModal_btnClose.click();
+		this.courseModal_btnClose().click();
 	}
 
 	this.courseModal_title = function() {
@@ -94,7 +94,7 @@ var CoursePage = function() {
 
 	this.courseModal_clickPurchase = function() {
 		this.courseModal()
-		.element(by.buttonText('Purchase')).click();
+		.element(by.id('purchase')).click();
 	}
 
 	// <--- purchaseModal items --->

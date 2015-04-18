@@ -3,12 +3,14 @@
 var Page = function() {
 	// Page object for the sign in page
 	
-	this.dropdown_toggle = function() {
-		return element(by.css('li.dropdown > a.dropdown-toggle'));
+	this.dropdown = function() {
+		return element(by.id('profile_dropdown'))
+		.element(by.className('dropdown'))
 	}
-	
+
 	this.signout_btn = function() {
-		return element(by.linkText('Signout'));
+		return element(by.className('dropdown-menu'))
+		.element(by.linkText('Signout'));
 	}
 
 	this.get = function() {
@@ -17,11 +19,10 @@ var Page = function() {
 
 	this.signout = function() {
 		// Have to click twice for some reason
-		this.dropdown_toggle().click().click();
+		this.dropdown().click();
 		this.signout_btn().click();
 	}
-
-};
+}
 
 describe('Signout', function() {
 	it('Do admin signout', function() {

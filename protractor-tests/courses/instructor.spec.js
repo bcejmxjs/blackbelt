@@ -7,7 +7,7 @@ var CoursePage = function() {
 	}
 
 	this.btn_addCourse = function() {
-		return element(by.buttonText('Add New Course'));
+		return element(by.id('add_course'));
 	}
 
 	// Course items
@@ -17,24 +17,28 @@ var CoursePage = function() {
 			.element(by.tagName('h1'))
 			.element(by.tagName('a'));
 	}
+	
 	this.course_description = function(ind) {
 		return element.all(by.repeater('course in courses'))
 			.get(ind).element(by.tagName('h4'));
 	}
+
 	this.btn_purchase = function(ind) { 
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Purchase'));
+		.element(by.id('purchase'));
 	}
+
 	this.btn_edit = function(ind) {
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Edit'));
+		.element(by.id('edit'));
 	}
+
 	this.btn_delete = function(ind) {
 		return element.all(by.repeater('course in courses'))
 		.get(ind)
-		.element(by.buttonText('Delete'));
+		.element(by.id('delete'));
 	}
 }
 
