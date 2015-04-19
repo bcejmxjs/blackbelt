@@ -4,8 +4,7 @@
 Blackbelt is a web app made (read WIP) with love for Melbourne Martial Arts.
 
 ## Tell me more
-The application is targeted at karate dojos and will be available liberally via the Apache 2.0 or MIT liscense.
-We're using the [MEAN](http://meanjs.org/) stack to build the application's foundation.
+An online purchase-based video course system and web presence for Melbourne Martial Arts in Melbourne, Florida. Built with Angular, Express, Node, and MongoDB.
 
 ## Screenshot
 ![](https://dl.dropboxusercontent.com/u/11061210/Screen%20Shot%202015-02-26%20at%201.39.17%20PM.png)
