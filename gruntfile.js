@@ -233,5 +233,5 @@ module.exports = function(grunt) {
     grunt.registerTask('mongo:load', ['easy_mongo_fixture:load']);
     grunt.registerTask('mongo:save', ['easy_mongo_fixture:save']);
 
-    grunt.loadNpmTasks('grunt-protractor-runner');
+   grunt.registerTask('e2e', ['mongo:load','protractor']);
 };
