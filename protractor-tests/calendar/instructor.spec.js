@@ -11,7 +11,7 @@ var CalendarPage = function() {
 		.get(ind).element(by.tagName('h1')).getText();
 	}
 
-	this.date = function(ind) {
+	this.dateTime = function(ind) {
 		return element.all(by.repeater('event in events'))
 		.get(ind).element(by.tagName('h4')).getText();
 	}
@@ -64,11 +64,11 @@ var CalendarPage = function() {
 	}
 
 	this.tbEventName = function() {
-		return element(by.model('event.title'));
+		return element(by.model('title'));
 	}
 
 	this.tbEventDescription = function() {
-		return element(by.model('event.body'));
+		return element(by.model('body'));
 	}
 
 	this.btnSubmit = function() {
@@ -107,7 +107,7 @@ describe('Simple event functionality', function() {
 		it('Get top event properties', function() {
 			topEventName = calendarPage.title(0);
 			topEventDescription = calendarPage.description(0);
-			topEventDate = calendarPage.date(0);
+			topEventDate = calendarPage.dateTime(0);
 		});
 	});
 	describe('Adding simple event, earliest chronologically', function() {
@@ -137,10 +137,10 @@ describe('Simple event functionality', function() {
 					calendarPage.title(0))
 				.toBe('Test Event Name');
 			});
-			it('Sh- have date of Jan 22, 2012', function() {
+			it('Sh- have date & time of 01/22/2012 @ 8:30PM', function() {
 				expect(
-					calendarPage.date(0))
-				.toBe('January 22, 2012');
+					calendarPage.dateTime(0))
+				.toBe('01/22/2012 @ 8:30PM');
 			});
 			it('Sh- have test description', function() {
 				expect(
@@ -156,7 +156,7 @@ describe('Simple event functionality', function() {
 			});
 			it('Sh- have pre-add date', function() {
 				expect(
-					calendarPage.date(1))
+					calendarPage.dateTime(1))
 				.toBe(topEventDate);
 			});
 			it('Sh- have pre-add description', function() {
@@ -178,7 +178,7 @@ describe('Simple event functionality', function() {
 			});
 			it('Sh- have pre-add date', function() {
 				expect(
-					calendarPage.date(0))
+					calendarPage.dateTime(0))
 				.toBe(topEventDate);
 			});
 			it('Sh- have pre-add description', function() {
