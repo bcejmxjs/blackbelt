@@ -108,10 +108,15 @@ angular.module('calendar').controller('CalendarController', ['$scope', '$state',
         };
 
         $scope.create = function() {
+
+            var datetime = new Date($scope.dt.getFullYear(), $scope.dt.getMonth(),
+                $scope.dt.getDate(), $scope.mytime.getHours(),
+                $scope.mytime.getMinutes(), $scope.mytime.getSeconds());
+
             var event = new Events({
                 title: this.event.title,
                 body: this.event.body,
-                date: this.dt
+                date: datetime
                     // Do something with the time and date to combine.
             });
             event.$save(function(response) {

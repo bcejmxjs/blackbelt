@@ -15,7 +15,6 @@
 
             <!-- Notifications -->
             <h3 style="text-align: center; color: #b0b0b0" data-ng-show="!messages.length"><b> You have no notifications! :) </b></h3> 
-
             <div data-ng-repeat="message in messages" ng-click="readMessage(message)" class="alert alert-dismissable" data-ng-class="getMessageStyle(message)" style="border-radius: 4px">
                 <h4>{{ message.title }}</h4>
                 <p>{{ message.body }}</p>
