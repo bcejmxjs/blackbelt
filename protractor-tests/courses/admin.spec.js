@@ -56,9 +56,6 @@ describe('Course page as admin', function() {
 			.toBeTruthy();
 		});
 	});
-	// ASSUMPTION:
-	//	There is >= 1 course viewable by noAuth user
-	// 	Otherwise, tests will fail
 	describe('Course0 edit button', function() {
 		it('Sh- be visible', function() {
 			expect(
@@ -75,18 +72,6 @@ describe('Course page as admin', function() {
 			.toBeTruthy();
 		});
 	});
-	/*
-	describe('Clicking purchase', function() {
-		it('Perform click', function() {
-			coursePage.btn_purchase(0).click();
-		});
-		it('Sh- direct to signin page', function() {
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/signin');
-		});
-	});
-	*/
 	describe('/course/ page',function () {
 		it('Sh- direct to course error page', function() {
 			//Assuming user will be directed to course error page
@@ -105,5 +90,4 @@ describe('Course page as admin', function() {
 			.toBe(browser.baseUrl + '/#!/error/course');
 		});
 	});
-	//Add lesson page testing here
 });

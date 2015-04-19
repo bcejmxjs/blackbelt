@@ -87,7 +87,7 @@ var CoursePage = function() {
 	}
 
 	this.purchaseModal_close = function() {
-		this.purchaseModal_btnClose.click();
+		this.purchaseModal_btnClose().click();
 	}
 }
 
