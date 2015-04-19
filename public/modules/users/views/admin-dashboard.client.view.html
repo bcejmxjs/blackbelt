@@ -13,21 +13,21 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" ng-src="{{submission.url}}" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <h4>Uploaded by <b>{{ submission.userDisplayName }}</b></h4>
-                    <form name="feedback" action="/my-handling-form-page" method="post" style="border:0; margin: 0;">
+                    <h4 style="margin-bottom: 15px">Uploaded by <b>{{ submission.userDisplayName }}</b></h4>
+                    <form name="feedback" action="/my-handling-form-page" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" type="text" data-ng-model="submission.body" required placeholder="Provide Feedback" rows="3"></textarea>
+                            <textarea class="form-control floating-label" type="text" data-ng-model="submission.body" required placeholder="Provide Feedback" rows="3"></textarea>
                         </div>
                     </form>
                     <div class="wrapper">
                         <div class="col-xs-6" style="padding-right: 5px; padding-left: 0px">
                             <button type="button" class="btn btn-success btn-lg" style="width: 100%" ng-click="pass(submission)">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Pass
+                                <i class="fa fa-check"></i> Pass
                             </button>
                         </div>
                         <div class="col-xs-6" style="padding-right: 0px; padding-left: 5px">
                             <button type="button" class="btn btn-danger btn-lg" style="width: 100%" ng-click="fail(submission)">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Fail
+                                <i class="fa fa-times"></i> Fail
                             </button>
                         </div>
                         <div class="panel-footing"></div>

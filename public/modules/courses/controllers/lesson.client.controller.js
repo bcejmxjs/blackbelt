@@ -20,6 +20,19 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
             }, function(response) {
                 $scope.lesson = response;
 
+                if (Authentication.user.roles.indexOf('admin') < 0) {
+                    if (Authentication.user.coursesPurchased) {
+                        for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                            if (Authentication.user.coursesPurchased[i].courseId == $scope.lesson.courseId) {
+                                $scope.lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted;
+                            }
+                        }
+                        if ($scope.lesson.position > $scope.lessonsCompleted.length + 1) {
+                            $location.path('error/lesson');
+                        }
+                    }
+                }
+
                 // Configuration for video container.
                 $scope.config = {
                     sources: [{

@@ -153,18 +153,22 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                     }
                 });
             } else {
-                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
-                    if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
-                        Authentication.user.coursesPurchased[i].lessonPending = '';
+                var msgSubmission = Submissions.get({
+                    submissionId: message.submissionId
+                }, function(msgSubmission) {
+                    for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                        if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
+                            Authentication.user.coursesPurchased[i].lessonPending = '';
+                        }
                     }
-                }
-                // Save user update to db.
-                var user = new Users($scope.authentication.user);
-                user.$update(function(response) {
-                    $scope.success = true;
-                    Authentication.user = response;
-                }, function(response) {
-                    $scope.error = response.data.message;
+                    // Save user update to db.
+                    var user = new Users($scope.authentication.user);
+                    user.$update(function(response) {
+                        $scope.success = true;
+                        Authentication.user = response;
+                    }, function(response) {
+                        $scope.error = response.data.message;
+                    });
                 });
             }
             // Remove the message and reload the state.
