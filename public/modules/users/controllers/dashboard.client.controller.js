@@ -227,5 +227,15 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
             $scope.progBarValue = percentCompleted;
             $scope.progBarType = progBarType;
         };
+
+        /* Begin Notification Stylings! */
+
+        /** Returns appropriate class type of notification */
+        $scope.getMessageStyle = function(notification) {
+            if( notification.decision )
+                return 'alert-success';
+            else
+                return 'alert-danger';
+        };
     }
 ]);
