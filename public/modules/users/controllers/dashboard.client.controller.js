@@ -114,29 +114,23 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                         }
                     });
 
+                    // Add belts after completing courses.
                     if (lessonCount == lessonsCompleted) {
                         Courses.get({
                             courseId: msgSubmission.courseId
                         }, function(response) {
-                            if (!Authentication.user.belts.length) {
+                            var found = false;
+                            Authentication.user.belts.forEach(function(belt, index, belts) {
+                                if (belt.style == response.style) {
+                                    found = true;
+                                    belts[index].color = response.color;
+                                }
+                            });
+                            if (!found) {
                                 Authentication.user.belts.push({
                                     color: response.belt.color,
                                     style: response.style
                                 });
-                            } else {
-                                var found = false;
-                                Authentication.user.belts.forEach(function(belt, index, belts) {
-                                    if (belt.style == response.style) {
-                                        found = true;
-                                        belts[index].color = response.color;
-                                    }
-                                });
-                                if (!found) {
-                                    Authentication.user.belts.push({
-                                        color: response.belt.color,
-                                        style: response.style
-                                    });
-                                }
                             }
                             // Save those updates to the db!
                             var user = new Users($scope.authentication.user);
@@ -157,6 +151,20 @@ angular.module('users').controller('DashboardController', ['$scope', '$http', '$
                             $scope.error = response.data.message;
                         });
                     }
+                });
+            } else {
+                for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
+                    if (Authentication.user.coursesPurchased[i].courseId == msgSubmission.courseId) {
+                        Authentication.user.coursesPurchased[i].lessonPending = '';
+                    }
+                }
+                // Save user update to db.
+                var user = new Users($scope.authentication.user);
+                user.$update(function(response) {
+                    $scope.success = true;
+                    Authentication.user = response;
+                }, function(response) {
+                    $scope.error = response.data.message;
                 });
             }
             // Remove the message and reload the state.

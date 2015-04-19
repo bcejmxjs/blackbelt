@@ -22,7 +22,13 @@ var SubmissionSchema = new Schema({
     lessonId: {
         type: String
     },
+    lessonName: {
+        type: String
+    },
     courseId: {
+        type: String
+    },
+    courseName: {
         type: String
     },
     created: {

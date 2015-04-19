@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('courses').controller('LessonController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Authentication', 'Users', 'Lessons', 'Submissions',
-    function($scope, $sce, $stateParams, $modal, $state, $location, Authentication, Users, Lessons, Submissions) {
+angular.module('courses').controller('LessonController', ['$scope', '$sce', '$stateParams', '$modal', '$state', '$location', 'Authentication', 'Users', 'Lessons', 'Courses', 'Submissions',
+    function($scope, $sce, $stateParams, $modal, $state, $location, Authentication, Users, Lessons, Courses, Submissions) {
         window.MY_SCOPE = $scope;
 
         $scope.authentication = Authentication;
@@ -42,18 +42,29 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
             }, function(error) {
                 $location.path('/error/lesson');
             });
+
+            Courses.get({
+                courseId: $stateParams.courseId
+            }, function(response) {
+                $scope.lesson.course = response;
+            }, function(error) {
+                $location.path('/error/lesson');
+            });
         };
 
         $scope.create = function() {
             this.url = this.url.replace('watch?v=', 'embed/');
-            this.url = this.url.replace('.be/', 'be.com/embed/');
+            this.url = this.url.replace('youtu.be/', 'www.youtube.com/embed/');
+            this.url = this.url.replace('/youtube', '/www.youtube');
 
             var submission = new Submissions({
                 userId: Authentication.user._id,
                 userDisplayName: Authentication.user.displayName,
                 instructorId: '',
                 lessonId: this.lesson._id,
+                lessonName: this.lesson.name,
                 courseId: this.lesson.courseId,
+                courseName: this.lesson.course.name,
                 url: this.url,
                 created: new Date(),
                 reviewed: false
@@ -75,6 +86,7 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
+
         };
 
         // Open a modal window to Remove a single lesson record
