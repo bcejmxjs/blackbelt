@@ -23,6 +23,7 @@ exports.config = {
     'instructor_signout.spec.js',
     'admin_signin.spec.js',
     'admin.spec.js',
+    //'admin_courseEdit.spec.js',
     'admin_signout.spec.js'
   ],
   
