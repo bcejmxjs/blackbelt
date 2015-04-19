@@ -164,16 +164,19 @@ var CoursePage = function() {
 }
 
 var coursePage = new CoursePage();
-var course0_title = '';
+var course0_title;
 describe('Course Editing as Admin', function() {
 	describe('Initial expectations', function() {
 		it('Get course page', function() {
 			coursePage.get();
+			browser.waitForAngular();
 		});
 		it('Sh- have a course', function() {
 			// This will fail if there is no course0
-			course0_title = coursePage.course_title(0).getText();
-			console.log('Course0 title: ' + coursePage.course_title(0).getText())
+			course0_title = coursePage.course_title(0).getText().then(function(text) {
+				course0_title = text;
+				console.log('Course0 title: ' + course0_title);
+			});
 		});
 	});
 	describe('Edit modal', function() {
