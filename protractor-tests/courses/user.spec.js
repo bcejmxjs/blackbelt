@@ -96,105 +96,47 @@ var CoursePage = function() {
 		this.courseModal()
 		.element(by.id('purchase')).click();
 	}
-
-	// <--- purchaseModal items --->
-
-	this.purchaseModal = function() {
-		return element(by.className('modal-content'));
-	}
-
-	this.purchaseModal_btnClose = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-footer'))
-		.element(by.id('cancel'));
-	}
-
-	this.purchaseModal_btnSubmit = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-footer'))
-		.element(by.id('submit'));
-	}
-
-	this.purchaseModal_btnTestPurchase = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-footer'))
-		.element(by.id('test'));
-	}
-
-	this.purchaseModal_title = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-header'))
-		.getText();
-	}
-
-	this.purchaseModal_nameField = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-body'))
-		.element(by.id('purchase_name'));
-	}
-
-	this.purchaseModal_cardField = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-body'))
-		.element(by.id('purchase_card'));
-	}
-
-	this.purchaseModal_expiryField = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-body'))
-		.element(by.id('purchase_expiry'));
-	}
-
-	this.purchaseModal_cvcField = function() {
-		return this.purchaseModal()
-		.element(by.className('modal-body'))
-		.element(by.id('purchase_cvc'));
-	}
-
-	// <--- purchaseModal actions --->
-
-	this.purchaseModal_open = function(ind) {
-		this.btn_purchase(ind).click();
-	}
-
-	this.purchaseModal_close = function() {
-		this.purchaseModal_btnClose.click();
-	}
-
-	this.purchaseModal_setName = function(text) {
-		this.purchaseModal_nameField().sendKeys(text);
-	}
-
-	this.purchaseModal_setCard = function(text) {
-		this.purchaseModal_cardField().sendKeys(text);
-	}
-
-	this.purchaseModal_setExpiry = function(text) {
-		this.purchaseModal_expiryField().sendKeys(text);
-	}
-
-	this.purchaseModal_setCvc = function(text) {
-		this.purchaseModal_cvcField().sendKeys(text);
-	}
-
-	this.purchaseModal_testPurchase = function() {
-		this.purchaseModal_btnTestPurchase().click();
-	}
-
-	this.purchaseModal_submit = function() {
-		this.purchaseModal_btnSubmit().click();
-	}
 }
 
 var coursePage = new CoursePage();
 describe('Course page as user', function() {
-	it('Initialize test', function() {
-		browser.waitForAngular();
-		coursePage.get();
-		console.log('If tests fail, ensure grunt mongo:load has been run');
+
+	describe('/create page', function() {
+		it('Sh- not be accessible', function() {
+			browser.get(browser.baseUrl + '/#!/courses/create');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/courses');
+		});
+	});
+	describe('/course/ page', function () {
+		it('Sh- direct to course error page', function() {
+			//Assuming user will be directed to course error page
+			browser.get(browser.baseUrl + '/#!/course/');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
+	describe('Accessing invalid course id', function() {
+		it('Sh- direct to course error page', function() {
+			browser.get(browser.baseUrl + '/#!/course/NEVERGONNAGIVEYOUUP');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
+	describe('Accessing /courses/~', function() {
+		it('Sh- redirect to /courses', function() {
+			browser.get(browser.baseUrl + '/#!/courses/~');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/courses');
+		});
 	});
 	describe('Add course button', function() {
 		it('Sh- not be visible', function() {
+			coursePage.get();
 			expect(
 				coursePage.btn_addCourse()
 				.isDisplayed())
@@ -211,7 +153,6 @@ describe('Course page as user', function() {
 			.toBeFalsy();
 		});
 	});
-
 	describe('Course0 delete button', function() {
 		it('Sh- not be visible', function() {
 			expect(
@@ -220,7 +161,6 @@ describe('Course page as user', function() {
 			.toBeFalsy();
 		});
 	});
-
 	describe('Clicking purchased course header', function() {
 		it('Third lesson should be purchased && Kenpo 1', function() {
 			expect(
@@ -237,36 +177,5 @@ describe('Course page as user', function() {
 				browser.getCurrentUrl())
 			.toContain(browser.baseUrl + '/#!/course/');
 		});
-	});	
-
-	describe('/create page', function() {
-		it('Sh- not be accessible', function() {
-			coursePage.get();
-			browser.get(browser.baseUrl + '/#!/courses/create');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/courses');
-		});
-	});
-
-	describe('/course/ page',function () {
-		it('Sh- direct to course error page', function() {
-			//Assuming user will be directed to course error page
-			browser.get(browser.baseUrl + '/#!/course/');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/error/course');
-		});
-	});
-
-	describe('Accessing invalid course id', function() {
-		it('Sh- direct to course error page', function() {
-			coursePage.get();
-			browser.get(browser.baseUrl + '/#!/course/NEVERGONNAGIVEYOUUP');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/error/course');
-		});
-	});
-	
+	});		
 });

@@ -42,14 +42,45 @@ var CoursePage = function() {
 	}
 }
 
+var coursePage = new CoursePage();
 describe('Course page as admin', function() {
-	var coursePage = new CoursePage();
-	it('Initialize test', function() {
-		browser.waitForAngular();
-		coursePage.get();
+
+	describe('/create page', function() {
+		it('Sh- be accessible', function() {
+			browser.get(browser.baseUrl + '/#!/courses/create');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/courses/create');
+		});
+	});
+	describe('/course/ page', function () {
+		it('Sh- direct to course error page', function() {
+			//Assuming user will be directed to course error page
+			browser.get(browser.baseUrl + '/#!/course/');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
+	describe('Accessing invalid course id', function() {
+		it('Sh- direct to course error page', function() {
+			browser.get(browser.baseUrl + '/#!/course/NEVERGONNAGIVEYOUUP');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/error/course');
+		});
+	});
+	describe('Accessing /courses/~', function() {
+		it('Sh- redirect to /courses', function() {
+			browser.get(browser.baseUrl + '/#!/courses/~');
+			expect(
+				browser.getCurrentUrl())
+			.toBe(browser.baseUrl + '/#!/courses');
+		});
 	});
 	describe('Add course button', function() {
 		it('Sh- be visible', function() {
+			coursePage.get();
 			expect(
 				coursePage.btn_addCourse()
 				.isDisplayed())
@@ -70,24 +101,6 @@ describe('Course page as admin', function() {
 				coursePage.btn_delete(0)
 				.isDisplayed())
 			.toBeTruthy();
-		});
-	});
-	describe('/course/ page',function () {
-		it('Sh- direct to course error page', function() {
-			//Assuming user will be directed to course error page
-			browser.get(browser.baseUrl + '/#!/course/');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/error/course');
-		});
-	});
-	describe('Accessing invalid course id', function() {
-		it('Sh- direct to course error page', function() {
-			coursePage.get();
-			browser.get(browser.baseUrl + '/#!/course/NEVERGONNAGIVEYOUUP');
-			expect(
-				browser.getCurrentUrl())
-			.toBe(browser.baseUrl + '/#!/error/course');
 		});
 	});
 });
