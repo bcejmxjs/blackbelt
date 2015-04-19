@@ -24,7 +24,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                     courseId: $stateParams.courseId
                 }, function(res) {
                     $scope.course = res;
-                    $scope.grabLessonsCompleted();
+                    $scope.grabLessonProperties();
                 }, function(error) {
                     $location.path('/error/course');
                 });
@@ -145,16 +145,17 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
         };
 
         $scope.lessonsCompleted = [];
+        $scope.lessonPending = {};
 
-        $scope.grabLessonsCompleted = function() {
-            // Get the lessons completed for $scope particular course.
+        /** Grabs lessons that are either completed or pending. */
+        $scope.grabLessonProperties = function() {
 
-            $scope.lessonsCompleted = [];
             //Step 1: Find $scope Course in Courses Purchased
             if (Authentication.user.coursesPurchased) {
                 for (var i = 0; i < Authentication.user.coursesPurchased.length; i++) {
                     if (Authentication.user.coursesPurchased[i].courseId == $scope.course._id) {
                         $scope.lessonsCompleted = Authentication.user.coursesPurchased[i].lessonsCompleted;
+                        $scope.lessonPending = Authentication.user.coursesPurchased[i].lessonPending;
                     }
                 }
             }
@@ -181,16 +182,30 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
             return false;
         };
 
+        $scope.isLessonPending = function(lesson) {
+            if ($scope.lessonPending == lesson._id) {
+                    return true;
+            }
+            return false;
+        };
+
         //changes the background color on the object depending on whether it has been completed or not.
         $scope.getBackgroundColor = function(lesson) {
             if ($scope.isLessonComplete(lesson)) {
                 return {
+                    //that nice green success!
                     'background-color': '#DFF0D8'
-                }; //that nice green success!
+                }; 
+            } else if ($scope.isLessonPending(lesson)) {
+                return {
+                    //material design 'yellow'
+                    'background-color': '#FFFFCC'
+                };
             } else {
                 return {
+                    //returns a greyish color
                     'background-color': '#F5F5F5'
-                }; //returns a greyish color
+                }; 
             }
         };
 
@@ -233,7 +248,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                     });
                 });
             } else {
-                $scope.error = "Please fill out all fields!";
+                $scope.error = 'Please fill out all fields!';
             }
         };
 
