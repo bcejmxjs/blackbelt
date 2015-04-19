@@ -142,6 +142,7 @@ code {
 -------------------------------------------------- */
 .progress{
 	height: 20px;
+    line-height: 18px;
 }
 .progress .progress-bar-null {
 	background-color: #c8c8c8;
@@ -185,4 +186,9 @@ code {
 .carousel-control{
 	color: transparent;
 	text-shadow: none;
+}
+@media (max-width: 767px)
+  body {
+    padding: 0;
+  }
 }
