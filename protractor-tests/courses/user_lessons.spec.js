@@ -191,12 +191,21 @@ var CoursePage = function() {
 	}
 
 	// Returns the element containing the completed text
-	// lesson_status(ind).isDisplayed() will return true
+	// lesson_status_complete(ind).isDisplayed() will return true
 	// if completed text is visible
 	// false otherwise
-	this.lesson_status = function(ind) {
+	this.lesson_status_complete = function(ind) {
 		return this.lesson_description(ind)
 		.element(by.css('[data-ng-show="isLessonComplete(lesson)"]'));
+	}
+
+	// Returns the element containing the completed text
+	// lesson_status_pending(ind).isDisplayed() will return true
+	// if completed text is visible
+	// false otherwise
+	this.lesson_status_pending = function(ind) {
+		return this.lesson_description(ind)
+		.element(by.css('[data-ng-show="isLessonPending(lesson)"]'));
 	}
 
 	// Returns div containing error text
@@ -231,24 +240,24 @@ var CoursePage = function() {
 	}
 	
 	// Returns iLesson play button
-	this.iLesson_video_playBtn = function() {
+	this.iLesson_playBtn = function() {
 		return this.iLesson_video()
 		.element(by.className('controls-container'))
 		.element(by.css('[ng-click="onClickPlayPause()"]'));
 	}
 	// Clicks iLesson play button
 	this.iLesson_play_btnclick = function() {
-		 this.iLesson_video_playBtn().click();
+		 this.iLesson_playBtn().click();
 	}
 	// Returns iLesson fullscreen button
 	this.iLesson_fullscreenBtn = function() {
-		return element.all(by.tagName('h1'))
-		.get(0);
+		return this.iLesson_video()
+		.element(by.className('controls-container'))
+		.element(by.css('[ng-click="onClickFullScreen()"]'));
 	}
 	// Clicks iLesson fullscreen button
-	this.iLesson_fullscreent_btnClick = function() {
-		return element.all(by.tagName('h1'))
-		.get(0);
+	this.iLesson_fullscreen_btnClick = function() {
+		this.iLesson_fullscreenBtn().click();
 	}
 	// Returns iLesson page upload button
 	this.iLesson_uploadBtn = function() {
@@ -257,7 +266,7 @@ var CoursePage = function() {
 
 	// Returns iLesson modal (only works when open)
 	this.iLesson_modal = function() {
-		return element(by.className('modal-content'));
+		return element(by.className('modal-dialog'));
 	}
 
 	// Returns iLesson modal title
@@ -337,19 +346,19 @@ describe('Lessons page as user', function() {
 	describe('Check for Initial Lesson Statuses', function() {
 		it('Sh- be visible', function() {
 			expect(
-				lessonPage.lesson_status(0)
+				lessonPage.lesson_status_complete(0)
 				.isDisplayed())
 			.toBeTruthy();
 		});
 		it('Sh- not be visible', function() {
 			expect(
-				lessonPage.lesson_status(1)
+				lessonPage.lesson_status_complete(1)
 				.isDisplayed())
 			.toBeFalsy();
 		});
 		it('Sh- not be visible', function() {
 			expect(
-				lessonPage.lesson_status(2)
+				lessonPage.lesson_status_complete(2)
 				.isDisplayed())
 			.toBeFalsy();
 		});
@@ -374,21 +383,21 @@ describe('Lessons page as user', function() {
 			.toBe('Learn how to punch!');
 		});
 	});
-	describe('Test Blocking page', function() {
+	describe('Test Kicking page', function() {
 		it('Do click', function() {
-			lessonPage.lesson_click(0);
+			lessonPage.lesson_click(1);
 		});
 		it('Check title', function() {
 			expect(
 				lessonPage.iLesson_title()
 				.getText())
-			.toBe('Blocking');
+			.toBe('Kicking');
 		});
 		it('Check description', function() {
 			expect(
 				lessonPage.iLesson_description()
 				.getText())
-			.toBe('Learn how to block!');
+			.toBe('Learn how to kick!');
 		});
 		it('Upload button sh- be visible', function() {
 			expect(
@@ -396,9 +405,43 @@ describe('Lessons page as user', function() {
 				.isDisplayed())
 			.toBeTruthy();
 		});
+	});
+	describe('Test Upload Button', function() {
+		it('Do click', function() {
+			lessonPage.iLesson_uploadResponse_click();
+		});
+		it('Title Sh- be visible', function() {
+			expect(
+				lessonPage.iLesson_modal_title().
+				getText())
+			.toBe('Video Link');
+		});
+		it('Submit button Sh- be visible', function() {
+			expect(
+				lessonPage.iLesson_modal_submitBtn()
+				.isDisplayed())
+			.toBeTruthy();
+		});
+		it('Enter video link', function() {
+				lessonPage.iLesson_set_responseLinkText('https://youtu.be/zGktqHzu83c');
+		});
+		it('Submit response video', function() {
+				lessonPage.iLesson_modal_submit();
+		});
+		it('Sh- be visible', function() {
+			expect(
+				lessonPage.lesson_status_pending(1)
+				.isDisplayed())
+			.toBeTruthy();
+		});
+	});
+	describe('Test Video Functions', function() {
+		it('Do click', function() {
+			lessonPage.lesson_click(1);
+		});
 		it('Test play button', function() {
 			expect(
-				lessonPage.iLesson_video_playBtn()
+				lessonPage.iLesson_playBtn()
 				.getAttribute('class'))
 			.toContain('play');
 		});
@@ -407,20 +450,25 @@ describe('Lessons page as user', function() {
 		});
 		it('Test pause button', function() {
 			expect(
-				lessonPage.iLesson_video_playBtn()
+				lessonPage.iLesson_playBtn()
 				.getAttribute('class'))
 			.toContain('pause');
 		});
-	});
-	/*describe('Test Upload Button', function() {
-		it('Do click', function() {
-			lessonPage.iLesson_uploadResponse_click();
-		});
-		it('Sh- not be visible', function() {
+		it('Test fullscreen button', function() {
 			expect(
-				lessonPage.btn_delete(0)
-				.isDisplayed())
-			.toBeFalsy();
+				lessonPage.iLesson_fullscreenBtn()
+				.getAttribute('class'))
+			.toContain('enter');
 		});
-	});*/
+		it('Do click', function() {
+			lessonPage.iLesson_fullscreen_btnClick();
+		});
+		it('Test un-fullscreen button', function() {
+			expect(
+				lessonPage.iLesson_fullscreenBtn()
+				.getAttribute('class'))
+			.toContain('exit');
+		});
+	});
+	
 });
