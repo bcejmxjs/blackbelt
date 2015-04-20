@@ -73,7 +73,8 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
     Course.find().sort({
-        position: 1
+        style: 1,
+        name: 1
     }).populate('user', 'displayName').exec(function(err, courses) {
         if (err) {
             return res.status(400).send({
