@@ -469,6 +469,34 @@ describe('Lessons page as user', function() {
 				.getAttribute('class'))
 			.toContain('exit');
 		});
+		it('Do click', function() {
+			lessonPage.iLesson_fullscreen_btnClick();
+		});
+		it('Do click', function() {
+			lessonPage.iLesson_play_btnclick();
+		});
 	});
-	
+	/*describe('User signout', function() {
+		it('Perform signout', function() {
+			// Click dropdown button
+			element(by.id('profile_dropdown'))
+			.element(by.className('dropdown')).click();
+			// Click signout
+			element(by.className('dropdown-menu'))
+			.element(by.linkText('Signout')).click();
+		});
+	});
+	var admin = {
+		username: 'admin',
+		password: 'adminuser'
+	}
+
+	describe('Signin as admin', function() {
+		it('Do signin', function() {
+			browser.get(browser.baseUrl + '/#!/signin');
+			element(by.id('username')).sendKeys(admin.username);
+			element(by.id('password')).sendKeys(admin.password);
+			element(by.id('signin')).click();
+		});
+	});*/
 });
