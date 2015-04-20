@@ -1,49 +1,13 @@
-// signin as admin
-var SignInPage = function() {
-
-	this.username_field = function() {
-		return element(by.id('username'));
-	}
-
-	this.password_field = function() {
-		return element(by.id('password'));
-	}
-
-	this.signin_btn = function() {
-		return element(by.id('signin'));
-	}
-
-	var admin = {
-		username: 'admin',
-		password: 'adminuser'
-	}
-
-	this.get = function() {
-		browser.get(browser.baseUrl + '/#!/signin');
-	}
-
-	// Input custom text into the username field
-	this.setUsername = function(username) {
-		this.username_field().sendKeys(username);
-	}
-
-	// Input custom text into password field
-	this.setPassword = function(password) {
-		this.password_field().sendKeys(password);
-	}
-
-	// Sign in
-	this.do_signin = function() {
-		this.setUsername(admin.username);
-		this.setPassword(admin.password);
-		this.signin_btn().click();
-	}
+var admin = {
+	username: 'admin',
+	password: 'adminuser'
 }
 
-var signin = new SignInPage();
 describe('Signin as admin', function() {
 	it('Do signin', function() {
-		signin.get();
-		signin.do_signin();
+		browser.get(browser.baseUrl + '/#!/signin');
+		element(by.id('username')).sendKeys(admin.username);
+		element(by.id('password')).sendKeys(admin.password);
+		element(by.id('signin')).click();
 	});
 });

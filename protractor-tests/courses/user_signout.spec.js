@@ -1,33 +1,10 @@
-//Sign out
-
-var Page = function() {
-	// Page object for the sign in page
-	
-	this.dropdown = function() {
-		return element(by.id('profile_dropdown'))
-		.element(by.className('dropdown'))
-	}
-
-	this.signout_btn = function() {
-		return element(by.className('dropdown-menu'))
-		.element(by.linkText('Signout'));
-	}
-
-	this.get = function() {
-		browser.get(browser.baseUrl + '/#!/');
-	}
-
-	this.signout = function() {
-		// Have to click twice for some reason
-		this.dropdown().click();
-		this.signout_btn().click();
-	}
-}
-
-describe('Signout', function() {
-	it('Do user signout', function() {
-		var page = new Page();
-		page.get();
-		page.signout();
+describe('User signout', function() {
+	it('Perform signout', function() {
+		// Click dropdown button
+		element(by.id('profile_dropdown'))
+		.element(by.className('dropdown')).click();
+		// Click signout
+		element(by.className('dropdown-menu'))
+		.element(by.linkText('Signout')).click();
 	});
 });

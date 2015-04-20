@@ -1,49 +1,13 @@
-// Signin as instructor
-var SignInPage = function() {
-
-	this.username_field = function() {
-		return element(by.id('username'));
-	}
-
-	this.password_field = function() {
-		return element(by.id('password'));
-	}
-
-	this.signin_btn = function() {
-		return element(by.id('signin'));
-	}
-
-	var instructor = {
-		username: 'instructor',
-		password: 'instructoruser'
-	}
-
-	this.get = function() {
-		browser.get(browser.baseUrl + '/#!/signin');
-	}
-
-	// Input custom text into the username field
-	this.setUsername = function(username) {
-		this.username_field().sendKeys(username);
-	}
-
-	// Input custom text into password field
-	this.setPassword = function(password) {
-		this.password_field().sendKeys(password);
-	}
-
-	// Sign in
-	this.do_signin = function() {
-		this.setUsername(instructor.username);
-		this.setPassword(instructor.password);
-		this.signin_btn().click();
-	}
+var instructor = {
+	username: 'instructor',
+	password: 'instructoruser'
 }
 
-var signin = new SignInPage();
 describe('Signin as instructor', function() {
 	it('Do signin', function() {
-		signin.get();
-		signin.do_signin();
+		browser.get(browser.baseUrl + '/#!/signin');
+		element(by.id('username')).sendKeys(instructor.username);
+		element(by.id('password')).sendKeys(instructor.password);
+		element(by.id('signin')).click();
 	});
 });
