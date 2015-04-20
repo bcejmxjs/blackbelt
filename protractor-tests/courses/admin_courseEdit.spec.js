@@ -116,44 +116,43 @@ var CoursePage = function() {
 	// <--- coursePage edit modal actions --->
 
 	this.editModal_setName = function(name) {
+		browser.sleep(500);
 		this.editModal_nameField().clear();
 		this.editModal_nameField().sendKeys(name);
 	}
 
 	this.editModal_setDescription = function(description) {
+		browser.sleep(500);
 		this.editModal_descriptionField().clear();
 		this.editModal_descriptionField().sendKeys(description);
 	}
 
 	this.editModal_setPrice = function(price) {
+		browser.sleep(500);
 		this.editModal_priceField().clear();
 		this.editModal_priceField().sendKeys(price);
 	}
 
 	this.editModal_setInstructor = function(instructor) {
+		browser.sleep(500);
 		this.editModal_instructorField().clear();
 		this.editModal_instructorField().sendKeys(instructor);
 	}
 
 	this.editModal_setDemo = function(demo) {
+		browser.sleep(500);
 		this.editModal_demoField().clear();
 		this.editModal_demoField().sendKeys(demo);
 	}
 
 	this.editModal_chooseStyleOption = function(ind) {
+		browser.sleep(500);
 		this.editModal_styleOption(ind).click();
 	}
 
 	this.editModal_chooseBeltOption = function(ind) {
+		browser.sleep(500);
 		this.editModal_beltOption(ind).click();
-	}
-
-	this.editModal_clickOK = function() {
-		this.editModal_btnOK().click();
-	}
-
-	this.editModal_close = function() {
-		this.editModal_btnCancel().click();
 	}
 
 	// <--- Methods needed for verifying edits --->
@@ -235,9 +234,9 @@ var CoursePage = function() {
 	}
 }
 
-// Using course1 (second course)
+// Using course0 (first course)
 var coursePage = new CoursePage();
-var course1_title;
+var course0_title;
 describe('Course Editing as Admin', function() {
 	describe('Initial expectations', function() {
 		it('Get course page', function() {
@@ -246,33 +245,35 @@ describe('Course Editing as Admin', function() {
 		});
 		it('Sh- have a course', function() {
 			// This will fail if there is no course0
-			course1_title = coursePage.course_title(1).getText().then(function(text) {
-				course1_title = text;
-				console.log('Course1 title: ' + course1_title);
+			course0_title = coursePage.course_title(0).getText().then(function(text) {
+				course0_title = text;
+				console.log('Course0 title: ' + course0_title);
 			});
 		});
 	});
 	describe('Edit modal', function() {
-		it('Open course1 edit modal', function() {
-			coursePage.edit_course(1);
+		it('Open course0 edit modal', function() {
+			coursePage.edit_course(0);
 		});
 		it('Sh- pop up with edit modal', function() {
 			expect(
 				coursePage.editModal_title()
 				.getText())
-			.toBe('Edit ' + course1_title);
+			.toBe('Edit ' + course0_title);
 		});
 		it('Modify name', function() {
 			coursePage.editModal_setName('UhOh');
 		});
 		it('Close edit modal', function() {
-			coursePage.editModal_close();
+			browser.sleep(1000);
+			coursePage.editModal_btnCancel().click();
 		});
-		it('Sh- not change course1 title', function() {
+		it('Sh- not change course0 title', function() {
+			browser.sleep(1000);
 			expect(
-				coursePage.course_title(1)
+				coursePage.course_title(0)
 				.getText())
-			.toBe(course1_title);
+			.toBe(course0_title);
 		})
 	});
 	var test_title = 'Jewrate';
@@ -282,11 +283,12 @@ describe('Course Editing as Admin', function() {
 	var test_demo = 'https://www.youtube.com/watch?v=aPxVSCfoYnU';
 	var test_styleNum = 'Karate';
 	var test_beltNum = 'Yellow';
-	var test_courseNum = 0;
-	describe('Editing course1', function() {
+	var test_courseNum = 1;
+	describe('Editing course0', function() {
 		describe('Make edits', function() {
 			it('Click edit button', function() {
-				coursePage.edit_course(1);
+				coursePage.edit_course(0);
+				browser.sleep(1000);
 			});
 			it('Edit name', function() {
 				coursePage.editModal_setName(test_title);
@@ -295,14 +297,10 @@ describe('Course Editing as Admin', function() {
 				coursePage.editModal_setDescription(test_description);
 			});
 			it('Edit price', function() {
-				// Tree fiddy
 				coursePage.editModal_setPrice(test_price);
 			});
 			it('Edit instructor', function() {
 				coursePage.editModal_setInstructor(test_instructor);
-			});
-			it('Edit demo link', function() {
-				coursePage.editModal_setDemo(test_demo);
 			});
 			it('Change style', function() {
 				coursePage.editModal_chooseStyleOption(test_styleNum);
@@ -310,20 +308,25 @@ describe('Course Editing as Admin', function() {
 			it('Change belt', function() {
 				coursePage.editModal_chooseBeltOption(test_beltNum);
 			});
+			it('Edit demo link', function() {
+				coursePage.editModal_setDemo(test_demo);
+			});
 			it('Submit edits', function() {
-				coursePage.editModal_clickOK();
+				browser.sleep(3000);
+				coursePage.editModal_btnOK().click();
+				browser.sleep(3000);
 			});
 		});
 		describe('Verify edits admin-side', function() {
-			it('Sh- modify course1 title', function() {
+			it('Sh- modify course0 title', function() {
 				expect(
-					coursePage.course_title(1)
+					coursePage.course_title(0)
 					.getText())
 				.toBe(test_title);
 			})
-			it('Sh- modify course1 description', function() {
+			it('Sh- modify course0 description', function() {
 				expect(
-					coursePage.course_description(1)
+					coursePage.course_description(0)
 					.getText())
 				.toBe(test_description);
 			});
@@ -332,12 +335,15 @@ describe('Course Editing as Admin', function() {
 			it('Signout', function() {
 				console.log('Multiple failures may imply belt/style problem');
 				coursePage.signout();
+				browser.sleep(1000);
 			});
 			it('Signin as user', function() {
 				coursePage.user_signin();
+				browser.sleep(1000);
 			});
 			it('Get courses page', function() {
 				coursePage.get();
+				browser.sleep(1000);
 			});
 			it('Verify course title', function() {
 				expect(
@@ -356,9 +362,11 @@ describe('Course Editing as Admin', function() {
 					coursePage.course_purchase(test_courseNum)
 					.getText())
 				.toBe('$' + test_price);
+				browser.sleep(1000);
 			});
 			it('Open course modal', function() {
 				coursePage.course_title(test_courseNum).click();
+				browser.sleep(1000);
 			});
 			it('Verify modal title', function() {
 				expect(
