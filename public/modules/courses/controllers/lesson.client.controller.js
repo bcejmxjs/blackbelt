@@ -6,9 +6,17 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
 
         $scope.authentication = Authentication;
 
+        $scope.pending = true;
+
         $scope.checkPending = function() {
+            $scope.pending = false;
             Authentication.user.coursesPurchased.forEach(function(course, index, courses) {
                 if (course.lessonPending == $stateParams.lessonId) {
+                    $scope.pending = true;
+                }
+            });
+            $scope.lessonsCompleted.forEach(function(lesson) {
+                if (lesson == $stateParams.lessonId) {
                     $scope.pending = true;
                 }
             });
@@ -52,6 +60,9 @@ angular.module('courses').controller('LessonController', ['$scope', '$sce', '$st
                     height: 380,
                     width: 740
                 };
+
+                $scope.checkPending();
+
             }, function(error) {
                 $location.path('/error/lesson');
             });
