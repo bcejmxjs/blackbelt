@@ -184,7 +184,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
 
         $scope.isLessonPending = function(lesson) {
             if ($scope.lessonPending == lesson._id) {
-                    return true;
+                return true;
             }
             return false;
         };
@@ -195,7 +195,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 return {
                     //that nice green success!
                     'background-color': '#DFF0D8'
-                }; 
+                };
             } else if ($scope.isLessonPending(lesson)) {
                 return {
                     //material design 'yellow'
@@ -205,7 +205,7 @@ angular.module('courses').controller('LessonsController', ['$scope', '$upload', 
                 return {
                     //returns a greyish color
                     'background-color': '#F5F5F5'
-                }; 
+                };
             }
         };
 

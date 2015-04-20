@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
     Lesson.find().sort({
-        date: 1
+        courseId: 1
     }).populate('user', 'displayName').exec(function(err, lessons) {
         if (err) {
             return res.status(400).send({
@@ -96,6 +96,8 @@ exports.list = function(req, res) {
 exports.courseByID = function(req, res, next, id) {
     Lesson.find({
         courseId: id
+    }).sort({
+        position: 1
     }).populate('user', 'displayName').exec(function(err, lessons) {
         if (err) {
             return res.status(400).send({
