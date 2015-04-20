@@ -22,6 +22,12 @@ var CoursePage = function() {
 		.element(by.id('edit'));
 	}
 
+	this.course_purchase = function(ind) { 
+		return element.all(by.repeater('course in courses'))
+		.get(ind)
+		.element(by.id('purchase'));
+	}
+
 	// <--- coursePage actions --->
 
 	this.get = function() {
@@ -79,22 +85,20 @@ var CoursePage = function() {
 		.element(by.model('course.style'));
 	}
 
-	this.editModal_styleOption = function(ind) {
-		return this.editModal_styleDropdown()
-		.element.all(by.tagName('option'))
-		.get(ind);
-	}
-
 	this.editModal_beltDropdown = function() {
 		return this.editModal()
 		.element(by.className('modal-body'))
 		.element(by.model('course.belt.color'));
 	}
 
-	this.editModal_beltOption = function(ind) {
+	this.editModal_styleOption = function(style) {
+		return this.editModal_styleDropdown()
+		.element(by.cssContainingText('option', style));
+	}
+
+	this.editModal_beltOption = function(belt) {
 		return this.editModal_beltDropdown()
-		.element.all(by.tagName('option'))
-		.get(ind);
+		.element(by.cssContainingText('option', belt));
 	}
 
 	this.editModal_btnOK = function() {
@@ -136,21 +140,11 @@ var CoursePage = function() {
 		this.editModal_demoField().sendKeys(demo);
 	}
 
-	this.editModal_openStyleDropdown = function() {
-		this.editModal_styleDropdown().click();
-	}
-
 	this.editModal_chooseStyleOption = function(ind) {
-		this.editModal_openStyleDropdown();
 		this.editModal_styleOption(ind).click();
 	}
 
-	this.editModal_openBeltDropdown = function() {
-		this.editModal_beltDropdown().click();
-	}
-
 	this.editModal_chooseBeltOption = function(ind) {
-		this.editModal_openBeltDropdown();
 		this.editModal_beltOption(ind).click();
 	}
 
@@ -161,10 +155,89 @@ var CoursePage = function() {
 	this.editModal_close = function() {
 		this.editModal_btnCancel().click();
 	}
+
+	// <--- Methods needed for verifying edits --->
+	this.signout = function() {
+		element(by.id('profile_dropdown'))
+		.element(by.className('dropdown')).click();
+
+		element(by.className('dropdown-menu'))
+		.element(by.linkText('Signout')).click();
+	}
+	this.admin_signin = function() {
+		browser.get(browser.baseUrl + '/#!/signin');
+		element(by.id('username')).sendKeys('admin');
+		element(by.id('password')).sendKeys('adminuser');
+		element(by.id('signin')).click();
+	}
+	this.user_signin = function() {
+		browser.get(browser.baseUrl + '/#!/signin');
+		element(by.id('username')).sendKeys('test');
+		element(by.id('password')).sendKeys('testuser');
+		element(by.id('signin')).click();
+	}
+
+	// <--- courseModal items --->
+
+	this.courseModal = function() {
+		return element(by.className('modal-content'));
+	}
+
+	this.courseModal_open = function(ind) {
+		this.course_title(ind).click();
+	}
+
+	this.courseModal_btnClose = function() {
+		return this.courseModal()
+		.element(by.id('close'));
+	}
+
+	this.courseModal_close = function() {
+		this.courseModal_btnClose().click();
+	}
+
+	this.courseModal_title = function() {
+		return this.courseModal()
+		.element(by.className('modal-header'))
+		.element(by.tagName('h3'))
+		.getText();
+	}
+
+	this.courseModal_videoLink = function() {
+		return this.courseModal()
+		.element(by.tagName('iframe'))
+		.getAttribute('src');
+	}
+
+	this.courseModal_description = function() {
+		return this.courseModal()
+		.element(by.className('modal-body'))
+		.element(by.tagName('h4'))
+		.getText();
+	}
+
+	this.courseModal_instructor = function() {
+		return this.courseModal()
+		.element(by.className('modal-body'))
+		.element(by.tagName('h5'))
+		.getText();
+	}
+
+	this.courseModal_price = function() {
+		return this.courseModal()
+		.element(by.id('purchase'))
+		.getText();
+	}
+
+	this.courseModal_clickPurchase = function() {
+		this.courseModal()
+		.element(by.id('purchase')).click();
+	}
 }
 
+// Using course1 (second course)
 var coursePage = new CoursePage();
-var course0_title;
+var course1_title;
 describe('Course Editing as Admin', function() {
 	describe('Initial expectations', function() {
 		it('Get course page', function() {
@@ -173,21 +246,21 @@ describe('Course Editing as Admin', function() {
 		});
 		it('Sh- have a course', function() {
 			// This will fail if there is no course0
-			course0_title = coursePage.course_title(0).getText().then(function(text) {
-				course0_title = text;
-				console.log('Course0 title: ' + course0_title);
+			course1_title = coursePage.course_title(1).getText().then(function(text) {
+				course1_title = text;
+				console.log('Course1 title: ' + course1_title);
 			});
 		});
 	});
 	describe('Edit modal', function() {
-		it('Open course0 edit modal', function() {
-			coursePage.edit_course(0);
+		it('Open course1 edit modal', function() {
+			coursePage.edit_course(1);
 		});
 		it('Sh- pop up with edit modal', function() {
 			expect(
 				coursePage.editModal_title()
 				.getText())
-			.toBe('Edit ' + course0_title);
+			.toBe('Edit ' + course1_title);
 		});
 		it('Modify name', function() {
 			coursePage.editModal_setName('UhOh');
@@ -195,37 +268,132 @@ describe('Course Editing as Admin', function() {
 		it('Close edit modal', function() {
 			coursePage.editModal_close();
 		});
-		it('Sh- not change course0 title', function() {
+		it('Sh- not change course1 title', function() {
 			expect(
-				coursePage.course_title(0)
+				coursePage.course_title(1)
 				.getText())
-			.toBe(course0_title);
+			.toBe(course1_title);
 		})
 	});
-	describe('Editing course0', function() {
-		it('Click edit button', function() {
-			coursePage.edit_course(0);
+	var test_title = 'Jewrate';
+	var test_description = 'Pronounced jew + rot + ay';
+	var test_price = '3.50';
+	var test_instructor = 'Abraham Lincoln';
+	var test_demo = 'https://www.youtube.com/watch?v=aPxVSCfoYnU';
+	var test_styleNum = 'Karate';
+	var test_beltNum = 'Yellow';
+	var test_courseNum = 0;
+	describe('Editing course1', function() {
+		describe('Make edits', function() {
+			it('Click edit button', function() {
+				coursePage.edit_course(1);
+			});
+			it('Edit name', function() {
+				coursePage.editModal_setName(test_title);
+			});
+			it('Edit description', function() {
+				coursePage.editModal_setDescription(test_description);
+			});
+			it('Edit price', function() {
+				// Tree fiddy
+				coursePage.editModal_setPrice(test_price);
+			});
+			it('Edit instructor', function() {
+				coursePage.editModal_setInstructor(test_instructor);
+			});
+			it('Edit demo link', function() {
+				coursePage.editModal_setDemo(test_demo);
+			});
+			it('Change style', function() {
+				coursePage.editModal_chooseStyleOption(test_styleNum);
+			});
+			it('Change belt', function() {
+				coursePage.editModal_chooseBeltOption(test_beltNum);
+			});
+			it('Submit edits', function() {
+				coursePage.editModal_clickOK();
+			});
 		});
-		it('Edit course0 name', function() {
-			coursePage.editModal_setName('Jewrate');
+		describe('Verify edits admin-side', function() {
+			it('Sh- modify course1 title', function() {
+				expect(
+					coursePage.course_title(1)
+					.getText())
+				.toBe(test_title);
+			})
+			it('Sh- modify course1 description', function() {
+				expect(
+					coursePage.course_description(1)
+					.getText())
+				.toBe(test_description);
+			});
 		});
-		it('Edit course0 description', function() {
-			coursePage.editModal_setDescription('Pronounced jew + rot + ay');
-		});
-		it('Submit edit', function() {
-			coursePage.editModal_clickOK();
-		});
-		it('Sh- modify course0 title', function() {
-			expect(
-				coursePage.course_title(0)
-				.getText())
-			.toBe('Jewrate');
-		})
-		it('Sh- modify course0 description', function() {
-			expect(
-				coursePage.course_description(0)
-				.getText())
-			.toBe('Pronounced jew + rot + ay');
+		describe('Verify edits user-side', function() {
+			it('Signout', function() {
+				console.log('Multiple failures may imply belt/style problem');
+				coursePage.signout();
+			});
+			it('Signin as user', function() {
+				coursePage.user_signin();
+			});
+			it('Get courses page', function() {
+				coursePage.get();
+			});
+			it('Verify course title', function() {
+				expect(
+					coursePage.course_title(test_courseNum)
+					.getText())
+				.toBe(test_title);
+			});
+			it('Verify course description', function() {
+				expect(
+					coursePage.course_description(test_courseNum)
+					.getText())
+				.toBe(test_description);
+			});
+			it('Verify price', function() {
+				expect(
+					coursePage.course_purchase(test_courseNum)
+					.getText())
+				.toBe('$' + test_price);
+			});
+			it('Open course modal', function() {
+				coursePage.course_title(test_courseNum).click();
+			});
+			it('Verify modal title', function() {
+				expect(
+					coursePage.courseModal_title())
+				.toBe(test_title);
+			});
+			it('Verify modal demo', function() {
+				expect(
+					coursePage.courseModal_videoLink())
+				.toBe(test_demo);
+			});
+			it('Verify modal description', function() {
+				expect(
+					coursePage.courseModal_description())
+				.toBe(test_description);
+			});
+			it('Verify modal instructor', function() {
+				expect(
+					coursePage.courseModal_instructor())
+				.toBe('Taught by ' + test_instructor);
+			});
+			it('Verify modal price', function() {
+				expect(
+					coursePage.courseModal_price())
+				.toBe('$' + test_price);
+			});
+			it('Close modal', function() {
+				coursePage.courseModal_close();
+			});
+			it('Signout user', function() {
+				coursePage.signout();
+			});
+			it('Signin as admin', function() {
+				coursePage.admin_signin();
+			});
 		});
 	});
 });

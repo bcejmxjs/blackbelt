@@ -12,19 +12,19 @@ exports.config = {
   // protractor is called.
   specs: [
     'noAuth.spec.js',
+    'admin_signin.spec.js',
+    'admin.spec.js',
+    'admin_courseEdit.spec.js',
+    'admin_signout.spec.js',
+    'instructor_signin.spec.js',
+    'instructor.spec.js',
+    'instructor_signout.spec.js',
     'user_signin.spec.js',
     'user.spec.js',
     'user_lessons.spec.js',
     'user_courseModal.spec.js',
     'user_purchase.spec.js',
     'user_signout.spec.js',
-    'instructor_signin.spec.js',
-    'instructor.spec.js',
-    'instructor_signout.spec.js',
-    'admin_signin.spec.js',
-    'admin.spec.js',
-    'admin_courseEdit.spec.js',
-    'admin_signout.spec.js'
   ],
   
   baseUrl: 'http://localhost:3000',
