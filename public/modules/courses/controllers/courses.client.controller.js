@@ -89,6 +89,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 
             $scope.cancel = function() {
                 $modalInstance.dismiss('cancel');
+                $state.reload();
             };
         };
 
@@ -222,8 +223,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
         $scope.modalPurchase = function(size, selectedCourse) {
             if (!Authentication.user) {
                 $location.path('/signin');
-            }
-            else {
+            } else {
                 var modalInstance = $modal.open({
                     templateUrl: 'modules/courses/views/course-purchase.view.html',
                     controller: ModalPurchaseCtrl,
