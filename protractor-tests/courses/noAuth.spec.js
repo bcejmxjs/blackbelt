@@ -99,7 +99,7 @@ var CoursePage = function() {
 }
 
 var coursePage = new CoursePage();
-
+var course0_title;
 describe('Course page as noAuth user', function() {
 	describe('/create page', function() {
 		it('Sh- not be accessible', function() {
@@ -175,13 +175,16 @@ describe('Course page as noAuth user', function() {
 	describe('Course0 courseModal', function() {
 		it('Open courseModal', function() {
 			coursePage.get();
+			course0_title = coursePage.course_title(0).getText().then(function(text) {
+				course0_title = text;
+			});
 			coursePage.courseModal_open(0);
 		});
 		describe('courseModal0 title', function(){
 			it('Sh- match the h1 title text for course0', function() {
 				expect(
 					coursePage.courseModal_title())
-				.toBe('Karate 1');
+				.toBe(course0_title);
 			});
 		});
 		describe('Click courseModal purchase', function() {

@@ -44,7 +44,12 @@ var CoursePage = function() {
 
 var coursePage = new CoursePage();
 describe('Course page as admin', function() {
-
+	describe('Initialize tests', function() {
+		it('Get course page', function() {
+			browser.waitForAngular();
+			coursePage.get();
+		});
+	})
 	describe('/create page', function() {
 		it('Sh- be accessible', function() {
 			browser.get(browser.baseUrl + '/#!/courses/create');

@@ -13,7 +13,9 @@ var CoursePage = function() {
 
 	this.course_description = function(ind) {
 		return element.all(by.repeater('course in courses'))
-			.get(ind).element(by.tagName('h4'));
+			.get(ind)
+			.element(by.className('panel-footer'))
+			.element(by.tagName('h4'));
 	}
 
 	this.btn_edit = function(ind) {
@@ -265,11 +267,11 @@ describe('Course Editing as Admin', function() {
 			coursePage.editModal_setName('UhOh');
 		});
 		it('Close edit modal', function() {
-			browser.sleep(1000);
+			browser.sleep(500);
 			coursePage.editModal_btnCancel().click();
 		});
 		it('Sh- not change course0 title', function() {
-			browser.sleep(1000);
+			browser.sleep(500);
 			expect(
 				coursePage.course_title(0)
 				.getText())
@@ -280,15 +282,15 @@ describe('Course Editing as Admin', function() {
 	var test_description = 'Pronounced jew + rot + ay';
 	var test_price = '3.50';
 	var test_instructor = 'Abraham Lincoln';
-	var test_demo = 'https://www.youtube.com/watch?v=aPxVSCfoYnU';
+	var test_demo = 'aPxVSCfoYnU';
 	var test_styleNum = 'Karate';
 	var test_beltNum = 'Yellow';
-	var test_courseNum = 1;
+	var test_courseNum = 0;
 	describe('Editing course0', function() {
 		describe('Make edits', function() {
 			it('Click edit button', function() {
 				coursePage.edit_course(0);
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Edit name', function() {
 				coursePage.editModal_setName(test_title);
@@ -309,12 +311,12 @@ describe('Course Editing as Admin', function() {
 				coursePage.editModal_chooseBeltOption(test_beltNum);
 			});
 			it('Edit demo link', function() {
-				coursePage.editModal_setDemo(test_demo);
+				coursePage.editModal_setDemo('https://www.youtube.com/watch?v=' + test_demo);
 			});
 			it('Submit edits', function() {
-				browser.sleep(3000);
+				browser.sleep(500);
 				coursePage.editModal_btnOK().click();
-				browser.sleep(3000);
+				browser.sleep(500);
 			});
 		});
 		describe('Verify edits admin-side', function() {
@@ -335,15 +337,15 @@ describe('Course Editing as Admin', function() {
 			it('Signout', function() {
 				console.log('Multiple failures may imply belt/style problem');
 				coursePage.signout();
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Signin as user', function() {
 				coursePage.user_signin();
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Get courses page', function() {
 				coursePage.get();
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Verify course title', function() {
 				expect(
@@ -353,20 +355,23 @@ describe('Course Editing as Admin', function() {
 			});
 			it('Verify course description', function() {
 				expect(
-					coursePage.course_description(test_courseNum)
+					//Courses have multiple footers for some reason
+					element.all(by.repeater('course in courses'))
+					.get(test_courseNum)
+					.element(by.css('[data-ng-show="!isCoursePurchased(course._id)"]'))
 					.getText())
-				.toBe(test_description);
+				.toBe(test_description + '\n$' + test_price);
 			});
 			it('Verify price', function() {
 				expect(
 					coursePage.course_purchase(test_courseNum)
 					.getText())
 				.toBe('$' + test_price);
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Open course modal', function() {
 				coursePage.course_title(test_courseNum).click();
-				browser.sleep(1000);
+				browser.sleep(500);
 			});
 			it('Verify modal title', function() {
 				expect(
@@ -376,7 +381,7 @@ describe('Course Editing as Admin', function() {
 			it('Verify modal demo', function() {
 				expect(
 					coursePage.courseModal_videoLink())
-				.toBe(test_demo);
+				.toBe('https://www.youtube.com/embed/' + test_demo);
 			});
 			it('Verify modal description', function() {
 				expect(
