@@ -3,7 +3,6 @@
 angular.module('courses').controller('CoursesController', ['$scope', '$stateParams', 'Authentication', 'Users', 'Courses', '$modal', '$log', '$sce', '$location', '$state',
     function($scope, $stateParams, Authentication, Users, Courses, $modal, $log, $sce, $location, $state) {
         // Allows us to debug scope using dev tools.
-
         window.MY_SCOPE = $scope;
 
         $scope.authentication = Authentication;
@@ -324,6 +323,10 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
         $scope.update = function(updatedCourse) {
             var course = updatedCourse;
             var beltMap = createBeltMap();
+            if (course.demo) {
+                course.demo = course.demo.replace('watch?v=', 'embed/');
+                course.demo = course.demo.replace('.be/', 'be.com/embed/');
+            }
             course.belt.level = beltMap[course.belt.color];
 
             course.$update(function() {
