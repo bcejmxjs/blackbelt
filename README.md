@@ -51,10 +51,16 @@ To run protractor tests:
 
 Ensure the Selenium Web Driver is up to date with `npm install`.
 
+Run all tests with db populated (recommended) 
+```
+$ grunt 
+```
+
 Execute a test:
 ```
 $ grunt protractor:target
 ```
+
 Where `target` is the desired test target.
 
 Test targets:
