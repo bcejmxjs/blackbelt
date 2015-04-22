@@ -36,6 +36,15 @@ Install `grunt` if it's not already installed:
 $ npm install -g grunt-cli
 ```
 
+## Run it!
+```
+$ npm install
+```
+
+```
+$ grunt
+```
+
 ## Testing
 To load test mongo fixtures:
 ```
@@ -53,7 +62,7 @@ Ensure the Selenium Web Driver is up to date with `npm install`.
 
 Run all tests with db populated (recommended) 
 ```
-$ grunt 
+$ grunt e2e
 ```
 
 Execute a test:
