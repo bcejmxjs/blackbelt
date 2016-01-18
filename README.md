@@ -12,12 +12,12 @@ An online purchase-based video course system and web presence for Melbourne Mart
 ## Contributors
 [![](https://avatars1.githubusercontent.com/u/10470227?v=3&s=200)](https://github.com/bcejmxjs/)
 
-- Brent Lewis [@blewis954](https://github.com/blewis954)
-- Cory Anderson [@corya14](https://github.com/corya14)
-- Jacob Jenkins [@jacobj](https://github.com/jacobj)
-- Max Fresonke [@mfresonke](https://github.com/mfresonke)
-- Xixi Ruan [@sissisnothere](https://github.com/sissisnothere)
-- Emre Ozgener [@eozgener](https://github.com/eozgener)
+- **B**rent Lewis [@blewis954](https://github.com/blewis954)
+- **C**ory Anderson [@corya14](https://github.com/corya14)
+- **E**mre Ozgener [@eozgener](https://github.com/eozgener)
+- **J**acob Jenkins [@jacobj](https://github.com/jacobj)
+- **M**ax Fresonke [@mfresonke](https://github.com/mfresonke)
+- **X**ixi Ruan [@sissisnothere](https://github.com/sissisnothere)
 
 ## User Stories
 User stories are hosted via [Trello.](https://trello.com/b/1REv6LsL/blackbelt)
